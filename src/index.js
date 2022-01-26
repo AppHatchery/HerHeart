@@ -45,6 +45,70 @@ var json = {
         },{
             "elements": [
                 {
+                    "name": "age",
+                    "type": "text",
+                    "inputType": "number",
+                    "title": "Let's start with your age. How old are you?",
+                    "placeholder": "15",
+                    "isRequired": true
+                }
+            ]
+        },{
+            "elements": [
+                {
+                    "type": "dropdown",
+                    "name": "gender",
+                    "title": "What is your gender?",
+                    "isRequired": true,
+                    "colCount": 0,
+                    "hasNone": false,
+                    "choices": [
+                        "Female",
+                        "Male",
+                        "Transgender female",
+                        "Transgender male",
+                        "Non-gender binary"
+                    ]
+                }
+            ]
+        },{
+            "elements": [
+                {
+                    "name": "weight",
+                    "type": "text",
+                    "inputType": "number",
+                    "placeholder": "130",
+                    "title": "How much do you weigh?",
+                    "isRequired": true
+                }
+            ]
+        },{
+            "elements": [
+                {
+                    "type": "html",
+                    "name": "Height",
+                    "html": "<p><b>How tall are you?</b></p>"
+                },
+                {
+                    "name": "height-feet",
+                    "type": "text",
+                    "inputType": "number",
+                    "placeholder": "4",
+                    "title": "Feet",
+                    "isRequired": true
+                },
+                {
+                    "name": "height-inches",
+                    "type": "text",
+                    "inputType": "number",
+                    "placeholder": "7",
+                    "title": "Inches",
+                    "isRequired": true
+                }
+            ]
+        },{
+            "elements": [
+                {
                     "type": "image",
                     "name": "first_page_image",
                     "imageLink": "./img/vigorous.png",
@@ -297,6 +361,56 @@ var json = {
                         "Everyday",
                         "Twice a day",
                         "More than twice a day",
+                    ]
+                }
+            ]
+        },{
+            "elements": [
+                {
+                    "type": "image",
+                    "name": "alcohol_image",
+                    "imageLink": "./img/alcohol.png",
+                    "imageWidth": "300px",
+                    "imageHeight": "300px"
+                },
+                {
+                    "type": "dropdown",
+                    "name": "alcohol",
+                    "title": "If you do, how often do you drink one glass of alcohol? One glass = 4 ounces of wine, 12 ounces of beer",
+                    "isRequired": true,
+                    "colCount": 0,
+                    "hasNone": false,
+                    "choices": [
+                        "Never",
+                        "Less than once a week",
+                        "Once or twice a week",
+                        "Three to five times a week",
+                        "Everyday",
+                        "Twice a day",
+                        "More than twice a day",
+                    ]
+                }
+            ]
+        },{
+            "elements": [
+                {
+                    "type": "image",
+                    "name": "smoker_image",
+                    "imageLink": "./img/smoker.png",
+                    "imageWidth": "300px",
+                    "imageHeight": "300px"
+                },
+                {
+                    "type": "dropdown",
+                    "name": "grains",
+                    "title": "Do you smoke cigarrettes?",
+                    "isRequired": true,
+                    "colCount": 0,
+                    "hasNone": false,
+                    "choices": [
+                        "Never smoked",
+                        "Used to smoke",
+                        "Currently smoke"
                     ]
                 }
             ]
