@@ -1,6 +1,18 @@
 # Getting Started with HerHeart
 
-1. Pull code from github
+## Building locally and running the development server
+1. Clone code from github using method of choice.  For example, in VS Code, "Clone Git Repository", search for HerHeart in the top bar, and select AppHatchery/HerHeart
+2. Navigate to the folder that was just cloned called HerHeart
+3. Try to build the code locally `npm run build`
+4. Follow the script output, you will likely need to install react-scripts
+5. (optional) If needed, install react-scripts `npm install react-scripts`
+6. Assuming the project builds successfully, start the development server with `npm start`
+7. Your browswer should open automatically, if it does not, navigate to http://localhost:3000/
+
+
+## Push a new code version to hosting
+1. Install firebase tools using the instructions here: https://firebase.google.com/docs/cli `npm install -g firebase-tools`
+
 
 # Getting Started with Create React App
 
