@@ -13,6 +13,8 @@
 ## Push a new code version to hosting
 1. Install firebase tools using the instructions here: https://firebase.google.com/docs/cli `npm install -g firebase-tools`
 
+## Using a preview site
+Preview sites can be created using `firebase hosting:channel:deploy dev` where dev is any preview channel name you want
 
 # Getting Started with Create React App
 
