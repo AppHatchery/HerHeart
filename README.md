@@ -1,5 +1,7 @@
 # Getting Started with HerHeart
 
+1. Pull code from github
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
