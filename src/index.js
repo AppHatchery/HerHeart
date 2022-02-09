@@ -6,6 +6,39 @@ import reportWebVitals from './reportWebVitals';
 import * as Survey from "survey-react";
 import noUiSlider from 'nouislider';
 import 'bootstrap';
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getDatabase, ref, push, update } from "firebase/database";
+
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyC0oHcnRMNo_92xxYWwLwmKIi9tp89Yz6g",
+  authDomain: "herheart-5ca67.firebaseapp.com",
+  projectId: "herheart-5ca67",
+  storageBucket: "herheart-5ca67.appspot.com",
+  messagingSenderId: "435629529947",
+  appId: "1:435629529947:web:77da4219b313ff7b5b987e",
+  measurementId: "G-6Z1Z3BMDQ4"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+
+
+function writeUserData(answers) {
+    const db = getDatabase();
+    // Get a key for a new Post.
+    const entryKey = push(ref(db)).key;
+    const updates = {};
+    updates['users/' + entryKey] = answers;
+    update(ref(db), updates);
+  }
+
 
 
 Survey
@@ -32,12 +65,12 @@ Survey
 var json = {
     "title": "HerHeart",
     "showProgressBar": "top",
-    "triggers": [
-        {
-            "type": "complete",
-            "expression": "{gender} != 'Female'"
-        }
-    ],
+    // "triggers": [
+    //     {
+    //         "type": "complete"
+    //         "expression": "{gender} != 'Female'"
+    //     }
+    // ],
     "pages": [
         {
             "elements": [
@@ -62,7 +95,7 @@ var json = {
         },{
             "elements": [
                 {
-                    "type": "dropdown",
+                    "type": "radiogroup",
                     "name": "gender",
                     "title": "What is your gender?",
                     "isRequired": true,
@@ -122,7 +155,7 @@ var json = {
                     "imageHeight": "300px"
                 },
                 {
-                    "type": "dropdown",
+                    "type": "radiogroup",
                     "name": "activity-hard",
                     "title": "During a typical 7-Day period (a week), how much time do you spend on ANY of the following kinds of physical activity where you sweat/breathe hard/your heart beats rapidly?",
                     "isRequired": true,
@@ -149,7 +182,7 @@ var json = {
                     "imageHeight": "300px"
                 },
                 {
-                    "type": "dropdown",
+                    "type": "radiogroup",
                     "name": "activity-mod",
                     "title": "During a typical 7-Day period (a week), how much time do you spend on ANY of the following kinds of physical activity where you are exerting some effort?",
                     "isRequired": true,
@@ -176,9 +209,9 @@ var json = {
                     "imageHeight": "300px"
                 },
                 {
-                    "type": "dropdown",
+                    "type": "radiogroup",
                     "name": "fruits",
-                    "title": "During a typical 7-Day period (a week), how often do you have fruits?",
+                    "title": "During a typical 7-Day period (a week), how often do you have one piece of fruits?",
                     "isRequired": true,
                     "colCount": 0,
                     "hasNone": false,
@@ -200,7 +233,7 @@ var json = {
                     "imageLink": "./img/yesfruit.png",
                     "imageWidth": "300px",
                     "imageHeight": "300px",
-                    "visibleIf": "{fruits}='Everyday'",
+                    "visibleIf": "{fruits}='Twice a day'",
                 },
                 {
                     "type": "image",
@@ -221,7 +254,7 @@ var json = {
                     "imageHeight": "300px"
                 },
                 {
-                    "type": "dropdown",
+                    "type": "radiogroup",
                     "name": "vegetables",
                     "title": "During a typical 7-Day period (a week), how often do you have vegetables?",
                     "isRequired": true,
@@ -247,7 +280,7 @@ var json = {
                     "imageHeight": "300px"
                 },
                 {
-                    "type": "dropdown",
+                    "type": "radiogroup",
                     "name": "nuts",
                     "title": "During a typical 7-Day period (a week), how often do you eat a handful of nuts?",
                     "isRequired": true,
@@ -274,7 +307,7 @@ var json = {
                     "imageHeight": "300px"
                 },
                 {
-                    "type": "dropdown",
+                    "type": "radiogroup",
                     "name": "sugar",
                     "title": "During a typical 7-Day period (a week), how often do you have 1 can/bottle of soda?",
                     "isRequired": true,
@@ -300,7 +333,7 @@ var json = {
                     "imageHeight": "300px"
                 },
                 {
-                    "type": "dropdown",
+                    "type": "radiogroup",
                     "name": "happy food",
                     "title": "During a typical 7-Day period (a week), how often do you eat any of these foods?",
                     "isRequired": true,
@@ -326,7 +359,7 @@ var json = {
                     "imageHeight": "300px"
                 },
                 {
-                    "type": "dropdown",
+                    "type": "radiogroup",
                     "name": "meat",
                     "title": "During a typical 7-Day period (a week), how often do you have red or processed meat?",
                     "isRequired": true,
@@ -348,14 +381,41 @@ var json = {
                 {
                     "type": "image",
                     "name": "grains_image",
-                    "imageLink": "./img/bread.png",
+                    "imageLink": "./img/grains-high.png",
                     "imageWidth": "300px",
                     "imageHeight": "300px"
                 },
                 {
-                    "type": "dropdown",
-                    "name": "grains",
-                    "title": "During a typical 7-Day period (a week), how often do you have grains?",
+                    "type": "radiogroup",
+                    "name": "grains-high",
+                    "title": "During a typical 7-Day period (a week), how often do you have high fiber grains such as these?",
+                    "isRequired": true,
+                    "colCount": 0,
+                    "hasNone": false,
+                    "choices": [
+                        "Never",
+                        "Less than once a week",
+                        "Once or twice a week",
+                        "Three to five times a week",
+                        "Everyday",
+                        "Twice a day",
+                        "More than twice a day",
+                    ]
+                }
+            ]
+        },{
+            "elements": [
+                {
+                    "type": "image",
+                    "name": "grains_image",
+                    "imageLink": "./img/grains-low.png",
+                    "imageWidth": "300px",
+                    "imageHeight": "300px"
+                },
+                {
+                    "type": "radiogroup",
+                    "name": "grains-low",
+                    "title": "During a typical 7-Day period (a week), how often do you have low fiber grains such as these?",
                     "isRequired": true,
                     "colCount": 0,
                     "hasNone": false,
@@ -376,13 +436,15 @@ var json = {
                     "type": "image",
                     "name": "alcohol_image",
                     "imageLink": "./img/alcohol.png",
+                    "visibleIf": "{age}>=21",
                     "imageWidth": "300px",
                     "imageHeight": "300px"
                 },
                 {
-                    "type": "dropdown",
+                    "type": "radiogroup",
                     "name": "alcohol",
                     "title": "If you do, how often do you drink one glass of alcohol? One glass = 4 ounces of wine, 12 ounces of beer",
+                    "visibleIf": "{age}>=21",
                     "isRequired": true,
                     "colCount": 0,
                     "hasNone": false,
@@ -425,10 +487,48 @@ var json = {
                 {
                     "type": "html",
                     "name": "summary",
-                    "html": "<h3> Tis your score yo!</h3>"
+                    "html": "<div style=' border-radius: 25px; padding: 20px; background-image: linear-gradient(0deg,  rgb(231, 206, 61),rgb(211, 159, 16));width:75%; margin:auto;'><center><p style='margin:auto;'>Your risk is <h3></h3>Compared to a healthy lifestyle</p></center></div>"
+                }
+                // ,{
+                //     "type": "html",
+                //     "name": "recommendations",
+                //     "html": "<div style='display: flex; justify-content: space-around'><a href=''style='padding:13px 15px 13px 15px; background-color: rgba(47, 136, 236, 0.733); color: white; border-radius: 8px; font-size: medium;'>Read some recomendations</a></div>"
+                // }
+            ]
+        },{
+            "elements": [
+                {
+                    "type": "html",
+                    "name": "good-foods",
+                    "html": ""
                 }
             ]
-        }
+        },{
+            "elements": [
+                {
+                    "type": "html",
+                    "name": "bad-foods",
+                    "html": ""
+                }
+            ]
+        },{
+            "elements": [
+                {
+                    "type": "html",
+                    "name": "activities",
+                    "html": ""
+                }
+            ]
+        },{
+            "elements": [
+                {
+                    "type": "html",
+                    "name": "smokinghabits",
+                    "html": "",
+                    "visibleIf": "{smoke}!='Never smoke'",
+                }
+            ]
+        },
     ]
 };
 
@@ -450,27 +550,36 @@ survey.onValueChanged.add(function(survey, options){
     //
     var alcoholQuestion = survey.getQuestionByName("alcohol").value;
     var alcoholValue = 0;
-    if (alcoholQuestion=="More than twice a day"){alcoholValue=0.01923*3-0.0004*3*3}
-    else if (alcoholQuestion=="Twice a day"){alcoholValue=0.01923*2-0.0004*2*2}
-    else if (alcoholQuestion=="Everyday"){alcoholValue=0.01923*1-0.0004}
-    else if (alcoholQuestion=="Three to five times a week"){alcoholValue=0.01923*0.5-0.0004*0.5*0.5};
+    if (alcoholQuestion=="More than twice a day"){alcoholValue=0.01923*30-0.0004*30*30}
+    else if (alcoholQuestion=="Twice a day"){alcoholValue=0.01923*20-0.0004*20*20}
+    else if (alcoholQuestion=="Everyday"){alcoholValue=0.01923*10-0.0004*10*10}
+    else if (alcoholQuestion=="Three to five times a week"){alcoholValue=0.01923*5-0.0004*5*5};
     // 
     var fruitQuestion = survey.getQuestionByName("fruits").value;
     var vegetableQuestion = survey.getQuestionByName("vegetables").value;
     var fruitVeggieValue = 0;
-    if (fruitQuestion=="More than twice a day" || vegetableQuestion=="More than twice a day"){fruitVeggieValue=0.18283};
+    var fruitVeggieText = "+ 0"; // The value to appear in the prototype tool
+    if (fruitQuestion=="More than twice a day" || vegetableQuestion=="More than twice a day"){fruitVeggieValue=0.18283; fruitVeggieText = "+36";}
+    else if (fruitQuestion=="Everyday" && vegetableQuestion == "Everyday"){fruitVeggieValue=0.18283; fruitVeggieText = "+36";};
     var nutQuestion = survey.getQuestionByName("nuts").value;
     var nutValue = 0;
-
-    var grainQuestion = survey.getQuestionByName("grains").value;
+    var nutText = "+ 0";
+    if (nutQuestion=="Three to five times a week" || nutQuestion=="Everyday" || nutQuestion=="Once or twice a week"){nutValue=0.14522; nutText = "+29";}
+    else if (nutQuestion=="More than twice a day" || nutQuestion=="Twice a day"){nutValue=0.24444; nutText = "+49";};
+    
+    var grainQuestion = survey.getQuestionByName("grains-high").value;
     var grainValue = 0;
-    if (grainQuestion=="More than twice a day"){grainValue=0.03326*3}
-    else if (grainQuestion=="Twice a day"){grainValue=0.03326*2}
-    else if (grainQuestion=="Everyday"){grainValue=0.03326*1}
-    else if (grainQuestion=="Three to five times a week"){grainValue=0.03326*0.5}
-
-    if (nutQuestion=="Three to five times a week" || nutQuestion=="Everyday" || nutQuestion=="Once or twice a week"){nutValue=0.14522}
-    else if (nutQuestion=="More than twice a day" || nutQuestion=="Twice a day"){nutValue=0.24444};
+    if (grainQuestion=="More than twice a day"){grainValue=0.03326*3*3}
+    else if (grainQuestion=="Twice a day"){grainValue=0.03326*3*2}
+    else if (grainQuestion=="Everyday"){grainValue=0.03326*3*1}
+    else if (grainQuestion=="Three to five times a week"){grainValue=0.03326*3*0.5}
+    
+    var grainLowQuestion = survey.getQuestionByName("grains-low").value;
+    var grainLowValue = 0;
+    if (grainLowQuestion=="More than twice a day"){grainLowValue=0.03326*3}
+    else if (grainLowQuestion=="Twice a day"){grainLowValue=0.03326*2}
+    else if (grainLowQuestion=="Everyday"){grainLowValue=0.03326*1}
+    else if (grainLowQuestion=="Three to five times a week"){grainLowValue=0.03326*0.5}
     
     var sugarQuestion = survey.getQuestionByName("sugar").value;
     var sugarValue = 0;
@@ -485,7 +594,7 @@ survey.onValueChanged.add(function(survey, options){
     else if (meatQuestion=="Twice a day"){meatValue=0.15624*2}
     else if (meatQuestion=="Everyday"){meatValue=0.15624*1}
     else if (meatQuestion=="Three to five times a week"){meatValue=0.15624*0.5}
-    var Diet = fruitVeggieValue+nutValue-sugarValue-meatValue+grainValue;
+    var Diet = fruitVeggieValue+nutValue-sugarValue-meatValue+grainValue+grainLowValue;
     //
     var hardSportQuestion = survey.getQuestionByName("activity-hard").value;
     var hardSportValue = 0;
@@ -507,35 +616,101 @@ survey.onValueChanged.add(function(survey, options){
     else if(modSportQuestion=="10+ hrs"){modSportValue=10}
     //
     var W = 0;
-    console.log("This is the BMI",BMI);
+    var risk = 0;
     if (genderQuestion == "Female"){
-        W = 0.102820*ageQuestion+0.04676*BMI+smokeValue-alcoholValue-0.05113*(Diet*10)-0.02951*(hardSportValue+modSportValue);
+        W = 0.10820*ageQuestion+0.04676*BMI+smokeValue-alcoholValue-0.05113*(Diet*10)-0.02951*(hardSportValue+modSportValue);
+        risk = (1-Math.pow(0.9660,Math.exp(W-6.57301)))*100
     } else {
         W = "We not doing boys yet";
     }
-    var summaryQuestion = survey.getQuestionByName("summary");
-    summaryQuestion.html = "<h3>This is your cardiac risk: "+W+"</h3>";
 
-    // var knownChoices = options.question.choices;
-    // var choices = [];
-    // for(var i = 0; i < knownChoices.length; i ++) {
-    //   var item = knownChoices[i];
-    //   //the item is not selected
-    //   if(options.value.indexOf(item.value) < 0) {
-    //     choices.push(item);
-    //   }
-    // }
-    // var learnQuestion = survey.getQuestionByName("learn");
-    // learnQuestion.choices = choices;
-    // learnQuestion.visible = choices.length > 0;
-  });
+    var healthyPerson = (1-Math.pow(0.9660,Math.exp((-0.557385+BMI*0.04676+ageQuestion*0.1082)-6.57301)))*100;
+    var relativeRisk = risk/healthyPerson;
+    var summaryQuestion = survey.getQuestionByName("summary");
+    var relativeRiskWord = "";
+    var dietImagePath = "";
+    var activityImagePath = "";
+    var summaryColor = "";
+    var summaryImage = "";
+    // Add image for risks
+
+
+    //
+    if (relativeRisk <= 1.5) {
+        relativeRiskWord = "Looking good!";
+        summaryColor = "rgb(0, 178, 29),rgb(160, 241, 96))";
+        summaryImage = "./img/healthy.gif";
+    } else if (relativeRisk > 1.5 && relativeRisk < 4){
+        relativeRiskWord = "Slightly elevated";
+        summaryColor = "rgb(231, 206, 61),rgb(211, 159, 16))";
+        summaryImage = "./img/unhealthy.gif";
+    } else {
+        relativeRiskWord = "Very High";
+        summaryColor = "rgb(178, 32, 0),rgb(241, 96, 96))";
+        summaryImage = "./img/vunhealthy.gif";
+    }
+
+    // Activity computation
+    if (hardSportValue+modSportValue < 1.5){activityImagePath = "./img/bar_red.png";}
+    else if (hardSportValue+modSportValue >= 1.5 && hardSportValue+modSportValue < 3.5){activityImagePath = "./img/bar_yellow.png";}
+    else {activityImagePath = "./img/bar_green.png";}
+    // Diet computation
+    if (Diet*10 < 2.0){dietImagePath = "./img/bar_red.png";}
+    else if (Diet*10 > 2.0 && Diet*10 < 4.5){dietImagePath = "./img/bar_yellow.png";}
+    else {dietImagePath = "./img/bar_green.png";}
+
+    var summaryQuestion = survey.getQuestionByName("summary");
+    summaryQuestion.html = "<div><center><p><img src="+summaryImage+"></p></center><br><center><p style='margin:auto;'>Your risk is <h3>"+relativeRiskWord+"</h3><br></p></center></div>"+
+    // "<div style=' border-radius: 25px; padding: 20px; background-image: linear-gradient(0deg,  "+summaryColor+";width:75%; margin:auto;'><center><p style='margin:auto;'>Your risk is <h3>"+relativeRiskWord+"</h3><br> Compared to a healthy lifestyle</p></center></div>"+
+    // We'll put the images here of the Diet (2.5 points is the average)
+    "<br><center><p> This is your diet score: <img src="+dietImagePath+"></p></center>"+
+    // We'll put the images here for the Activity (1.5 hrs is the average)
+    "<br><center><p> This is your activity score: <img src="+activityImagePath+"></p></center>";
+
+    // Good foods replacement
+    // Add logic for what image to show
+    var imageSequence = ["./img/circle_above.png","./img/circle_av.png","./img/circle_below.png","./img/circle_mbelow.png","./img/circle_mmbelow.png"];
+    var sequenceVariable = 0;
+    if ((((fruitVeggieValue+nutValue+grainValue+grainLowValue)*1000)/5).toFixed(0) == 0){sequenceVariable=2}else{sequenceVariable = 1}
+    var goodFoodsQuestion = survey.getQuestionByName("good-foods");
+    goodFoodsQuestion.html = "<h3>Let's look at your diet :</h3> <ul> <li><div> <p>Fruits & Veggies: <span style='color: green;  font-weight: bold;' class='text-orientation-right-css'> +"+((fruitVeggieValue*1000)/5).toFixed(0)+"</span></p></div></li>"+
+    /*<p> (You need a least two servings of fruit or veggies a day to help your heart)</p>*/
+    "<li><div><p>Nuts: <span style='color:green;  font-weight: bold;' class='text-orientation-right-css'> + "+((nutValue*1000)/5).toFixed(0)+"</span></p></div></li>"+
+    /*<p> (You eat nuts <b>"+nutQuestion+"</b>, you need a least one serving of nuts a day)</p>*/
+    "<li><div><p>High fiber grains: <span style='color:green; font-weight: bold;' class='text-orientation-right-css'> + "+((grainValue*1000)/5).toFixed(0)+"</span></p></div></li>"+
+    /*<p>  (You eat high fiber grains <b>"+grainQuestion+"</b>, you need a least one serving every couple days)</p></div></li>"+*/
+    "<li><div><p>Low fiber grains: <span style='color:green; font-weight: bold;' class='text-orientation-right-css'> + "+((grainLowValue*1000)/5).toFixed(0)+"</span></p></div></li>"+
+    "<br><center><p><img src="+imageSequence[sequenceVariable]+"></p></center>";/*<p>  (You eat low fiber grains <b>"+grainLowQuestion+"</b>, you need a least one serving every day)</p></div></li>";*/
+  
+    // Good foods replacement
+    if ((((sugarValue+meatValue)*1000)/5).toFixed(0) != 0){sequenceVariable+=1}
+    var badFoodsQuestion = survey.getQuestionByName("bad-foods");
+    badFoodsQuestion.html = "<h3>Let's look at your diet :</h3> <ul> <li><div> <p>Sugary drinks: <span style='color: red;  font-weight: bold;' class='text-orientation-right-css'> - "+((sugarValue*1000)/5).toFixed(0)+"</span></p><p>(You drink soda <b>"+sugarQuestion+"</b>, the max should be once or twice a week)</p></div></li>"+
+                            "<li><div><p>Meat: <span style='color:red;  font-weight: bold;' class='text-orientation-right-css'> - "+((meatValue*1000)/5).toFixed(0)+"</span></p><p>(You eat meat <b>"+meatQuestion+"</b>, the max should be once or twice a week)</p></div></li>"+
+                            "<br><center><p><img src="+imageSequence[sequenceVariable]+"></p></center>";
+ 
+    // Actitives replacement
+    if (((modSportValue+hardSportValue)*6).toFixed(0) != 0){sequenceVariable-=1}else{sequenceVariable+=1}
+    var activitiesQuestion = survey.getQuestionByName("activities");
+    activitiesQuestion.html = "<h3>Let's look at your exercise :</h3> <ul> <li><div> <p>Activities: <span style='color: green;  font-weight: bold;' class='text-orientation-right-css'> + "+((modSportValue+hardSportValue)*6).toFixed(0)+" </span></p></div></li>"+
+    "<br><center><p><img src="+imageSequence[sequenceVariable]+"></p></center>";
+    /*<p>(You do <b>"+(modSportValue+hardSportValue)+"</b> hours of exercise a week you should be doing a minimum 1.5 hours per week)</p>*/
+    
+    // Smoking replacement
+    if (smokeQuestion == "Used to smoke"){sequenceVariable+=1}else if(smokeQuestion == "Currently smoke"){sequenceVariable+=2}
+    var smokingQuestion = survey.getQuestionByName("smokinghabits");
+    smokingQuestion.html = "<h3>Let's look at your smoking habits :</h3> <ul> <li><div> <p> You "+smokeQuestion+": <span style='color: red;  font-weight: bold;' class='text-orientation-right-css'> - "+((smokeValue*36)/0.18283).toFixed(0)+"</span></p></div></li>"+
+                            "<p> Any smoking significantly affects your heart health, it's -30 if you used to smoke and -177 if you currently do!</p>"+
+                            "<br><center><p><img src="+imageSequence[sequenceVariable]+"></p></center>";
+});
 
 survey
     .onComplete
     .add(function (sender) {
         document
             .querySelector('#surveyResult')
-            .textContent = "Result JSON:\n" + JSON.stringify(sender.data, null, 3);
+            .textContent = "You are done!";// <br>Result JSON:\n" + JSON.stringify(sender.data, null, 3);
+        writeUserData(sender.data);
     });
 
 ReactDOM.render(<Survey.Survey model={survey}/>, document.getElementById("surveyElement"));
