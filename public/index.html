@@ -11,14 +11,36 @@
     <link href="https://unpkg.com/nouislider@9.2.0/distribute/nouislider.min.css" rel="stylesheet"/>
     <script src="https://unpkg.com/surveyjs-widgets@1.9.8/surveyjs-widgets.min.js"></script>
     <script async src="https://www.tiktok.com/embed.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
 
 </head>
 <body>
 <div id="surveyElement" style="display:inline-block;width:100%;"></div>
 <div id="surveyResult"></div>
+<div class="modal-body">
+    <!-- An element that displays a survey element's 'popupdescription' property value-->
+    <p>
+        <div id="questionDescriptionText"></div>
+    </p>
+</div>
 
 
 <script>
+
+    Survey
+        .Serializer
+        .addProperty("page", "animated:text");
+
+    Survey
+        .Serializer
+        .addProperty("page", "popupdescription:text");
+
+    function showDescription(element) {
+        document
+            .getElementById("questionDescriptionText")
+            .innerHTML = element.popupdescription;
+        $("#questionDescriptionPopup").modal();
+    }
 
     const json = {
         "title": "HerHeart",
@@ -31,36 +53,36 @@
         ],
         "pages": [
 
-            {
-                "elements": [
-                    {
-                        "type": "html",
-                        "name": "text_recom",
-                        "html": "<center><h3 style='color:rgb(26, 179, 148);'>Recommendations</h3></centers>"
-                    },
-                    {
-                        "type": "html",
-                        "name": "recomendations_phy",
-                        "html": "<div style=\";\">\n" +
-                            "    <div style=\"left: 0; width: 100%; height: 0; position: relative; padding-bottom: 177.7778%; padding-top: 120px;\">\n" +
-                            "        <iframe src=\"https://www.tiktok.com/embed/6885517120382323973\"\n" +
-                            "                style=\"top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;\" allowfullscreen\n" +
-                            "                scrolling=\"no\" allow=\"encrypted-media;\"></iframe>\n" +
-                            "    </div>\n" +
-                            "</div>"
-                    },                    {
-                        "type": "html",
-                        "name": "recomendations_phy",
-                        "html": "<div style=\";\">\n" +
-                            "    <div style=\"left: 0; width: 100%; height: 0; position: relative; padding-bottom: 177.7778%; padding-top: 120px;\">\n" +
-                            "        <iframe src=\"https://www.tiktok.com/embed/6937433017707171077\"\n" +
-                            "                style=\"top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;\" allowfullscreen\n" +
-                            "                scrolling=\"no\" allow=\"encrypted-media;\"></iframe>\n" +
-                            "    </div>\n" +
-                            "</div>"
-                    },
-                ]
-            },
+            // {
+            //     "elements": [
+            //         {
+            //             "type": "html",
+            //             "name": "text_recom",
+            //             "html": "<center><h3 style='color:rgb(26, 179, 148);'>Recommendations</h3></centers>"
+            //         },
+            //         {
+            //             "type": "html",
+            //             "name": "recomendations_phy",
+            //             "html": "<div style=\";\">\n" +
+            //                 "    <div style=\"left: 0; width: 100%; height: 0; position: relative; padding-bottom: 177.7778%; padding-top: 120px;\">\n" +
+            //                 "        <iframe src=\"https://www.tiktok.com/embed/6885517120382323973\"\n" +
+            //                 "                style=\"top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;\" allowfullscreen\n" +
+            //                 "                scrolling=\"no\" allow=\"encrypted-media;\"></iframe>\n" +
+            //                 "    </div>\n" +
+            //                 "</div>"
+            //         },                    {
+            //             "type": "html",
+            //             "name": "recomendations_phy",
+            //             "html": "<div style=\";\">\n" +
+            //                 "    <div style=\"left: 0; width: 100%; height: 0; position: relative; padding-bottom: 177.7778%; padding-top: 120px;\">\n" +
+            //                 "        <iframe src=\"https://www.tiktok.com/embed/6937433017707171077\"\n" +
+            //                 "                style=\"top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;\" allowfullscreen\n" +
+            //                 "                scrolling=\"no\" allow=\"encrypted-media;\"></iframe>\n" +
+            //                 "    </div>\n" +
+            //                 "</div>"
+            //         },
+            //     ]
+            // },
 
 
             {
@@ -73,7 +95,13 @@
                     }
                 ]
             }, {
+                "popupdescription":"P5",
                 "elements": [
+                    {
+                        "type": "html",
+                        "name": "test",
+                        "html": "<div id='sketch-holder'></div>"
+                    },
                     {
 
                         // "step": 1,
@@ -84,7 +112,75 @@
                         "type": "nouislider",
                         "rangeMin": 10,
                         "rangeMax": 60,
-                        "defaultValue": 12
+                        "defaultValue": 0
+                    }
+                ]
+            },{
+                "popupdescription":"P5",
+                "animated":"yes",
+                "elements": [
+                    {
+                        "type": "html",
+                        "name": "test",
+                        "html": "<div id='sketch-holder'></div>"
+                    }
+                ]
+            }, {
+                "popupdescription":"P5",
+                "elements": [
+                    {
+                        "type": "html",
+                        "name": "test",
+                        "html": "<div id='sketch-holder'></div>"
+                    },
+                    {
+                        "title": "Let's start with your age. How old are you?",
+                        "name": "age2",
+                        "type": "nouislider",
+                        "rangeMin": 10,
+                        "rangeMax": 60,
+                        "defaultValue": 0
+                    }
+                ]
+            },{
+                "popupdescription":"P5",
+                "animated":"yes",
+                "elements": [
+                    {
+                        "type": "html",
+                        "name": "test",
+                        "html": "<div id='sketch-holder'></div>"
+                    }
+                ]
+            }, {
+                "popupdescription":"P5",
+                "elements": [
+                    {
+                        "type": "html",
+                        "name": "test",
+                        "html": "<div id='sketch-holder'></div>"
+                    },
+                    {
+
+                        // "step": 1,
+                        // "tooltips": true,
+
+                        "title": "Let's start with your age. How old are you?",
+                        "name": "age3",
+                        "type": "nouislider",
+                        "rangeMin": 10,
+                        "rangeMax": 60,
+                        "defaultValue": 0
+                    }
+                ]
+            },{
+                "popupdescription":"P5",
+                "animated":"yes",
+                "elements": [
+                    {
+                        "type": "html",
+                        "name": "test",
+                        "html": "<div id='sketch-holder'></div>"
                     }
                 ]
             }, {
@@ -480,8 +576,197 @@
 
     $("#surveyElement").Survey({model: survey});
 
+    //  P5 
+
+    // function defineSketch(x,y){
+    //     return function mySketch(p){
+    //     // P5
+    //         let draft, ready, i, maxvalue, minvalue;
+    //         var start,current;
+    //         var flag;
+    //         p.preload = function preload() {
+    //             ready = p.loadImage("img/heart-color.png");
+    //             draft = p.loadImage("img/heart-bw.png");
+    //         }
+    //         p.setup = function setup() {
+    //             let canvas = p.createCanvas(230, 225);
+    //             canvas.parent('sketch-holder');
+    //             p.image(ready, 0, 0);
+    //             p.image(draft, 0, 0);
+    //             i = -1*x;
+    //             minvalue = -1*x;
+    //             maxvalue = -1*y;
+    //             console.log(x);
+    //             flag = 0;
+    //         }
+
+    //         p.draw = function draw() {
+    //         //     i = i-1;
+    //             // if (i > maxvalue){
+    //                 // p.copy(ready, 0, 240, 230, minvalue, 0, 240, 230, minvalue);
+    //             // }
+    //             p.fillBar();
+    //         }
+
+    //         p.fillBar = function fillBar(){
+    //             i = i-0.5; // This controls the speed of the animation
+    //             if (i > maxvalue){
+    //                 p.copy(ready, 0, 240, 230, i*2, 0, 240, 230, i*2);
+    //                 // This can be put here as a delay for the whole animation, but it slows down the rendering of the covered object too much
+    //                 // if(flag == 0){
+    //                     // p.wait(500);
+    //                     // flag = 1;
+    //                 // }
+    //             }
+    //         }
+
+    //         // Waiting function
+    //         p.wait = function wait(time)
+    //         {
+    //             start = p.millis()
+    //             do
+    //             {
+    //                 current = p.millis();
+    //             }
+    //             while(current < start + time)
+    //             }
+    //     }
+    // };
+
+    // function startSketch(valmin,valmax) {
+    //     var mySketch = defineSketch(valmin,valmax);
+    //     window.sketchInstance = new p5(mySketch);
+    // }
+
+    survey
+    .onAfterRenderPage
+    .add(function (survey, options) {
+        //Do nothing if a page contains no description to show in a modal popup
+        if (!options.page.popupdescription) 
+            return;
+        
+        // Add a P5 Element
+        function defineSketch(x,y,animate){
+            return function mySketch(p){
+            // P5
+                let draft, ready, i, maxvalue, minvalue;
+                var start,current;
+                var flag;
+                p.preload = function preload() {
+                    ready = p.loadImage("img/heart-color.png");
+                    draft = p.loadImage("img/heart-bw.png");
+                }
+                p.setup = function setup() {
+                    let canvas = p.createCanvas(230, 225);
+                    canvas.parent('sketch-holder');
+                    p.image(ready, 0, 0);
+                    p.image(draft, 0, 0);
+                    i = -1*x;
+                    minvalue = -1*40;
+                    maxvalue = -1*y;
+                    console.log("this is x",x);
+                    flag = 0;
+                }
+
+                p.draw = function draw() {
+                //     i = i-1;
+                    // if (i > maxvalue){
+                        p.copy(ready, 0, 240, 230, minvalue, 0, 240, 230, minvalue);
+                    // }
+                    if (animate == 1){
+                        p.fillBar();
+                    }
+                }
+
+                p.fillBar = function fillBar(){
+                    i = i-0.5; // This controls the speed of the animation
+                    if (i > maxvalue){
+                        p.copy(ready, 0, 240, 230, i*2, 0, 240, 230, i*2);
+                        // This can be put here as a delay for the whole animation, but it slows down the rendering of the covered object too much
+                        // if(flag == 0){
+                            // p.wait(500);
+                            // flag = 1;
+                        // }
+                    }
+                }
+
+                // Waiting function
+                p.wait = function wait(time)
+                {
+                    start = p.millis()
+                    do
+                    {
+                        current = p.millis();
+                    }
+                    while(current < start + time)
+                    }
+            }
+        };
+
+        // function startSketch(valmin,valmax,animate) {
+        //     var mySketch = defineSketch(valmin,valmax,animate);
+        //     window.sketchInstance = new p5(mySketch);
+        // }
+
+        const ageQuestion = survey.getQuestionByName("age").value;
+        const ageQuestion2 = survey.getQuestionByName("age2").value;
+        const ageQuestion3 = survey.getQuestionByName("age3").value;
+
+        const currentPoints = ageQuestion+ageQuestion2+ageQuestion3;
+        const totalPoints = ageQuestion+ageQuestion2+ageQuestion3;
+        // console.log("these are current ponits",currentPoints);
+        // console.log("these are next points",totalPoints);
+
+        // I gotta pass in here these variables
+        if (options.page.animated) {
+            console.log("these are current ponits",currentPoints);
+            console.log("these are next points",totalPoints);
+            var mySketch = defineSketch(0,totalPoints,1);
+            window.sketchInstance = new p5(mySketch);
+        } else {
+            console.log("not animated, but current points",currentPoints);
+            console.log("not animated, but total points",totalPoints);
+            var mySketch = defineSketch(currentPoints,totalPoints,0);
+            window.sketchInstance = new p5(mySketch);
+        }
+        // var mySketch = defineSketch(0,totalPoints,1);
+        // window.sketchInstance = new p5(mySketch);
+
+        // P5 End ------------ //
+
+        //Create a 'More Info' button to invoke a modal popup
+        // var btn = document.createElement("button");
+        // btn.type = "button";
+        // btn.className = "btn btn-info btn-xs";
+        // btn.innerHTML = "More Info";
+        // btn.onclick = function () {
+        //     showDescription(survey.currentPage);
+        // }
+        // //Insert the created 'More Info' button into the rendered page's header
+        // var header = options
+        //     .htmlElement
+        //     .querySelector("h4");
+        // var span = document.createElement("span");
+        // span.innerHTML = "  ";
+        // header.appendChild(span);
+        // header.appendChild(btn);
+    });
 
     survey.onValueChanged.add(function (survey, options) {
+
+        // This alone like this just creates the sketch and adds it to all pages
+        // var mySketch = defineSketch(10,50);
+        // window.sketchInstance = new p5(mySketch);
+
+        // const TestQ = survey.getQuestionByName("test");
+        // TestQ.html = "<h2> This is me</h2><div id='sketch-holder'></div><main></main><button onclick='startSketch(10,50)'> Start</button>";
+
+        // const TestQ2 = survey.getQuestionByName("test2");
+        // TestQ2.html = "<h2> This is me</h2><main></main><button onclick='startSketch(50,70)'> Start</button>";
+
+        // const TestQ3 = survey.getQuestionByName("test3");
+        // TestQ3.html = "<h2> This is me</h2><main></main><button onclick='startSketch(70,100)'> Start</button>";
+
         const ageQuestion = survey.getQuestionByName("age").value;
         const genderQuestion = survey.getQuestionByName("gender").value;
         //
