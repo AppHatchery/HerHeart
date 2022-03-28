@@ -35,12 +35,20 @@
         .Serializer
         .addProperty("page", "popupdescription:text");
 
+    Survey
+        .Serializer
+        .addProperty("page", "pos:number");
+
     function showDescription(element) {
         document
             .getElementById("questionDescriptionText")
             .innerHTML = element.popupdescription;
         $("#questionDescriptionPopup").modal();
     }
+
+    var newAnimation;
+    var oldAnimation;
+    var animationValues = new Array(4);
 
     const json = {
         "title": "HerHeart",
@@ -96,6 +104,7 @@
                 ]
             }, {
                 "popupdescription":"P5",
+                "pos": 1,
                 "elements": [
                     {
                         "type": "html",
@@ -118,6 +127,7 @@
             },{
                 "popupdescription":"P5",
                 "animated":"yes",
+                "pos" : 1,
                 "elements": [
                     {
                         "type": "html",
@@ -127,6 +137,7 @@
                 ]
             }, {
                 "popupdescription":"P5",
+                "pos": 2,
                 "elements": [
                     {
                         "type": "html",
@@ -145,6 +156,7 @@
             },{
                 "popupdescription":"P5",
                 "animated":"yes",
+                "pos": 2,
                 "elements": [
                     {
                         "type": "html",
@@ -154,6 +166,7 @@
                 ]
             }, {
                 "popupdescription":"P5",
+                "pos": 3,
                 "elements": [
                     {
                         "type": "html",
@@ -176,6 +189,7 @@
             },{
                 "popupdescription":"P5",
                 "animated":"yes",
+                "pos": 3,
                 "elements": [
                     {
                         "type": "html",
@@ -661,32 +675,51 @@
                     canvas.parent('sketch-holder');
                     p.image(ready, 0, 0);
                     p.image(draft, 0, 0);
-                    i = -1*x;
-                    minvalue = -1*40;
+                    // i = -1;
+                    minvalue = -1*x;
                     maxvalue = -1*y;
-                    console.log("this is x",x);
+                    i = minvalue+0.5;
+                    console.log("this is starting point",minvalue);
+                    console.log("this is ending point",maxvalue);
+                    console.log("animating?",animate);
                     flag = 0;
                 }
 
                 p.draw = function draw() {
                 //     i = i-1;
                     // if (i > maxvalue){
-                        p.copy(ready, 0, 240, 230, minvalue, 0, 240, 230, minvalue);
+                        // p.copy(ready, 0, 240, 230, minvalue, 0, 240, 230, minvalue);
                     // }
                     if (animate == 1){
                         p.fillBar();
+                        // console.log("fire animate");
+                    } else {
+                        // console.log("firing?");
+                        p.staticBar();
                     }
                 }
 
                 p.fillBar = function fillBar(){
-                    i = i-0.5; // This controls the speed of the animation
                     if (i > maxvalue){
                         p.copy(ready, 0, 240, 230, i*2, 0, 240, 230, i*2);
+                        i = i-0.5;
                         // This can be put here as a delay for the whole animation, but it slows down the rendering of the covered object too much
                         // if(flag == 0){
                             // p.wait(500);
                             // flag = 1;
                         // }
+                    }
+                }
+
+                p.staticBar = function staticBar(){
+                    // i = minvalue+0.5; // Define the minimum value as 0.5 less so that it becomes exactly that value
+                    if (flag == 0){
+                        if (i >= minvalue){
+                            p.copy(ready, 0, 240, 230, i*2, 0, 240, 230, i*2);
+                        } else {
+                            flag = 1;
+                        }
+                        i = i-0.5;                        
                     }
                 }
 
@@ -711,23 +744,49 @@
         const ageQuestion = survey.getQuestionByName("age").value;
         const ageQuestion2 = survey.getQuestionByName("age2").value;
         const ageQuestion3 = survey.getQuestionByName("age3").value;
-
+        
+        animationValues[0] = 0;
+        animationValues[1] = ageQuestion;
+        animationValues[2] = ageQuestion + ageQuestion2;
+        animationValues[3] = ageQuestion + ageQuestion2 + ageQuestion3
         const currentPoints = ageQuestion+ageQuestion2+ageQuestion3;
         const totalPoints = ageQuestion+ageQuestion2+ageQuestion3;
         // console.log("these are current ponits",currentPoints);
         // console.log("these are next points",totalPoints);
-
+        // var mySketch = defineSketch(currentPoints,totalPoints,1);
+        // var newAnimation;
+        // var mySketch2 = defineSketch(currentPoints,0,0);
+        // var oldAnimation;
         // I gotta pass in here these variables
+        console.log("this is the position",options.page.pos);
         if (options.page.animated) {
-            console.log("these are current ponits",currentPoints);
-            console.log("these are next points",totalPoints);
-            var mySketch = defineSketch(0,totalPoints,1);
-            window.sketchInstance = new p5(mySketch);
+            // console.log("these are current ponits",currentPoints);
+            // console.log("these are next points",totalPoints);
+            // Remove the previous animation
+            if (oldAnimation != null) {
+                oldAnimation.remove();
+            }
+            var mySketch = defineSketch(animationValues[options.page.pos-1],animationValues[options.page.pos],1);
+            // var mySketch = defineSketch(currentPoints,totalPoints,1);
+            newAnimation = new p5(mySketch);
+            window.sketchInstance = newAnimation;
+            // window.sketchInstance = new p5(newAnimation);
+            console.log("this animates");
         } else {
-            console.log("not animated, but current points",currentPoints);
-            console.log("not animated, but total points",totalPoints);
-            var mySketch = defineSketch(currentPoints,totalPoints,0);
-            window.sketchInstance = new p5(mySketch);
+            // console.log("not animated, but current points",currentPoints);
+            // console.log("not animated, but total points",totalPoints);
+            if (newAnimation != null) {
+                newAnimation.remove();
+            }
+            var mySketch2 = defineSketch(animationValues[options.page.pos-1],0,0);
+            
+            // var mySketch2 = defineSketch(currentPoints,0,0);
+            oldAnimation = new p5(mySketch2);
+            // var mySketch2 = defineSketch(currentPoints,0,0);
+            window.sketchInstance = oldAnimation;
+
+            // window.sketchInstance = new p5(oldAnimation);
+            console.log("This doesnt");
         }
         // var mySketch = defineSketch(0,totalPoints,1);
         // window.sketchInstance = new p5(mySketch);
@@ -887,7 +946,7 @@
         }
         //
         let W = 0;
-        console.log("This is the BMI", BMI);
+        // console.log("This is the BMI", BMI);
         if (genderQuestion === "Female") {
             W = 0.102820 * ageQuestion + 0.04676 * BMI + smokeValue - alcoholValue - 0.05113 * (Diet * 10) - 0.02951 * (hardSportValue + modSportValue);
         } else {
