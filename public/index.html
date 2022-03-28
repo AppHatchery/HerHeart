@@ -48,61 +48,36 @@
 
     var newAnimation;
     var oldAnimation;
-    var animationValues = new Array(4);
+    var animationValues = new Array(9);
 
     const json = {
         "title": "HerHeart",
         "showProgressBar": "top",
-        "triggers": [
-            {
-                "type": "complete",
-                "expression": "{gender} != 'Female'"
-            }
-        ],
+        "goNextPageAutomatic": true,
+    // "triggers": [
+    //     {
+    //         "type": "complete"
+    //         "expression": "{gender} != 'Female'"
+    //     }
+    // ],
         "pages": [
-
-            // {
-            //     "elements": [
-            //         {
-            //             "type": "html",
-            //             "name": "text_recom",
-            //             "html": "<center><h3 style='color:rgb(26, 179, 148);'>Recommendations</h3></centers>"
-            //         },
-            //         {
-            //             "type": "html",
-            //             "name": "recomendations_phy",
-            //             "html": "<div style=\";\">\n" +
-            //                 "    <div style=\"left: 0; width: 100%; height: 0; position: relative; padding-bottom: 177.7778%; padding-top: 120px;\">\n" +
-            //                 "        <iframe src=\"https://www.tiktok.com/embed/6885517120382323973\"\n" +
-            //                 "                style=\"top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;\" allowfullscreen\n" +
-            //                 "                scrolling=\"no\" allow=\"encrypted-media;\"></iframe>\n" +
-            //                 "    </div>\n" +
-            //                 "</div>"
-            //         },                    {
-            //             "type": "html",
-            //             "name": "recomendations_phy",
-            //             "html": "<div style=\";\">\n" +
-            //                 "    <div style=\"left: 0; width: 100%; height: 0; position: relative; padding-bottom: 177.7778%; padding-top: 120px;\">\n" +
-            //                 "        <iframe src=\"https://www.tiktok.com/embed/6937433017707171077\"\n" +
-            //                 "                style=\"top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;\" allowfullscreen\n" +
-            //                 "                scrolling=\"no\" allow=\"encrypted-media;\"></iframe>\n" +
-            //                 "    </div>\n" +
-            //                 "</div>"
-            //         },
-            //     ]
-            // },
-
-
             {
                 "elements": [
                     {
+                        "type": "image",
+                        "name": "logo_image",
+                        "imageLink": "./img/heart-logo.png",
+                        "imageWidth": "100px",
+                        "imageHeight": "100px"
+                    },
+                    {
                         "type": "html",
                         "name": "Intro",
-                        "html": "<h3> Welcome to the HerHeart, a new version of the Healthy Heart Score for teenage girls</h3><br><p>Not smoking, a healthy weight, a nutritious diet, and daily exercise play important roles in the prevention of cardiovascular disease. In fact, an overall healthy lifestyle may prevent more than 75% of deaths due to cardiovascular disease. Take this quiz to evaluate how your current lifestyle habits affect your cardiovascular health, and discover simple steps you can take to incorporate a Heart Healthy lifestyle into everyday living. Knowledge is power. Take the first step towards protecting your heart and your health!</p>" +
-                            "<br><p><b>Press Next to begin this quiz.</b></p>"
+                        "html": "<h2> Tell us what you eat every week and we'll tell you how healthy your heart is</h2><br><p>Not smoking, a healthy weight, a nutritious diet, and daily exercise play important roles in the prevention of cardiovascular disease. In fact, an overall healthy lifestyle may prevent more than 75% of deaths due to cardiovascular disease. Take this quiz to evaluate how your current lifestyle habits affect your cardiovascular health, and discover simple steps you can take to incorporate a Heart Healthy lifestyle into everyday living. Knowledge is power. Take the first step towards protecting your heart and your health!</p>"+ 
+                        "<br><p><b>Press Next to begin this quiz.</b></p>"
                     }
                 ]
-            }, {
+            },{
                 "popupdescription":"P5",
                 "pos": 1,
                 "elements": [
@@ -112,150 +87,6 @@
                         "html": "<div id='sketch-holder'></div>"
                     },
                     {
-
-                        // "step": 1,
-                        // "tooltips": true,
-
-                        "title": "Let's start with your age. How old are you?",
-                        "name": "age",
-                        "type": "nouislider",
-                        "rangeMin": 10,
-                        "rangeMax": 60,
-                        "defaultValue": 0
-                    }
-                ]
-            },{
-                "popupdescription":"P5",
-                "animated":"yes",
-                "pos" : 1,
-                "elements": [
-                    {
-                        "type": "html",
-                        "name": "test",
-                        "html": "<div id='sketch-holder'></div>"
-                    }
-                ]
-            }, {
-                "popupdescription":"P5",
-                "pos": 2,
-                "elements": [
-                    {
-                        "type": "html",
-                        "name": "test",
-                        "html": "<div id='sketch-holder'></div>"
-                    },
-                    {
-                        "title": "Let's start with your age. How old are you?",
-                        "name": "age2",
-                        "type": "nouislider",
-                        "rangeMin": 10,
-                        "rangeMax": 60,
-                        "defaultValue": 0
-                    }
-                ]
-            },{
-                "popupdescription":"P5",
-                "animated":"yes",
-                "pos": 2,
-                "elements": [
-                    {
-                        "type": "html",
-                        "name": "test",
-                        "html": "<div id='sketch-holder'></div>"
-                    }
-                ]
-            }, {
-                "popupdescription":"P5",
-                "pos": 3,
-                "elements": [
-                    {
-                        "type": "html",
-                        "name": "test",
-                        "html": "<div id='sketch-holder'></div>"
-                    },
-                    {
-
-                        // "step": 1,
-                        // "tooltips": true,
-
-                        "title": "Let's start with your age. How old are you?",
-                        "name": "age3",
-                        "type": "nouislider",
-                        "rangeMin": 10,
-                        "rangeMax": 60,
-                        "defaultValue": 0
-                    }
-                ]
-            },{
-                "popupdescription":"P5",
-                "animated":"yes",
-                "pos": 3,
-                "elements": [
-                    {
-                        "type": "html",
-                        "name": "test",
-                        "html": "<div id='sketch-holder'></div>"
-                    }
-                ]
-            }, {
-                "elements": [
-                    {
-                        "type": "dropdown",
-                        "name": "gender",
-                        "title": "What is your gender?",
-                        "isRequired": true,
-                        "colCount": 0,
-                        "hasNone": false,
-                        "choices": [
-                            "Female",
-                            "Male",
-                            "Transgender female",
-                            "Transgender male",
-                            "Non-gender binary"
-                        ]
-                    }
-                ]
-            }, { // This question needs logic for people that accidentally put too much or too little
-                "elements": [
-                    {
-                        "name": "weight",
-
-                        "type": "nouislider",
-                        "rangeMin": 100,
-                        "rangeMax": 360,
-                        "defaultValue": 130,
-
-                    }
-                ]
-            },
-            {
-                "elements": [
-                    {
-                        "type": "html",
-                        "name": "Height",
-                        "html": "<p><b>How tall are you?</b></p>"
-                    },
-                    {
-                        "name": "height-feet",
-                        "type": "nouislider",
-                        "rangeMin": 1,
-                        "rangeMax": 30,
-                        "defaultValue": 4,
-
-                    },
-                    {
-                        "name": "height-inches",
-
-                        "type": "nouislider",
-                        "rangeMin": 1,
-                        "rangeMax": 30,
-                        "defaultValue": 7,
-
-                    }
-                ]
-            }, {
-                "elements": [
-                    {
                         "type": "image",
                         "name": "first_page_image",
                         "imageLink": "./img/vigorous.png",
@@ -263,7 +94,7 @@
                         "imageHeight": "300px"
                     },
                     {
-                        "type": "dropdown",
+                        "type": "radiogroup",
                         "name": "activity-hard",
                         "title": "During a typical 7-Day period (a week), how much time do you spend on ANY of the following kinds of physical activity where you sweat/breathe hard/your heart beats rapidly?",
                         "isRequired": true,
@@ -280,8 +111,15 @@
                         ]
                     }
                 ]
-            }, {
+            },{
+                "popupdescription":"P5",
+                "pos": 1,
                 "elements": [
+                    {
+                        "type": "html",
+                        "name": "test",
+                        "html": "<div id='sketch-holder'></div>"
+                    },
                     {
                         "type": "image",
                         "name": "first_page_image",
@@ -290,7 +128,7 @@
                         "imageHeight": "300px"
                     },
                     {
-                        "type": "dropdown",
+                        "type": "radiogroup",
                         "name": "activity-mod",
                         "title": "During a typical 7-Day period (a week), how much time do you spend on ANY of the following kinds of physical activity where you are exerting some effort?",
                         "isRequired": true,
@@ -307,8 +145,26 @@
                         ]
                     }
                 ]
-            }, {
+            },{
+                "popupdescription":"P5",
+                "animated":"yes",
+                "pos" : 1,
                 "elements": [
+                    {
+                        "type": "html",
+                        "name": "test",
+                        "html": "<div id='sketch-holder'></div>"
+                    }
+                ]
+            },{
+                "popupdescription":"P5",
+                "pos": 2,
+                "elements": [
+                {
+                        "type": "html",
+                        "name": "test",
+                        "html": "<div id='sketch-holder'></div>"
+                    },
                     {
                         "type": "image",
                         "name": "second_page_image",
@@ -317,13 +173,14 @@
                         "imageHeight": "300px"
                     },
                     {
-                        "type": "dropdown",
+                        "type": "radiogroup",
                         "name": "fruits",
-                        "title": "During a typical 7-Day period (a week), how often do you have fruits?",
+                        "title": "During a typical 7-Day period (a week), how often do you have one piece of fruits?",
                         "isRequired": true,
                         "colCount": 0,
                         "hasNone": false,
                         "choices": [
+                            "Never",
                             "Less than once a week",
                             "Once or twice a week",
                             "Three to five times a week",
@@ -333,27 +190,43 @@
                         ]
                     }
                 ]
-            }, {
+            },
+            // {
+            //     "popupdescription":"P5",
+            //     "pos": 2,
+            //     "elements": [
+            //     {
+            //             "type": "html",
+            //             "name": "test",
+            //             "html": "<div id='sketch-holder'></div>"
+            //         },
+            //         {
+            //             "type": "image",
+            //             "name": "fruit_yes",
+            //             "imageLink": "./img/yesfruit.png",
+            //             "imageWidth": "300px",
+            //             "imageHeight": "300px",
+            //             "visibleIf": "{fruits}='Twice a day'",
+            //         },
+            //         {
+            //             "type": "image",
+            //             "name": "fruit_no",
+            //             "imageLink": "./img/nofruit.png",
+            //             "imageWidth": "300px",
+            //             "imageHeight": "300px",
+            //             "visibleIf": "{fruits}='Less than once a week'",
+            //         },
+            //     ]
+            // },
+            {
+                "popupdescription":"P5",
+                "pos": 2,
                 "elements": [
-                    {
-                        "type": "image",
-                        "name": "fruit_yes",
-                        "imageLink": "./img/yesfruit.png",
-                        "imageWidth": "300px",
-                        "imageHeight": "300px",
-                        "visibleIf": "{fruits}='Everyday'",
+                {
+                        "type": "html",
+                        "name": "test",
+                        "html": "<div id='sketch-holder'></div>"
                     },
-                    {
-                        "type": "image",
-                        "name": "fruit_no",
-                        "imageLink": "./img/nofruit.png",
-                        "imageWidth": "300px",
-                        "imageHeight": "300px",
-                        "visibleIf": "{fruits}='Less than once a week'",
-                    },
-                ]
-            }, {
-                "elements": [
                     {
                         "type": "image",
                         "name": "second_page_image",
@@ -362,13 +235,14 @@
                         "imageHeight": "300px"
                     },
                     {
-                        "type": "dropdown",
+                        "type": "radiogroup",
                         "name": "vegetables",
                         "title": "During a typical 7-Day period (a week), how often do you have vegetables?",
                         "isRequired": true,
                         "colCount": 0,
                         "hasNone": false,
                         "choices": [
+                            "Never",
                             "Less than once a week",
                             "Once or twice a week",
                             "Three to five times a week",
@@ -378,8 +252,26 @@
                         ]
                     }
                 ]
-            }, {
+            },{
+                "popupdescription":"P5",
+                "animated":"yes",
+                "pos" : 2,
                 "elements": [
+                    {
+                        "type": "html",
+                        "name": "test",
+                        "html": "<div id='sketch-holder'></div>"
+                    }
+                ]
+            },{
+                "popupdescription":"P5",
+                "pos": 3,
+                "elements": [
+                {
+                        "type": "html",
+                        "name": "test",
+                        "html": "<div id='sketch-holder'></div>"
+                    },
                     {
                         "type": "image",
                         "name": "second_page_image",
@@ -388,7 +280,7 @@
                         "imageHeight": "300px"
                     },
                     {
-                        "type": "dropdown",
+                        "type": "radiogroup",
                         "name": "nuts",
                         "title": "During a typical 7-Day period (a week), how often do you eat a handful of nuts?",
                         "isRequired": true,
@@ -405,8 +297,26 @@
                         ]
                     }
                 ]
-            }, {
+            },{
+                "popupdescription":"P5",
+                "animated":"yes",
+                "pos" : 3,
                 "elements": [
+                    {
+                        "type": "html",
+                        "name": "test",
+                        "html": "<div id='sketch-holder'></div>"
+                    }
+                ]
+            },{
+                "popupdescription":"P5",
+                "pos": 4,
+                "elements": [
+                {
+                        "type": "html",
+                        "name": "test",
+                        "html": "<div id='sketch-holder'></div>"
+                    },
                     {
                         "type": "image",
                         "name": "second_page_image",
@@ -415,13 +325,14 @@
                         "imageHeight": "300px"
                     },
                     {
-                        "type": "dropdown",
+                        "type": "radiogroup",
                         "name": "sugar",
                         "title": "During a typical 7-Day period (a week), how often do you have 1 can/bottle of soda?",
                         "isRequired": true,
                         "colCount": 0,
                         "hasNone": false,
                         "choices": [
+                            "Never",
                             "Less than once a week",
                             "Once or twice a week",
                             "Three to five times a week",
@@ -431,34 +342,26 @@
                         ]
                     }
                 ]
-            }, {
+            },{
+                "popupdescription":"P5",
+                "animated":"yes",
+                "pos" : 4,
                 "elements": [
                     {
-                        "type": "image",
-                        "name": "happy_image",
-                        "imageLink": "./img/happyfoods.png",
-                        "imageWidth": "300px",
-                        "imageHeight": "300px"
+                        "type": "html",
+                        "name": "test",
+                        "html": "<div id='sketch-holder'></div>"
+                    }
+                ]
+            },{
+                "popupdescription":"P5",
+                "pos": 5,
+                "elements": [
+                {
+                        "type": "html",
+                        "name": "test",
+                        "html": "<div id='sketch-holder'></div>"
                     },
-                    {
-                        "type": "dropdown",
-                        "name": "happy food",
-                        "title": "During a typical 7-Day period (a week), how often do you eat any of these foods?",
-                        "isRequired": true,
-                        "colCount": 0,
-                        "hasNone": false,
-                        "choices": [
-                            "Less than once a week",
-                            "Once or twice a week",
-                            "Three to five times a week",
-                            "Everyday",
-                            "Twice a day",
-                            "More than twice a day",
-                        ]
-                    }
-                ]
-            }, {
-                "elements": [
                     {
                         "type": "image",
                         "name": "meat_image",
@@ -467,7 +370,7 @@
                         "imageHeight": "300px"
                     },
                     {
-                        "type": "dropdown",
+                        "type": "radiogroup",
                         "name": "meat",
                         "title": "During a typical 7-Day period (a week), how often do you have red or processed meat?",
                         "isRequired": true,
@@ -484,19 +387,37 @@
                         ]
                     }
                 ]
-            }, {
+            },{
+                "popupdescription":"P5",
+                "animated":"yes",
+                "pos" : 5,
                 "elements": [
+                    {
+                        "type": "html",
+                        "name": "test",
+                        "html": "<div id='sketch-holder'></div>"
+                    }
+                ]
+            },{
+                "popupdescription":"P5",
+                "pos": 6,
+                "elements": [
+                {
+                        "type": "html",
+                        "name": "test",
+                        "html": "<div id='sketch-holder'></div>"
+                    },
                     {
                         "type": "image",
                         "name": "grains_image",
-                        "imageLink": "./img/bread.png",
+                        "imageLink": "./img/grains-high.png",
                         "imageWidth": "300px",
                         "imageHeight": "300px"
                     },
                     {
-                        "type": "dropdown",
-                        "name": "grains",
-                        "title": "During a typical 7-Day period (a week), how often do you have grains?",
+                        "type": "radiogroup",
+                        "name": "grains-high",
+                        "title": "During a typical 7-Day period (a week), how often do you have high fiber grains such as these?",
                         "isRequired": true,
                         "colCount": 0,
                         "hasNone": false,
@@ -511,19 +432,73 @@
                         ]
                     }
                 ]
-            }, {
+            },{
+                "popupdescription":"P5",
+                "pos": 6,
                 "elements": [
+                {
+                        "type": "html",
+                        "name": "test",
+                        "html": "<div id='sketch-holder'></div>"
+                    },
+                    {
+                        "type": "image",
+                        "name": "grains_image",
+                        "imageLink": "./img/grains-low.png",
+                        "imageWidth": "300px",
+                        "imageHeight": "300px"
+                    },
+                    {
+                        "type": "radiogroup",
+                        "name": "grains-low",
+                        "title": "During a typical 7-Day period (a week), how often do you have low fiber grains such as these?",
+                        "isRequired": true,
+                        "colCount": 0,
+                        "hasNone": false,
+                        "choices": [
+                            "Never",
+                            "Less than once a week",
+                            "Once or twice a week",
+                            "Three to five times a week",
+                            "Everyday",
+                            "Twice a day",
+                            "More than twice a day",
+                        ]
+                    }
+                ]
+            },{
+                "popupdescription":"P5",
+                "animated":"yes",
+                "pos" : 6,
+                "elements": [
+                    {
+                        "type": "html",
+                        "name": "test",
+                        "html": "<div id='sketch-holder'></div>"
+                    }
+                ]
+            },{
+                "popupdescription":"P5",
+                "pos": 7,
+                "elements": [
+                {
+                        "type": "html",
+                        "name": "test",
+                        "html": "<div id='sketch-holder'></div>"
+                    },
                     {
                         "type": "image",
                         "name": "alcohol_image",
                         "imageLink": "./img/alcohol.png",
+                        // "visibleIf": "{age}>=21",
                         "imageWidth": "300px",
                         "imageHeight": "300px"
                     },
                     {
-                        "type": "dropdown",
+                        "type": "radiogroup",
                         "name": "alcohol",
                         "title": "If you do, how often do you drink one glass of alcohol? One glass = 4 ounces of wine, 12 ounces of beer",
+                        // "visibleIf": "{age}>=21",
                         "isRequired": true,
                         "colCount": 0,
                         "hasNone": false,
@@ -538,8 +513,26 @@
                         ]
                     }
                 ]
-            }, {
+            },{
+                "popupdescription":"P5",
+                "animated":"yes",
+                "pos" : 7,
                 "elements": [
+                    {
+                        "type": "html",
+                        "name": "test",
+                        "html": "<div id='sketch-holder'></div>"
+                    }
+                ]
+            },{
+                "popupdescription":"P5",
+                "pos": 8,
+                "elements": [
+                {
+                        "type": "html",
+                        "name": "test",
+                        "html": "<div id='sketch-holder'></div>"
+                    },
                     {
                         "type": "image",
                         "name": "smoker_image",
@@ -548,7 +541,7 @@
                         "imageHeight": "300px"
                     },
                     {
-                        "type": "dropdown",
+                        "type": "radiogroup",
                         "name": "smoke",
                         "title": "Do you smoke cigarrettes?",
                         "isRequired": true,
@@ -561,15 +554,128 @@
                         ]
                     }
                 ]
-            }, {
+            },{
+                "popupdescription":"P5",
+                "animated":"yes",
+                "pos" : 8,
+                "elements": [
+                    {
+                        "type": "html",
+                        "name": "test",
+                        "html": "<div id='sketch-holder'></div>"
+                    }
+                ]
+            },{
+                "elements": [
+                    {
+                        "name": "age",
+                        "type": "text",
+                        "inputType": "number",
+                        "title": "Alright, now easy ones. How old are you?",
+                        "placeholder": "15",
+                        "isRequired": true
+                    }
+                ]
+            },{
+                "elements": [
+                    {
+                        "type": "radiogroup",
+                        "name": "gender",
+                        "title": "What is your gender?",
+                        "isRequired": true,
+                        "colCount": 0,
+                        "hasNone": false,
+                        "choices": [
+                            "Female",
+                            "Male",
+                            "Transgender female",
+                            "Transgender male",
+                            "Non-gender binary"
+                        ]
+                    }
+                ]
+            },{ // This question needs logic for people that accidentally put too much or too little
+                "elements": [
+                    {
+                        "name": "weight",
+                        "type": "text",
+                        "inputType": "number",
+                        "placeholder": "130",
+                        "title": "How much do you weigh? (in pounds)",
+                        "isRequired": true
+                    }
+                ]
+            },{
+                "elements": [
+                    {
+                        "type": "html",
+                        "name": "Height",
+                        "html": "<p><b>How tall are you?</b></p>"
+                    },
+                    {
+                        "name": "height-feet",
+                        "type": "text",
+                        "inputType": "number",
+                        "placeholder": "4",
+                        "title": "Feet",
+                        "isRequired": true
+                    },
+                    {
+                        "name": "height-inches",
+                        "type": "text",
+                        "inputType": "number",
+                        "placeholder": "7",
+                        "title": "Inches",
+                        "isRequired": true
+                    }
+                ]
+            },{
                 "elements": [
                     {
                         "type": "html",
                         "name": "summary",
-                        "html": "<h3> Tis your score yo!</h3>"
+                        "html": "<div style=' border-radius: 25px; padding: 20px; background-image: linear-gradient(0deg,  rgb(231, 206, 61),rgb(211, 159, 16));width:75%; margin:auto;'><center><p style='margin:auto;'>Your risk is <h3></h3>Compared to a healthy lifestyle</p></center></div>"
+                    }
+                    // ,{
+                    //     "type": "html",
+                    //     "name": "recommendations",
+                    //     "html": "<div style='display: flex; justify-content: space-around'><a href=''style='padding:13px 15px 13px 15px; background-color: rgba(47, 136, 236, 0.733); color: white; border-radius: 8px; font-size: medium;'>Read some recomendations</a></div>"
+                    // }
+                ]
+            },{
+                "elements": [
+                    {
+                        "type": "html",
+                        "name": "good-foods",
+                        "html": ""
                     }
                 ]
-            }
+            },{
+                "elements": [
+                    {
+                        "type": "html",
+                        "name": "bad-foods",
+                        "html": ""
+                    }
+                ]
+            },{
+                "elements": [
+                    {
+                        "type": "html",
+                        "name": "activities",
+                        "html": ""
+                    }
+                ]
+            },{
+                "elements": [
+                    {
+                        "type": "html",
+                        "name": "smokinghabits",
+                        "html": "",
+                        "visibleIf": "{smoke}!='Never smoke'",
+                    }
+                ]
+            },
         ]
     };
 
@@ -660,29 +766,32 @@
             return;
         
         // Add a P5 Element
-        function defineSketch(x,y,animate){
+        function defineSketch(x,y,value,total,animate){
             return function mySketch(p){
             // P5
                 let draft, ready, i, maxvalue, minvalue;
                 var start,current;
                 var flag;
+                let fontsize = 20;
                 p.preload = function preload() {
-                    ready = p.loadImage("img/heart-color.png");
-                    draft = p.loadImage("img/heart-bw.png");
+                    ready = p.loadImage("img/scorebar-full.png");
+                    draft = p.loadImage("img/scorebar-empty.png");
                 }
                 p.setup = function setup() {
-                    let canvas = p.createCanvas(230, 225);
+                    let canvas = p.createCanvas(350, 100);
                     canvas.parent('sketch-holder');
-                    p.image(ready, 0, 0);
-                    p.image(draft, 0, 0);
+                    p.image(ready, 60, 20);
+                    p.image(draft, 60, 20);
                     // i = -1;
-                    minvalue = -1*x;
-                    maxvalue = -1*y;
-                    i = minvalue+0.5;
+                    minvalue = x;
+                    maxvalue = y;
+                    i = minvalue-0.5;
                     console.log("this is starting point",minvalue);
                     console.log("this is ending point",maxvalue);
                     console.log("animating?",animate);
                     flag = 0;
+                    p.textSize(fontsize);
+                    p.textAlign(p.CENTER,p.CENTER);
                 }
 
                 p.draw = function draw() {
@@ -697,31 +806,51 @@
                         // console.log("firing?");
                         p.staticBar();
                     }
+                    p.textAlign(p.RIGHT);
+                    p.drawWords(p.width * 0.1);
                 }
 
                 p.fillBar = function fillBar(){
-                    if (i > maxvalue){
-                        p.copy(ready, 0, 240, 230, i*2, 0, 240, 230, i*2);
-                        i = i-0.5;
+                    if (i < maxvalue){
+                        p.copy(ready, 0, 0, i-0, 40, 60, 20, i-0, 40);
+                        i = i+1;
                         // This can be put here as a delay for the whole animation, but it slows down the rendering of the covered object too much
                         // if(flag == 0){
                             // p.wait(500);
                             // flag = 1;
                         // }
+                    } else {
+                        p.drawScore();
                     }
                 }
 
                 p.staticBar = function staticBar(){
                     // i = minvalue+0.5; // Define the minimum value as 0.5 less so that it becomes exactly that value
                     if (flag == 0){
-                        if (i >= minvalue){
-                            p.copy(ready, 0, 240, 230, i*2, 0, 240, 230, i*2);
+                        if (i <= minvalue){
+                            p.copy(ready, 0, 0, i-0, 40, 60, 20, i-0, 40);
                         } else {
                             flag = 1;
+                            // p.drawScore();
                         }
-                        i = i-0.5;                        
+                        i = i+0.5;                        
                     }
                 }
+
+                p.drawWords = function drawWords(x) {
+                    // The text() function needs three parameters:
+                    // the text to draw, the horizontal position,
+                    // and the vertical position
+                    // p.fill(0);
+                    p.text(total, 34, 40);
+                    p.text('Your Score',99,10);
+                }
+
+                p.drawScore = function drawScore(){
+                    p.text("+ "+value + " out of 100", 230, 90);
+
+                }
+
 
                 // Waiting function
                 p.wait = function wait(time)
@@ -741,16 +870,19 @@
         //     window.sketchInstance = new p5(mySketch);
         // }
 
-        const ageQuestion = survey.getQuestionByName("age").value;
-        const ageQuestion2 = survey.getQuestionByName("age2").value;
-        const ageQuestion3 = survey.getQuestionByName("age3").value;
+        // const ageQuestion = survey.getQuestionByName("age").value;
+        // const ageQuestion2 = survey.getQuestionByName("age2").value;
+        // const ageQuestion3 = survey.getQuestionByName("age3").value;
         
         animationValues[0] = 0;
-        animationValues[1] = ageQuestion;
-        animationValues[2] = ageQuestion + ageQuestion2;
-        animationValues[3] = ageQuestion + ageQuestion2 + ageQuestion3
-        const currentPoints = ageQuestion+ageQuestion2+ageQuestion3;
-        const totalPoints = ageQuestion+ageQuestion2+ageQuestion3;
+        animationValues[1] = 20;
+        animationValues[2] = 20 + 20;
+        animationValues[3] = 20 + 20 + 40;
+        animationValues[4] = 20 + 20 + 40 + 0;
+        animationValues[5] = 20 + 20 + 40 + 0 + 10;
+        animationValues[6] = 20 + 20 + 40 + 0 + 10 + 20;
+        animationValues[7] = 20 + 20 + 40 + 0 + 10 + 20 + 0;
+        animationValues[8] = 20 + 20 + 40 + 0 + 10 + 20 + 0 + 25;
         // console.log("these are current ponits",currentPoints);
         // console.log("these are next points",totalPoints);
         // var mySketch = defineSketch(currentPoints,totalPoints,1);
@@ -766,7 +898,7 @@
             if (oldAnimation != null) {
                 oldAnimation.remove();
             }
-            var mySketch = defineSketch(animationValues[options.page.pos-1],animationValues[options.page.pos],1);
+            var mySketch = defineSketch(animationValues[options.page.pos-1],animationValues[options.page.pos],(animationValues[options.page.pos]-animationValues[options.page.pos-1])*5,animationValues[options.page.pos]*5,1);
             // var mySketch = defineSketch(currentPoints,totalPoints,1);
             newAnimation = new p5(mySketch);
             window.sketchInstance = newAnimation;
@@ -778,7 +910,7 @@
             if (newAnimation != null) {
                 newAnimation.remove();
             }
-            var mySketch2 = defineSketch(animationValues[options.page.pos-1],0,0);
+            var mySketch2 = defineSketch(animationValues[options.page.pos-1],0,(animationValues[options.page.pos]-animationValues[options.page.pos-1])*5,animationValues[options.page.pos-1]*5,0);
             
             // var mySketch2 = defineSketch(currentPoints,0,0);
             oldAnimation = new p5(mySketch2);
@@ -826,135 +958,192 @@
         // const TestQ3 = survey.getQuestionByName("test3");
         // TestQ3.html = "<h2> This is me</h2><main></main><button onclick='startSketch(70,100)'> Start</button>";
 
-        const ageQuestion = survey.getQuestionByName("age").value;
-        const genderQuestion = survey.getQuestionByName("gender").value;
+        var introQ = survey.getQuestionByName("Intro");
+        introQ.html = "<div id='myHeart'></div><h2> Tell us what you eat every week and we'll tell you how healthy your heart is</h2><main></main><br><p>Not smoking, a healthy weight, a nutritious diet, and daily exercise play important roles in the prevention of cardiovascular disease. In fact, an overall healthy lifestyle may prevent more than 75% of deaths due to cardiovascular disease. Take this quiz to evaluate how your current lifestyle habits affect your cardiovascular health, and discover simple steps you can take to incorporate a Heart Healthy lifestyle into everyday living. Knowledge is power. Take the first step towards protecting your heart and your health!</p>"+ 
+        "<br><p><b>Press Next to begin this quiz.</b></p>";
+
+        var ageQuestion = survey.getQuestionByName("age").value;
+        var genderQuestion = survey.getQuestionByName("gender").value;
         //
-        const weightQuestion = survey.getQuestionByName("weight").value;
-        const heightFeetQuestion = survey.getQuestionByName("height-feet").value;
-        const heightInchesQuestion = survey.getQuestionByName("height-inches").value;
-        const BMI = (weightQuestion / (heightFeetQuestion * 12 + heightInchesQuestion) / (heightFeetQuestion * 12 + heightInchesQuestion)) * 703;
+        var weightQuestion = survey.getQuestionByName("weight").value;
+        var heightFeetQuestion = survey.getQuestionByName("height-feet").value;
+        var heightInchesQuestion = survey.getQuestionByName("height-inches").value;
+        var BMI = (weightQuestion/(heightFeetQuestion*12+heightInchesQuestion)/(heightFeetQuestion*12+heightInchesQuestion))*703;
         //
-        const smokeQuestion = survey.getQuestionByName("smoke").value;
-        let smokeValue = 0;
-        if (smokeQuestion === "Used to smoke") {
-            smokeValue = 0.15285
-        } else if (smokeQuestion === "Currently smoke") {
-            smokeValue = 0.90138
-        }
-
+        var smokeQuestion = survey.getQuestionByName("smoke").value; 
+        var smokeValue = 0;
+        if (smokeQuestion == "Used to smoke"){smokeValue = 0.15285}
+        else if(smokeQuestion=="Currently smoke"){smokeValue=0.90138};
         //
-        const alcoholQuestion = survey.getQuestionByName("alcohol").value;
-        let alcoholValue = 0;
-        if (alcoholQuestion === "More than twice a day") {
-            alcoholValue = 0.01923 * 3 - 0.0004 * 3 * 3
-        } else if (alcoholQuestion === "Twice a day") {
-            alcoholValue = 0.01923 * 2 - 0.0004 * 2 * 2
-        } else if (alcoholQuestion === "Everyday") {
-            alcoholValue = 0.01923 - 0.0004
-        } else if (alcoholQuestion === "Three to five times a week") {
-            alcoholValue = 0.01923 * 0.5 - 0.0004 * 0.5 * 0.5
-        }
-
+        var alcoholQuestion = survey.getQuestionByName("alcohol").value;
+        var alcoholValue = 0;
+        if (alcoholQuestion=="More than twice a day"){alcoholValue=0.01923*30-0.0004*30*30}
+        else if (alcoholQuestion=="Twice a day"){alcoholValue=0.01923*20-0.0004*20*20}
+        else if (alcoholQuestion=="Everyday"){alcoholValue=0.01923*10-0.0004*10*10}
+        else if (alcoholQuestion=="Three to five times a week"){alcoholValue=0.01923*5-0.0004*5*5};
+        // 
+        var fruitQuestion = survey.getQuestionByName("fruits").value;
+        var vegetableQuestion = survey.getQuestionByName("vegetables").value;
+        var fruitVeggieValue = 0;
+        var fruitVeggieText = "+ 0"; // The value to appear in the prototype tool
+        if (fruitQuestion=="More than twice a day" || vegetableQuestion=="More than twice a day"){fruitVeggieValue=0.18283; fruitVeggieText = "+36";}
+        else if (fruitQuestion=="Everyday" && vegetableQuestion == "Everyday"){fruitVeggieValue=0.18283; fruitVeggieText = "+36";};
+        var nutQuestion = survey.getQuestionByName("nuts").value;
+        var nutValue = 0;
+        var nutText = "+ 0";
+        if (nutQuestion=="Three to five times a week" || nutQuestion=="Everyday" || nutQuestion=="Once or twice a week"){nutValue=0.14522; nutText = "+29";}
+        else if (nutQuestion=="More than twice a day" || nutQuestion=="Twice a day"){nutValue=0.24444; nutText = "+49";};
+        
+        var grainQuestion = survey.getQuestionByName("grains-high").value;
+        var grainValue = 0;
+        if (grainQuestion=="More than twice a day"){grainValue=0.03326*3*3}
+        else if (grainQuestion=="Twice a day"){grainValue=0.03326*3*2}
+        else if (grainQuestion=="Everyday"){grainValue=0.03326*3*1}
+        else if (grainQuestion=="Three to five times a week"){grainValue=0.03326*3*0.5}
+        
+        var grainLowQuestion = survey.getQuestionByName("grains-low").value;
+        var grainLowValue = 0;
+        if (grainLowQuestion=="More than twice a day"){grainLowValue=0.03326*3}
+        else if (grainLowQuestion=="Twice a day"){grainLowValue=0.03326*2}
+        else if (grainLowQuestion=="Everyday"){grainLowValue=0.03326*1}
+        else if (grainLowQuestion=="Three to five times a week"){grainLowValue=0.03326*0.5}
+        
+        var sugarQuestion = survey.getQuestionByName("sugar").value;
+        var sugarValue = 0;
+        if (sugarQuestion=="More than twice a day"){sugarValue=0.14631*3}
+        else if (sugarQuestion=="Twice a day"){sugarValue=0.14631*2}
+        else if (sugarQuestion=="Everyday"){sugarValue=0.14631*1}
+        else if (sugarQuestion=="Three to five times a week"){sugarValue=0.14631*0.5}
+        
+        var meatQuestion = survey.getQuestionByName("meat").value;
+        var meatValue = 0;
+        if (meatQuestion=="More than twice a day"){meatValue=0.15624*3}
+        else if (meatQuestion=="Twice a day"){meatValue=0.15624*2}
+        else if (meatQuestion=="Everyday"){meatValue=0.15624*1}
+        else if (meatQuestion=="Three to five times a week"){meatValue=0.15624*0.5}
+        var Diet = fruitVeggieValue+nutValue-sugarValue-meatValue+grainValue+grainLowValue;
         //
-        const fruitQuestion = survey.getQuestionByName("fruits").value;
-        const vegetableQuestion = survey.getQuestionByName("vegetables").value;
-        let fruitVeggieValue = 0;
-        if (fruitQuestion === "More than twice a day" || vegetableQuestion === "More than twice a day") {
-            fruitVeggieValue = 0.18283
-        }
-
-
-        const nutQuestion = survey.getQuestionByName("nuts").value;
-        let nutValue = 0;
-
-        const grainQuestion = survey.getQuestionByName("grains").value;
-        let grainValue = 0;
-        if (grainQuestion === "More than twice a day") {
-            grainValue = 0.03326 * 3
-        } else if (grainQuestion === "Twice a day") {
-            grainValue = 0.03326 * 2
-        } else if (grainQuestion === "Everyday") {
-            grainValue = 0.03326
-        } else if (grainQuestion === "Three to five times a week") {
-            grainValue = 0.03326 * 0.5
-        }
-
-        if (nutQuestion === "Three to five times a week" || nutQuestion === "Everyday" || nutQuestion === "Once or twice a week") {
-            nutValue = 0.14522
-        } else if (nutQuestion === "More than twice a day" || nutQuestion === "Twice a day") {
-            nutValue = 0.24444
-        }
-
-        const sugarQuestion = survey.getQuestionByName("sugar").value;
-        let sugarValue = 0;
-        if (sugarQuestion === "More than twice a day") {
-            sugarValue = 0.14631 * 3
-        } else if (sugarQuestion === "Twice a day") {
-            sugarValue = 0.14631 * 2
-        } else if (sugarQuestion === "Everyday") {
-            sugarValue = 0.14631
-        } else if (sugarQuestion === "Three to five times a week") {
-            sugarValue = 0.14631 * 0.5
-        }
-
-        const meatQuestion = survey.getQuestionByName("meat").value;
-        let meatValue = 0;
-        if (meatQuestion === "More than twice a day") {
-            meatValue = 0.15624 * 3
-        } else if (meatQuestion === "Twice a day") {
-            meatValue = 0.15624 * 2
-        } else if (meatQuestion === "Everyday") {
-            meatValue = 0.15624
-        } else if (meatQuestion === "Three to five times a week") {
-            meatValue = 0.15624 * 0.5
-        }
-        const Diet = fruitVeggieValue + nutValue - sugarValue - meatValue + grainValue;
+        var hardSportQuestion = survey.getQuestionByName("activity-hard").value;
+        var hardSportValue = 0;
+        if(hardSportQuestion=="< 15 mins"){hardSportValue=0.25}
+        else if(hardSportQuestion=="15 - 30 mins"){hardSportValue=0.5}
+        else if(hardSportQuestion=="30 - 60 mins"){hardSportValue=1}
+        else if(hardSportQuestion=="1 - 3 hrs"){hardSportValue=2}
+        else if(hardSportQuestion=="3 - 6 hrs"){hardSportValue=4.5}
+        else if(hardSportQuestion=="6 - 10 hrs"){hardSportValue=8}
+        else if(hardSportQuestion=="10+ hrs"){hardSportValue=10}
+        var modSportQuestion = survey.getQuestionByName("activity-mod").value;
+        var modSportValue = 0;
+        if(modSportQuestion=="< 15 mins"){modSportValue=0.25}
+        else if(modSportQuestion=="15 - 30 mins"){modSportValue=0.5}
+        else if(modSportQuestion=="30 - 60 mins"){modSportValue=1}
+        else if(modSportQuestion=="1 - 3 hrs"){modSportValue=2}
+        else if(modSportQuestion=="3 - 6 hrs"){modSportValue=4.5}
+        else if(modSportQuestion=="6 - 10 hrs"){modSportValue=8}
+        else if(modSportQuestion=="10+ hrs"){modSportValue=10}
         //
-        const hardSportQuestion = survey.getQuestionByName("activity-hard").value;
-        let hardSportValue = 0;
-        if (hardSportQuestion === "< 15 mins") {
-            hardSportValue = 0.25
-        } else if (hardSportQuestion === "15 - 30 mins") {
-            hardSportValue = 0.5
-        } else if (hardSportQuestion === "30 - 60 mins") {
-            hardSportValue = 1
-        } else if (hardSportQuestion === "1 - 3 hrs") {
-            hardSportValue = 2
-        } else if (hardSportQuestion === "3 - 6 hrs") {
-            hardSportValue = 4.5
-        } else if (hardSportQuestion === "6 - 10 hrs") {
-            hardSportValue = 8
-        } else if (hardSportQuestion === "10+ hrs") {
-            hardSportValue = 10
-        }
-        const modSportQuestion = survey.getQuestionByName("activity-mod").value;
-        let modSportValue = 0;
-        if (modSportQuestion === "< 15 mins") {
-            modSportValue = 0.25
-        } else if (modSportQuestion === "15 - 30 mins") {
-            modSportValue = 0.5
-        } else if (modSportQuestion === "30 - 60 mins") {
-            modSportValue = 1
-        } else if (modSportQuestion === "1 - 3 hrs") {
-            modSportValue = 2
-        } else if (modSportQuestion === "3 - 6 hrs") {
-            modSportValue = 4.5
-        } else if (modSportQuestion === "6 - 10 hrs") {
-            modSportValue = 8
-        } else if (modSportQuestion === "10+ hrs") {
-            modSportValue = 10
-        }
-        //
-        let W = 0;
-        // console.log("This is the BMI", BMI);
-        if (genderQuestion === "Female") {
-            W = 0.102820 * ageQuestion + 0.04676 * BMI + smokeValue - alcoholValue - 0.05113 * (Diet * 10) - 0.02951 * (hardSportValue + modSportValue);
+        var W = 0;
+        var risk = 0;
+        if (genderQuestion == "Female"){
+            W = 0.10820*ageQuestion+0.04676*BMI+smokeValue-alcoholValue-0.05113*(Diet*10)-0.02951*(hardSportValue+modSportValue);
+            risk = (1-Math.pow(0.9660,Math.exp(W-6.57301)))*100
         } else {
             W = "We not doing boys yet";
         }
-        const summaryQuestion = survey.getQuestionByName("summary");
-        summaryQuestion.html = "<h3>This is your cardiac risk: " + W + "</h3>";
 
+        var healthyPerson = (1-Math.pow(0.9660,Math.exp((-0.557385+BMI*0.04676+ageQuestion*0.1082)-6.57301)))*100;
+        var relativeRisk = risk/healthyPerson;
+        var summaryQuestion = survey.getQuestionByName("summary");
+        var relativeRiskWord = "";
+        var dietImagePath = "";
+        var activityImagePath = "";
+        var bmiImagePath = "";
+        var smokeImagePath = "";
+        var summaryColor = "";
+        var summaryImage = "";
+        // Add image for risks
+
+
+        //
+        if (relativeRisk <= 1.0) {
+            relativeRiskWord = "Looking good!";
+            summaryColor = "rgb(0, 178, 29),rgb(160, 241, 96))";
+            summaryImage = "./img/heart-high.png"; // healthy.gif
+        } else if (relativeRisk > 1.0 /* was 1.5 before but confusing for usersy6 */&& relativeRisk < 4){
+            relativeRiskWord = "Slightly elevated";
+            summaryColor = "rgb(231, 206, 61),rgb(211, 159, 16))";
+            summaryImage = "./img/heart-med.png"; // unhealthy.gif
+        } else {
+            relativeRiskWord = "Very High";
+            summaryColor = "rgb(178, 32, 0),rgb(241, 96, 96))";
+            summaryImage = "./img/heart-low.png"; // vunhealthy.gif
+        }
+
+        // Activity computation
+        if (hardSportValue+modSportValue < 1.5){activityImagePath = "./img/bar_red.png";}
+        else if (hardSportValue+modSportValue >= 1.5 && hardSportValue+modSportValue < 3.5){activityImagePath = "./img/bar_yellow.png";}
+        else {activityImagePath = "./img/bar_green.png";}
+        // Diet computation
+        if (Diet*10 < 2.0){dietImagePath = "./img/bar_red.png";}
+        else if (Diet*10 > 2.0 && Diet*10 < 4.5){dietImagePath = "./img/bar_yellow.png";}
+        else {dietImagePath = "./img/bar_green.png";}
+        // BMI computation
+        if (BMI >= 25 && BMI < 30){bmiImagePath = "./img/bar_yellow.png";}
+        else if (BMI >= 18.5 && BMI < 25) { bmiImagePath = "./img/bar_green.png";}
+        else {bmiImagePath = "./img/bar_red.png";}
+        // Smoke computation
+        if (((smokeValue*36)/0.18283).toFixed(0) > 30){smokeImagePath = "./img/bar_red.png";}
+        else if (((smokeValue*36)/0.18283).toFixed(0) > 0 && ((smokeValue*36)/0.18283).toFixed(0) <= 30){smokeImagePath = "./img/bar_yellow.png";}
+        else {smokeImagePath = "./img/bar_green.png";}
+
+        var summaryQuestion = survey.getQuestionByName("summary");
+        summaryQuestion.html = "<div><center>"+"<p><img src="+summaryImage+"></p>"+"</center><br><center><p style='margin:auto;'>Your risk is <h3>"+relativeRiskWord+"</h3><br></p></center></div>"+
+        // "<div style=' border-radius: 25px; padding: 20px; background-image: linear-gradient(0deg,  "+summaryColor+";width:75%; margin:auto;'><center><p style='margin:auto;'>Your risk is <h3>"+relativeRiskWord+"</h3><br> Compared to a healthy lifestyle</p></center></div>"+
+        // We'll put the images here of the Diet (2.5 points is the average)
+        "<center><p> This is your score breakdown:</p></center>"+
+        "<br><center><p> BMI <img src="+bmiImagePath+"></p></center>"+
+        "<br><center><p> Diet <img src="+dietImagePath+"></p></center>"+
+        // We'll put the images here for the Activity (1.5 hrs is the average)
+        "<br><center><p> Activity <img src="+activityImagePath+"></p></center>"+
+        "<br><center><p> Smoking <img src="+smokeImagePath+"></p></center>";
+
+        // Good foods replacement
+        // Add logic for what image to show
+        // var imageSequence = ["./img/circle_above.png","./img/circle_av.png","./img/circle_below.png","./img/circle_mbelow.png","./img/circle_mmbelow.png"];
+        var imageSequence = ["./img/vhealthy-graph.png","./img/healthy-graph.png","./img/unhealthy-graph.png","./img/vunhealthy-graph.png","./img/vvunhealthy-graph.png"];
+        
+        var sequenceVariable = 0;
+        if ((((fruitVeggieValue+nutValue+grainValue+grainLowValue)*1000)/5).toFixed(0) == 0){sequenceVariable=2}else{sequenceVariable = 1}
+        var goodFoodsQuestion = survey.getQuestionByName("good-foods");
+        goodFoodsQuestion.html = "<h3>Let's look at your diet :</h3> <ul> <li><div> <p>Fruits & Veggies: <span style='color: green;  font-weight: bold;' class='text-orientation-right-css'> +"+((fruitVeggieValue*1000)/5).toFixed(0)+"</span></p></div></li>"+
+        /*<p> (You need a least two servings of fruit or veggies a day to help your heart)</p>*/
+        "<li><div><p>Nuts: <span style='color:green;  font-weight: bold;' class='text-orientation-right-css'> + "+((nutValue*1000)/5).toFixed(0)+"</span></p></div></li>"+
+        /*<p> (You eat nuts <b>"+nutQuestion+"</b>, you need a least one serving of nuts a day)</p>*/
+        "<li><div><p>High fiber grains: <span style='color:green; font-weight: bold;' class='text-orientation-right-css'> + "+((grainValue*1000)/5).toFixed(0)+"</span></p></div></li>"+
+        /*<p>  (You eat high fiber grains <b>"+grainQuestion+"</b>, you need a least one serving every couple days)</p></div></li>"+*/
+        "<li><div><p>Low fiber grains: <span style='color:green; font-weight: bold;' class='text-orientation-right-css'> + "+((grainLowValue*1000)/5).toFixed(0)+"</span></p></div></li>"+
+        "<br><center><p>This is how healthy foods affect your score</p><br><p><img src="+imageSequence[sequenceVariable]+"></p></center>";/*<p>  (You eat low fiber grains <b>"+grainLowQuestion+"</b>, you need a least one serving every day)</p></div></li>";*/
+    
+        // Good foods replacement
+        if ((((sugarValue+meatValue)*1000)/5).toFixed(0) != 0){sequenceVariable+=1}
+        var badFoodsQuestion = survey.getQuestionByName("bad-foods");
+        badFoodsQuestion.html = "<h3>Let's look at your diet :</h3> <ul> <li><div> <p>Sugary drinks: <span style='color: red;  font-weight: bold;' class='text-orientation-right-css'> - "+((sugarValue*1000)/5).toFixed(0)+"</span></p><p>(You drink soda <b>"+sugarQuestion+"</b>, the max should be once or twice a week)</p></div></li>"+
+                                "<li><div><p>Meat: <span style='color:red;  font-weight: bold;' class='text-orientation-right-css'> - "+((meatValue*1000)/5).toFixed(0)+"</span></p><p>(You eat meat <b>"+meatQuestion+"</b>, the max should be once or twice a week)</p></div></li>"+
+                                "<br><center><p>Watch meat and soda affect your score, did it have a big impact?</p><br><p><img src="+imageSequence[sequenceVariable]+"></p></center>";
+    
+        // Actitives replacement
+        if (((modSportValue+hardSportValue)*6).toFixed(0) != 0){sequenceVariable-=1}else{sequenceVariable+=1}
+        var activitiesQuestion = survey.getQuestionByName("activities");
+        activitiesQuestion.html = "<h3>Let's look at your exercise :</h3> <ul> <li><div> <p>Activities: <span style='color: green;  font-weight: bold;' class='text-orientation-right-css'> + "+((modSportValue+hardSportValue)*6).toFixed(0)+" </span></p></div></li>"+
+        "<br><center><p>Sports have a big effect don't they? The more exercise the bigger the impact</p><br><p><img src="+imageSequence[sequenceVariable]+"></p></center>";
+        /*<p>(You do <b>"+(modSportValue+hardSportValue)+"</b> hours of exercise a week you should be doing a minimum 1.5 hours per week)</p>*/
+        
+        // Smoking replacement
+        if (smokeQuestion == "Used to smoke"){sequenceVariable+=1}else if(smokeQuestion == "Currently smoke"){sequenceVariable+=2}
+        var smokingQuestion = survey.getQuestionByName("smokinghabits");
+        smokingQuestion.html = "<h3>Let's look at your smoking habits :</h3> <ul> <li><div> <p> You "+smokeQuestion+": <span style='color: red;  font-weight: bold;' class='text-orientation-right-css'> - "+((smokeValue*36)/0.18283).toFixed(0)+"</span></p></div></li>"+
+                                "<p> Any smoking significantly affects your heart health, it's -30 if you used to smoke and -177 if you currently do!</p>"+
+                                "<br><center><p>Smoking has a huge impact in your heart score. Hopefully you didn't see it come down!</p><br><p><img src="+imageSequence[sequenceVariable]+"></p></center>";
     });
 
 </script>

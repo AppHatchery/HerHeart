@@ -535,6 +535,35 @@ var json = {
 var survey = new Survey.Model(json);
 
 survey.onValueChanged.add(function(survey, options){
+    // var s = function( sketch ) {
+
+    //     let draft, ready, i;
+    //     sketch.preload = function() {
+    //         ready = sketch.ApploadImage("heart-color.png");
+    //         draft = sketch.loadImage("heart-bw.png");
+    //     }
+    //     sketch.setup = function() {
+    //         let canvas = sketch.createCanvas(230, 225);
+    //         canvas.parent("myHeart");
+    //         sketch.image(ready, 0, 0);
+    //         sketch.image(draft, 0, 0);
+    //         i = 1;
+    //     }
+
+    //     sketch.draw = function() {
+    //         i = i-1;
+    //         if (i > sketch.x){
+    //         sketch.copy(ready, 0, 240, 230, i*2, 0, 240, 230, i*2);
+    //         }
+    //     }
+    // };
+    
+    // var myp5 = new p5(s);
+    // myp5.x = -50;
+    var introQ = survey.getQuestionByName("Intro");
+    introQ.html = "<div id='myHeart'></div><h2> Tell us what you eat every week and we'll tell you how healthy your heart is</h2><main></main><br><p>Not smoking, a healthy weight, a nutritious diet, and daily exercise play important roles in the prevention of cardiovascular disease. In fact, an overall healthy lifestyle may prevent more than 75% of deaths due to cardiovascular disease. Take this quiz to evaluate how your current lifestyle habits affect your cardiovascular health, and discover simple steps you can take to incorporate a Heart Healthy lifestyle into everyday living. Knowledge is power. Take the first step towards protecting your heart and your health!</p>"+ 
+    "<br><p><b>Press Next to begin this quiz.</b></p>";
+
     var ageQuestion = survey.getQuestionByName("age").value;
     var genderQuestion = survey.getQuestionByName("gender").value;
     //
@@ -630,24 +659,26 @@ survey.onValueChanged.add(function(survey, options){
     var relativeRiskWord = "";
     var dietImagePath = "";
     var activityImagePath = "";
+    var bmiImagePath = "";
+    var smokeImagePath = "";
     var summaryColor = "";
     var summaryImage = "";
     // Add image for risks
 
 
     //
-    if (relativeRisk <= 1.5) {
+    if (relativeRisk <= 1.0) {
         relativeRiskWord = "Looking good!";
         summaryColor = "rgb(0, 178, 29),rgb(160, 241, 96))";
-        summaryImage = "./img/healthy.gif";
-    } else if (relativeRisk > 1.5 && relativeRisk < 4){
+        summaryImage = "./img/heart-high.png"; // healthy.gif
+    } else if (relativeRisk > 1.0 /* was 1.5 before but confusing for usersy6 */&& relativeRisk < 4){
         relativeRiskWord = "Slightly elevated";
         summaryColor = "rgb(231, 206, 61),rgb(211, 159, 16))";
-        summaryImage = "./img/unhealthy.gif";
+        summaryImage = "./img/heart-med.png"; // unhealthy.gif
     } else {
         relativeRiskWord = "Very High";
         summaryColor = "rgb(178, 32, 0),rgb(241, 96, 96))";
-        summaryImage = "./img/vunhealthy.gif";
+        summaryImage = "./img/heart-low.png"; // vunhealthy.gif
     }
 
     // Activity computation
@@ -658,18 +689,31 @@ survey.onValueChanged.add(function(survey, options){
     if (Diet*10 < 2.0){dietImagePath = "./img/bar_red.png";}
     else if (Diet*10 > 2.0 && Diet*10 < 4.5){dietImagePath = "./img/bar_yellow.png";}
     else {dietImagePath = "./img/bar_green.png";}
+    // BMI computation
+    if (BMI >= 25 && BMI < 30){bmiImagePath = "./img/bar_yellow.png";}
+    else if (BMI >= 18.5 && BMI < 25) { bmiImagePath = "./img/bar_green.png";}
+    else {bmiImagePath = "./img/bar_red.png";}
+    // Smoke computation
+    if (((smokeValue*36)/0.18283).toFixed(0) > 30){smokeImagePath = "./img/bar_red.png";}
+    else if (((smokeValue*36)/0.18283).toFixed(0) > 0 && ((smokeValue*36)/0.18283).toFixed(0) <= 30){smokeImagePath = "./img/bar_yellow.png";}
+    else {smokeImagePath = "./img/bar_green.png";}
 
     var summaryQuestion = survey.getQuestionByName("summary");
-    summaryQuestion.html = "<div><center><p><img src="+summaryImage+"></p></center><br><center><p style='margin:auto;'>Your risk is <h3>"+relativeRiskWord+"</h3><br></p></center></div>"+
+    summaryQuestion.html = "<div><center>"+"<p><img src="+summaryImage+"></p>"+"</center><br><center><p style='margin:auto;'>Your risk is <h3>"+relativeRiskWord+"</h3><br></p></center></div>"+
     // "<div style=' border-radius: 25px; padding: 20px; background-image: linear-gradient(0deg,  "+summaryColor+";width:75%; margin:auto;'><center><p style='margin:auto;'>Your risk is <h3>"+relativeRiskWord+"</h3><br> Compared to a healthy lifestyle</p></center></div>"+
     // We'll put the images here of the Diet (2.5 points is the average)
-    "<br><center><p> This is your diet score: <img src="+dietImagePath+"></p></center>"+
+    "<center><p> This is your score breakdown:</p></center>"+
+    "<br><center><p> BMI <img src="+bmiImagePath+"></p></center>"+
+    "<br><center><p> Diet <img src="+dietImagePath+"></p></center>"+
     // We'll put the images here for the Activity (1.5 hrs is the average)
-    "<br><center><p> This is your activity score: <img src="+activityImagePath+"></p></center>";
+    "<br><center><p> Activity <img src="+activityImagePath+"></p></center>"+
+    "<br><center><p> Smoking <img src="+smokeImagePath+"></p></center>";
 
     // Good foods replacement
     // Add logic for what image to show
-    var imageSequence = ["./img/circle_above.png","./img/circle_av.png","./img/circle_below.png","./img/circle_mbelow.png","./img/circle_mmbelow.png"];
+    // var imageSequence = ["./img/circle_above.png","./img/circle_av.png","./img/circle_below.png","./img/circle_mbelow.png","./img/circle_mmbelow.png"];
+    var imageSequence = ["./img/vhealthy-graph.png","./img/healthy-graph.png","./img/unhealthy-graph.png","./img/vunhealthy-graph.png","./img/vvunhealthy-graph.png"];
+    
     var sequenceVariable = 0;
     if ((((fruitVeggieValue+nutValue+grainValue+grainLowValue)*1000)/5).toFixed(0) == 0){sequenceVariable=2}else{sequenceVariable = 1}
     var goodFoodsQuestion = survey.getQuestionByName("good-foods");
@@ -680,20 +724,20 @@ survey.onValueChanged.add(function(survey, options){
     "<li><div><p>High fiber grains: <span style='color:green; font-weight: bold;' class='text-orientation-right-css'> + "+((grainValue*1000)/5).toFixed(0)+"</span></p></div></li>"+
     /*<p>  (You eat high fiber grains <b>"+grainQuestion+"</b>, you need a least one serving every couple days)</p></div></li>"+*/
     "<li><div><p>Low fiber grains: <span style='color:green; font-weight: bold;' class='text-orientation-right-css'> + "+((grainLowValue*1000)/5).toFixed(0)+"</span></p></div></li>"+
-    "<br><center><p><img src="+imageSequence[sequenceVariable]+"></p></center>";/*<p>  (You eat low fiber grains <b>"+grainLowQuestion+"</b>, you need a least one serving every day)</p></div></li>";*/
+    "<br><center><p>This is how healthy foods affect your score</p><br><p><img src="+imageSequence[sequenceVariable]+"></p></center>";/*<p>  (You eat low fiber grains <b>"+grainLowQuestion+"</b>, you need a least one serving every day)</p></div></li>";*/
   
     // Good foods replacement
     if ((((sugarValue+meatValue)*1000)/5).toFixed(0) != 0){sequenceVariable+=1}
     var badFoodsQuestion = survey.getQuestionByName("bad-foods");
     badFoodsQuestion.html = "<h3>Let's look at your diet :</h3> <ul> <li><div> <p>Sugary drinks: <span style='color: red;  font-weight: bold;' class='text-orientation-right-css'> - "+((sugarValue*1000)/5).toFixed(0)+"</span></p><p>(You drink soda <b>"+sugarQuestion+"</b>, the max should be once or twice a week)</p></div></li>"+
                             "<li><div><p>Meat: <span style='color:red;  font-weight: bold;' class='text-orientation-right-css'> - "+((meatValue*1000)/5).toFixed(0)+"</span></p><p>(You eat meat <b>"+meatQuestion+"</b>, the max should be once or twice a week)</p></div></li>"+
-                            "<br><center><p><img src="+imageSequence[sequenceVariable]+"></p></center>";
+                            "<br><center><p>Watch meat and soda affect your score, did it have a big impact?</p><br><p><img src="+imageSequence[sequenceVariable]+"></p></center>";
  
     // Actitives replacement
     if (((modSportValue+hardSportValue)*6).toFixed(0) != 0){sequenceVariable-=1}else{sequenceVariable+=1}
     var activitiesQuestion = survey.getQuestionByName("activities");
     activitiesQuestion.html = "<h3>Let's look at your exercise :</h3> <ul> <li><div> <p>Activities: <span style='color: green;  font-weight: bold;' class='text-orientation-right-css'> + "+((modSportValue+hardSportValue)*6).toFixed(0)+" </span></p></div></li>"+
-    "<br><center><p><img src="+imageSequence[sequenceVariable]+"></p></center>";
+    "<br><center><p>Sports have a big effect don't they? The more exercise the bigger the impact</p><br><p><img src="+imageSequence[sequenceVariable]+"></p></center>";
     /*<p>(You do <b>"+(modSportValue+hardSportValue)+"</b> hours of exercise a week you should be doing a minimum 1.5 hours per week)</p>*/
     
     // Smoking replacement
@@ -701,7 +745,7 @@ survey.onValueChanged.add(function(survey, options){
     var smokingQuestion = survey.getQuestionByName("smokinghabits");
     smokingQuestion.html = "<h3>Let's look at your smoking habits :</h3> <ul> <li><div> <p> You "+smokeQuestion+": <span style='color: red;  font-weight: bold;' class='text-orientation-right-css'> - "+((smokeValue*36)/0.18283).toFixed(0)+"</span></p></div></li>"+
                             "<p> Any smoking significantly affects your heart health, it's -30 if you used to smoke and -177 if you currently do!</p>"+
-                            "<br><center><p><img src="+imageSequence[sequenceVariable]+"></p></center>";
+                            "<br><center><p>Smoking has a huge impact in your heart score. Hopefully you didn't see it come down!</p><br><p><img src="+imageSequence[sequenceVariable]+"></p></center>";
 });
 
 survey
