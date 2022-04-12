@@ -24,6 +24,15 @@ let animationValuesHealthy = new Array(9);
 const goodFeedbackResponse = ["empty", "Yea! That's the exercise you need every week!", "Yaaa fruits and veggies make your heart healthy!", "Yea nuts are awesome!!", "", "", "Keep 'em grains coming!", "This is great! See how much NOT smoking has helped your score, smoking is a HUGE factor in your heart health"];
 const mediumFeedbackResponse = ["empty", "", "", "", "", "", "", "As you can probably guess, smoking is not too good for your heart, but because you stopped it means your heart is healing!"];
 const badFeedbackResponse = ["empty", "", "", "", "Eehhh that much soda is not good for your heart!", "Uuuhh a lot of red meat! Too much meat is actually bad for your heart...", "", "", "Smoking any nicotine is one of the biggest factors in reducing your risk of cardiac disease! You know that 60% of teenagers your age don't smoke, if your group of friends smokes you could try to use non-nicotine products for example!"];
+const animationValuesTitles = ["Fruits & Veggies", "Nuts", "Soda", "Meat", "Grains"];
+
+let animationValuesMinusLastValue = []
+let animationValuesSort = [];
+const cleanSortedValues = [];
+let cleanSortedValuesHealthy = []
+
+let index = 0;
+
 
 // Static variables
 let rawSport = 0;
@@ -647,6 +656,33 @@ survey
 
 $("#surveyElement").Survey({model: survey});
 
+function calculateGoodBadDiet() {
+    for (const key in animationValues) {
+        if (key > 1 && key < animationValues.length - 2) {
+            const result = ((animationValues[key] - animationValues[key - 1]) / animationValuesHealthy[key]);
+            cleanSortedValuesHealthy.push(animationValuesHealthy[key])
+            animationValuesMinusLastValue[animationValuesTitles[index]] = result
+            animationValuesSort.push(result)
+            index++
+        }
+    }
+
+    animationValuesSort = animationValuesSort.sort(function (a, b) {
+        return b - a
+    })
+
+    for (const value in animationValuesSort) {
+        for (const key in animationValuesMinusLastValue) {
+            if (animationValuesMinusLastValue[key] == animationValuesSort[value]) {
+                cleanSortedValues[key] = animationValuesSort[value]
+                delete animationValuesMinusLastValue[key]
+                break
+            }
+        }
+    }
+
+}
+
 survey
     .onAfterRenderPage
     .add(function (survey, options) {
@@ -654,208 +690,29 @@ survey
 
         if (options.page.name == "page28") {
 
+            calculateGoodBadDiet()
 
-            let dietPie = {
-                series: [animationValues[2], animationValues[3], animationValues[4], animationValues[5], animationValues[6]],
-                chart: {
-                    type: 'pie',
-                },
-                labels: ['Fruits & Veggies', 'Nuts', 'Soda', 'Meat', 'Grains'],
-                legend: {
-                    show: true,
-                    position: 'bottom'
-                }
-            };
+            let categories = []
+            let scoreData = []
+            let healthyData = []
+            index = 0
 
-            let dietHorizontal = {
-                series: [
-                    {
-                        name: 'Score',
-                        data: [
-                            {
-                                x: 'Fruits & Veggies',
-                                y: animationValues[2],
-                                goals: [
-                                    {
-                                        name: 'Healthy',
-                                        value: animationValuesHealthy[2],
-                                        strokeHeight: 25,
-                                        strokeColor: '#775DD0'
-                                    }
-                                ]
-                            },
-                            {
-                                x: 'Nuts',
-                                y: animationValues[3],
-                                goals: [
-                                    {
-                                        name: 'Healthy',
-                                        value: animationValuesHealthy[3],
-                                        strokeHeight: 25,
-                                        strokeColor: '#775DD0'
-                                    }
-                                ]
-                            },
-                            {
-                                x: 'Soda',
-                                y: animationValues[4],
-                                goals: [
-                                    {
-                                        name: 'Healthy',
-                                        value: animationValuesHealthy[4],
-                                        strokeHeight: 25,
-                                        strokeColor: '#775DD0'
-                                    }
-                                ]
-                            },
-                            {
-                                x: 'Meat',
-                                y: animationValues[5],
-                                goals: [
-                                    {
-                                        name: 'Healthy',
-                                        value: animationValuesHealthy[5],
-                                        strokeHeight: 25,
-                                        strokeColor: '#775DD0'
-                                    }
-                                ]
-                            },
-                            {
-                                x: 'Soda',
-                                y: animationValues[6],
-                                goals: [
-                                    {
-                                        name: 'Healthy',
-                                        value: animationValuesHealthy[6],
-                                        strokeHeight: 25,
-                                        strokeColor: '#775DD0'
-                                    }
-                                ]
-                            },
-                        ]
-                    }
-                ],
-                chart: {
-                    height: 350,
-                    type: 'bar'
-                },
-                plotOptions: {
-                    bar: {
-                        columnWidth: '60%',
-                        horizontal: true
-                    }
-                },
-                colors: ['#00E396'],
-                dataLabels: {
-                    enabled: false
-                },
-                legend: {
-                    show: true,
-                    showForSingleSeries: true,
-                    customLegendItems: ['Score', 'Healthy'],
-                    markers: {
-                        fillColors: ['#00E396', '#775DD0']
-                    }
+            for (const cleanSortedValuesKey in cleanSortedValues) {
+                if (index < 3) {
+                    categories.push(cleanSortedValuesKey)
+                    healthyData.push(cleanSortedValuesHealthy[index])
+                    scoreData.push(cleanSortedValues[cleanSortedValuesKey] * cleanSortedValuesHealthy[index])
                 }
-            };
-            let dietVertical2 = {
-                series: [
-                    {
-                        name: 'Score',
-                        data: [
-                            {
-                                x: 'Fruits & Veggies',
-                                y: animationValues[2],
-                                goals: [
-                                    {
-                                        name: 'Healthy',
-                                        value: animationValuesHealthy[2],
-                                        strokeHeight: 5,
-                                        strokeColor: '#775DD0'
-                                    }
-                                ]
-                            },
-                            {
-                                x: 'Nuts',
-                                y: animationValues[3],
-                                goals: [
-                                    {
-                                        name: 'Healthy',
-                                        value: animationValuesHealthy[3],
-                                        strokeHeight: 5,
-                                        strokeColor: '#775DD0'
-                                    }
-                                ]
-                            },
-                            {
-                                x: 'Soda',
-                                y: animationValues[4],
-                                goals: [
-                                    {
-                                        name: 'Healthy',
-                                        value: animationValuesHealthy[4],
-                                        strokeHeight: 5,
-                                        strokeColor: '#775DD0'
-                                    }
-                                ]
-                            },
-                            {
-                                x: 'Meat',
-                                y: animationValues[5],
-                                goals: [
-                                    {
-                                        name: 'Healthy',
-                                        value: animationValuesHealthy[5],
-                                        strokeHeight: 5,
-                                        strokeColor: '#775DD0'
-                                    }
-                                ]
-                            },
-                            {
-                                x: 'Soda',
-                                y: animationValues[6],
-                                goals: [
-                                    {
-                                        name: 'Healthy',
-                                        value: animationValuesHealthy[6],
-                                        strokeHeight: 5,
-                                        strokeColor: '#775DD0'
-                                    }
-                                ]
-                            },
-                        ]
-                    }
-                ],
-                chart: {
-                    height: 350,
-                    type: 'bar'
-                },
-                plotOptions: {
-                    bar: {
-                        columnWidth: '60%',
-                        horizontal: false
-                    }
-                },
-                colors: ['#00E396'],
-                dataLabels: {
-                    enabled: false
-                },
-                legend: {
-                    show: true,
-                    showForSingleSeries: true,
-                    customLegendItems: ['Score', 'Healthy'],
-                    markers: {
-                        fillColors: ['#00E396', '#775DD0']
-                    }
-                }
-            };
-            let dietVertical = {
+                index++
+            }
+
+            let goodDiet = {
                 series: [{
                     name: 'Score',
-                    data: [animationValues[2], animationValues[3], animationValues[4], animationValues[5], animationValues[6]]
+                    data: scoreData,
                 }, {
                     name: 'Healthy',
-                    data: [animationValuesHealthy[2], animationValuesHealthy[3], animationValuesHealthy[4], animationValuesHealthy[5], animationValuesHealthy[6]]
+                    data: healthyData
                 }
                 ],
                 chart: {
@@ -878,26 +735,77 @@ survey
                     colors: ['transparent']
                 },
                 xaxis: {
-                    categories: ['Fruits & Veggies', 'Nuts', 'Soda', 'Meat', 'Grains'],
+                    categories: categories,
                 },
             };
 
 
             setTimeout(() => {
-                const chartHorizontal = new ApexCharts(document.querySelector("#chart_diet_horizontal"), dietHorizontal);
-                const chartVertical = new ApexCharts(document.querySelector("#chart_diet"), dietVertical);
-                const chartVertical2 = new ApexCharts(document.querySelector("#chart_diet_v2"), dietVertical2);
-                const chartPie = new ApexCharts(document.querySelector("#chart_diet_pie"), dietPie);
-                chartHorizontal.render()
+                const chartVertical = new ApexCharts(document.querySelector("#chart_good_diet_vertical"), goodDiet);
                 chartVertical.render()
-                chartVertical2.render()
-                chartPie.render()
             }, 100)
 
         }
 
 
-        // console.log(" ---> " + options.page.name)
+        if (options.page.name == "page29") {
+
+            let categories = []
+            let scoreData = []
+            let healthyData = []
+
+            index = 0
+
+            for (const cleanSortedValuesKey in cleanSortedValues) {
+                if (index > 2) {
+                    categories.push(cleanSortedValuesKey)
+                    healthyData.push(cleanSortedValuesHealthy[index])
+                    scoreData.push(cleanSortedValues[cleanSortedValuesKey] * cleanSortedValuesHealthy[index])
+                }
+                index++
+            }
+
+            let badDiet = {
+                series: [{
+                    name: 'Score',
+                    data: scoreData,
+                }, {
+                    name: 'Healthy',
+                    data: healthyData
+                }
+                ],
+                chart: {
+                    type: 'bar',
+                    height: 350
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                        columnWidth: '55%',
+                        endingShape: 'rounded'
+                    },
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    show: true,
+                    width: 2,
+                    colors: ['transparent']
+                },
+                xaxis: {
+                    categories: categories,
+                },
+            };
+
+
+            setTimeout(() => {
+                const chartVertical = new ApexCharts(document.querySelector("#chart_bad_diet_vertical"), badDiet);
+                chartVertical.render()
+            }, 100)
+
+        }
+
 
         //Do nothing if a page contains no description to show in a modal popup
         if (!options.page.popupdescription)
@@ -1387,15 +1295,8 @@ survey.onValueChanged.add(function (survey, options) {
     }
 
     var summaryQuestion = survey.getQuestionByName("summary");
-    summaryQuestion.html = "<div><center>" + "<p><img alt='' src=" + summaryImage + "></p>" + "</center><br><center><p style='margin:auto;'>Your risk is <h3>" + relativeRiskWord + "</h3><br></p></center></div>" +
-        // "<div style=' border-radius: 25px; padding: 20px; background-image: linear-gradient(0deg,  "+summaryColor+";width:75%; margin:auto;'><center><p style='margin:auto;'>Your risk is <h3>"+relativeRiskWord+"</h3><br> Compared to a healthy lifestyle</p></center></div>"+
-        // We'll put the images here of the Diet (2.5 points is the average)
-        "<center><p> This is your score breakdown:</p></center>" +
-        "<br><center><p> BMI <img alt='' src=" + bmiImagePath + "></p></center>" +
-        "<br><center><p> Diet <img alt='' src=" + dietImagePath + "></p></center>" +
-        // We'll put the images here for the Activity (1.5 hrs is the average)
-        "<br><center><p> Activity <img alt='' src=" + activityImagePath + "></p></center>" +
-        "<br><center><p> Smoking <img alt='' src=" + smokeImagePath + "></p></center>";
+    summaryQuestion.html = "<div><center>" + "<p><img alt='' src=" + summaryImage + "></p>" + "</center><br><center><p style='margin:auto;'>Your risk is <h3>" + relativeRiskWord + "</h3><br></p></center></div>"
+
 
     // Good foods replacement
     // Add logic for what image to show
@@ -1410,10 +1311,8 @@ survey.onValueChanged.add(function (survey, options) {
     }
     const goodFoodsQuestion = survey.getQuestionByName("good-foods");
     goodFoodsQuestion.html =
-        "<div id='chart_diet_horizontal' style='overflow: hidden !important;'></div>" +
-        "<div id='chart_diet_v2' style='overflow: hidden !important;'></div>" +
-        "<div id='chart_diet' style='overflow: hidden !important;'></div>" +
-        "<div id='chart_diet_pie' style='overflow: hidden !important;'></div>";
+        "<h2>You’re doing pretty good... </h2> <br> " +
+        "<div id='chart_good_diet_vertical' style='overflow: hidden !important;'></div>"
     /*<p>  (You eat low fiber grains <b>"+grainLowQuestion+"</b>, you need a least one serving every day)</p></div></li>";*/
 
     // Good foods replacement
@@ -1421,9 +1320,10 @@ survey.onValueChanged.add(function (survey, options) {
         sequenceVariable += 1
     }
     const badFoodsQuestion = survey.getQuestionByName("bad-foods");
-    badFoodsQuestion.html = "<h3>Let's look at your diet :</h3> <ul> <li><div> <p>Sugary drinks: <span style='color: red;  font-weight: bold;' class='text-orientation-right-css'> - " + ((sugarValue * 1000) / 5).toFixed(0) + "</span></p><p>(You drink soda <b>" + sugarQuestion + "</b>, the max should be once or twice a week)</p></div></li>" +
-        "<li><div><p>Meat: <span style='color:red;  font-weight: bold;' class='text-orientation-right-css'> - " + ((meatValue * 1000) / 5).toFixed(0) + "</span></p><p>(You eat meat <b>" + meatQuestion + "</b>, the max should be once or twice a week)</p></div></li>" +
-        "<br><center><p>Watch meat and soda affect your score, did it have a big impact?</p><br><p><img alt='' src=" + imageSequence[sequenceVariable] + "></p></center>";
+    badFoodsQuestion.html =
+        "<h2>... but you can do better</h2> <br> " +
+        "<div id='chart_bad_diet_vertical' style='overflow: hidden !important;'></div>"
+
 
     // Actitives replacement
     if (((modSportValue + hardSportValue) * 6).toFixed(0) != 0) {
