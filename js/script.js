@@ -674,7 +674,7 @@ function calculateGoodBadDiet() {
     for (const value in animationValuesSort) {
         for (const key in animationValuesMinusLastValue) {
             if (animationValuesMinusLastValue[key] == animationValuesSort[value]) {
-                cleanSortedValues[key] = animationValuesSort[value]
+                cleanSortedValues[key] = animationValuesSort[value] < 1 ? 1 : animationValuesSort[value]
                 delete animationValuesMinusLastValue[key]
                 break
             }
@@ -705,6 +705,10 @@ survey
                 }
                 index++
             }
+
+
+            // animationValues[1]
+            // animationValuesHealthy[1]
 
             let goodDiet = {
                 series: [{
@@ -757,7 +761,7 @@ survey
             index = 0
 
             for (const cleanSortedValuesKey in cleanSortedValues) {
-                if (index > 2) {
+                if (index > 2 && index < 5) {
                     categories.push(cleanSortedValuesKey)
                     healthyData.push(cleanSortedValuesHealthy[index])
                     scoreData.push(cleanSortedValues[cleanSortedValuesKey] * cleanSortedValuesHealthy[index])
@@ -804,6 +808,50 @@ survey
                 chartVertical.render()
             }, 100)
 
+        }
+
+
+        if (options.page.name == "page30") {
+
+
+            let exerciseScore = {
+                series: [{
+                    name: 'Score',
+                    data: [animationValues[1]],
+                }, {
+                    name: 'Healthy',
+                    data: [animationValuesHealthy[1]]
+                }
+                ],
+                chart: {
+                    type: 'bar',
+                    height: 350
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                        columnWidth: '55%',
+                        endingShape: 'rounded'
+                    },
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    show: true,
+                    width: 2,
+                    colors: ['transparent']
+                },
+                xaxis: {
+                    categories: ["Exercise"],
+                },
+            };
+
+
+            setTimeout(() => {
+                const chartVertical = new ApexCharts(document.querySelector("#chart_exercise_vertical"), exerciseScore);
+                chartVertical.render()
+            }, 100)
         }
 
 
@@ -1332,9 +1380,9 @@ survey.onValueChanged.add(function (survey, options) {
         sequenceVariable += 1
     }
     const activitiesQuestion = survey.getQuestionByName("activities");
-    activitiesQuestion.html = "<h3>Let's look at your exercise :</h3> <ul> <li><div> <p>Activities: <span style='color: green;  font-weight: bold;' class='text-orientation-right-css'> + " + ((modSportValue + hardSportValue) * 6).toFixed(0) + " </span></p></div></li>" +
-        "<br><center><p>Sports have a big effect don't they? The more exercise the bigger the impact</p><br><p><img alt='' src=" + imageSequence[sequenceVariable] + "></p></center>";
-    /*<p>(You do <b>"+(modSportValue+hardSportValue)+"</b> hours of exercise a week you should be doing a minimum 1.5 hours per week)</p>*/
+    activitiesQuestion.html = "<h3>Let's look at your exercise :</h3>" +
+        "<div id='chart_exercise_vertical' style='overflow: hidden !important;'></div>"
+
 
     // Smoking replacement
     if (smokeQuestion == "Used to smoke") {
