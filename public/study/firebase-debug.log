@@ -1,0 +1,44 @@
+[debug] [2022-04-05T22:25:17.429Z] ----------------------------------------------------------------------
+[debug] [2022-04-05T22:25:17.430Z] Command:       /opt/homebrew/Cellar/node/17.4.0/bin/node /opt/homebrew/bin/firebase hosting:channel:deploy preview
+[debug] [2022-04-05T22:25:17.430Z] CLI Version:   10.1.0
+[debug] [2022-04-05T22:25:17.430Z] Platform:      darwin
+[debug] [2022-04-05T22:25:17.430Z] Node Version:  v17.4.0
+[debug] [2022-04-05T22:25:17.433Z] Time:          Tue Apr 05 2022 18:25:17 GMT-0400 (Eastern Daylight Time)
+[debug] [2022-04-05T22:25:17.433Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-04-05T22:25:17.434Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2022-04-05T22:25:17.471Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-04-05T22:25:17.471Z] > authorizing via signed-in user (morgan.greenleaf.emory@gmail.com)
+[debug] [2022-04-05T22:25:17.471Z] [iam] checking project ironglove-4f30d for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2022-04-05T22:25:17.472Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2022-04-05T22:25:17.472Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-04-05T22:25:17.558Z] <<< HTTP RESPONSE 200 {"date":"Tue, 05 Apr 2022 22:25:17 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-04-05T22:25:17.608Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/ironglove-4f30d:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-04-05T22:25:17.645Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2022-04-05T22:25:17.645Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2022-04-05T22:25:17.914Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 05 Apr 2022 22:25:17 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=212","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-04-05T22:25:17.915Z] [iam] error while checking permissions, command may fail: FirebaseError: Authorization failed. This account is missing the following required permissions on project ironglove-4f30d:
+
+  firebase.projects.get
+  firebasehosting.sites.update
+[debug] [2022-04-05T22:25:17.915Z] > refreshing access token with scopes: []
+[debug] [2022-04-05T22:25:17.915Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-04-05T22:25:17.986Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","date":"Tue, 05 Apr 2022 22:25:18 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-04-05T22:25:18.031Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/ironglove-4f30d [none]
+[debug] [2022-04-05T22:25:18.220Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/ironglove-4f30d 403
+[debug] [2022-04-05T22:25:18.220Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/ironglove-4f30d {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2022-04-05T22:25:18.220Z] HTTP Error: 403, The caller does not have permission
+[debug] [2022-04-05T22:25:18.276Z] FirebaseError: HTTP Error: 403, The caller does not have permission
+    at module.exports (/opt/homebrew/lib/node_modules/firebase-tools/lib/responseToError.js:38:12)
+    at Client.doRequest (/opt/homebrew/lib/node_modules/firebase-tools/lib/apiv2.js:241:23)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async Client.request (/opt/homebrew/lib/node_modules/firebase-tools/lib/apiv2.js:96:20)
+    at async getFirebaseProject (/opt/homebrew/lib/node_modules/firebase-tools/lib/management/projects.js:290:21)
+    at async getDefaultHostingSite (/opt/homebrew/lib/node_modules/firebase-tools/lib/getDefaultHostingSite.js:8:21)
+    at async Object.requireHostingSite [as fn] (/opt/homebrew/lib/node_modules/firebase-tools/lib/requireHostingSite.js:9:18)
+    at async /opt/homebrew/lib/node_modules/firebase-tools/lib/command.js:188:17
+[error] 
+[error] Error: Failed to get Firebase project ironglove-4f30d. Please make sure the project exists and your account has permission to access it.
