@@ -10,21 +10,14 @@ Survey
     .Serializer
     .addProperty("page", "pos:number");
 
-function showDescription(element) {
-    document
-        .getElementById("questionDescriptionText")
-        .innerHTML = element.popupdescription;
-    $("#questionDescriptionPopup").modal();
-}
-
 let newAnimation;
 let oldAnimation;
 // Disable for testing
 const animationValues = new Array(9);
 let animationValuesHealthy = new Array(9);
-const goodFeedbackResponse = ["empty", "Yea! That's the exercise you need every week!", "Yaaa fruits and veggies make your heart healthy!", "Yea nuts are awesome!!", "", "", "Keep 'em grains coming!", "This is great! See how much NOT smoking has helped your score, smoking is a HUGE factor in your heart health"];
-const mediumFeedbackResponse = ["empty", "", "", "", "", "", "", "As you can probably guess, smoking is not too good for your heart, but because you stopped it means your heart is healing!"];
-const badFeedbackResponse = ["empty", "", "", "", "Eehhh that much soda is not good for your heart!", "Uuuhh a lot of red meat! Too much meat is actually bad for your heart...", "", "", "Smoking any nicotine is one of the biggest factors in reducing your risk of cardiac disease! You know that 60% of teenagers your age don't smoke, if your group of friends smokes you could try to use non-nicotine products for example!"];
+const goodFeedbackResponse = ["empty", "Yea! That's the exercise you need every week!", "Yaaa fruits and veggies make your heart healthy!", "Yea nuts are awesome!! One of the best things you can do to reduce risk of cardiac disease", "", "", "Keep 'em grains coming!", "This is great! See how much NOT smoking has helped your score, smoking is a HUGE factor in your heart health"];
+const mediumFeedbackResponse = ["empty", "", "", "Nuts are a great foods! They impact your risk of heart health so much, even more than fruit and veggies!", "", "", "", "As you can probably guess, smoking is not too good for your heart, but because you stopped it means your heart is healing!"];
+const badFeedbackResponse = ["empty", "", "", "Nuts are some of the best foods you can eat to reduce your risk of cardiac health, and there's so much variety!", "Eehhh that much soda is not good for your heart!", "Uuuhh a lot of red meat! Too much meat is actually bad for your heart...", "", "", "Smoking any nicotine is one of the biggest factors in reducing your risk of cardiac disease! You know that 60% of teenagers your age don't smoke, if your group of friends smokes you could try to use non-nicotine products for example!"];
 const animationValuesTitles = ["empty","Physical activity","Fruits & Veggies", "Nuts", "Soda", "Meat", "Grains"];
 
 let animationValuesMinusLastValue = []
@@ -65,6 +58,10 @@ const json = {
     "title": "HerHeart",
     "showProgressBar": "top",
     "goNextPageAutomatic": true,
+    "showQuestionNumbers" : "off",
+    "requiredText" : "",
+    "completedHtml": "<h3 style='text-align:center'> Awesome! Thank you so much for taking the HerHeart Quiz, hope it helped you see the things you are doing great and a couple to improve upon!</h3>" +
+    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:70%;' src='svg/Heart.svg'><br>",
     // "triggers": [
     //     {
     //         "type": "complete"
@@ -118,19 +115,12 @@ const json = {
                     "type": "html",
                     "name": "test",
                     "html": "<div id='sketch-holder'></div>" +
-                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:50%;' src='img/vigorous.png'>"
+                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/vigorous.png'>"
                 },
-                // {
-                //     "type": "image",
-                //     "name": "first_page_image",
-                //     "imageLink": "./img/vigorous.png",
-                //     "imageWidth": "300px",
-                //     "imageHeight": "300px"
-                // },
                 {
                     "type": "radiogroup",
                     "name": "activity-hard",
-                    "title": "During a typical week how often do you practice any physical activity where you breathe hard/sweat?",
+                    "title": "During a typical week how often do you practice any physical activity where you BREATHE HARD/SWEAT?",
                     "isRequired": true,
                     "colCount": 0,
                     "hasNone": false,
@@ -492,7 +482,7 @@ const json = {
                 {
                     "type": "radiogroup",
                     "name": "smoke",
-                    "title": "Do you smoke cigarrettes or vape any products containing nicotine?",
+                    "title": "Do you smoke cigarrettes, chew tobacco, or vape any products containing nicotine (nicotine is a chemical inside cigarrettes, your vape should tell you if it has nicotine in it)?",
                     "isRequired": true,
                     "colCount": 0,
                     "hasNone": false,
@@ -640,8 +630,27 @@ const json = {
             "elements": [
                 {
                     "type": "html",
+                    "name": "feedback-explanation",
+                    "html": "<div><p style='margin:auto;'><h3>So what does this mean? <h3><br>It's not that your heart is bad right now, but that maintaining those habits will increase your chances of having cardiac disease when you are older.<br>"+
+                    "But they are just chances, nothing is guaranteed of course! <br>This calculation was done by looking at the diet and exercise of 50,000 older women and their heart health.</p></div>"
+                },
+                {
+                    "type": "boolean",
+                    "name": "feedbackbool",
+                    "title": "Want feedback?",
+                    "label": "With this in mind, would you like to hear feedback on how you are doing?",
+                    "isRequired": true,
+                    "goNextPageAutomatic": false,
+                }
+            ]
+        },
+        {
+            "elements": [
+                {
+                    "type": "html",
                     "name": "good-foods",
-                    "html": ""
+                    "html": "",
+                    "visibleIf": "{feedbackbool}=='true'",
                 }
             ]
         }, {
@@ -649,7 +658,8 @@ const json = {
                 {
                     "type": "html",
                     "name": "bad-foods",
-                    "html": ""
+                    "html": "",
+                    "visibleIf": "{feedbackbool}=='true'",
                 }
             ]
         }, {
@@ -657,19 +667,64 @@ const json = {
                 {
                     "type": "html",
                     "name": "activities",
-                    "html": ""
+                    "html": "",
+                    "visibleIf": "{feedbackbool}=='true'",
                 }
             ]
-        }, {
+        }, 
+        {
             "elements": [
                 {
                     "type": "html",
-                    "name": "smokinghabits",
-                    "html": "",
-                    "visibleIf": "{smoke}!='Never smoke'",
-                }
+                    "name": "text_recom",
+                    "visibleIf": "{feedbackbool}=='true'",
+                    "html": "<center><h3 style='color:rgb(26, 179, 148);'>Recommendations</h3></centers>"
+                },
+                {
+                    "type": "html",
+                    "name": "recomendations_phy",
+                    "visibleIf": "{feedbackbool}=='true'",
+                    "html": "<div style=\";\">\n" +
+                        "    <div style=\"left: 0; width: 100%; height: 0; position: relative; padding-bottom: 177.7778%; padding-top: 120px;\">\n" +
+                        "        <iframe src=\"https://www.tiktok.com/embed/6885517120382323973\"\n" +
+                        "                style=\"top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;\" allowfullscreen\n" +
+                        "                scrolling=\"no\" allow=\"encrypted-media;\"></iframe>\n" +
+                        "    </div>\n" +
+                        "</div>"
+                },                    {
+                    "type": "html",
+                    "name": "recomendations_phy",
+                    "visibleIf": "{feedbackbool}=='true'",
+                    "html": "<div style=\";\">\n" +
+                        "    <div style=\"left: 0; width: 100%; height: 0; position: relative; padding-bottom: 177.7778%; padding-top: 120px;\">\n" +
+                        "        <iframe src=\"https://www.tiktok.com/embed/6937433017707171077\"\n" +
+                        "                style=\"top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;\" allowfullscreen\n" +
+                        "                scrolling=\"no\" allow=\"encrypted-media;\"></iframe>\n" +
+                        "    </div>\n" +
+                        "</div>"
+                },
             ]
         },
+        {
+            "elements": [
+                {
+                    "type": "html",
+                    "name": "Intro",
+                    "html": "<h3 style='text-align:center'> Awesome! Thank you so much for taking the HerHeart Quiz, hope it helped you see the things you are doing great and a couple to improve upon!</h3>" +
+                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:70%;' src='svg/Heart.svg'><br>",
+                },
+            ]
+        }, 
+        // {
+        //     "elements": [
+        //         {
+        //             "type": "html",
+        //             "name": "smokinghabits",
+        //             "html": "",
+        //             "visibleIf": "{smoke}!='Never smoke'",
+        //         }
+        //     ]
+        // },
     ]
 };
 
@@ -739,16 +794,16 @@ survey
     .onAfterRenderPage
     .add(function (survey, options) {
 
-        if (options.page.name == "page28") {
+        if (options.page.name == "page28" || options.page.name == "page29") {
 
             calculateGoodBadDiet()
 
             let goodDiet = {
                 series: [{
-                    name: 'Your Score',
+                    name: 'Your intake',
                     data: scoreData.slice(0,3),
                 }, {
-                    name: 'Average Healthy Score',
+                    name: 'Average healthy intake for your age',
                     data: healthyData.slice(0,3),
                 }
                 ],
@@ -790,7 +845,7 @@ survey
                         show: false,
                     },
                     title: {
-                        text: "Food consumption",
+                        // text: "Food consumption",
                         rotate: -90,
                         style: {
                             fontSize: '14px',
@@ -808,13 +863,13 @@ survey
         }
 
 
-        if (options.page.name == "page29") {
+        if (options.page.name == "page29" || options.page.name == "page30") {
             let badDiet = {
                 series: [{
-                    name: 'Your Score',
+                    name: 'Your intake',
                     data: scoreData.slice(3,5),
                 }, {
-                    name: 'Average Healthy Score',
+                    name: 'Average healthy intake for your age',
                     data: healthyData.slice(3,5),
                 }
                 ],
@@ -857,7 +912,7 @@ survey
                         show: false,
                     },
                     title: {
-                        text: "Food consumption",
+                        // text: "Food consumption",
                         rotate: -90,
                         style: {
                             fontSize: '14px',
@@ -875,22 +930,23 @@ survey
         }
 
 
-        if (options.page.name == "page30") {
+        if (options.page.name == "page31" || options.page.name == "page32") {
 
 
             let exerciseScore = {
                 series: [{
-                    name: 'Score',
-                    data: [animationValues[1]],
+                    name: 'Your activity',
+                    data: [rawSport],
                 }, {
-                    name: 'Healthy',
-                    data: [animationValuesHealthy[1]]
+                    name: 'Average healthy activity for your age',
+                    data: [3.5]
                 }
                 ],
                 chart: {
                     type: 'bar',
                     height: 350
                 },
+                colors: ["#4EBE3C","#81CEF9"],
                 plotOptions: {
                     bar: {
                         horizontal: false,
@@ -909,6 +965,18 @@ survey
                 xaxis: {
                     categories: ["Exercise"],
                 },
+                yaxis: {
+                    labels: {
+                        show: false,
+                    },
+                    title: {
+                        text: "Hours/week",
+                        rotate: -90,
+                        style: {
+                            fontSize: '14px',
+                        },
+                    },
+                }
             };
 
 
@@ -1120,7 +1188,7 @@ survey
 
             // Nuts
             if(rawNuts >= 2){animationValues[3] = animationValues[2] + 40;}
-            else if(rawNuts >= 0.3){animationValues[3] = animationValues[2] + 20;}
+            else if(rawNuts >= 0.3){animationValues[3] = animationValues[2] + 20+parseInt((rawNuts-0.3)*20);}
             else {animationValues[3] = animationValues[2] + parseInt((rawNuts*20)/0.5);}
 
             // Soda
@@ -1504,8 +1572,8 @@ survey.onValueChanged.add(function (survey, options) {
     } else if (smokeQuestion == "Currently smoke") {
         sequenceVariable += 2
     }
-    const smokingQuestion = survey.getQuestionByName("smokinghabits");
-    smokingQuestion.html = "<h3>Let's look at your smoking habits :</h3> <ul> <li><div> <p> You " + smokeQuestion + ": <span style='color: red;  font-weight: bold;' class='text-orientation-right-css'> - " + ((smokeValue * 36) / 0.18283).toFixed(0) + "</span></p></div></li>" +
-        "<p> Any smoking significantly affects your heart health, it's -30 if you used to smoke and -177 if you currently do!</p>" +
-        "<br><center><p>Smoking has a huge impact in your heart score. Hopefully you didn't see it come down!</p><br><p><img alt='' src=" + imageSequence[sequenceVariable] + "></p></center>";
+    // const smokingQuestion = survey.getQuestionByName("smokinghabits");
+    // smokingQuestion.html = "<h3>Let's look at your smoking habits :</h3> <ul> <li><div> <p> You " + smokeQuestion + ": <span style='color: red;  font-weight: bold;' class='text-orientation-right-css'> - " + ((smokeValue * 36) / 0.18283).toFixed(0) + "</span></p></div></li>" +
+    //     "<p> Any smoking significantly affects your heart health, it's -30 if you used to smoke and -177 if you currently do!</p>" +
+    //     "<br><center><p>Smoking has a huge impact in your heart score. Hopefully you didn't see it come down!</p><br><p><img alt='' src=" + imageSequence[sequenceVariable] + "></p></center>";
 });
