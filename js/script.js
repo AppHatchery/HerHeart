@@ -54,6 +54,18 @@ let rawAlcohol = 0;
 let BMI = 0
 let Diet = 0
 
+let activity_0 = 'img/activity_0.png';
+let activity_1 = 'img/activity_1.png';
+let activity_2 = 'img/activity_2.png';
+let activity_3 = 'img/activity_3.png';
+
+let activity_op0 = 'img/activity_op0.png';
+let activity_op1 = 'img/activity_op1.png';
+let activity_op2 = 'img/activity_op2.png';
+let activity_op3 = 'img/activity_op3.png';
+let activity_op4 = 'img/activity_op4.png';
+let activity_op5 = 'img/activity_op5.png';
+
 const json = {
     "title": "HerHeart",
     "showProgressBar": "top",
@@ -115,27 +127,123 @@ const json = {
                     "type": "html",
                     "name": "test",
                     "html": "<div id='sketch-holder'></div>" +
-                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/vigorous.png'>"
+                        "<h3><center> Let's start by discussing your physical activity! Do you like doing intense exercise? </center></h3>"+
+                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/vigorous.png'>"+
+                        "<p><center style='font-size:14px;'>Examples: cheerleading, running, softball, soccer, volleyball, tennis, basketball</center></p>"
                 },
                 {
-                    "type": "radiogroup",
+                    "type": "imagepicker",
                     "name": "activity-hard",
-                    "title": "During a typical week how often do you practice any physical activity where you BREATHE HARD/SWEAT?",
+                    "title": " ",
                     "isRequired": true,
-                    "colCount": 0,
+                    "colCount": 1,
                     "hasNone": false,
                     "choices": [
-                        "< 15 mins",
-                        "15 - 30 mins",
-                        "30 - 60 mins",
-                        "1 - 3 hrs",
-                        "3 - 6 hrs",
-                        "6 - 10 hrs",
-                        "10+ hrs"
+                        {
+                            "value":0,
+                            "imageLink":activity_0
+                        },
+                        {
+                            "value":1,
+                            "imageLink":activity_1
+                        },
+                        {
+                            "value":2,
+                            "imageLink":activity_2
+                        },
+                        {
+                            "value":3,
+                            "imageLink":activity_3
+                        },
                     ]
                 }
             ]
-        }, {
+        }, 
+        {
+            "popupdescription": "P5",
+            "pos": 1,
+            "elements": [
+                {
+                    "type": "html",
+                    "name": "test",
+                    "visibleIf": "{activity-hard}<=1",
+                    "html": "<div id='sketch-holder'></div>" +
+                        "<h3> <center>Interesting selection 🤔... do spend at least 1 hour a week doing intense physical exercise? </center></h3>"+
+                        "<p><center>Examples: cheerleading, running, softball, soccer, volleyball, tennis, basketball</center></p>"
+                },
+                {
+                    "type": "imagepicker",
+                    "name": "activity-hard-low",
+                    "title": " ",
+                    "visibleIf": "{activity-hard}<=1",
+                    "isRequired": true,
+                    "colCount": 1,
+                    "hasNone": false,
+                    "choices": [
+                        {
+                            "value":0,
+                            "imageLink":activity_op0
+                        },
+                        {
+                            "value":1,
+                            "imageLink":activity_op1
+                        },
+                        {
+                            "value":2,
+                            "imageLink":activity_op2
+                        },
+                        {
+                            "value":3,
+                            "imageLink":activity_op3
+                        },
+                    ]
+                }
+            ]
+        }, 
+        {
+            "popupdescription": "P5",
+            "pos": 1,
+            "elements": [
+                {
+                    "type": "html",
+                    "name": "test",
+                    "visibleIf": "{activity-hard}>1",
+                    "html": "<div id='sketch-holder'></div>" +
+                        "<h3><center> Nice! Butttttt do spend at least 1 hour a week doing intense physical exercise? </center></h3>"+
+                        "<p><center>Examples: cheerleading, running, softball, soccer, volleyball, tennis, basketball</center></p>"
+                },
+                {
+                    "type": "imagepicker",
+                    "name": "activity-hard-high",
+                    "title": " ",
+                    "visibleIf": "{activity-hard}>1",
+                    "isRequired": true,
+                    "colCount": 1,
+                    "hasNone": false,
+                    "choices": [
+                        {
+                            "value":2,
+                            "imageLink":activity_op2
+                        },
+                        {
+                            "value":3,
+                            "imageLink":activity_op3
+                        },
+                        {
+                            "value":4,
+                            "imageLink":activity_op4
+                        },
+                        {
+                            "value":5,
+                            "imageLink":activity_op5
+                        },
+                    ]
+                }
+            ]
+        }, 
+        
+        
+        {
             "popupdescription": "P5",
             "pos": 1,
             "elements": [
