@@ -70,8 +70,7 @@ const json = {
     "title": "HerHeart",
     "showProgressBar": "top",
     "goNextPageAutomatic": true,
-    "showQuestionNumbers" : "off",
-    "requiredText" : "",
+     "requiredText" : "",
     "completedHtml": "<h3 style='text-align:center'> Awesome! Thank you so much for taking the HerHeart Quiz, hope it helped you see the things you are doing great and a couple to improve upon!</h3>" +
     "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:70%;' src='svg/Heart.svg'><br>",
     // "triggers": [
@@ -841,6 +840,10 @@ Survey
     .applyTheme("modern");
 
 window.survey = new Survey.Model(json);
+survey.showQuestionNumbers = "off";
+survey.showPageNumbers  = "off";
+
+survey.pageNextText = ""
 
 survey
     .onComplete

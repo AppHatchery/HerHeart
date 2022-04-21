@@ -6,6 +6,34 @@
     <meta charset="UTF-8">
     <link href="https://unpkg.com/survey-core@1.9.8/modern.min.css" type="text/css" rel="stylesheet"/>
     <link href="https://unpkg.com/nouislider@9.2.0/distribute/nouislider.min.css" rel="stylesheet"/>
+    <style>
+        .sv-root-modern .sv-progress__text {
+            display: none
+        }
+
+        .sv-imagepicker__image {
+            width: 100%;
+        }
+
+        .sv-root-modern .sv-footer__next-btn {
+            padding: 15px;
+            background-color: transparent !important;
+            color: transparent !important;
+            background-image: url("svg/next.svg");
+            background-repeat: no-repeat;
+        }
+
+        .sv-root-modern .sv-footer__prev-btn {
+            padding: 15px;
+            transform: rotate(180deg);
+            background-color: transparent !important;
+            color: transparent !important;
+            background-image: url("svg/next.svg");
+            background-repeat: no-repeat;
+        }
+
+
+    </style>
 </head>
 <body>
 <div id="surveyElement" style="display:inline-block;width:100%;"></div>
@@ -21,5 +49,5 @@
 <script async src="https://www.tiktok.com/embed.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<script src="js/script.js?v=11"></script>
+<script src="js/script.js?v=16"></script>
 </html>
