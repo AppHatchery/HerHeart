@@ -12,14 +12,23 @@
         }
 
         .sv-imagepicker__image {
+            height: unset !important;
             width: 100%;
+        }
+
+        .sv-imagepicker__label:hover {
+             background: #9d9d9d !important;
+        }
+
+        .sv-body__progress {
+            margin-bottom: 1rem;
         }
 
         .sv-root-modern .sv-footer__next-btn {
             padding: 15px;
             background-color: transparent !important;
             color: transparent !important;
-            background-image: url("svg/next.svg");
+            background-image: url("svg/button-arrow.svg");
             background-repeat: no-repeat;
         }
 
@@ -28,10 +37,21 @@
             transform: rotate(180deg);
             background-color: transparent !important;
             color: transparent !important;
-            background-image: url("svg/next.svg");
+            background-image: url("svg/button-arrow.svg");
             background-repeat: no-repeat;
         }
 
+        .sv-imagepicker__item--checked .sv-imagepicker__image {
+            background-color: unset !important;
+             border: unset !important;
+        }
+
+        .sv-row {
+            padding-bottom: 0 !important;
+        }
+        .sv-question__title--error{
+            background-color: unset !important;
+        }
 
     </style>
 </head>
@@ -39,6 +59,7 @@
 <div id="surveyElement" style="display:inline-block;width:100%;"></div>
 <div id="surveyResult"></div>
 <div id="questionDescriptionText"></div>
+
 
 </body>
 <script src="https://unpkg.com/jquery"></script>

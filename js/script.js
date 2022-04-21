@@ -1595,11 +1595,11 @@ survey.onValueChanged.add(function (survey, options) {
     } else if (relativeRisk > 1.0 /* was 1.5 before but confusing for usersy6 */ && relativeRisk < 4) {
         relativeRiskWord = "Slightly elevated";
         summaryColor = "rgb(231, 206, 61),rgb(211, 159, 16))";
-        summaryImage = "./svg/Results=Okay.svg"; // unhealthy.gif
+        summaryImage = "./svg/Results=Okay.png"; // unhealthy.gif
     } else {
         relativeRiskWord = "Very High";
         summaryColor = "rgb(178, 32, 0),rgb(241, 96, 96))";
-        summaryImage = "./svg/Results=Bad.svg"; // vunhealthy.gif
+        summaryImage = "./svg/Results=Bad.png"; // vunhealthy.gif
     }
 
     // Activity computation
