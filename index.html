@@ -6,61 +6,12 @@
     <meta charset="UTF-8">
     <link href="https://unpkg.com/survey-core@1.9.8/modern.min.css" type="text/css" rel="stylesheet"/>
     <link href="https://unpkg.com/nouislider@9.2.0/distribute/nouislider.min.css" rel="stylesheet"/>
-    <style>
-        .sv-root-modern .sv-progress__text {
-            display: none
-        }
-
-        .sv-imagepicker__image {
-            height: unset !important;
-            width: 100%;
-        }
-
-        .sv-imagepicker__label:hover {
-             background: #9d9d9d !important;
-        }
-
-        .sv-body__progress {
-            margin-bottom: 1rem;
-        }
-
-        .sv-root-modern .sv-footer__next-btn {
-            padding: 15px;
-            background-color: transparent !important;
-            color: transparent !important;
-            background-image: url("svg/button-arrow.svg");
-            background-repeat: no-repeat;
-        }
-
-        .sv-root-modern .sv-footer__prev-btn {
-            padding: 15px;
-            transform: rotate(180deg);
-            background-color: transparent !important;
-            color: transparent !important;
-            background-image: url("svg/button-arrow.svg");
-            background-repeat: no-repeat;
-        }
-
-        .sv-imagepicker__item--checked .sv-imagepicker__image {
-            background-color: unset !important;
-             border: unset !important;
-        }
-
-        .sv-row {
-            padding-bottom: 0 !important;
-        }
-        .sv-question__title--error{
-            background-color: unset !important;
-        }
-
-    </style>
+    <link rel="stylesheet" href="./css/override.css?v=1">
 </head>
 <body>
 <div id="surveyElement" style="display:inline-block;width:100%;"></div>
 <div id="surveyResult"></div>
 <div id="questionDescriptionText"></div>
-
-
 </body>
 <script src="https://unpkg.com/jquery"></script>
 <script src="https://unpkg.com/survey-jquery@1.9.8/survey.jquery.min.js"></script>
