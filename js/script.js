@@ -18,15 +18,15 @@ let animationValuesHealthy = new Array(9);
 const goodFeedbackResponse = ["empty", "Yea! That's the exercise you need every week!", "Yaaa fruits and veggies make your heart healthy!", "Yea nuts are awesome!! One of the best things you can do to reduce risk of cardiac disease", "", "", "Keep 'em grains coming!", "This is great! See how much NOT smoking has helped your score, smoking is a HUGE factor in your heart health"];
 const mediumFeedbackResponse = ["empty", "", "", "Nuts are a great foods! They impact your risk of heart health so much, even more than fruit and veggies!", "", "", "", "As you can probably guess, smoking is not too good for your heart, but because you stopped it means your heart is healing!"];
 const badFeedbackResponse = ["empty", "", "", "Nuts are some of the best foods you can eat to reduce your risk of cardiac health, and there's so much variety!", "Eehhh that much soda is not good for your heart!", "Uuuhh a lot of red meat! Too much meat is actually bad for your heart...", "", "", "Smoking any nicotine is one of the biggest factors in reducing your risk of cardiac disease! You know that 60% of teenagers your age don't smoke, if your group of friends smokes you could try to use non-nicotine products for example!"];
-const animationValuesTitles = ["empty","Physical activity","Fruits & Veggies", "Nuts", "Soda", "Meat", "Grains"];
+const animationValuesTitles = ["empty", "Physical activity", "Fruits & Veggies", "Nuts", "Soda", "Meat", "Grains"];
 
 let animationValuesMinusLastValue = []
 let animationValuesSort = [];
 let animationHealthSort = [];
-const cleanSortedValues = [];
-const cleanSortedValuesHealthy = []
-const valuesDict = {};
-const sortedDict = [];
+let cleanSortedValues = [];
+let cleanSortedValuesHealthy = []
+let valuesDict = {};
+let sortedDict = [];
 let categories = [];
 let scoreData = [];
 let healthyData = [];
@@ -38,7 +38,7 @@ let index = 0;
 // animationValuesHealthy = [0, 20, 20, 40, 20, 20, 20, 60, 20]; // Overall quantity amounts to 200 without the alcohol portion that needs to be considered separate
 // animationValues = [0, 10, 15, 36, 45, 59, 77, 60, 20];
 // animationValuesHealthy = [0, 20, 20, 40, 20, 20, 20, 60, 20]; // Overall quantity amounts to 200 without the alcohol portion that needs to be considered separate
-rawHealthyValues = [0,3.5,2,2,0.25,0.25,4,0];
+rawHealthyValues = [0, 3.5, 2, 2, 0.25, 0.25, 4, 0];
 // rawScoreValues = [0,1.5,1,1.5,0.5,0.8,2,0,0];
 rawScoreValues = [];
 // Static variables
@@ -70,9 +70,9 @@ const json = {
     "title": "HerHeart",
     "showProgressBar": "top",
     "goNextPageAutomatic": true,
-     "requiredText" : "",
+    "requiredText": "",
     "completedHtml": "<h3 style='text-align:center'> Awesome! Thank you so much for taking the HerHeart Quiz, hope it helped you see the things you are doing great and a couple to improve upon!</h3>" +
-    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:70%;' src='svg/Heart.svg'><br>",
+        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:70%;' src='svg/Heart.svg'><br>",
     // "triggers": [
     //     {
     //         "type": "complete"
@@ -99,25 +99,7 @@ const json = {
                     "autoComplete": "name"
                 }
             ]
-        }, 
-        // Testing
-        // {
-        //     "elements": [
-        //         {
-        //             "type": "html",
-        //             "html": "<div id='chart_good_diet_vertical' style='overflow: hidden !important;'></div>"
-        //         }
-        //     ]
-        // },
-        // {
-        //     "elements": [
-        //         {
-        //             "type": "html",
-        //             "html": "<div id='chart_bad_diet_vertical' style='overflow: hidden !important;'></div>"
-        //         }
-        //     ]
-        // },
-        // End Testing
+        },
         {
             "popupdescription": "P5",
             "pos": 1,
@@ -126,8 +108,8 @@ const json = {
                     "type": "html",
                     "name": "test",
                     "html": "<div id='sketch-holder'></div>" +
-                        "<h3><center> Let's start by discussing your physical activity! Do you like doing intense exercise? </center></h3>"+
-                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/vigorous.png'>"+
+                        "<h3><center> Let's start by discussing your physical activity! Do you like doing intense exercise? </center></h3>" +
+                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/vigorous.png'>" +
                         "<p><center style='font-size:14px;'>Examples: cheerleading, running, softball, soccer, volleyball, tennis, basketball</center></p>"
                 },
                 {
@@ -139,25 +121,25 @@ const json = {
                     "hasNone": false,
                     "choices": [
                         {
-                            "value":0,
-                            "imageLink":activity_0
+                            "value": 0,
+                            "imageLink": activity_0
                         },
                         {
-                            "value":1,
-                            "imageLink":activity_1
+                            "value": 1,
+                            "imageLink": activity_1
                         },
                         {
-                            "value":2,
-                            "imageLink":activity_2
+                            "value": 2,
+                            "imageLink": activity_2
                         },
                         {
-                            "value":3,
-                            "imageLink":activity_3
+                            "value": 3,
+                            "imageLink": activity_3
                         },
                     ]
                 }
             ]
-        }, 
+        },
         {
             "popupdescription": "P5",
             "pos": 1,
@@ -167,7 +149,7 @@ const json = {
                     "name": "test",
                     "visibleIf": "{activity-hard}<=1",
                     "html": "<div id='sketch-holder'></div>" +
-                        "<h3> <center>Interesting selection 🤔... do spend at least 1 hour a week doing intense physical exercise? </center></h3>"+
+                        "<h3> <center>Interesting selection 🤔... do spend at least 1 hour a week doing intense physical exercise? </center></h3>" +
                         "<p><center>Examples: cheerleading, running, softball, soccer, volleyball, tennis, basketball</center></p>"
                 },
                 {
@@ -180,25 +162,25 @@ const json = {
                     "hasNone": false,
                     "choices": [
                         {
-                            "value":0,
-                            "imageLink":activity_op0
+                            "value": 0,
+                            "imageLink": activity_op0
                         },
                         {
-                            "value":1,
-                            "imageLink":activity_op1
+                            "value": 1,
+                            "imageLink": activity_op1
                         },
                         {
-                            "value":2,
-                            "imageLink":activity_op2
+                            "value": 2,
+                            "imageLink": activity_op2
                         },
                         {
-                            "value":3,
-                            "imageLink":activity_op3
+                            "value": 3,
+                            "imageLink": activity_op3
                         },
                     ]
                 }
             ]
-        }, 
+        },
         {
             "popupdescription": "P5",
             "pos": 1,
@@ -208,7 +190,7 @@ const json = {
                     "name": "test",
                     "visibleIf": "{activity-hard}>1",
                     "html": "<div id='sketch-holder'></div>" +
-                        "<h3><center> Nice! Butttttt do spend at least 1 hour a week doing intense physical exercise? </center></h3>"+
+                        "<h3><center> Nice! Butttttt do spend at least 1 hour a week doing intense physical exercise? </center></h3>" +
                         "<p><center>Examples: cheerleading, running, softball, soccer, volleyball, tennis, basketball</center></p>"
                 },
                 {
@@ -221,27 +203,27 @@ const json = {
                     "hasNone": false,
                     "choices": [
                         {
-                            "value":2,
-                            "imageLink":activity_op2
+                            "value": 2,
+                            "imageLink": activity_op2
                         },
                         {
-                            "value":3,
-                            "imageLink":activity_op3
+                            "value": 3,
+                            "imageLink": activity_op3
                         },
                         {
-                            "value":4,
-                            "imageLink":activity_op4
+                            "value": 4,
+                            "imageLink": activity_op4
                         },
                         {
-                            "value":5,
-                            "imageLink":activity_op5
+                            "value": 5,
+                            "imageLink": activity_op5
                         },
                     ]
                 }
             ]
-        }, 
-        
-        
+        },
+
+
         {
             "popupdescription": "P5",
             "pos": 1,
@@ -738,8 +720,8 @@ const json = {
                 {
                     "type": "html",
                     "name": "feedback-explanation",
-                    "html": "<div><p style='margin:auto;'><h3>So what does this mean? <h3><br>It's not that your heart is bad right now, but that maintaining those habits will increase your chances of having cardiac disease when you are older.<br>"+
-                    "But they are just chances, nothing is guaranteed of course! <br>This calculation was done by looking at the diet and exercise of 50,000 older women and their heart health.</p></div>"
+                    "html": "<div><p style='margin:auto;'><h3>So what does this mean? <h3><br>It's not that your heart is bad right now, but that maintaining those habits will increase your chances of having cardiac disease when you are older.<br>" +
+                        "But they are just chances, nothing is guaranteed of course! <br>This calculation was done by looking at the diet and exercise of 50,000 older women and their heart health.</p></div>"
                 },
                 {
                     "type": "boolean",
@@ -778,19 +760,90 @@ const json = {
                     "visibleIf": "{feedbackbool}=='true'",
                 }
             ]
-        }, 
+        },
+
+
+        {
+            "elements": [
+                {
+                    "type": "html",
+                    "html": "<div id='sketch-holder'></div>" +
+                        "<h3><center> Awesome, we love to hear that! </center></h3>" +
+                        "<p><center>We’ve got some suggestions just for you too. Do you wanna see them?</center></p>"
+                },
+                {
+                    "type": "imagepicker",
+                    "name": "awesomeWeLoveToHearThat",
+                    "title": " ",
+                    "isRequired": true,
+                    "colCount": 1,
+                    "hasNone": false,
+                    "choices": [
+                        {
+                            "value": 0,
+                            "imageLink": './svg/yes-lets-see.svg'
+                        },
+                        {
+                            "value": 1,
+                            "imageLink": './svg/maybe-later.svg'
+                        },
+                        {
+                            "value": 2,
+                            "imageLink": './svg/no-am-good.svg'
+                        },
+                    ]
+                }
+            ]
+        },
+        {
+            "elements": [
+                {
+                    "type": "html",
+                    "name": "test",
+                    "visibleIf": "{awesomeWeLoveToHearThat} < 1",
+                    "html": "<div id='sketch-holder'></div>" +
+                        "<h3><center> That’s okay, you’ve got time! </center></h3>" +
+                        "<p><center>We’ve got some suggestions just for you too. Do you wanna see them?</center></p>"
+                },
+                {
+                    "visibleIf": "{awesomeWeLoveToHearThat} < 1",
+                    "type": "imagepicker",
+                    "name": "thatIsOkayYouGotTime",
+                    "title": " ",
+                    "isRequired": true,
+                    "colCount": 1,
+                    "hasNone": false,
+                    "choices": [
+                        {
+                            "value": 0,
+                            "imageLink": './svg/yes-lets-see.svg'
+                        },
+                        {
+                            "value": 1,
+                            "imageLink": './svg/maybe-later.svg'
+                        },
+                        {
+                            "value": 2,
+                            "imageLink": './svg/no-am-good.svg'
+                        },
+                    ]
+                }
+            ]
+        },
+
+
         {
             "elements": [
                 {
                     "type": "html",
                     "name": "text_recom",
-                    "visibleIf": "{feedbackbool}=='true'",
+                    "visibleIf": "{awesomeWeLoveToHearThat} < 1  && {thatIsOkayYouGotTime} < 1 ",
                     "html": "<center><h3 style='color:rgb(26, 179, 148);'>Recommendations</h3></centers>"
                 },
                 {
                     "type": "html",
                     "name": "recomendations_phy",
-                    "visibleIf": "{feedbackbool}=='true'",
+                    "visibleIf": "{awesomeWeLoveToHearThat} < 1  && {thatIsOkayYouGotTime} < 1 ",
                     "html": "<div style=\";\">\n" +
                         "    <div style=\"left: 0; width: 100%; height: 0; position: relative; padding-bottom: 177.7778%; padding-top: 120px;\">\n" +
                         "        <iframe src=\"https://www.tiktok.com/embed/6885517120382323973\"\n" +
@@ -798,10 +851,10 @@ const json = {
                         "                scrolling=\"no\" allow=\"encrypted-media;\"></iframe>\n" +
                         "    </div>\n" +
                         "</div>"
-                },                    {
+                }, {
                     "type": "html",
                     "name": "recomendations_phy",
-                    "visibleIf": "{feedbackbool}=='true'",
+                    "visibleIf": "{awesomeWeLoveToHearThat} < 1  && {thatIsOkayYouGotTime} < 1 ",
                     "html": "<div style=\";\">\n" +
                         "    <div style=\"left: 0; width: 100%; height: 0; position: relative; padding-bottom: 177.7778%; padding-top: 120px;\">\n" +
                         "        <iframe src=\"https://www.tiktok.com/embed/6937433017707171077\"\n" +
@@ -821,17 +874,7 @@ const json = {
                         "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:70%;' src='svg/Heart.svg'><br>",
                 },
             ]
-        }, 
-        // {
-        //     "elements": [
-        //         {
-        //             "type": "html",
-        //             "name": "smokinghabits",
-        //             "html": "",
-        //             "visibleIf": "{smoke}!='Never smoke'",
-        //         }
-        //     ]
-        // },
+        },
     ]
 };
 
@@ -841,7 +884,7 @@ Survey
 
 window.survey = new Survey.Model(json);
 survey.showQuestionNumbers = "off";
-survey.showPageNumbers  = "off";
+survey.showPageNumbers = "off";
 
 survey.pageNextText = ""
 
@@ -856,32 +899,47 @@ survey
 
 $("#surveyElement").Survey({model: survey});
 
+function emptyArray() {
+    valuesDict = {}
+    sortedDict = []
+    cleanSortedValuesHealthy = []
+    cleanSortedValues = []
+    categories = []
+    healthyData = []
+    scoreData = []
+}
+
 function calculateGoodBadDiet() {
-    rawScoreValues = [0,rawSport,rawFruits,rawNuts,rawSoda,rawMeat,rawGrains,rawSmoke,rawAlcohol];
+    rawScoreValues = [0, rawSport, rawFruits, rawNuts, rawSoda, rawMeat, rawGrains, rawSmoke, rawAlcohol];
     // Calculates the percentage score
     for (const key in animationValues) {
         if (key > 1 && key < animationValues.length - 2) {
             // const result = ((animationValues[key] - animationValues[key - 1]) / animationValuesHealthy[key]);
             const result = ((animationValues[key] - animationValues[key - 1]) / animationValuesHealthy[key]);
             // cleanSortedValuesHealthy.push(animationValuesHealthy[key])
-            valuesDict[animationValuesTitles[index+2]] = {"score": result, "healthy":animationValuesHealthy[key], "rawScore":rawScoreValues[key],"rawHealthy":rawHealthyValues[key]}
+            valuesDict[animationValuesTitles[index + 2]] = {
+                "score": result,
+                "healthy": animationValuesHealthy[key],
+                "rawScore": rawScoreValues[key],
+                "rawHealthy": rawHealthyValues[key]
+            }
             index++
         }
     }
-    console.log(valuesDict);
+    // console.log(valuesDict);
 
     // Create items array
-    var items = Object.keys(valuesDict).map(function(key) {
+    var items = Object.keys(valuesDict).map(function (key) {
         return [key, valuesDict[key]["score"]];
     });
-    
+
     // Sort the array based on the second element
-    items.sort(function(first, second) {
+    items.sort(function (first, second) {
         return second[1] - first[1];
     });
-    
+
     // Create a new array with only the first 5 items
-    for (val in items){
+    for (val in items) {
         sortedDict.push(items[val][0]);
         cleanSortedValuesHealthy.push(valuesDict[items[val][0]]["rawHealthy"]);
         cleanSortedValues.push(valuesDict[items[val][0]]["rawScore"]);
@@ -891,9 +949,8 @@ function calculateGoodBadDiet() {
     for (const cleanSortedValuesKey in cleanSortedValues) {
         categories.push(sortedDict[cleanSortedValuesKey]);
         // This one is wrongly place, it's just static
-        healthyData.push(cleanSortedValuesHealthy[cleanSortedValuesKey]*5)
-        scoreData.push(cleanSortedValues[cleanSortedValuesKey]/* * cleanSortedValuesHealthy[cleanSortedValuesKey]*/*5)
-        
+        healthyData.push(cleanSortedValuesHealthy[cleanSortedValuesKey] * 5)
+        scoreData.push(cleanSortedValues[cleanSortedValuesKey]/* * cleanSortedValuesHealthy[cleanSortedValuesKey]*/ * 5)
         index++
     }
 
@@ -905,209 +962,126 @@ survey
     .onAfterRenderPage
     .add(function (survey, options) {
 
-        if (options.page.name == "page28" || options.page.name == "page29") {
-
+        if (options.page.name == "page28") {
+            emptyArray()
             calculateGoodBadDiet()
+        }
 
-            let goodDiet = {
-                series: [{
-                    name: 'Your intake',
-                    data: scoreData.slice(0,3),
-                }, {
-                    name: 'Average healthy intake for your age',
-                    data: healthyData.slice(0,3),
-                }
-                ],
-                colors: [function({ value, seriesIndex, w }) {
-                    // Need to make this value be dependent on a percentage of the data itself
-                    if (value >= 14*5) {
-                        return '#4EBE3C'
-                    } else {
-                        return '#4EBE3C'//'#FFD600'
+        if (options.page.name == "page31") {
+
+            console.log(scoreData)
+
+            let nutritionSummary = '';
+
+
+            for (const categoriesKey in categories) {
+                nutritionSummary += `
+                            <div class="uk-container">
+                                <div uk-grid>
+                                    <div class="uk-width-1-3 uk-margin-auto-vertical">
+                                        <p class="uk-text-meta">${categories[categoriesKey]}</p>
+                                    </div>
+                                    <div class="uk-width-expand uk-position-relative">
+                                        <div uk-grid class="uk-child-width-1-3 height">
+                                            <div class="ball left" style="left:${scoreData[categoriesKey] * 5}%"></div>
+                                            <div class="red"></div>
+                                            <div class="yellow"></div>
+                                            <div class="green"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                `
+            }
+
+            setTimeout(() => {
+                $("#nutritionSummary").empty()
+                $("#nutritionSummary").html(nutritionSummary)
+            }, 100)
+
+        }
+
+
+        if (options.page.name == "page32") {
+
+            let optionsRadialBar = {
+                series: [44, 55],
+                chart: {
+                    height: 350,
+                    type: 'radialBar',
+                },
+                stroke: {
+                    lineCap: 'round'
+                }, legend: {
+                    show: true,
+                    position: 'bottom',
+                },
+                plotOptions: {
+                    radialBar: {
+                        dataLabels: {
+                            name: {
+                                fontSize: '22px',
+                            },
+                            value: {
+                                fontSize: '16px',
+                            },
+                            total: {
+                                show: true,
+                                label: 'Total',
+                            }
+                        }
                     }
-                  },function({ value, seriesIndex, w }) {
-                    return "#81CEF9"
-                  }],
-                chart: {
-                    type: 'bar',
-                    height: 350
                 },
-                plotOptions: {
-                    bar: {
-                        horizontal: false,
-                        columnWidth: '55%',
-                        endingShape: 'rounded'
-                    },
-                },
-                dataLabels: {
-                    enabled: false,
-                },
-                stroke: {
-                    show: true,
-                    width: 2,
-                    colors: ['transparent']
-                },
-                xaxis: {
-                    categories: categories.slice(0,3),
-                },
-                yaxis: {
-                    // categories: ["Twice a day","everyday","1","2","3"],
-                    labels: {
-                        show: false,
-                    },
-                    title: {
-                        // text: "Food consumption",
-                        rotate: -90,
-                        style: {
-                            fontSize: '14px',
-                        },
-                    },
-                }
+                labels: ['intense exercise', 'low intensity exercise'],
             };
 
-
             setTimeout(() => {
-                const chartVertical = new ApexCharts(document.querySelector("#chart_good_diet_vertical"), goodDiet);
-                chartVertical.render()
+                var chart = new ApexCharts(document.querySelector("#timeChart"), optionsRadialBar);
+                chart.render();
             }, 100)
 
         }
 
 
-        if (options.page.name == "page29" || options.page.name == "page30") {
-            let badDiet = {
-                series: [{
-                    name: 'Your intake',
-                    data: scoreData.slice(3,5),
-                }, {
-                    name: 'Average healthy intake for your age',
-                    data: healthyData.slice(3,5),
-                }
-                ],
-                colors: [function({ value, seriesIndex, w }) {
-                    if (value >= 14*5) {
-                        return '#4EBE3C'
-                    } else if (value > 6*5 && value < 14*5) {
-                        return '#FFD600'
-                    } else {
-                        return '#CE3043'
+        console.log(options.page.name)
+
+        if (options.page.name == "page33") {
+
+            $(".sv-footer__next-btn").css("display", 'unset')
+
+            setTimeout(() => {
+
+                let slider = document.getElementById('slider');
+
+                noUiSlider.create(slider, {
+                    start: [1],
+                    range: {
+                        'min': 0,
+                        'max': 3
                     }
-                  },function({ value, seriesIndex, w }) {
-                    return "#81CEF9"
-                  }],
-                chart: {
-                    type: 'bar',
-                    height: 350
-                },
-                plotOptions: {
-                    bar: {
-                        horizontal: false,
-                        columnWidth: '55%',
-                        endingShape: 'rounded'
-                    },
-                },
-                dataLabels: {
-                    enabled: false
-                },
-                stroke: {
-                    show: true,
-                    width: 2,
-                    colors: ['transparent']
-                },
-                xaxis: {
-                    categories: categories.slice(3,5),
-                },
-                yaxis: {
-                    categories: ["Twice a day","everyday","1","2","3"],
-                    labels: {
-                        show: false,
-                    },
-                    title: {
-                        // text: "Food consumption",
-                        rotate: -90,
-                        style: {
-                            fontSize: '14px',
-                        },
-                    },
-                }
-            };
+                });
 
 
-            setTimeout(() => {
-                const chartVertical = new ApexCharts(document.querySelector("#chart_bad_diet_vertical"), badDiet);
-                chartVertical.render()
-            }, 100)
+                console.log(slider.noUiSlider.get() + " ----- slider.noUiSlider.get();")
 
+            }, 300)
         }
 
-
-        if (options.page.name == "page31" || options.page.name == "page32") {
-
-
-            let exerciseScore = {
-                series: [{
-                    name: 'Your activity',
-                    data: [rawSport],
-                }, {
-                    name: 'Average healthy activity for your age',
-                    data: [3.5]
-                }
-                ],
-                chart: {
-                    type: 'bar',
-                    height: 350
-                },
-                colors: ["#4EBE3C","#81CEF9"],
-                plotOptions: {
-                    bar: {
-                        horizontal: false,
-                        columnWidth: '55%',
-                        endingShape: 'rounded'
-                    },
-                },
-                dataLabels: {
-                    enabled: false
-                },
-                stroke: {
-                    show: true,
-                    width: 2,
-                    colors: ['transparent']
-                },
-                xaxis: {
-                    categories: ["Exercise"],
-                },
-                yaxis: {
-                    labels: {
-                        show: false,
-                    },
-                    title: {
-                        text: "Hours/week",
-                        rotate: -90,
-                        style: {
-                            fontSize: '14px',
-                        },
-                    },
-                }
-            };
+        if (options.page.name == "page34" || options.page.name == "page35")
+            $(".sv-footer__next-btn").css("display", 'none')
 
 
-            setTimeout(() => {
-                const chartVertical = new ApexCharts(document.querySelector("#chart_exercise_vertical"), exerciseScore);
-                chartVertical.render()
-            }, 100)
-        }
-
-
-        //Do nothing if a page contains no description to show in a modal popup
+//Do nothing if a page contains no description to show in a modal popup
         if (!options.page.popupdescription)
             return;
 
-        // Add a P5 Element
-        function defineSketch(x,y,value,total,colorDisplay,healthyPoints,animate){
-            return function mySketch(p){
-            // P5
+// Add a P5 Element
+        function defineSketch(x, y, value, total, colorDisplay, healthyPoints, animate) {
+            return function mySketch(p) {
+                // P5
                 let draft, ready, i, maxvalue, minvalue, j, jfac, w;
-                var start,current;
+                var start, current;
                 var flag;
                 let font, fontsize = 20;
                 let colorScore, colorParticles;
@@ -1120,32 +1094,46 @@ survey
                 }
                 p.setup = function setup() {
                     let canvas;
-                    if(animate == 1){canvas = p.createCanvas(350, 300);}
-                    else {canvas = p.createCanvas(350, 100);}
+                    if (animate == 1) {
+                        canvas = p.createCanvas(350, 300);
+                    } else {
+                        canvas = p.createCanvas(350, 100);
+                    }
                     // let canvas = p.createCanvas(350, 100);
                     canvas.parent('sketch-holder');
-                    p.image(ready, 60, 20);p.image(draft, 60, 20);
+                    p.image(ready, 60, 20);
+                    p.image(draft, 60, 20);
                     // song = p.loadSound('assets/goodSound.mp3');
-                    minvalue = x;maxvalue = y;
-                    i = minvalue-0.5;
-                    j = parseInt(maxvalue/1.35*5-minvalue/1.35*5);
-                    jfac = Math.round(j/(maxvalue-minvalue));
+                    minvalue = x;
+                    maxvalue = y;
+                    i = minvalue - 0.5;
+                    j = parseInt(maxvalue / 1.35 * 5 - minvalue / 1.35 * 5);
+                    jfac = Math.round(j / (maxvalue - minvalue));
                     w = 0;
-                    console.log("What is max",maxvalue);
-                    console.log("what is min",minvalue);
-                    console.log("whatis jfac",jfac);
-                    console.log("what is j",j);
+                    // console.log("What is max", maxvalue);
+                    // console.log("what is min", minvalue);
+                    // console.log("whatis jfac", jfac);
+                    // console.log("what is j", j);
                     flag = 0;
-                    p.textFont(font);p.textAlign(p.CENTER,p.CENTER);
-                    if(colorDisplay == 'red'){colorScore = p.color(190, 107, 60); colorParticles = [190,107,60];} 
-                    else if(colorDisplay == 'yellow'){colorScore = p.color(188, 164, 34);colorParticles = [168,164,34];} 
-                    else if(colorDisplay == 'green'){colorScore = p.color(60, 190, 175);colorParticles = [60,190,175];} 
-                    else {colorScore = p.color(0, 0, 0);}
+                    p.textFont(font);
+                    p.textAlign(p.CENTER, p.CENTER);
+                    if (colorDisplay == 'red') {
+                        colorScore = p.color(190, 107, 60);
+                        colorParticles = [190, 107, 60];
+                    } else if (colorDisplay == 'yellow') {
+                        colorScore = p.color(188, 164, 34);
+                        colorParticles = [168, 164, 34];
+                    } else if (colorDisplay == 'green') {
+                        colorScore = p.color(60, 190, 175);
+                        colorParticles = [60, 190, 175];
+                    } else {
+                        colorScore = p.color(0, 0, 0);
+                    }
                     system = new ParticleSystem(p.createVector(p.width / 2, 100));
                 }
 
                 p.draw = function draw() {
-                    if (animate == 1){
+                    if (animate == 1) {
                         p.fillBar();
                     } else {
                         p.staticBar();
@@ -1154,18 +1142,18 @@ survey
                     p.drawWords(p.width * 0.1);
                 }
 
-                p.fillBar = function fillBar(){
-                    if (i < maxvalue){
+                p.fillBar = function fillBar() {
+                    if (i < maxvalue) {
                         p.background(255);
                         p.image(draft, 60, 20);
                         p.copy(ready, 0, 0, i, 40, 60, 20, i, 40);
-                        i = i+1;
-                        j = j-jfac;
+                        i = i + 1;
+                        j = j - jfac;
                         // p.text(i, 40, 30);
                         // This can be put here as a delay for the whole animation, but it slows down the rendering of the covered object too much
                         // if(flag == 0){
-                            // p.wait(500);
-                            // flag = 1;
+                        // p.wait(500);
+                        // flag = 1;
                         // }
                         // p.background(51);
                         system.addParticle();
@@ -1173,21 +1161,21 @@ survey
                     } else {
                         p.drawScore();
                         j = 0;
-                        // if (song.isPlaying()) {song.stop();} 
+                        // if (song.isPlaying()) {song.stop();}
                         // else {song.play();}
                     }
                 }
 
-                p.staticBar = function staticBar(){
+                p.staticBar = function staticBar() {
                     // i = minvalue+0.5; // Define the minimum value as 0.5 less so that it becomes exactly that value
-                    if (flag == 0){
-                        if (i <= minvalue){
+                    if (flag == 0) {
+                        if (i <= minvalue) {
                             p.copy(ready, 0, 0, i, 40, 60, 20, i, 40);
                         } else {
                             flag = 1;
                             // p.drawScore();
                         }
-                        i = i+0.5;                        
+                        i = i + 0.5;
                     }
                 }
 
@@ -1198,12 +1186,15 @@ survey
                     // p.fill(0);
                     p.fill(0);
                     p.textSize(20);
-                    if(animate == 1){p.text(total-j, 40, 30);} 
-                    else {p.text(total, 40, 30);}
-                    p.text('Your Score',99,10);
+                    if (animate == 1) {
+                        p.text(total - j, 40, 30);
+                    } else {
+                        p.text(total, 40, 30);
+                    }
+                    p.text('Your Score', 99, 10);
                 }
 
-                p.drawScore = function drawScore(){
+                p.drawScore = function drawScore() {
                     // Only running one time, next time not displaying
                     p.background(255);
                     p.image(draft, 60, 20);
@@ -1213,122 +1204,140 @@ survey
 
                     p.fill(colorScore);
                     p.textSize(40);
-                    p.text("+"+value, 160, 100);
-                    p.text('/',150+30,105);
-                    p.text(healthyPoints,160+80,110);
+                    p.text("+" + value, 160, 100);
+                    p.text('/', 150 + 30, 105);
+                    p.text(healthyPoints, 160 + 80, 110);
                 }
 
                 // Waiting function
-                p.wait = function wait(time)
-                {
+                p.wait = function wait(time) {
                     start = p.millis()
-                    do
-                    {
+                    do {
                         current = p.millis();
                     }
-                    while(current < start + time)
+                    while (current < start + time)
                 }
 
                 // A simple Particle class
-                
-                let Particle = function(position) {
+
+                let Particle = function (position) {
                     this.acceleration = p.createVector(0, 0.05);
                     this.velocity = p.createVector(p.random(-5, 5), p.random(-5, 5));
                     this.position = position.copy();
                     this.lifespan = 155;
                 };
 
-                Particle.prototype.run = function() {
+                Particle.prototype.run = function () {
                     this.update();
                     this.display();
                 };
 
                 // Method to update position
-                Particle.prototype.update = function(){
+                Particle.prototype.update = function () {
                     this.velocity.add(this.acceleration);
                     this.position.add(this.velocity);
                     this.lifespan -= 2;
                 };
 
                 // Method to display
-                Particle.prototype.display = function() {
+                Particle.prototype.display = function () {
                     p.stroke(200, this.lifespan);
                     p.strokeWeight(2);
-                    p.fill(colorParticles[0],colorParticles[1],colorParticles[2], this.lifespan*2);
+                    p.fill(colorParticles[0], colorParticles[1], colorParticles[2], this.lifespan * 2);
                     p.ellipse(this.position.x, this.position.y, 12, 12);
                 };
 
                 // Is the particle still useful?
-                Particle.prototype.isDead = function(){
-                    console.log("Does this fire?");
+                Particle.prototype.isDead = function () {
+                    // console.log("Does this fire?");
                     return this.lifespan < 0;
                 };
 
-                let ParticleSystem = function(position) {
+                let ParticleSystem = function (position) {
                     this.origin = position.copy();
                     this.particles = [];
                 };
 
-                ParticleSystem.prototype.addParticle = function() {
-                    if(i < maxvalue){
+                ParticleSystem.prototype.addParticle = function () {
+                    if (i < maxvalue) {
                         this.particles.push(new Particle(this.origin));
                         // w++;
                     }
                 };
 
-                ParticleSystem.prototype.run = function() {
-                    for (let i = this.particles.length-1; i >= 0; i--) {
+                ParticleSystem.prototype.run = function () {
+                    for (let i = this.particles.length - 1; i >= 0; i--) {
                         let par = this.particles[i];
                         par.run();
                         if (par.isDead()) {
-                        this.particles.splice(i, 1);
+                            this.particles.splice(i, 1);
                         }
                     }
                 };
             }
-        };
-
-        function calculateBarProgress(){
-            // Sports
-            if(rawSport >= 3.5){animationValues[1] = 20;}
-            else {animationValues[1] = parseInt((rawSport*20)/3.5);}
-
-            // Fruits & Veggies
-            if(rawFruits >= 2){animationValues[2] = animationValues[1]+20;}
-            else{animationValues[2] = animationValues[1]+parseInt(rawFruits*10);}
-
-            // Nuts
-            if(rawNuts >= 2){animationValues[3] = animationValues[2] + 40;}
-            else if(rawNuts >= 0.3){animationValues[3] = animationValues[2] + 20+parseInt((rawNuts-0.3)*20);}
-            else {animationValues[3] = animationValues[2] + parseInt((rawNuts*20)/0.5);}
-
-            // Soda
-            if(rawSoda > 1){animationValues[4] = animationValues[3]}
-            else {animationValues[4] = animationValues[3] + (20 - parseInt(rawSoda*20));}
-            // Meat
-            if(rawMeat > 2){animationValues[5] = animationValues[4]}
-            else {animationValues[5] = animationValues[4] + (20 - parseInt((rawMeat*20)/2));}        
-            // Grains
-            animationValues[6] = animationValues[5] + parseInt((rawGrains*20)/4);
-            
-            // Smoke
-            animationValues[7] = animationValues[6] + 60-rawSmoke*60;
-
-            // Alcohol
-            if (rawAlcohol == 1){animationValues[8] = animationValues[7] + 20}
-            else if(rawAlcohol > 1){animationValues[8] = animationValues[7] + 20-parseInt((rawAlcohol*20)/3)}
-            else {animationValues[8] = animationValues[7] + parseInt(rawAlcohol*20)}
         }
 
-        // Set up messages for each option : three states, good, medium, bad
-        function displayFeedbackMessage(feedbackChosen){
-            survey.getQuestionByName("activity-score").html = "<div id='sketch-holder'></div><h3 style='text-align:center'>"+feedbackChosen+"</h3>";
-            survey.getQuestionByName("fruit-score").html = "<div id='sketch-holder'></div><h3 style='text-align:center'>"+feedbackChosen+"</h3>";
-            survey.getQuestionByName("nut-score").html = "<div id='sketch-holder'></div><h3 style='text-align:center'>"+feedbackChosen+"</h3>";
-            survey.getQuestionByName("soda-score").html = "<div id='sketch-holder'></div><h3 style='text-align:center'>"+feedbackChosen+"</h3>";
-            survey.getQuestionByName("meat-score").html = "<div id='sketch-holder'></div><h3 style='text-align:center'>"+feedbackChosen+"</h3>";
-            survey.getQuestionByName("grain-score").html = "<div id='sketch-holder'></div><h3 style='text-align:center'>"+feedbackChosen+"</h3>";
-            survey.getQuestionByName("smoke-score").html = "<div id='sketch-holder'></div><h3 style='text-align:center'>"+feedbackChosen+"</h3>";
+        function calculateBarProgress() {
+            // Sports
+            if (rawSport >= 3.5) {
+                animationValues[1] = 20;
+            } else {
+                animationValues[1] = parseInt((rawSport * 20) / 3.5);
+            }
+
+            // Fruits & Veggies
+            if (rawFruits >= 2) {
+                animationValues[2] = animationValues[1] + 20;
+            } else {
+                animationValues[2] = animationValues[1] + parseInt(rawFruits * 10);
+            }
+
+            // Nuts
+            if (rawNuts >= 2) {
+                animationValues[3] = animationValues[2] + 40;
+            } else if (rawNuts >= 0.3) {
+                animationValues[3] = animationValues[2] + 20 + parseInt((rawNuts - 0.3) * 20);
+            } else {
+                animationValues[3] = animationValues[2] + parseInt((rawNuts * 20) / 0.5);
+            }
+
+            // Soda
+            if (rawSoda > 1) {
+                animationValues[4] = animationValues[3]
+            } else {
+                animationValues[4] = animationValues[3] + (20 - parseInt(rawSoda * 20));
+            }
+            // Meat
+            if (rawMeat > 2) {
+                animationValues[5] = animationValues[4]
+            } else {
+                animationValues[5] = animationValues[4] + (20 - parseInt((rawMeat * 20) / 2));
+            }
+            // Grains
+            animationValues[6] = animationValues[5] + parseInt((rawGrains * 20) / 4);
+
+            // Smoke
+            animationValues[7] = animationValues[6] + 60 - rawSmoke * 60;
+
+            // Alcohol
+            if (rawAlcohol == 1) {
+                animationValues[8] = animationValues[7] + 20
+            } else if (rawAlcohol > 1) {
+                animationValues[8] = animationValues[7] + 20 - parseInt((rawAlcohol * 20) / 3)
+            } else {
+                animationValues[8] = animationValues[7] + parseInt(rawAlcohol * 20)
+            }
+        }
+
+// Set up messages for each option : three states, good, medium, bad
+        function displayFeedbackMessage(feedbackChosen) {
+            survey.getQuestionByName("activity-score").html = "<div id='sketch-holder'></div><h3 style='text-align:center'>" + feedbackChosen + "</h3>";
+            survey.getQuestionByName("fruit-score").html = "<div id='sketch-holder'></div><h3 style='text-align:center'>" + feedbackChosen + "</h3>";
+            survey.getQuestionByName("nut-score").html = "<div id='sketch-holder'></div><h3 style='text-align:center'>" + feedbackChosen + "</h3>";
+            survey.getQuestionByName("soda-score").html = "<div id='sketch-holder'></div><h3 style='text-align:center'>" + feedbackChosen + "</h3>";
+            survey.getQuestionByName("meat-score").html = "<div id='sketch-holder'></div><h3 style='text-align:center'>" + feedbackChosen + "</h3>";
+            survey.getQuestionByName("grain-score").html = "<div id='sketch-holder'></div><h3 style='text-align:center'>" + feedbackChosen + "</h3>";
+            survey.getQuestionByName("smoke-score").html = "<div id='sketch-holder'></div><h3 style='text-align:center'>" + feedbackChosen + "</h3>";
         }
 
         calculateBarProgress();
@@ -1336,7 +1345,7 @@ survey
         animationValues[0] = 0;
         animationValuesHealthy = [0, 20, 20, 40, 20, 20, 20, 60, 20]; // Overall quantity amounts to 200 without the alcohol portion that needs to be considered separate
 
-        // I gotta pass in here these variables
+// I gotta pass in here these variables
         if (options.page.animated) {
             // Remove the previous animation
             if (oldAnimation != null) {
@@ -1344,17 +1353,17 @@ survey
             }
 
             var colorDisplay;
-            if(animationValues[options.page.pos]-animationValues[options.page.pos-1] > animationValuesHealthy[options.page.pos]*0.8){
+            if (animationValues[options.page.pos] - animationValues[options.page.pos - 1] > animationValuesHealthy[options.page.pos] * 0.8) {
                 colorDisplay = 'green';
                 displayFeedbackMessage(goodFeedbackResponse[options.page.pos]);
-            }else if(animationValues[options.page.pos]-animationValues[options.page.pos-1] >= animationValuesHealthy[options.page.pos]*0.3 ){
+            } else if (animationValues[options.page.pos] - animationValues[options.page.pos - 1] >= animationValuesHealthy[options.page.pos] * 0.3) {
                 colorDisplay = 'yellow';
                 displayFeedbackMessage(mediumFeedbackResponse[options.page.pos]);
-            }else if(animationValues[options.page.pos]-animationValues[options.page.pos-1] < animationValuesHealthy[options.page.pos]*0.3){
+            } else if (animationValues[options.page.pos] - animationValues[options.page.pos - 1] < animationValuesHealthy[options.page.pos] * 0.3) {
                 colorDisplay = 'red';
                 displayFeedbackMessage(badFeedbackResponse[options.page.pos]);
             }
-            var mySketch = defineSketch(animationValues[options.page.pos-1]*1.35,animationValues[options.page.pos]*1.35,(animationValues[options.page.pos]-animationValues[options.page.pos-1])*5,animationValues[options.page.pos]*5,colorDisplay,animationValuesHealthy[options.page.pos]*5,1);
+            var mySketch = defineSketch(animationValues[options.page.pos - 1] * 1.35, animationValues[options.page.pos] * 1.35, (animationValues[options.page.pos] - animationValues[options.page.pos - 1]) * 5, animationValues[options.page.pos] * 5, colorDisplay, animationValuesHealthy[options.page.pos] * 5, 1);
             newAnimation = new p5(mySketch);
             window.sketchInstance = newAnimation;
             // window.sketchInstance = new p5(newAnimation);
@@ -1364,9 +1373,9 @@ survey
                 newAnimation.remove();
             }
 
-            
-            var mySketch2 = defineSketch(animationValues[options.page.pos-1]*1.35,0,(animationValues[options.page.pos]-animationValues[options.page.pos-1])*5,animationValues[options.page.pos-1]*5,'none',0,0);
-            
+
+            var mySketch2 = defineSketch(animationValues[options.page.pos - 1] * 1.35, 0, (animationValues[options.page.pos] - animationValues[options.page.pos - 1]) * 5, animationValues[options.page.pos - 1] * 5, 'none', 0, 0);
+
             // var mySketch2 = defineSketch(currentPoints,0,0);
             oldAnimation = new p5(mySketch2);
             // var mySketch2 = defineSketch(currentPoints,0,0);
@@ -1375,9 +1384,10 @@ survey
             // window.sketchInstance = new p5(oldAnimation);
         }
 
-        // P5 End ------------ //
-        
-    });
+// P5 End ------------ //
+
+    })
+
 
 survey.onValueChanged.add(function (survey, options) {
 
@@ -1387,7 +1397,7 @@ survey.onValueChanged.add(function (survey, options) {
 
     // const introQ = survey.getQuestionByName("Intro");
     // introQ.html = "<div id='myHeart'></div><h2> Tell us what you eat every week and we'll tell you how healthy your heart is</h2><main></main><br><p>Not smoking, a healthy weight, a nutritious diet, and daily exercise play important roles in the prevention of cardiovascular disease. In fact, an overall healthy lifestyle may prevent more than 75% of deaths due to cardiovascular disease. Take this quiz to evaluate how your current lifestyle habits affect your cardiovascular health, and discover simple steps you can take to incorporate a Heart Healthy lifestyle into everyday living. Knowledge is power. Take the first step towards protecting your heart and your health!</p>" +
-        "<br><p><b>Press Next to begin this quiz.</b></p>";
+    "<br><p><b>Press Next to begin this quiz.</b></p>";
 
     const ageQuestion = survey.getQuestionByName("age").value;
     const genderQuestion = survey.getQuestionByName("gender").value;
@@ -1590,16 +1600,13 @@ survey.onValueChanged.add(function (survey, options) {
     //
     if (relativeRisk <= 1.0) {
         relativeRiskWord = "Looking good!";
-        summaryColor = "rgb(0, 178, 29),rgb(160, 241, 96))";
-        summaryImage = "./svg/Results=Good.svg"; // healthy.gif
+        summaryImage = "./img/Results=Good.jpg"; // healthy.gif
     } else if (relativeRisk > 1.0 /* was 1.5 before but confusing for usersy6 */ && relativeRisk < 4) {
         relativeRiskWord = "Slightly elevated";
-        summaryColor = "rgb(231, 206, 61),rgb(211, 159, 16))";
-        summaryImage = "./svg/Results=Okay.png"; // unhealthy.gif
+        summaryImage = "./img/Results=Okay.jpg"; // unhealthy.gif
     } else {
         relativeRiskWord = "Very High";
-        summaryColor = "rgb(178, 32, 0),rgb(241, 96, 96))";
-        summaryImage = "./svg/Results=Bad.png"; // vunhealthy.gif
+        summaryImage = "./img/Results=Bad.jpg"; // vunhealthy.gif
     }
 
     // Activity computation
@@ -1636,7 +1643,7 @@ survey.onValueChanged.add(function (survey, options) {
     }
 
     var summaryQuestion = survey.getQuestionByName("summary");
-    summaryQuestion.html = "<div><center>" + "<p><img alt='' src=" + summaryImage + "></p>" + "</center><br><center><p style='margin:auto;'>Your risk is <h3>" + relativeRiskWord + "</h3><br></p></center></div>"
+    summaryQuestion.html = "<div><center>" + "<p><img alt='' class='image' src=" + summaryImage + "></p>" + "</center><br><center><p style='margin:auto;'>Your risk is <h3>" + relativeRiskWord + "</h3><br></p></center></div>"
 
 
     // Good foods replacement
@@ -1653,7 +1660,7 @@ survey.onValueChanged.add(function (survey, options) {
     const goodFoodsQuestion = survey.getQuestionByName("good-foods");
     goodFoodsQuestion.html =
         "<h2>You’re doing pretty good... </h2> <br> " +
-        "<div id='chart_good_diet_vertical' style='overflow: hidden !important;'></div>"
+        "<div id='nutritionSummary'></div>"
     /*<p>  (You eat low fiber grains <b>"+grainLowQuestion+"</b>, you need a least one serving every day)</p></div></li>";*/
 
     // Good foods replacement
@@ -1662,8 +1669,9 @@ survey.onValueChanged.add(function (survey, options) {
     }
     const badFoodsQuestion = survey.getQuestionByName("bad-foods");
     badFoodsQuestion.html =
-        "<h2>... but you can do better</h2> <br> " +
-        "<div id='chart_bad_diet_vertical' style='overflow: hidden !important;'></div>"
+        "<h2>Time to get moving!</h2>" +
+        "<div id='timeChart' style='overflow: hidden !important;'></div>" +
+        "<h4>This is text space to provide the user with a simple explanation of the image above.</h4>"
 
 
     // Actitives replacement
@@ -1673,8 +1681,10 @@ survey.onValueChanged.add(function (survey, options) {
         sequenceVariable += 1
     }
     const activitiesQuestion = survey.getQuestionByName("activities");
-    activitiesQuestion.html = "<h3>Let's look at your exercise :</h3>" +
-        "<div id='chart_exercise_vertical' style='overflow: hidden !important;'></div>"
+    activitiesQuestion.html = "<div><center> <h3>Now that you know your habit's impact ...</h3> <br>"
+        + "<p><img alt='' class='image'  src=" + summaryImage + "></p>"
+        + " <p>How likely do you think you'll make chnages in your lifestyle ?</p> </center> <br>" +
+        "<div id='slider' class='uk-container'></div> <br><br> </div>"
 
 
     // Smoking replacement
