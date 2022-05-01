@@ -54,17 +54,42 @@ let rawAlcohol = 0;
 let BMI = 0
 let Diet = 0
 
-let activity_0 = 'img/activity_0.png';
-let activity_1 = 'img/activity_1.png';
-let activity_2 = 'img/activity_2.png';
-let activity_3 = 'img/activity_3.png';
+// Generic variables
+let generic_sport = ['img/generic_never.png','img/generic_15to30.png','img/generic_30to60.png','img/generic_1to3hr.png','img/generic_6to10hr.png','img/generic_10ormore.png'];
 
-let activity_op0 = 'img/activity_op0.png';
-let activity_op1 = 'img/activity_op1.png';
-let activity_op2 = 'img/activity_op2.png';
-let activity_op3 = 'img/activity_op3.png';
-let activity_op4 = 'img/activity_op4.png';
-let activity_op5 = 'img/activity_op5.png';
+let generic_lessthan1 = 'img/generic_lessthan1.png';
+let generic_1to2 = 'img/generic_1to2.png';
+let generic_3to5a = 'img/generic_3to5a.png';
+let generic_everyday = 'img/generic_everyday.png';
+let generic_3to5b = 'img/generic_3to5b.png';
+let generic_bad_1to2 = 'img/generic_bad_1to2.png';
+let generic_bad_3to5 = 'img/generic_bad_3to5.png';
+let generic_bad_everyday = 'img/generic_bad_everyday.png';
+let generic_bad_twiceaday = 'img/generic_bad_twiceaday.png';
+let generic_bad_lessthan1 = 'img/generic_bad_lessthan1.png';
+
+// First Pages
+let activity_ = ['img/activity_0.png','img/activity_1.png','img/activity_2.png','img/activity_3.png'];
+let high_grains_ = ['img/high_grains_0.png','img/high_grains_1.png','img/high_grains_2.png','img/high_grains_3.png'];
+let low_grains_ = ['img/low_grains_0.png','img/low_grains_1.png','img/low_grains_2.png','img/low_grains_3.png'];
+let fruit_ = ['img/fruit_0.png','img/fruit_1.png','img/fruit_2.png','img/fruit_3.png'];
+let veggies_ = ['img/veggies_0.png','img/veggies_1.png','img/veggies_2.png','img/veggies_3.png'];
+let nuts_ = ['img/nuts_0.png','img/nuts_1.png','img/nuts_2.png','img/nuts_3.png'];
+let processed_ = ['img/processed_0.png','img/processed_1.png','img/processed_2.png','img/processed_3.png'];
+let redmeat_ = ['img/redmeat_0.png','img/redmeat_1.png','img/redmeat_2.png','img/redmeat_3.png'];
+let soda_ = ['img/soda_0.png','img/soda_1.png','img/soda_2.png','img/soda_3.png'];
+let smoke_ = ['img/smoke_never.png','img/smoke_usedto.png','img/smoke_yes.png'];
+
+// Follow-up pages
+let grains_high_a = ['img/generic_never.png','img/generic_lessthan1.png','img/generic_1to2.png','img/generic_3to5a.png','img/generic_everyday.png','img/grains_high_twice.png'];
+let grains_low_a = ['img/grains_low_never.png','img/generic_lessthan1.png','img/generic_1to2.png','img/generic_3to5b.png','img/generic_everyday.png','img/grains_low_twice.png'];
+let fruit_a = ['img/fruit_never.png','img/fruit_lessthan1.png','img/fruit_onceaday.png','img/fruit_twiceaday.png','img/fruit_3timesaday.png'];
+let veggies_a = ['img/veggies_never.png','img/veggies_lessthan1.png','img/veggies_onceaday.png','img/veggies_twiceaday.png','img/veggies_threeaday.png'];
+let nuts_a = ['img/nuts_never.png','img/nuts_lessthan1.png','img/nuts_onceaweek.png','img/nuts_twiceaweek.png','img/nuts_morethantwice.png'];
+let processed_a = ['img/processed_never.png','img/generic_bad_lessthan1.png','img/generic_bad_1to2.png','img/generic_bad_3to5.png','img/generic_bad_everyday.png','img/generic_bad_twiceaday.png'];
+let redmeat_a = ['img/redmeat_never.png','img/generic_bad_lessthan1.png','img/generic_bad_1to2.png','img/generic_bad_3to5.png','img/generic_bad_everyday.png','img/generic_bad_twiceaday.png'];
+let soda_a = ['img/soda_never.png','img/generic_bad_lessthan1.png','img/soda_1to2.png','img/soda_3to5.png','img/generic_bad_everyday.png','img/generic_bad_twiceaday.png'];
+
 
 const json = {
     "title": "HerHeart",
@@ -118,6 +143,7 @@ const json = {
         //     ]
         // },
         // End Testing
+        // Activity
         {
             "popupdescription": "P5",
             "pos": 1,
@@ -132,152 +158,107 @@ const json = {
                 },
                 {
                     "type": "imagepicker",
-                    "name": "activity-hard",
+                    "name": "activity-high",
                     "title": " ",
                     "isRequired": true,
                     "colCount": 1,
                     "hasNone": false,
                     "choices": [
-                        {
-                            "value":0,
-                            "imageLink":activity_0
-                        },
-                        {
-                            "value":1,
-                            "imageLink":activity_1
-                        },
-                        {
-                            "value":2,
-                            "imageLink":activity_2
-                        },
-                        {
-                            "value":3,
-                            "imageLink":activity_3
-                        },
-                    ]
+                    {"value":0,"imageLink":activity_[0]},
+                    {"value":1,"imageLink":activity_[1]},
+                    {"value":2,"imageLink":activity_[2]},
+                    {"value":3,"imageLink":activity_[3]}],
+                    
                 }
             ]
         }, 
         {
             "popupdescription": "P5",
             "pos": 1,
+            // "visibleIf": "{activity-high}<=1",
             "elements": [
                 {
                     "type": "html",
                     "name": "test",
-                    "visibleIf": "{activity-hard}<=1",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3> <center>Interesting selection 🤔... do spend at least 1 hour a week doing intense physical exercise? </center></h3>"+
                         "<p><center>Examples: cheerleading, running, softball, soccer, volleyball, tennis, basketball</center></p>"
                 },
                 {
                     "type": "imagepicker",
-                    "name": "activity-hard-low",
+                    "name": "activity-high-next",
                     "title": " ",
-                    "visibleIf": "{activity-hard}<=1",
                     "isRequired": true,
                     "colCount": 1,
                     "hasNone": false,
                     "choices": [
-                        {
-                            "value":0,
-                            "imageLink":activity_op0
-                        },
-                        {
-                            "value":1,
-                            "imageLink":activity_op1
-                        },
-                        {
-                            "value":2,
-                            "imageLink":activity_op2
-                        },
-                        {
-                            "value":3,
-                            "imageLink":activity_op3
-                        },
-                    ]
+                    {"value":0,"imageLink":generic_sport[0]},
+                    {"value":1,"imageLink":generic_sport[1]},
+                    {"value":2,"imageLink":generic_sport[2]},
+                    {"value":3,"imageLink":generic_sport[3]}],
+                    
                 }
             ]
         }, 
+        
         {
             "popupdescription": "P5",
             "pos": 1,
+            // "visibleIf": "{activity-hard-next}<3 || {activity-hard-high}<4",
             "elements": [
                 {
                     "type": "html",
-                    "name": "test",
-                    "visibleIf": "{activity-hard}>1",
-                    "html": "<div id='sketch-holder'></div>" +
-                        "<h3><center> Nice! Butttttt do spend at least 1 hour a week doing intense physical exercise? </center></h3>"+
-                        "<p><center>Examples: cheerleading, running, softball, soccer, volleyball, tennis, basketball</center></p>"
+                    "name": "activity-low-title",
+                    "html": "<div id='sketch-holder'></div>",
+                    // "<div id='sketch-holder'></div>" +
+                    //     "<h3><center> Okay, so you don't do much intense exercise… Do you like doing low intensity exercise? </center></h3>"+
+                    //     "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/moderate.png'>"+
+                    //     "<p><center style='font-size:14px;'>Examples: walking, dancing, riding a bike, playing with dog, swimming, marching band</center></p>"
                 },
                 {
                     "type": "imagepicker",
-                    "name": "activity-hard-high",
+                    "name": "activity-low",
                     "title": " ",
-                    "visibleIf": "{activity-hard}>1",
                     "isRequired": true,
                     "colCount": 1,
                     "hasNone": false,
                     "choices": [
-                        {
-                            "value":2,
-                            "imageLink":activity_op2
-                        },
-                        {
-                            "value":3,
-                            "imageLink":activity_op3
-                        },
-                        {
-                            "value":4,
-                            "imageLink":activity_op4
-                        },
-                        {
-                            "value":5,
-                            "imageLink":activity_op5
-                        },
-                    ]
+                        {"value":0,"imageLink":activity_[0]},
+                        {"value":1,"imageLink":activity_[1]},
+                        {"value":2,"imageLink":activity_[2]},
+                        {"value":3,"imageLink":activity_[3]}],
                 }
             ]
         }, 
-        
-        
         {
             "popupdescription": "P5",
             "pos": 1,
+            // "visibleIf": "{activity-low}<=1",
             "elements": [
                 {
                     "type": "html",
                     "name": "test",
                     "html": "<div id='sketch-holder'></div>" +
-                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:50%;' src='img/moderate.png'>"
+                        "<h3> <center>Interesting selection 🤔... do spend at least 1 hour a week doing intense physical exercise? </center></h3>"+
+                        "<p><center>Examples: walking, dancing, riding a bike, playing with dog, swimming, marching band</center></p>"
                 },
-                // {
-                //     "type": "image",
-                //     "name": "first_page_image",
-                //     "imageLink": "./img/moderate.png",
-                //     "imageWidth": "300px",
-                //     "imageHeight": "300px"
-                // },
                 {
-                    "type": "radiogroup",
-                    "name": "activity-mod",
-                    "title": "During a typical week how often do you practice any physical activity where you exert some effort?",
+                    "type": "imagepicker",
+                    "name": "activity-low-next",
+                    "title": " ",
                     "isRequired": true,
-                    "colCount": 0,
+                    "colCount": 1,
                     "hasNone": false,
                     "choices": [
-                        "< 15 mins",
-                        "15 - 30 mins",
-                        "30 - 60 mins",
-                        "1 - 3 hrs",
-                        "3 - 6 hrs",
-                        "6 - 10 hrs",
-                        "10+ hrs"
-                    ]
+                    {"value":0,"imageLink":generic_sport[0]},
+                    {"value":1,"imageLink":generic_sport[1]},
+                    {"value":2,"imageLink":generic_sport[2]},
+                    {"value":3,"imageLink":generic_sport[3]}],
                 }
             ]
-        }, {
+        },
+        // Activity response 
+        {
             "popupdescription": "P5",
             "animated": "yes",
             "pos": 1,
@@ -285,45 +266,12 @@ const json = {
                 {
                     "type": "html",
                     "name": "activity-score",
-                    "html": "<div id='sketch-holder'></div><h3 style='text-align:center'>Yea! That's the exercise you need every week!</h3>"
-                }
-            ]
-        }, {
-            "popupdescription": "P5",
-            "pos": 2,
-            "elements": [
-                {
-                    "type": "html",
-                    "name": "test",
-                    "html": "<div id='sketch-holder'></div>" +
-                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:50%;' src='img/fruits.png'>"
-                },
-                // {
-                //     "type": "image",
-                //     "name": "second_page_image",
-                //     "imageLink": "./img/fruits.png",
-                //     "imageWidth": "300px",
-                //     "imageHeight": "300px"
-                // },
-                {
-                    "type": "radiogroup",
-                    "name": "fruits",
-                    "title": "During a typical week how often do you have one peice of fruit?",
-                    "isRequired": true,
-                    "colCount": 0,
-                    "hasNone": false,
-                    "choices": [
-                        "Never",
-                        "Less than once a week",
-                        "Once or twice a week",
-                        "Three to five times a week",
-                        "Everyday",
-                        "Twice a day",
-                        "More than twice a day",
-                    ]
+                    "html": "<div id='sketch-holder'></div><h3 style='text-align:center'>Exercise!</h3>"
                 }
             ]
         },
+        
+        // Grains
         {
             "popupdescription": "P5",
             "pos": 2,
@@ -332,30 +280,233 @@ const json = {
                     "type": "html",
                     "name": "test",
                     "html": "<div id='sketch-holder'></div>" +
-                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:50%;' src='img/vegetables.png'>"
+                        "<h3><center> Let's talk about food! How do you feel about whole grains? </center></h3>"+
+                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/grains-high.png'>"+
+                        "<p><center style='font-size:14px;'>Examples: whole grain bread, whole grain pasta, brown rice, popcorn, oats</center></p>"
                 },
                 {
-                    "type": "radiogroup",
-                    "name": "vegetables",
-                    "title": "During a typical week how often do you have vegetables?",
+                    "type": "imagepicker",
+                    "name": "grains-high",
+                    "title": " ",
                     "isRequired": true,
-                    "colCount": 0,
+                    "colCount": 1,
                     "hasNone": false,
                     "choices": [
-                        "Never",
-                        "Less than once a week",
-                        "Once or twice a week",
-                        "Three to five times a week",
-                        "Everyday",
-                        "Twice a day",
-                        "More than twice a day",
-                    ]
+                    {"value":0,"imageLink":high_grains_[0]},
+                    {"value":1,"imageLink":high_grains_[1]},
+                    {"value":2,"imageLink":high_grains_[2]},
+                    {"value":3,"imageLink":high_grains_[3]}],
                 }
             ]
-        }, {
+        }, 
+        {
+            "popupdescription": "P5",
+            "pos": 2,
+            // "visibleIf": "{grains-high}<=1",
+            "elements": [
+                {
+                    "type": "html",
+                    "name": "test",
+                    "html": "<div id='sketch-holder'></div>" +
+                        "<h3> <center>Interesting selection 🤔... do you eat whole grains at least 3-5 times a week?</center></h3>"+
+                        "<p><center>Examples: whole grain bread, whole grain pasta, brown rice, popcorn, oats</center></p>"
+                },
+                {
+                    "type": "imagepicker",
+                    "name": "grains-high-next",
+                    "title": " ",
+                    "isRequired": true,
+                    "colCount": 1,
+                    "hasNone": false,
+                    "choices": [
+                    {"value":0,"imageLink":activity_[0]},
+                    {"value":1,"imageLink":activity_[1]},
+                    {"value":2,"imageLink":activity_[2]},
+                    {"value":3,"imageLink":activity_[3]}],
+                }
+            ]
+        }, 
+
+        
+        {
+            "popupdescription": "P5",
+            "pos": 2,
+            "elements": [
+                {
+                    "type": "html",
+                    "name": "grains-low-title",
+                    "html": "<div id='sketch-holder'></div>" +
+                        "<h3><center> Not great, but we still have another grain category! How do you feel about regular grains? 👀</center></h3>"+
+                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/moderate.png'>"+
+                        "<p><center style='font-size:14px;'>Examples: sugary cereals, white bread, pancakes, bagels, crackers</center></p>"
+                },
+                {
+                    "type": "imagepicker",
+                    "name": "grains-low",
+                    "title": " ",
+                    "isRequired": true,
+                    "colCount": 1,
+                    "hasNone": false,
+                    "choices": [
+                        {"value":0,"imageLink":low_grains_[0]},
+                        {"value":1,"imageLink":low_grains_[1]},
+                        {"value":2,"imageLink":low_grains_[2]},
+                        {"value":3,"imageLink":low_grains_[3]}],
+                }
+            ]
+        }, 
+        {
+            "popupdescription": "P5",
+            "pos": 2,
+            "elements": [
+                {
+                    "type": "html",
+                    "name": "test",
+                    "html": "<div id='sketch-holder'></div>" +
+                        "<h3> <center>Okay, that's fine butttt... do you eat them at least twice a week? </center></h3>"+
+                        "<p><center>Examples: sugary cereals, white bread, pancakes, bagels, crackers</center></p>"
+                },
+                {
+                    "type": "imagepicker",
+                    "name": "grains-low-next",
+                    "title": " ",
+                    "isRequired": true,
+                    "colCount": 1,
+                    "hasNone": false,
+                    "choices": [
+                        {"value":0,"imageLink":activity_[0]},
+                        {"value":1,"imageLink":activity_[1]},
+                        {"value":2,"imageLink":activity_[2]},
+                        {"value":3,"imageLink":activity_[3]}],
+                }
+            ]
+        }, 
+        // Grains response
+        {
             "popupdescription": "P5",
             "animated": "yes",
             "pos": 2,
+            "elements": [
+                {
+                    "type": "html",
+                    "name": "grain-score",
+                    "html": "<div id='sketch-holder'></div><h3 style='text-align:center'>Keep 'em grains coming!</h3>"
+                }
+            ]
+        },
+        
+        // Fruits
+        {
+            "popupdescription": "P5",
+            "pos": 3,
+            "elements": [
+                {
+                    "type": "html",
+                    "name": "test",
+                    "html": "<div id='sketch-holder'></div>" +
+                        "<h3><center> Okay! Let's do some easy questions now. Do you like fruit?</center></h3>"+
+                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/fruit.png'>"
+                },
+                {
+                    "type": "imagepicker",
+                    "name": "fruit",
+                    "title": " ",
+                    "isRequired": true,
+                    "colCount": 1,
+                    "hasNone": false,
+                    "choices": [
+                        {"value":0,"imageLink":fruit_[0]},
+                        {"value":1,"imageLink":fruit_[1]},
+                        {"value":2,"imageLink":fruit_[2]},
+                        {"value":3,"imageLink":fruit_[3]}],
+                }
+            ]
+        }, 
+        {
+            "popupdescription": "P5",
+            "pos": 3,
+            // "visibleIf": "{fruit}<=1",
+            "elements": [
+                {
+                    "type": "html",
+                    "name": "test",
+                    "html": "<div id='sketch-holder'></div>" +
+                        "<h3> <center>Oof.... 😬 Do you at least eat three servings a day??</center></h3>"
+                },
+                {
+                    "type": "imagepicker",
+                    "name": "fruit-next",
+                    "title": " ",
+                    "isRequired": true,
+                    "colCount": 1,
+                    "hasNone": false,
+                    "choices": [
+                        {"value":0,"imageLink":activity_[0]},
+                        {"value":1,"imageLink":activity_[1]},
+                        {"value":2,"imageLink":activity_[2]},
+                        {"value":3,"imageLink":activity_[3]}],
+                    
+                }
+            ]
+        }, 
+        
+        // Veggies
+        {
+            "popupdescription": "P5",
+            "pos": 3,
+            "elements": [
+                {
+                    "type": "html",
+                    "name": "test",
+                    "html": "<div id='sketch-holder'></div>" +
+                        "<h3><center> Enough about fruits. Do you like veggies?</center></h3>"+
+                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/vegetables.png'>"
+                },
+                {
+                    "type": "imagepicker",
+                    "name": "veggies",
+                    "title": " ",
+                    "isRequired": true,
+                    "colCount": 1,
+                    "hasNone": false,
+                    "choices": [
+                        {"value":0,"imageLink":veggies_[0]},
+                        {"value":1,"imageLink":veggies_[1]},
+                        {"value":2,"imageLink":veggies_[2]},
+                        {"value":3,"imageLink":veggies_[3]}],
+                }
+            ]
+        }, 
+        {
+            "popupdescription": "P5",
+            "pos": 3,
+            "elements": [
+                {
+                    "type": "html",
+                    "name": "test",
+                    "html": "<div id='sketch-holder'></div>" +
+                        "<h3> <center>Okayyy 😬... Well we all know veggies are good for you. Do you at least eat three servings a day??</center></h3>"
+                },
+                {
+                    "type": "imagepicker",
+                    "name": "veggies-next",
+                    "title": " ",
+                    "isRequired": true,
+                    "colCount": 1,
+                    "hasNone": false,
+                    "choices": [
+                        {"value":0,"imageLink":activity_[0]},
+                        {"value":1,"imageLink":activity_[1]},
+                        {"value":2,"imageLink":activity_[2]},
+                        {"value":3,"imageLink":activity_[3]}],
+                }
+            ]
+        }, 
+        // Veggies response
+        {
+            "popupdescription": "P5",
+            "animated": "yes",
+            "pos": 3,
             "elements": [
                 {
                     "type": "html",
@@ -363,38 +514,65 @@ const json = {
                     "html": "<div id='sketch-holder'></div><h3 style='text-align:center'>Yaaa fruits and veggies make your heart healthy!</h3>"
                 }
             ]
-        }, {
+        },
+
+        // Nuts
+        {
             "popupdescription": "P5",
-            "pos": 3,
+            "pos": 4,
             "elements": [
                 {
                     "type": "html",
                     "name": "test",
                     "html": "<div id='sketch-holder'></div>" +
-                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:50%;' src='img/nuts.png'>"
+                        "<h3><center> Soooo this one may be a little hard... Are you a nut person?</center></h3>"+
+                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/nuts.png'>"
                 },
                 {
-                    "type": "radiogroup",
+                    "type": "imagepicker",
                     "name": "nuts",
-                    "title": "During a typical week how often do you eat a handful of nuts?",
+                    "title": " ",
                     "isRequired": true,
-                    "colCount": 0,
+                    "colCount": 1,
                     "hasNone": false,
                     "choices": [
-                        "Never",
-                        "Less than once a week",
-                        "Once or twice a week",
-                        "Three to five times a week",
-                        "Everyday",
-                        "Twice a day",
-                        "More than twice a day",
-                    ]
+                        {"value":0,"imageLink":nuts_[0]},
+                        {"value":1,"imageLink":nuts_[1]},
+                        {"value":2,"imageLink":nuts_[2]},
+                        {"value":3,"imageLink":nuts_[3]}],
                 }
             ]
-        }, {
+        }, 
+        {
+            "popupdescription": "P5",
+            "pos": 4,
+            "elements": [
+                {
+                    "type": "html",
+                    "name": "test",
+                    "html": "<div id='sketch-holder'></div>" +
+                        "<h3> <center>Oof.... 😬 Do you at least eat two servings a week??</center></h3>"
+                },
+                {
+                    "type": "imagepicker",
+                    "name": "nuts-next",
+                    "title": " ",
+                    "isRequired": true,
+                    "colCount": 1,
+                    "hasNone": false,
+                    "choices": [
+                        {"value":0,"imageLink":activity_[0]},
+                        {"value":1,"imageLink":activity_[1]},
+                        {"value":2,"imageLink":activity_[2]},
+                        {"value":3,"imageLink":activity_[3]}],
+                }
+            ]
+        }, 
+        // Nuts response
+        {
             "popupdescription": "P5",
             "animated": "yes",
-            "pos": 3,
+            "pos": 4,
             "elements": [
                 {
                     "type": "html",
@@ -402,47 +580,91 @@ const json = {
                     "html": "<div id='sketch-holder'></div><h3 style='text-align:center'>Yea nuts are awesome!!</h3>"
                 }
             ]
-        }, {
+        },
+        
+        // Meat (processed first)
+        {
             "popupdescription": "P5",
-            "pos": 4,
+            "pos": 5,
             "elements": [
                 {
                     "type": "html",
                     "name": "test",
                     "html": "<div id='sketch-holder'></div>" +
-                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:50%;' src='img/soda.png'>"
+                        "<h3><center> Let's talk about processed meats... do you eat them alot?</center></h3>"+
+                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/procmeats.png'>"+
+                        "<p><center>Examples: hot dogs, bacon, deli meats (pepperoni, sandwich meat, bologna, salami, etc.)</center></p>"
+                },
+                {
+                    "type": "imagepicker",
+                    "name": "procmeats",
+                    "title": " ",
+                    "isRequired": true,
+                    "colCount": 1,
+                    "hasNone": false,
+                    "choices": [
+                        {"value":0,"imageLink":processed_[0]},
+                        {"value":1,"imageLink":processed_[1]},
+                        {"value":2,"imageLink":processed_[2]},
+                        {"value":3,"imageLink":processed_[3]}],
+                }
+            ]
+        }, 
+        {
+            "popupdescription": "P5",
+            "pos": 5,
+            "elements": [
+                {
+                    "type": "html",
+                    "name": "test",
+                    "html": "<div id='sketch-holder'></div>" +
+                        "<h3> <center>Processed meats aren't great for your heart.... Do you eat one serving or less a week??</center></h3>"+
+                        "<p><center style='font-size:14px;'>Examples: hot dogs, bacon, deli meats (pepperoni, sandwich meat, bologna, salami, etc.)</center></p>"
+                },
+                {
+                    "type": "imagepicker",
+                    "name": "procmeats-next",
+                    "title": " ",
+                    "isRequired": true,
+                    "colCount": 1,
+                    "hasNone": false,
+                    "choices": [
+                        {"value":0,"imageLink":activity_[0]},
+                        {"value":1,"imageLink":activity_[1]},
+                        {"value":2,"imageLink":activity_[2]},
+                        {"value":3,"imageLink":activity_[3]}],
+                }
+            ]
+        }, 
 
-                },
-                {
-                    "type": "radiogroup",
-                    "name": "sugar",
-                    "title": "During a typical week how often do you have 1 can/bottle of soda?",
-                    "isRequired": true,
-                    "colCount": 0,
-                    "hasNone": false,
-                    "choices": [
-                        "Never",
-                        "Less than once a week",
-                        "Once or twice a week",
-                        "Three to five times a week",
-                        "Everyday",
-                        "Twice a day",
-                        "More than twice a day",
-                    ]
-                }
-            ]
-        }, {
+        {
             "popupdescription": "P5",
-            "animated": "yes",
-            "pos": 4,
+            "pos": 5,
             "elements": [
                 {
                     "type": "html",
-                    "name": "soda-score",
-                    "html": "<div id='sketch-holder'></div><h3 style='text-align:center'>Eehhh that much soda is not good for your heart!</h3>"
+                    "name": "redmeat-title",
+                    "html": "<div id='sketch-holder'></div>" +
+                        "<h3><center> Red meats aren't the best for your heart either.... 😬 Do you eat one serving or less a week??</center></h3>"+
+                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/moderate.png'>"+
+                        "<p><center style='font-size:14px;'>Examples: ground beef, steak, lamb, pork, veal</center></p>"
+                },
+                {
+                    "type": "imagepicker",
+                    "name": "redmeat",
+                    "title": " ",
+                    "isRequired": true,
+                    "colCount": 1,
+                    "hasNone": false,
+                    "choices": [
+                        {"value":0,"imageLink":redmeat_[0]},
+                        {"value":1,"imageLink":redmeat_[1]},
+                        {"value":2,"imageLink":redmeat_[2]},
+                        {"value":3,"imageLink":redmeat_[3]}],
                 }
             ]
-        }, {
+        }, 
+        {
             "popupdescription": "P5",
             "pos": 5,
             "elements": [
@@ -450,55 +672,27 @@ const json = {
                     "type": "html",
                     "name": "test",
                     "html": "<div id='sketch-holder'></div>" +
-                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:50%;' src='img/meats.png'>"
+                        "<h3> <center>Red meats aren't the best for your heart either.... 😬 Do you eat one serving or less a week??</center></h3>"+
+                        "<p><center>Examples: ground beef, steak, lamb, pork, veal</center></p>"
                 },
                 {
-                    "type": "radiogroup",
-                    "name": "meat",
-                    "title": "During a typical week how often do you eat RED meat? (Red meat includes beef, pork, lamb, goat)",
+                    "type": "imagepicker",
+                    "name": "redmeat-next",
+                    "title": " ",
                     "isRequired": true,
-                    "colCount": 0,
+                    "colCount": 1,
                     "hasNone": false,
                     "choices": [
-                        "Never",
-                        "Less than once a week",
-                        "Once or twice a week",
-                        "Three to five times a week",
-                        "Everyday",
-                        "Twice a day",
-                        "More than twice a day",
-                    ]
+                        {"value":0,"imageLink":activity_[0]},
+                        {"value":1,"imageLink":activity_[1]},
+                        {"value":2,"imageLink":activity_[2]},
+                        {"value":3,"imageLink":activity_[3]}],
                 }
             ]
-        }, {
-            "popupdescription": "P5",
-            "pos": 5,
-            "elements": [
-                {
-                    "type": "html",
-                    "name": "test",
-                    "html": "<div id='sketch-holder'></div>" +
-                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:50%;' src='img/procmeats.png'>"
-                },
-                {
-                    "type": "radiogroup",
-                    "name": "meatproc",
-                    "title": "And how much processed meat do you eat a week? (Processed meat also include deli meats like chicken)?",
-                    "isRequired": true,
-                    "colCount": 0,
-                    "hasNone": false,
-                    "choices": [
-                        "Never",
-                        "Less than once a week",
-                        "Once or twice a week",
-                        "Three to five times a week",
-                        "Everyday",
-                        "Twice a day",
-                        "More than twice a day",
-                    ]
-                }
-            ]
-        }, {
+        }, 
+        
+        // Meat response
+        {
             "popupdescription": "P5",
             "animated": "yes",
             "pos": 5,
@@ -509,7 +703,10 @@ const json = {
                     "html": "<div id='sketch-holder'></div><h3 style='text-align:center'>Uuuhh a lot of red meat! Too much meat is actually bad for your heart...</h3>"
                 }
             ]
-        }, {
+        },
+
+        // Soda
+        {
             "popupdescription": "P5",
             "pos": 6,
             "elements": [
@@ -517,90 +714,89 @@ const json = {
                     "type": "html",
                     "name": "test",
                     "html": "<div id='sketch-holder'></div>" +
-                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:50%;' src='img/grains-high.png'>"
+                        "<h3><center> Do you drink a lot of soda?</center></h3>"+
+                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/soda.png'>"
                 },
                 {
-                    "type": "radiogroup",
-                    "name": "grains-high",
-                    "title": "During a typical week how often do you have high fiber grains such as these?",
+                    "type": "imagepicker",
+                    "name": "soda",
+                    "title": " ",
                     "isRequired": true,
-                    "colCount": 0,
+                    "colCount": 1,
                     "hasNone": false,
                     "choices": [
-                        "Never",
-                        "Less than once a week",
-                        "Once or twice a week",
-                        "Three to five times a week",
-                        "Everyday",
-                        "Twice a day",
-                        "More than twice a day",
-                    ]
+                        {"value":0,"imageLink":soda_[0]},
+                        {"value":1,"imageLink":soda_[1]},
+                        {"value":2,"imageLink":soda_[2]},
+                        {"value":3,"imageLink":soda_[3]}],
                 }
             ]
-        }, {
+        }, 
+        {
             "popupdescription": "P5",
             "pos": 6,
             "elements": [
                 {
                     "type": "html",
                     "name": "test",
-                    "html": "<div id='sketch-holder'></div><div id='sketch-holder'></div>" +
-                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:50%;' src='img/grains-low.png'>"
+                    "html": "<div id='sketch-holder'></div>" +
+                        "<h3> <center>Sodas aren't the best for your heart either.... 😬 Do you drink two or or less a week??</center></h3>"
                 },
                 {
-                    "type": "radiogroup",
-                    "name": "grains-low",
-                    "title": "Got it, and how about low fiber grains such as these?",
+                    "type": "imagepicker",
+                    "name": "soda-next",
+                    "title": " ",
                     "isRequired": true,
-                    "colCount": 0,
+                    "colCount": 1,
                     "hasNone": false,
                     "choices": [
-                        "Never",
-                        "Less than once a week",
-                        "Once or twice a week",
-                        "Three to five times a week",
-                        "Everyday",
-                        "Twice a day",
-                        "More than twice a day",
-                    ]
+                        {"value":0,"imageLink":activity_[0]},
+                        {"value":1,"imageLink":activity_[1]},
+                        {"value":2,"imageLink":activity_[2]},
+                        {"value":3,"imageLink":activity_[3]}],
                 }
             ]
-        }, {
+        }, 
+        // Soda response
+        {
             "popupdescription": "P5",
             "animated": "yes",
             "pos": 6,
             "elements": [
                 {
                     "type": "html",
-                    "name": "grain-score",
-                    "html": "<div id='sketch-holder'></div><h3 style='text-align:center'>Keep 'em grains coming!</h3>"
+                    "name": "soda-score",
+                    "html": "<div id='sketch-holder'></div><h3 style='text-align:center'>Eehhh that much soda is not good for your heart!</h3>"
                 }
             ]
-        }, {
+        },
+        // Smoke
+        {
             "popupdescription": "P5",
             "pos": 7,
             "elements": [
                 {
                     "type": "html",
                     "name": "test",
-                    "html": "<div id='sketch-holder'></div><div id='sketch-holder'></div>" +
-                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:50%;' src='img/smoke.png'>"
+                    "html": "<div id='sketch-holder'></div>" +
+                        "<h3><center> We have one final question for you! Do you smoke?</center></h3>"
                 },
                 {
-                    "type": "radiogroup",
+                    "type": "imagepicker",
                     "name": "smoke",
-                    "title": "Do you smoke cigarrettes, chew tobacco, or vape any products containing nicotine (nicotine is a chemical inside cigarrettes, your vape should tell you if it has nicotine in it)?",
+                    "title": " ",
                     "isRequired": true,
-                    "colCount": 0,
+                    "colCount": 1,
                     "hasNone": false,
                     "choices": [
-                        "Never smoked",
-                        "Used to smoke",
-                        "Currently smoke"
-                    ]
+                        {"value":0,"imageLink":smoke_[0]},
+                        {"value":1,"imageLink":smoke_[1]},
+                        {"value":2,"imageLink":smoke_[2]}]
                 }
             ]
-        }, {
+        }, 
+        // Smoke response
+        {
             "popupdescription": "P5",
             "animated": "yes",
             "pos": 7,
@@ -611,7 +807,10 @@ const json = {
                     "html": "<div id='sketch-holder'></div><h3 style='text-align:center'>As you can probably guess, smoking is not too good for your heart, but because you stopped it means your heart is healing!</h3>"
                 }
             ]
-        }, {
+        },
+        
+        // User input questions
+        {
             "elements": [
                 {
                     "name": "age",
@@ -832,6 +1031,7 @@ const json = {
         //         }
         //     ]
         // },
+        
     ]
 };
 
@@ -1131,10 +1331,10 @@ survey
                     j = parseInt(maxvalue/1.35*5-minvalue/1.35*5);
                     jfac = Math.round(j/(maxvalue-minvalue));
                     w = 0;
-                    console.log("What is max",maxvalue);
-                    console.log("what is min",minvalue);
-                    console.log("whatis jfac",jfac);
-                    console.log("what is j",j);
+                    // console.log("What is max",maxvalue);
+                    // console.log("what is min",minvalue);
+                    // console.log("whatis jfac",jfac);
+                    // console.log("what is j",j);
                     flag = 0;
                     p.textFont(font);p.textAlign(p.CENTER,p.CENTER);
                     if(colorDisplay == 'red'){colorScore = p.color(190, 107, 60); colorParticles = [190,107,60];} 
@@ -1376,315 +1576,528 @@ survey
         }
 
         // P5 End ------------ //
-        
-    });
+        // Modify pages for Buzzfeed style
+        // Okay so this works it seems like
+        console.log("page number is",options.page.name);
+    if (options.page.name == "page3") {
+        if (survey.getQuestionByName("activity-high").value > 1){
+            survey.getQuestionByName("activity-high-next").choices = [
+                {"value":2,"imageLink":generic_sport[2]},
+                {"value":3,"imageLink":generic_sport[3]},
+                {"value":4,"imageLink":generic_sport[4]},
+                {"value":5,"imageLink":generic_sport[5]}];
 
-survey.onValueChanged.add(function (survey, options) {
-
-    // This alone like this just creates the sketch and adds it to all pages
-    // var mySketch = defineSketch(10,50);
-    // window.sketchInstance = new p5(mySketch);
-
-    // const introQ = survey.getQuestionByName("Intro");
-    // introQ.html = "<div id='myHeart'></div><h2> Tell us what you eat every week and we'll tell you how healthy your heart is</h2><main></main><br><p>Not smoking, a healthy weight, a nutritious diet, and daily exercise play important roles in the prevention of cardiovascular disease. In fact, an overall healthy lifestyle may prevent more than 75% of deaths due to cardiovascular disease. Take this quiz to evaluate how your current lifestyle habits affect your cardiovascular health, and discover simple steps you can take to incorporate a Heart Healthy lifestyle into everyday living. Knowledge is power. Take the first step towards protecting your heart and your health!</p>" +
-        "<br><p><b>Press Next to begin this quiz.</b></p>";
-
-    const ageQuestion = survey.getQuestionByName("age").value;
-    const genderQuestion = survey.getQuestionByName("gender").value;
-    //
-    const weightQuestion = survey.getQuestionByName("weight").value;
-    const heightFeetQuestion = survey.getQuestionByName("height-feet").value;
-    const heightInchesQuestion = survey.getQuestionByName("height-inches").value;
-    BMI = (weightQuestion / (heightFeetQuestion * 12 + heightInchesQuestion) / (heightFeetQuestion * 12 + heightInchesQuestion)) * 703;
-    //
-    const smokeQuestion = survey.getQuestionByName("smoke").value;
-    //
-    const alcoholQuestion = survey.getQuestionByName("alcohol").value;
-    //
-    const fruitQuestion = survey.getQuestionByName("fruits").value;
-    const vegetableQuestion = survey.getQuestionByName("vegetables").value;
-    const nutQuestion = survey.getQuestionByName("nuts").value;
-    const grainQuestion = survey.getQuestionByName("grains-high").value;
-    const grainLowQuestion = survey.getQuestionByName("grains-low").value;
-    const sugarQuestion = survey.getQuestionByName("sugar").value;
-    const meatQuestion = survey.getQuestionByName("meat").value;
-    const procmeatQuestion = survey.getQuestionByName("meatproc").value;
-    let fruitVeggieValue = 0;
-    const fruitValue = 0;
-    const veggieValue = 0;
-    let nutValue = 0;
-    let grainValue = 0;
-    let grainLowValue = 0;
-    let sugarValue = 0;
-    let meatValue = 0;
-    const procmeat = 0;
-    let smokeValue = 0;
-    let alcoholValue = 0;
-    const dietArray = [fruitQuestion, vegetableQuestion, nutQuestion, sugarQuestion, meatQuestion, procmeatQuestion, grainQuestion, grainLowQuestion, alcoholQuestion];
-    const dietValues = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-    // console.log(dietArray);
-    for (i = 0; i < dietArray.length; i++) {
-        if (dietArray[i] == "More than twice a day") {
-            dietValues[i] = 3
-        } else if (dietArray[i] == "Twice a day") {
-            dietValues[i] = 2
-        } else if (dietArray[i] == "Everyday") {
-            dietValues[i] = 1
-        } else if (dietArray[i] == "Three to five times a week") {
-            dietValues[i] = 0.5
-        } else if (dietArray[i] == "Once or twice a week") {
-            dietValues[i] = 0.3
-        } else if (dietArray[i] == "Less than once a week") {
-            dietValues[i] = 0.1
-        } else if (dietArray[i] == "Never") {
-            dietValues[i] = 0
+        } else {
+            survey.getQuestionByName("activity-high-next").choices = [
+                {"value":0,"imageLink":generic_sport[0]},
+                {"value":1,"imageLink":generic_sport[1]},
+                {"value":2,"imageLink":generic_sport[2]},
+                {"value":3,"imageLink":generic_sport[3]}];
         }
     }
-    rawFruits = dietValues[0] + dietValues[1];
-    rawNuts = dietValues[2];
-    rawSoda = dietValues[3];
-    rawMeat = dietValues[4] + dietValues[5];
-    rawGrains = dietValues[6] + dietValues[7] / 3;
-    rawAlcohol = dietValues[8];
 
-    if (smokeQuestion == "Used to smoke") {
-        smokeValue = 0.15285;
-        rawSmoke = 0.5;
-    } else if (smokeQuestion == "Currently smoke") {
-        smokeValue = 0.90138;
-        rawSmoke = 1;
-    } else {
-        rawSmoke = 0;
+    if (options.page.name == "page4") {
+        if (survey.getQuestionByName("activity-high-next").value >= 3){
+            survey.getQuestionByName("activity-low-title").html = "<div id='sketch-holder'></div>" +
+                            "<h3><center> Nice job on your intense exercise! Do you also like doing low intensity exercise? </center></h3>"+
+                            "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/moderate.png'>"+
+                            "<p><center style='font-size:14px;'>Examples: walking, dancing, riding a bike, playing with dog, swimming, marching band</center></p>";
+
+        } else {
+            survey.getQuestionByName("activity-low-title").html = "<div id='sketch-holder'></div>" +
+            "<h3><center> Okay, so you don't do much intense exercise… Do you like doing low intensity exercise? </center></h3>"+
+            "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/moderate.png'>"+
+            "<p><center style='font-size:14px;'>Examples: walking, dancing, riding a bike, playing with dog, swimming, marching band</center></p>";
+        }
     }
 
-    if (alcoholQuestion == "More than twice a day") {
-        alcoholValue = 0.01923 * 30 - 0.0004 * 30 * 30
-    } else if (alcoholQuestion == "Twice a day") {
-        alcoholValue = 0.01923 * 20 - 0.0004 * 20 * 20
-    } else if (alcoholQuestion == "Everyday") {
-        alcoholValue = 0.01923 * 10 - 0.0004 * 10 * 10
-    } else if (alcoholQuestion == "Three to five times a week") {
-        alcoholValue = 0.01923 * 5 - 0.0004 * 5 * 5
+    if (options.page.name == "page5") {
+        if (survey.getQuestionByName("activity-low").value > 1){
+            survey.getQuestionByName("activity-low-next").choices = [
+                {"value":2,"imageLink":generic_sport[2]},
+                {"value":3,"imageLink":generic_sport[3]},
+                {"value":4,"imageLink":generic_sport[4]},
+                {"value":5,"imageLink":generic_sport[5]}];
+
+        } else {
+            survey.getQuestionByName("activity-low-next").choices = [
+                {"value":0,"imageLink":generic_sport[0]},
+                {"value":1,"imageLink":generic_sport[1]},
+                {"value":2,"imageLink":generic_sport[2]},
+                {"value":3,"imageLink":generic_sport[3]}];
+        }
     }
 
-
-    let fruitVeggieText = "+ 0"; // The value to appear in the prototype tool
-    if (fruitQuestion == "More than twice a day" || vegetableQuestion == "More than twice a day") {
-        fruitVeggieValue = 0.18283;
-        fruitVeggieText = "+36";
-    } else if (fruitQuestion == "Everyday" && vegetableQuestion == "Everyday") {
-        fruitVeggieValue = 0.18283;
-        fruitVeggieText = "+36";
+    if (options.page.name == "page8") {
+        if (survey.getQuestionByName("grains-high").value > 1){
+            survey.getQuestionByName("grains-high-next").choices = [
+                {"value":2,"imageLink":grains_high_a[2]},
+                {"value":3,"imageLink":grains_high_a[3]},
+                {"value":4,"imageLink":grains_high_a[4]},
+                {"value":5,"imageLink":grains_high_a[5]}];
+        } else {
+            survey.getQuestionByName("grains-high-next").choices = [
+                {"value":0,"imageLink":grains_high_a[0]},
+                {"value":1,"imageLink":grains_high_a[1]},
+                {"value":2,"imageLink":grains_high_a[2]},
+                {"value":3,"imageLink":grains_high_a[3]}];
+        }
     }
 
+    if (options.page.name == "page9") {
+        if (survey.getQuestionByName("grains-high-next").value >= 3){
+            survey.getQuestionByName("grains-low-title").html = "<div id='sketch-holder'></div>" +
+            "<h3><center> Great! Now...... how do you feel about regular grains? 👀 </center></h3>"+
+            "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/grains-low.png'>"+
+            "<p><center style='font-size:14px;'>Examples: sugary cereals, white bread, pancakes, bagels, crackers</center></p>";
 
-    let nutText = "+ 0";
-    if (nutQuestion == "Three to five times a week" || nutQuestion == "Everyday" || nutQuestion == "Once or twice a week") {
-        nutValue = 0.14522;
-        nutText = "+29";
-    } else if (nutQuestion == "More than twice a day" || nutQuestion == "Twice a day") {
-        nutValue = 0.24444;
-        nutText = "+49";
+        } else {
+            survey.getQuestionByName("grains-low-title").html = "<div id='sketch-holder'></div>" +
+            "<h3><center> Not great, but we still have another grain category! How do you feel about regular grains? 👀</center></h3>"+
+            "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/grains-low.png'>"+
+            "<p><center style='font-size:14px;'>Examples: sugary cereals, white bread, pancakes, bagels, crackers</center></p>";
+        }
     }
 
+    if (options.page.name == "page10") {
+        if (survey.getQuestionByName("grains-low").value > 1){
+            survey.getQuestionByName("grains-low-next").choices = [
+                {"value":2,"imageLink":grains_low_a[2]},
+                {"value":3,"imageLink":grains_low_a[3]},
+                {"value":4,"imageLink":grains_low_a[4]},
+                {"value":5,"imageLink":grains_low_a[5]}];
 
-    if (grainQuestion == "More than twice a day") {
-        grainValue = 0.03326 * 3 * 3
-    } else if (grainQuestion == "Twice a day") {
-        grainValue = 0.03326 * 3 * 2
-    } else if (grainQuestion == "Everyday") {
-        grainValue = 0.03326 * 3 * 1
-    } else if (grainQuestion == "Three to five times a week") {
-        grainValue = 0.03326 * 3 * 0.5
+        } else {
+            survey.getQuestionByName("grains-low-next").choices = [
+                {"value":0,"imageLink":grains_low_a[0]},
+                {"value":1,"imageLink":grains_low_a[1]},
+                {"value":2,"imageLink":grains_low_a[2]},
+                {"value":3,"imageLink":grains_low_a[3]}];
+        }
     }
 
-    if (grainLowQuestion == "More than twice a day") {
-        grainLowValue = 0.03326 * 3
-    } else if (grainLowQuestion == "Twice a day") {
-        grainLowValue = 0.03326 * 2
-    } else if (grainLowQuestion == "Everyday") {
-        grainLowValue = 0.03326 * 1
-    } else if (grainLowQuestion == "Three to five times a week") {
-        grainLowValue = 0.03326 * 0.5
+    if (options.page.name == "page13") {
+        if (survey.getQuestionByName("fruit").value > 1){
+            survey.getQuestionByName("fruit-next").choices = [
+                {"value":1,"imageLink":fruit_a[1]},
+                {"value":2,"imageLink":fruit_a[2]},
+                {"value":3,"imageLink":fruit_a[3]},
+                {"value":4,"imageLink":fruit_a[4]}];
+        } else {
+            survey.getQuestionByName("fruit-next").choices = [
+                {"value":0,"imageLink":fruit_a[0]},
+                {"value":1,"imageLink":fruit_a[1]},
+                {"value":2,"imageLink":fruit_a[2]},
+                {"value":3,"imageLink":fruit_a[3]}];
+        }
     }
 
-    if (sugarQuestion == "More than twice a day") {
-        sugarValue = 0.14631 * 3
-    } else if (sugarQuestion == "Twice a day") {
-        sugarValue = 0.14631 * 2
-    } else if (sugarQuestion == "Everyday") {
-        sugarValue = 0.14631 * 1
-    } else if (sugarQuestion == "Three to five times a week") {
-        sugarValue = 0.14631 * 0.5
+    if (options.page.name == "page15") {
+        if (survey.getQuestionByName("veggies").value > 1){
+            survey.getQuestionByName("veggies-next").choices = [
+                {"value":1,"imageLink":veggies_a[1]},
+                {"value":2,"imageLink":veggies_a[2]},
+                {"value":3,"imageLink":veggies_a[3]},
+                {"value":4,"imageLink":veggies_a[4]}];
+        } else {
+            survey.getQuestionByName("veggies-next").choices = [
+                {"value":0,"imageLink":veggies_a[0]},
+                {"value":1,"imageLink":veggies_a[1]},
+                {"value":2,"imageLink":veggies_a[2]},
+                {"value":3,"imageLink":veggies_a[3]}];
+        }
     }
 
-    if (meatQuestion == "More than twice a day") {
-        meatValue = 0.15624 * 3
-    } else if (meatQuestion == "Twice a day") {
-        meatValue = 0.15624 * 2
-    } else if (meatQuestion == "Everyday") {
-        meatValue = 0.15624 * 1
-    } else if (meatQuestion == "Three to five times a week") {
-        meatValue = 0.15624 * 0.5
-    }
-    Diet = fruitVeggieValue + nutValue - sugarValue - meatValue + grainValue + grainLowValue;
-    //
-    const hardSportQuestion = survey.getQuestionByName("activity-hard").value;
-    let hardSportValue = 0;
-    if (hardSportQuestion == "< 15 mins") {
-        hardSportValue = 0.25
-    } else if (hardSportQuestion == "15 - 30 mins") {
-        hardSportValue = 0.5
-    } else if (hardSportQuestion == "30 - 60 mins") {
-        hardSportValue = 1
-    } else if (hardSportQuestion == "1 - 3 hrs") {
-        hardSportValue = 2
-    } else if (hardSportQuestion == "3 - 6 hrs") {
-        hardSportValue = 4.5
-    } else if (hardSportQuestion == "6 - 10 hrs") {
-        hardSportValue = 8
-    } else if (hardSportQuestion == "10+ hrs") {
-        hardSportValue = 10
-    }
-    const modSportQuestion = survey.getQuestionByName("activity-mod").value;
-    let modSportValue = 0;
-    if (modSportQuestion == "< 15 mins") {
-        modSportValue = 0.25
-    } else if (modSportQuestion == "15 - 30 mins") {
-        modSportValue = 0.5
-    } else if (modSportQuestion == "30 - 60 mins") {
-        modSportValue = 1
-    } else if (modSportQuestion == "1 - 3 hrs") {
-        modSportValue = 2
-    } else if (modSportQuestion == "3 - 6 hrs") {
-        modSportValue = 4.5
-    } else if (modSportQuestion == "6 - 10 hrs") {
-        modSportValue = 8
-    } else if (modSportQuestion == "10+ hrs") {
-        modSportValue = 10
-    }
-    rawSport = modSportValue + hardSportValue;
-    //
-    let W = 0;
-    let risk = 0;
-    if (genderQuestion == "Female") {
-        W = 0.10820 * ageQuestion + 0.04676 * BMI + smokeValue - alcoholValue - 0.05113 * (Diet * 10) - 0.02951 * (hardSportValue + modSportValue);
-        risk = (1 - Math.pow(0.9660, Math.exp(W - 6.57301))) * 100
-    } else {
-        W = "We not doing boys yet";
+    if (options.page.name == "page18") {
+        if (survey.getQuestionByName("nuts").value > 1){
+            survey.getQuestionByName("nuts-next").choices = [
+                {"value":1,"imageLink":nuts_a[1]},
+                {"value":2,"imageLink":nuts_a[2]},
+                {"value":3,"imageLink":nuts_a[3]},
+                {"value":4,"imageLink":nuts_a[4]}];
+        } else {
+            survey.getQuestionByName("nuts-next").choices = [
+                {"value":0,"imageLink":nuts_a[0]},
+                {"value":1,"imageLink":nuts_a[1]},
+                {"value":2,"imageLink":nuts_a[2]},
+                {"value":3,"imageLink":nuts_a[3]}];
+        }
     }
 
-    const healthyPerson = (1 - Math.pow(0.9660, Math.exp((-0.557385 + BMI * 0.04676 + ageQuestion * 0.1082) - 6.57301))) * 100;
-    const relativeRisk = risk / healthyPerson;
-    var summaryQuestion = survey.getQuestionByName("summary");
-    let relativeRiskWord = "";
-    let dietImagePath = "";
-    let activityImagePath = "";
-    let bmiImagePath = "";
-    let smokeImagePath = "";
-    let summaryColor = "";
-    let summaryImage = "";
-    // Add image for risks
-
-
-    //
-    if (relativeRisk <= 1.0) {
-        relativeRiskWord = "Looking good!";
-        summaryColor = "rgb(0, 178, 29),rgb(160, 241, 96))";
-        summaryImage = "./svg/Results=Good.svg"; // healthy.gif
-    } else if (relativeRisk > 1.0 /* was 1.5 before but confusing for usersy6 */ && relativeRisk < 4) {
-        relativeRiskWord = "Slightly elevated";
-        summaryColor = "rgb(231, 206, 61),rgb(211, 159, 16))";
-        summaryImage = "./svg/Results=Okay.png"; // unhealthy.gif
-    } else {
-        relativeRiskWord = "Very High";
-        summaryColor = "rgb(178, 32, 0),rgb(241, 96, 96))";
-        summaryImage = "./svg/Results=Bad.png"; // vunhealthy.gif
+    if (options.page.name == "page21") {
+        if (survey.getQuestionByName("procmeats").value > 1){
+            survey.getQuestionByName("procmeats-next").choices = [
+                {"value":2,"imageLink":processed_a[2]},
+                {"value":3,"imageLink":processed_a[3]},
+                {"value":4,"imageLink":processed_a[4]},
+                {"value":5,"imageLink":processed_a[5]}];
+        } else {
+            survey.getQuestionByName("procmeats-next").choices = [
+                {"value":0,"imageLink":processed_a[0]},
+                {"value":1,"imageLink":processed_a[1]},
+                {"value":2,"imageLink":processed_a[2]},
+                {"value":3,"imageLink":processed_a[3]}];
+        }
     }
 
-    // Activity computation
-    if (hardSportValue + modSportValue < 1.5) {
-        activityImagePath = "./img/bar_red.png";
-    } else if (hardSportValue + modSportValue >= 1.5 && hardSportValue + modSportValue < 3.5) {
-        activityImagePath = "./img/bar_yellow.png";
-    } else {
-        activityImagePath = "./img/bar_green.png";
-    }
-    // Diet computation
-    if (Diet * 10 < 2.0) {
-        dietImagePath = "./img/bar_red.png";
-    } else if (Diet * 10 > 2.0 && Diet * 10 < 4.5) {
-        dietImagePath = "./img/bar_yellow.png";
-    } else {
-        dietImagePath = "./img/bar_green.png";
-    }
-    // BMI computation
-    if (BMI >= 25 && BMI < 30) {
-        bmiImagePath = "./img/bar_yellow.png";
-    } else if (BMI >= 18.5 && BMI < 25) {
-        bmiImagePath = "./img/bar_green.png";
-    } else {
-        bmiImagePath = "./img/bar_red.png";
-    }
-    // Smoke computation
-    if (((smokeValue * 36) / 0.18283).toFixed(0) > 30) {
-        smokeImagePath = "./img/bar_red.png";
-    } else if (((smokeValue * 36) / 0.18283).toFixed(0) > 0 && ((smokeValue * 36) / 0.18283).toFixed(0) <= 30) {
-        smokeImagePath = "./img/bar_yellow.png";
-    } else {
-        smokeImagePath = "./img/bar_green.png";
+    if (options.page.name == "page22") {
+        if (survey.getQuestionByName("procmeats-next").value >= 3){
+            survey.getQuestionByName("redmeat-title").html = "<div id='sketch-holder'></div>" +
+            "<h3><center> Hmm, could be better... do you eat red meat regularly? </center></h3>"+
+            "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/meats.png'>"+
+            "<p><center style='font-size:14px;'>Examples: ground beef, steak, lamb, pork, veal</center></p>";
+
+        } else {
+            survey.getQuestionByName("redmeat-title").html = "<div id='sketch-holder'></div>" +
+            "<h3><center>That's great! Now what about your red meat intake?</center></h3>"+
+            "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/meats.png'>"+
+            "<p><center style='font-size:14px;'>Examples: ground beef, steak, lamb, pork, veal</center></p>";
+        }
     }
 
-    var summaryQuestion = survey.getQuestionByName("summary");
-    summaryQuestion.html = "<div><center>" + "<p><img alt='' src=" + summaryImage + "></p>" + "</center><br><center><p style='margin:auto;'>Your risk is <h3>" + relativeRiskWord + "</h3><br></p></center></div>"
+    if (options.page.name == "page23") {
+        if (survey.getQuestionByName("redmeat").value > 1){
+            survey.getQuestionByName("redmeat-next").choices = [
+                {"value":2,"imageLink":redmeat_a[2]},
+                {"value":3,"imageLink":redmeat_a[3]},
+                {"value":4,"imageLink":redmeat_a[4]},
+                {"value":5,"imageLink":redmeat_a[5]}];
 
-
-    // Good foods replacement
-    // Add logic for what image to show
-    // var imageSequence = ["./img/circle_above.png","./img/circle_av.png","./img/circle_below.png","./img/circle_mbelow.png","./img/circle_mmbelow.png"];
-    const imageSequence = ["./img/vhealthy-graph.png", "./img/healthy-graph.png", "./img/unhealthy-graph.png", "./img/vunhealthy-graph.png", "./img/vvunhealthy-graph.png"];
-
-    let sequenceVariable = 0;
-    if ((((fruitVeggieValue + nutValue + grainValue + grainLowValue) * 1000) / 5).toFixed(0) == 0) {
-        sequenceVariable = 2
-    } else {
-        sequenceVariable = 1
+        } else {
+            survey.getQuestionByName("redmeat-next").choices = [
+                {"value":0,"imageLink":redmeat_a[0]},
+                {"value":1,"imageLink":redmeat_a[1]},
+                {"value":2,"imageLink":redmeat_a[2]},
+                {"value":3,"imageLink":redmeat_a[3]}];
+        }
     }
-    const goodFoodsQuestion = survey.getQuestionByName("good-foods");
-    goodFoodsQuestion.html =
-        "<h2>You’re doing pretty good... </h2> <br> " +
-        "<div id='chart_good_diet_vertical' style='overflow: hidden !important;'></div>"
-    /*<p>  (You eat low fiber grains <b>"+grainLowQuestion+"</b>, you need a least one serving every day)</p></div></li>";*/
 
-    // Good foods replacement
-    if ((((sugarValue + meatValue) * 1000) / 5).toFixed(0) != 0) {
-        sequenceVariable += 1
+    if (options.page.name == "page26") {
+        if (survey.getQuestionByName("soda").value > 1){
+            survey.getQuestionByName("soda-next").choices = [
+                {"value":2,"imageLink":soda_a[2]},
+                {"value":3,"imageLink":soda_a[3]},
+                {"value":4,"imageLink":soda_a[4]},
+                {"value":5,"imageLink":soda_a[5]}];
+        } else {
+            survey.getQuestionByName("soda-next").choices = [
+                {"value":0,"imageLink":soda_a[0]},
+                {"value":1,"imageLink":soda_a[1]},
+                {"value":2,"imageLink":soda_a[2]},
+                {"value":3,"imageLink":soda_a[3]}];
+        }
     }
-    const badFoodsQuestion = survey.getQuestionByName("bad-foods");
-    badFoodsQuestion.html =
-        "<h2>... but you can do better</h2> <br> " +
-        "<div id='chart_bad_diet_vertical' style='overflow: hidden !important;'></div>"
-
-
-    // Actitives replacement
-    if (((modSportValue + hardSportValue) * 6).toFixed(0) != 0) {
-        sequenceVariable -= 1
-    } else {
-        sequenceVariable += 1
-    }
-    const activitiesQuestion = survey.getQuestionByName("activities");
-    activitiesQuestion.html = "<h3>Let's look at your exercise :</h3>" +
-        "<div id='chart_exercise_vertical' style='overflow: hidden !important;'></div>"
-
-
-    // Smoking replacement
-    if (smokeQuestion == "Used to smoke") {
-        sequenceVariable += 1
-    } else if (smokeQuestion == "Currently smoke") {
-        sequenceVariable += 2
-    }
-    // const smokingQuestion = survey.getQuestionByName("smokinghabits");
-    // smokingQuestion.html = "<h3>Let's look at your smoking habits :</h3> <ul> <li><div> <p> You " + smokeQuestion + ": <span style='color: red;  font-weight: bold;' class='text-orientation-right-css'> - " + ((smokeValue * 36) / 0.18283).toFixed(0) + "</span></p></div></li>" +
-    //     "<p> Any smoking significantly affects your heart health, it's -30 if you used to smoke and -177 if you currently do!</p>" +
-    //     "<br><center><p>Smoking has a huge impact in your heart score. Hopefully you didn't see it come down!</p><br><p><img alt='' src=" + imageSequence[sequenceVariable] + "></p></center>";
 });
+
+//     // Modify the quiz real-time to change the answer options based on the user's selection
+survey.onValueChanged.add(function (survey, options) {
+    
+});
+
+//     // This alone like this just creates the sketch and adds it to all pages
+//     // var mySketch = defineSketch(10,50);
+//     // window.sketchInstance = new p5(mySketch);
+
+//     // const introQ = survey.getQuestionByName("Intro");
+//     // introQ.html = "<div id='myHeart'></div><h2> Tell us what you eat every week and we'll tell you how healthy your heart is</h2><main></main><br><p>Not smoking, a healthy weight, a nutritious diet, and daily exercise play important roles in the prevention of cardiovascular disease. In fact, an overall healthy lifestyle may prevent more than 75% of deaths due to cardiovascular disease. Take this quiz to evaluate how your current lifestyle habits affect your cardiovascular health, and discover simple steps you can take to incorporate a Heart Healthy lifestyle into everyday living. Knowledge is power. Take the first step towards protecting your heart and your health!</p>" +
+//         "<br><p><b>Press Next to begin this quiz.</b></p>";
+
+//     const ageQuestion = survey.getQuestionByName("age").value;
+//     const genderQuestion = survey.getQuestionByName("gender").value;
+//     //
+//     const weightQuestion = survey.getQuestionByName("weight").value;
+//     const heightFeetQuestion = survey.getQuestionByName("height-feet").value;
+//     const heightInchesQuestion = survey.getQuestionByName("height-inches").value;
+//     BMI = (weightQuestion / (heightFeetQuestion * 12 + heightInchesQuestion) / (heightFeetQuestion * 12 + heightInchesQuestion)) * 703;
+//     //
+//     const smokeQuestion = survey.getQuestionByName("smoke").value;
+//     //
+//     const alcoholQuestion = survey.getQuestionByName("alcohol").value;
+//     //
+//     const fruitQuestion = survey.getQuestionByName("fruits").value;
+//     const vegetableQuestion = survey.getQuestionByName("vegetables").value;
+//     const nutQuestion = survey.getQuestionByName("nuts").value;
+//     const grainQuestion = survey.getQuestionByName("grains-high").value;
+//     const grainLowQuestion = survey.getQuestionByName("grains-low").value;
+//     const sugarQuestion = survey.getQuestionByName("sugar").value;
+//     const meatQuestion = survey.getQuestionByName("meat").value;
+//     const procmeatQuestion = survey.getQuestionByName("meatproc").value;
+//     let fruitVeggieValue = 0;
+//     const fruitValue = 0;
+//     const veggieValue = 0;
+//     let nutValue = 0;
+//     let grainValue = 0;
+//     let grainLowValue = 0;
+//     let sugarValue = 0;
+//     let meatValue = 0;
+//     const procmeat = 0;
+//     let smokeValue = 0;
+//     let alcoholValue = 0;
+//     const dietArray = [fruitQuestion, vegetableQuestion, nutQuestion, sugarQuestion, meatQuestion, procmeatQuestion, grainQuestion, grainLowQuestion, alcoholQuestion];
+//     const dietValues = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+//     // console.log(dietArray);
+//     for (i = 0; i < dietArray.length; i++) {
+//         if (dietArray[i] == "More than twice a day") {
+//             dietValues[i] = 3
+//         } else if (dietArray[i] == "Twice a day") {
+//             dietValues[i] = 2
+//         } else if (dietArray[i] == "Everyday") {
+//             dietValues[i] = 1
+//         } else if (dietArray[i] == "Three to five times a week") {
+//             dietValues[i] = 0.5
+//         } else if (dietArray[i] == "Once or twice a week") {
+//             dietValues[i] = 0.3
+//         } else if (dietArray[i] == "Less than once a week") {
+//             dietValues[i] = 0.1
+//         } else if (dietArray[i] == "Never") {
+//             dietValues[i] = 0
+//         }
+//     }
+//     rawFruits = dietValues[0] + dietValues[1];
+//     rawNuts = dietValues[2];
+//     rawSoda = dietValues[3];
+//     rawMeat = dietValues[4] + dietValues[5];
+//     rawGrains = dietValues[6] + dietValues[7] / 3;
+//     rawAlcohol = dietValues[8];
+
+//     if (smokeQuestion == "Used to smoke") {
+//         smokeValue = 0.15285;
+//         rawSmoke = 0.5;
+//     } else if (smokeQuestion == "Currently smoke") {
+//         smokeValue = 0.90138;
+//         rawSmoke = 1;
+//     } else {
+//         rawSmoke = 0;
+//     }
+
+//     if (alcoholQuestion == "More than twice a day") {
+//         alcoholValue = 0.01923 * 30 - 0.0004 * 30 * 30
+//     } else if (alcoholQuestion == "Twice a day") {
+//         alcoholValue = 0.01923 * 20 - 0.0004 * 20 * 20
+//     } else if (alcoholQuestion == "Everyday") {
+//         alcoholValue = 0.01923 * 10 - 0.0004 * 10 * 10
+//     } else if (alcoholQuestion == "Three to five times a week") {
+//         alcoholValue = 0.01923 * 5 - 0.0004 * 5 * 5
+//     }
+
+
+//     let fruitVeggieText = "+ 0"; // The value to appear in the prototype tool
+//     if (fruitQuestion == "More than twice a day" || vegetableQuestion == "More than twice a day") {
+//         fruitVeggieValue = 0.18283;
+//         fruitVeggieText = "+36";
+//     } else if (fruitQuestion == "Everyday" && vegetableQuestion == "Everyday") {
+//         fruitVeggieValue = 0.18283;
+//         fruitVeggieText = "+36";
+//     }
+
+
+//     let nutText = "+ 0";
+//     if (nutQuestion == "Three to five times a week" || nutQuestion == "Everyday" || nutQuestion == "Once or twice a week") {
+//         nutValue = 0.14522;
+//         nutText = "+29";
+//     } else if (nutQuestion == "More than twice a day" || nutQuestion == "Twice a day") {
+//         nutValue = 0.24444;
+//         nutText = "+49";
+//     }
+
+
+//     if (grainQuestion == "More than twice a day") {
+//         grainValue = 0.03326 * 3 * 3
+//     } else if (grainQuestion == "Twice a day") {
+//         grainValue = 0.03326 * 3 * 2
+//     } else if (grainQuestion == "Everyday") {
+//         grainValue = 0.03326 * 3 * 1
+//     } else if (grainQuestion == "Three to five times a week") {
+//         grainValue = 0.03326 * 3 * 0.5
+//     }
+
+//     if (grainLowQuestion == "More than twice a day") {
+//         grainLowValue = 0.03326 * 3
+//     } else if (grainLowQuestion == "Twice a day") {
+//         grainLowValue = 0.03326 * 2
+//     } else if (grainLowQuestion == "Everyday") {
+//         grainLowValue = 0.03326 * 1
+//     } else if (grainLowQuestion == "Three to five times a week") {
+//         grainLowValue = 0.03326 * 0.5
+//     }
+
+//     if (sugarQuestion == "More than twice a day") {
+//         sugarValue = 0.14631 * 3
+//     } else if (sugarQuestion == "Twice a day") {
+//         sugarValue = 0.14631 * 2
+//     } else if (sugarQuestion == "Everyday") {
+//         sugarValue = 0.14631 * 1
+//     } else if (sugarQuestion == "Three to five times a week") {
+//         sugarValue = 0.14631 * 0.5
+//     }
+
+//     if (meatQuestion == "More than twice a day") {
+//         meatValue = 0.15624 * 3
+//     } else if (meatQuestion == "Twice a day") {
+//         meatValue = 0.15624 * 2
+//     } else if (meatQuestion == "Everyday") {
+//         meatValue = 0.15624 * 1
+//     } else if (meatQuestion == "Three to five times a week") {
+//         meatValue = 0.15624 * 0.5
+//     }
+//     Diet = fruitVeggieValue + nutValue - sugarValue - meatValue + grainValue + grainLowValue;
+//     //
+//     const hardSportQuestion = survey.getQuestionByName("activity-hard").value;
+//     let hardSportValue = 0;
+//     if (hardSportQuestion == "< 15 mins") {
+//         hardSportValue = 0.25
+//     } else if (hardSportQuestion == "15 - 30 mins") {
+//         hardSportValue = 0.5
+//     } else if (hardSportQuestion == "30 - 60 mins") {
+//         hardSportValue = 1
+//     } else if (hardSportQuestion == "1 - 3 hrs") {
+//         hardSportValue = 2
+//     } else if (hardSportQuestion == "3 - 6 hrs") {
+//         hardSportValue = 4.5
+//     } else if (hardSportQuestion == "6 - 10 hrs") {
+//         hardSportValue = 8
+//     } else if (hardSportQuestion == "10+ hrs") {
+//         hardSportValue = 10
+//     }
+//     const modSportQuestion = survey.getQuestionByName("activity-mod").value;
+//     let modSportValue = 0;
+//     if (modSportQuestion == "< 15 mins") {
+//         modSportValue = 0.25
+//     } else if (modSportQuestion == "15 - 30 mins") {
+//         modSportValue = 0.5
+//     } else if (modSportQuestion == "30 - 60 mins") {
+//         modSportValue = 1
+//     } else if (modSportQuestion == "1 - 3 hrs") {
+//         modSportValue = 2
+//     } else if (modSportQuestion == "3 - 6 hrs") {
+//         modSportValue = 4.5
+//     } else if (modSportQuestion == "6 - 10 hrs") {
+//         modSportValue = 8
+//     } else if (modSportQuestion == "10+ hrs") {
+//         modSportValue = 10
+//     }
+//     rawSport = modSportValue + hardSportValue;
+//     //
+//     let W = 0;
+//     let risk = 0;
+//     if (genderQuestion == "Female") {
+//         W = 0.10820 * ageQuestion + 0.04676 * BMI + smokeValue - alcoholValue - 0.05113 * (Diet * 10) - 0.02951 * (hardSportValue + modSportValue);
+//         risk = (1 - Math.pow(0.9660, Math.exp(W - 6.57301))) * 100
+//     } else {
+//         W = "We not doing boys yet";
+//     }
+
+//     const healthyPerson = (1 - Math.pow(0.9660, Math.exp((-0.557385 + BMI * 0.04676 + ageQuestion * 0.1082) - 6.57301))) * 100;
+//     const relativeRisk = risk / healthyPerson;
+//     var summaryQuestion = survey.getQuestionByName("summary");
+//     let relativeRiskWord = "";
+//     let dietImagePath = "";
+//     let activityImagePath = "";
+//     let bmiImagePath = "";
+//     let smokeImagePath = "";
+//     let summaryColor = "";
+//     let summaryImage = "";
+//     // Add image for risks
+
+
+//     //
+//     if (relativeRisk <= 1.0) {
+//         relativeRiskWord = "Looking good!";
+//         summaryColor = "rgb(0, 178, 29),rgb(160, 241, 96))";
+//         summaryImage = "./svg/Results=Good.svg"; // healthy.gif
+//     } else if (relativeRisk > 1.0 /* was 1.5 before but confusing for usersy6 */ && relativeRisk < 4) {
+//         relativeRiskWord = "Slightly elevated";
+//         summaryColor = "rgb(231, 206, 61),rgb(211, 159, 16))";
+//         summaryImage = "./svg/Results=Okay.png"; // unhealthy.gif
+//     } else {
+//         relativeRiskWord = "Very High";
+//         summaryColor = "rgb(178, 32, 0),rgb(241, 96, 96))";
+//         summaryImage = "./svg/Results=Bad.png"; // vunhealthy.gif
+//     }
+
+//     // Activity computation
+//     if (hardSportValue + modSportValue < 1.5) {
+//         activityImagePath = "./img/bar_red.png";
+//     } else if (hardSportValue + modSportValue >= 1.5 && hardSportValue + modSportValue < 3.5) {
+//         activityImagePath = "./img/bar_yellow.png";
+//     } else {
+//         activityImagePath = "./img/bar_green.png";
+//     }
+//     // Diet computation
+//     if (Diet * 10 < 2.0) {
+//         dietImagePath = "./img/bar_red.png";
+//     } else if (Diet * 10 > 2.0 && Diet * 10 < 4.5) {
+//         dietImagePath = "./img/bar_yellow.png";
+//     } else {
+//         dietImagePath = "./img/bar_green.png";
+//     }
+//     // BMI computation
+//     if (BMI >= 25 && BMI < 30) {
+//         bmiImagePath = "./img/bar_yellow.png";
+//     } else if (BMI >= 18.5 && BMI < 25) {
+//         bmiImagePath = "./img/bar_green.png";
+//     } else {
+//         bmiImagePath = "./img/bar_red.png";
+//     }
+//     // Smoke computation
+//     if (((smokeValue * 36) / 0.18283).toFixed(0) > 30) {
+//         smokeImagePath = "./img/bar_red.png";
+//     } else if (((smokeValue * 36) / 0.18283).toFixed(0) > 0 && ((smokeValue * 36) / 0.18283).toFixed(0) <= 30) {
+//         smokeImagePath = "./img/bar_yellow.png";
+//     } else {
+//         smokeImagePath = "./img/bar_green.png";
+//     }
+
+//     var summaryQuestion = survey.getQuestionByName("summary");
+//     summaryQuestion.html = "<div><center>" + "<p><img alt='' src=" + summaryImage + "></p>" + "</center><br><center><p style='margin:auto;'>Your risk is <h3>" + relativeRiskWord + "</h3><br></p></center></div>"
+
+
+//     // Good foods replacement
+//     // Add logic for what image to show
+//     // var imageSequence = ["./img/circle_above.png","./img/circle_av.png","./img/circle_below.png","./img/circle_mbelow.png","./img/circle_mmbelow.png"];
+//     const imageSequence = ["./img/vhealthy-graph.png", "./img/healthy-graph.png", "./img/unhealthy-graph.png", "./img/vunhealthy-graph.png", "./img/vvunhealthy-graph.png"];
+
+//     let sequenceVariable = 0;
+//     if ((((fruitVeggieValue + nutValue + grainValue + grainLowValue) * 1000) / 5).toFixed(0) == 0) {
+//         sequenceVariable = 2
+//     } else {
+//         sequenceVariable = 1
+//     }
+//     const goodFoodsQuestion = survey.getQuestionByName("good-foods");
+//     goodFoodsQuestion.html =
+//         "<h2>You’re doing pretty good... </h2> <br> " +
+//         "<div id='chart_good_diet_vertical' style='overflow: hidden !important;'></div>"
+//     /*<p>  (You eat low fiber grains <b>"+grainLowQuestion+"</b>, you need a least one serving every day)</p></div></li>";*/
+
+//     // Good foods replacement
+//     if ((((sugarValue + meatValue) * 1000) / 5).toFixed(0) != 0) {
+//         sequenceVariable += 1
+//     }
+//     const badFoodsQuestion = survey.getQuestionByName("bad-foods");
+//     badFoodsQuestion.html =
+//         "<h2>... but you can do better</h2> <br> " +
+//         "<div id='chart_bad_diet_vertical' style='overflow: hidden !important;'></div>"
+
+
+//     // Actitives replacement
+//     if (((modSportValue + hardSportValue) * 6).toFixed(0) != 0) {
+//         sequenceVariable -= 1
+//     } else {
+//         sequenceVariable += 1
+//     }
+//     const activitiesQuestion = survey.getQuestionByName("activities");
+//     activitiesQuestion.html = "<h3>Let's look at your exercise :</h3>" +
+//         "<div id='chart_exercise_vertical' style='overflow: hidden !important;'></div>"
+
+
+//     // Smoking replacement
+//     if (smokeQuestion == "Used to smoke") {
+//         sequenceVariable += 1
+//     } else if (smokeQuestion == "Currently smoke") {
+//         sequenceVariable += 2
+//     }
+//     // const smokingQuestion = survey.getQuestionByName("smokinghabits");
+//     // smokingQuestion.html = "<h3>Let's look at your smoking habits :</h3> <ul> <li><div> <p> You " + smokeQuestion + ": <span style='color: red;  font-weight: bold;' class='text-orientation-right-css'> - " + ((smokeValue * 36) / 0.18283).toFixed(0) + "</span></p></div></li>" +
+//     //     "<p> Any smoking significantly affects your heart health, it's -30 if you used to smoke and -177 if you currently do!</p>" +
+//     //     "<br><center><p>Smoking has a huge impact in your heart score. Hopefully you didn't see it come down!</p><br><p><img alt='' src=" + imageSequence[sequenceVariable] + "></p></center>";
+// });
