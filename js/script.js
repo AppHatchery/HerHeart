@@ -38,7 +38,7 @@ let index = 0;
 // animationValuesHealthy = [0, 20, 20, 40, 20, 20, 20, 60, 20]; // Overall quantity amounts to 200 without the alcohol portion that needs to be considered separate
 // animationValues = [0, 10, 15, 36, 45, 59, 77, 60, 20];
 // animationValuesHealthy = [0, 20, 20, 40, 20, 20, 20, 60, 20]; // Overall quantity amounts to 200 without the alcohol portion that needs to be considered separate
-rawHealthyValues = [0, 3.5, 2, 2, 0.25, 0.25, 4, 0];
+rawHealthyValues = [0, 3.5, 4, 2, 2, 0.25, 0.25, 0];
 // rawScoreValues = [0,1.5,1,1.5,0.5,0.8,2,0,0];
 rawScoreValues = [];
 // Static variables
@@ -79,6 +79,7 @@ let processed_ = ['img/processed_0.png','img/processed_1.png','img/processed_2.p
 let redmeat_ = ['img/redmeat_0.png','img/redmeat_1.png','img/redmeat_2.png','img/redmeat_3.png'];
 let soda_ = ['img/soda_0.png','img/soda_1.png','img/soda_2.png','img/soda_3.png'];
 let smoke_ = ['img/smoke_never.png','img/smoke_usedto.png','img/smoke_yes.png'];
+let alcohol_ = ['img/alcohol_0.png','img/alcohol_1.png','img/alcohol_2.png','img/alcohol_3.png'];
 
 // Follow-up pages
 let grains_high_a = ['img/generic_never.png','img/generic_lessthan1.png','img/generic_1to2.png','img/generic_3to5a.png','img/generic_everyday.png','img/grains_high_twice.png'];
@@ -89,7 +90,7 @@ let nuts_a = ['img/nuts_never.png','img/nuts_lessthan1.png','img/nuts_onceaweek.
 let processed_a = ['img/processed_never.png','img/generic_bad_lessthan1.png','img/generic_bad_1to2.png','img/generic_bad_3to5.png','img/generic_bad_everyday.png','img/generic_bad_twiceaday.png'];
 let redmeat_a = ['img/redmeat_never.png','img/generic_bad_lessthan1.png','img/generic_bad_1to2.png','img/generic_bad_3to5.png','img/generic_bad_everyday.png','img/generic_bad_twiceaday.png'];
 let soda_a = ['img/soda_never.png','img/generic_bad_lessthan1.png','img/soda_1to2.png','img/soda_3to5.png','img/generic_bad_everyday.png','img/generic_bad_twiceaday.png'];
-
+let alcohol_a = ['img/.png','img/.png','img/.png','img/.png','img/.png','img/.png'];
 
 const json = {
     "title": "HerHeart",
@@ -438,7 +439,7 @@ const json = {
                     "name": "fruit-next",
                     "title": " ",
                     "isRequired": true,
-                    "colCount": 1,
+                    "colCount": 2,
                     "hasNone": false,
                     "choices": [
                         {"value":0,"imageLink":activity_[0]},
@@ -492,7 +493,7 @@ const json = {
                     "name": "veggies-next",
                     "title": " ",
                     "isRequired": true,
-                    "colCount": 1,
+                    "colCount": 2,
                     "hasNone": false,
                     "choices": [
                         {"value":0,"imageLink":activity_[0]},
@@ -558,7 +559,7 @@ const json = {
                     "name": "nuts-next",
                     "title": " ",
                     "isRequired": true,
-                    "colCount": 1,
+                    "colCount": 2,
                     "hasNone": false,
                     "choices": [
                         {"value":0,"imageLink":activity_[0]},
@@ -646,7 +647,7 @@ const json = {
                     "name": "redmeat-title",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3><center> Red meats aren't the best for your heart either.... 😬 Do you eat one serving or less a week??</center></h3>"+
-                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/moderate.png'>"+
+                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/meats.png'>"+
                         "<p><center style='font-size:14px;'>Examples: ground beef, steak, lamb, pork, veal</center></p>"
                 },
                 {
@@ -790,8 +791,8 @@ const json = {
                     "hasNone": false,
                     "choices": [
                         {"value":0,"imageLink":smoke_[0]},
-                        {"value":1,"imageLink":smoke_[1]},
-                        {"value":2,"imageLink":smoke_[2]}]
+                        {"value":0.5,"imageLink":smoke_[1]},
+                        {"value":1,"imageLink":smoke_[2]}]
                 }
             ]
         }, 
@@ -824,34 +825,57 @@ const json = {
         }, {
             "popupdescription": "P5",
             "pos": 8,
+            "visibleIf":"{age}>=21",
             "elements": [
                 {
                     "type": "html",
                     "name": "test",
                     "html": "<div id='sketch-holder'>" +
-                        "</div><img alt='' style='margin-left:auto; margin-right:auto; display:block; width:50%;' src='img/alcohol.png'>",
-                    "visibleIf": "{age}>=21"
+                        "<h3><center> Oh! You are 21+, let me ask you then, how often do you drink one glass of alcohol?</center></h3>"+
+                        "</div><img alt='' style='margin-left:auto; margin-right:auto; display:block; width:50%;' src='img/alcohol.png'>"+
+                        "<p><center>One glass = 4 ounces of wine, 12 ounces of beer</center></p>"
                 },
                 {
-                    "type": "radiogroup",
+                    "type": "imagepicker",
                     "name": "alcohol",
-                    "title": "Oh! You are 21+, let me ask you then, how often do you drink one glass of alcohol? One glass = 4 ounces of wine, 12 ounces of beer",
-                    "visibleIf": "{age}>=21",
+                    "title": " ",
                     "isRequired": true,
-                    "colCount": 0,
+                    "colCount": 1,
                     "hasNone": false,
                     "choices": [
-                        "Never",
-                        "Less than once a week",
-                        "Once or twice a week",
-                        "Three to five times a week",
-                        "Everyday",
-                        "Twice a day",
-                        "More than twice a day",
-                    ]
+                        {"value":0,"imageLink":alcohol_[0]},
+                        {"value":1,"imageLink":alcohol_[1]},
+                        {"value":2,"imageLink":alcohol_[2]},
+                        {"value":3,"imageLink":alcohol_[3]}]
                 }
             ]
-        }, {
+        },  {
+            "popupdescription": "P5",
+            "pos": 8,
+            "visibleIf":"{age}>=21",
+            "elements": [
+                {
+                    "type": "html",
+                    "name": "test",
+                    "html": "<div id='sketch-holder'></div>" +
+                        "<h3> <center>Alcohol isn't super good for you.... 😬 How many glasses do you drink in a week?</center></h3>"
+                },
+                {
+                    "type": "imagepicker",
+                    "name": "alcohol-next",
+                    "title": " ",
+                    "isRequired": true,
+                    "colCount": 1,
+                    "hasNone": false,
+                    "choices": [
+                        {"value":0,"imageLink":activity_[0]},
+                        {"value":1,"imageLink":activity_[1]},
+                        {"value":2,"imageLink":activity_[2]},
+                        {"value":3,"imageLink":activity_[3]}],
+                }
+            ]
+        },
+        {
             "popupdescription": "P5",
             "animated": "yes",
             "pos": 8,
@@ -881,7 +905,8 @@ const json = {
                     ]
                 }
             ]
-        }, { // This question needs logic for people that accidentally put too much or too little
+        }, 
+        { // This question needs logic for people that accidentally put too much or too little
             "elements": [
                 {
                     "name": "weight",
@@ -932,23 +957,6 @@ const json = {
                     "html": "<div style=' border-radius: 25px; padding: 20px; background-image: linear-gradient(0deg,  rgb(231, 206, 61),rgb(211, 159, 16));width:75%; margin:auto;'><center><p style='margin:auto;'>Your risk is <h3></h3>Compared to a healthy lifestyle</p></center></div>"
                 }
             ]
-        }, {
-            "elements": [
-                {
-                    "type": "html",
-                    "name": "feedback-explanation",
-                    "html": "<div><p style='margin:auto;'><h3>So what does this mean? <h3><br>It's not that your heart is bad right now, but that maintaining those habits will increase your chances of having cardiac disease when you are older.<br>" +
-                        "But they are just chances, nothing is guaranteed of course! <br>This calculation was done by looking at the diet and exercise of 50,000 older women and their heart health.</p></div>"
-                },
-                {
-                    "type": "boolean",
-                    "name": "feedbackbool",
-                    "title": "Want feedback?",
-                    "label": "With this in mind, would you like to hear feedback on how you are doing?",
-                    "isRequired": true,
-                    "goNextPageAutomatic": false,
-                }
-            ]
         },
         {
             "elements": [
@@ -956,7 +964,6 @@ const json = {
                     "type": "html",
                     "name": "good-foods",
                     "html": "",
-                    "visibleIf": "{feedbackbool}=='true'",
                 }
             ]
         }, {
@@ -965,7 +972,6 @@ const json = {
                     "type": "html",
                     "name": "bad-foods",
                     "html": "",
-                    "visibleIf": "{feedbackbool}=='true'",
                 }
             ]
         }, {
@@ -974,7 +980,6 @@ const json = {
                     "type": "html",
                     "name": "activities",
                     "html": "",
-                    "visibleIf": "{feedbackbool}=='true'",
                 }
             ]
         },
@@ -986,7 +991,7 @@ const json = {
                     "type": "html",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3><center> Awesome, we love to hear that! </center></h3>" +
-                        "<p><center>We’ve got some suggestions just for you too. Do you wanna see them?</center></p>"
+                        "<p><center>We've got some suggestions just for you too. Do you wanna see them?</center></p>"
                 },
                 {
                     "type": "imagepicker",
@@ -1019,8 +1024,8 @@ const json = {
                     "name": "test",
                     "visibleIf": "{awesomeWeLoveToHearThat} < 1",
                     "html": "<div id='sketch-holder'></div>" +
-                        "<h3><center> That’s okay, you’ve got time! </center></h3>" +
-                        "<p><center>We’ve got some suggestions just for you too. Do you wanna see them?</center></p>"
+                        "<h3><center> That's okay, you've got time! </center></h3>" +
+                        "<p><center>We've got some suggestions just for you too. Do you wanna see them?</center></p>"
                 },
                 {
                     "visibleIf": "{awesomeWeLoveToHearThat} < 1",
@@ -1091,18 +1096,7 @@ const json = {
                         "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:70%;' src='svg/Heart.svg'><br>",
                 },
             ]
-        }, 
-        // {
-        //     "elements": [
-        //         {
-        //             "type": "html",
-        //             "name": "smokinghabits",
-        //             "html": "",
-        //             "visibleIf": "{smoke}!='Never smoke'",
-        //         }
-        //     ]
-        // },
-        
+        },         
     ]
 };
 
@@ -1138,7 +1132,7 @@ function emptyArray() {
 }
 
 function calculateGoodBadDiet() {
-    rawScoreValues = [0, rawSport, rawFruits, rawNuts, rawSoda, rawMeat, rawGrains, rawSmoke, rawAlcohol];
+    rawScoreValues = [0, rawSport, rawGrains, rawFruits, rawNuts, rawMeat, rawSoda, rawSmoke, rawAlcohol];
     // Calculates the percentage score
     for (const key in animationValues) {
         if (key > 1 && key < animationValues.length - 2) {
@@ -1181,21 +1175,20 @@ function calculateGoodBadDiet() {
         scoreData.push(cleanSortedValues[cleanSortedValuesKey]/* * cleanSortedValuesHealthy[cleanSortedValuesKey]*/ * 5)
         index++
     }
-
-    // scoreData = [1,1.5,0.5,0.8,2];
-    // healthyData = [2,2,0,0.25,4];
 }
 
 survey
     .onAfterRenderPage
     .add(function (survey, options) {
 
-        if (options.page.name == "page28") {
+        console.log(options.page.name)
+
+        if (options.page.name == "page37") {
             emptyArray()
             calculateGoodBadDiet()
         }
 
-        if (options.page.name == "page31") {
+        if (options.page.name == "page39") {
 
             console.log(scoreData)
 
@@ -1204,34 +1197,31 @@ survey
 
             for (const categoriesKey in categories) {
                 nutritionSummary += `
-                            <div class="uk-container">
-                                <div uk-grid>
-                                    <div class="uk-width-1-3 uk-margin-auto-vertical">
-                                        <p class="uk-text-meta">${categories[categoriesKey]}</p>
-                                    </div>
-                                    <div class="uk-width-expand uk-position-relative">
-                                        <div uk-grid class="uk-child-width-1-3 height">
-                                            <div class="ball left" style="left:${scoreData[categoriesKey] * 5}%"></div>
-                                            <div class="red"></div>
-                                            <div class="yellow"></div>
-                                            <div class="green"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
+                <div class="uk-container">
+                    <div uk-grid>
+                        <div class="uk-width-1-3 uk-margin-auto-vertical">
+                            <p class="uk-text-meta">${categories[categoriesKey]}</p>
+                        </div>
+                        <div class="uk-width-expand uk-position-relative">
+                            <div uk-grid class="uk-child-width-1-3 height">
+                                <div class="ball left" style="left:${scoreData[categoriesKey] * 5}%"></div>
+                                <div class="red"></div>
+                                <div class="yellow"></div>
+                                <div class="green"></div>
                             </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
                 `
             }
-
             setTimeout(() => {
                 $("#nutritionSummary").empty()
                 $("#nutritionSummary").html(nutritionSummary)
             }, 100)
-
         }
 
-
-        if (options.page.name == "page32") {
+        if (options.page.name == "page40") {
 
             let optionsRadialBar = {
                 series: [44, 55],
@@ -1271,10 +1261,7 @@ survey
 
         }
 
-
-        console.log(options.page.name)
-
-        if (options.page.name == "page33") {
+        if (options.page.name == "page41") {
 
             $(".sv-footer__next-btn").css("display", 'unset')
 
@@ -1296,7 +1283,7 @@ survey
             }, 300)
         }
 
-        if (options.page.name == "page34" || options.page.name == "page35")
+        if (options.page.name == "page41" || options.page.name == "page43")
             $(".sv-footer__next-btn").css("display", 'none')
 
 
@@ -1513,36 +1500,38 @@ survey
                 animationValues[1] = parseInt((rawSport * 20) / 3.5);
             }
 
+            // Grains
+            animationValues[2] = animationValues[1] + parseInt((rawGrains * 20) / 4);
+
             // Fruits & Veggies
             if (rawFruits >= 2) {
-                animationValues[2] = animationValues[1] + 20;
+                animationValues[3] = animationValues[2] + 20;
             } else {
-                animationValues[2] = animationValues[1] + parseInt(rawFruits * 10);
+                animationValues[3] = animationValues[2] + parseInt(rawFruits * 10);
             }
 
             // Nuts
             if (rawNuts >= 2) {
-                animationValues[3] = animationValues[2] + 40;
+                animationValues[4] = animationValues[3] + 40;
             } else if (rawNuts >= 0.3) {
-                animationValues[3] = animationValues[2] + 20 + parseInt((rawNuts - 0.3) * 20);
+                animationValues[4] = animationValues[3] + 20 + parseInt((rawNuts - 0.3) * 20);
             } else {
-                animationValues[3] = animationValues[2] + parseInt((rawNuts * 20) / 0.5);
+                animationValues[4] = animationValues[3] + parseInt((rawNuts * 20) / 0.5);
             }
 
-            // Soda
-            if (rawSoda > 1) {
-                animationValues[4] = animationValues[3]
-            } else {
-                animationValues[4] = animationValues[3] + (20 - parseInt(rawSoda * 20));
-            }
             // Meat
             if (rawMeat > 2) {
                 animationValues[5] = animationValues[4]
             } else {
                 animationValues[5] = animationValues[4] + (20 - parseInt((rawMeat * 20) / 2));
             }
-            // Grains
-            animationValues[6] = animationValues[5] + parseInt((rawGrains * 20) / 4);
+
+            // Soda
+            if (rawSoda > 1) {
+                animationValues[6] = animationValues[5]
+            } else {
+                animationValues[6] = animationValues[5] + (20 - parseInt(rawSoda * 20));
+            }
 
             // Smoke
             animationValues[7] = animationValues[6] + 60 - rawSmoke * 60;
@@ -1571,7 +1560,7 @@ survey
         calculateBarProgress();
 
         animationValues[0] = 0;
-        animationValuesHealthy = [0, 20, 20, 40, 20, 20, 20, 60, 20]; // Overall quantity amounts to 200 without the alcohol portion that needs to be considered separate
+        animationValuesHealthy = [0, 20, 20, 20, 40, 20, 20, 60, 20]; // Overall quantity amounts to 200 without the alcohol portion that needs to be considered separate
 
 // I gotta pass in here these variables
         if (options.page.animated) {
@@ -1619,22 +1608,22 @@ survey
     if (options.page.name == "page3") {
         if (survey.getQuestionByName("activity-high").value > 1){
             survey.getQuestionByName("activity-high-next").choices = [
-                {"value":2,"imageLink":generic_sport[2]},
-                {"value":3,"imageLink":generic_sport[3]},
-                {"value":4,"imageLink":generic_sport[4]},
-                {"value":5,"imageLink":generic_sport[5]}];
+                {"value":0.75,"imageLink":generic_sport[2]},
+                {"value":2,"imageLink":generic_sport[3]},
+                {"value":8,"imageLink":generic_sport[4]},
+                {"value":10,"imageLink":generic_sport[5]}];
 
         } else {
             survey.getQuestionByName("activity-high-next").choices = [
                 {"value":0,"imageLink":generic_sport[0]},
-                {"value":1,"imageLink":generic_sport[1]},
-                {"value":2,"imageLink":generic_sport[2]},
-                {"value":3,"imageLink":generic_sport[3]}];
+                {"value":0.25,"imageLink":generic_sport[1]},
+                {"value":0.75,"imageLink":generic_sport[2]},
+                {"value":2,"imageLink":generic_sport[3]}];
         }
     }
 
     if (options.page.name == "page4") {
-        if (survey.getQuestionByName("activity-high-next").value >= 3){
+        if (survey.getQuestionByName("activity-high-next").value >= 2){
             survey.getQuestionByName("activity-low-title").html = "<div id='sketch-holder'></div>" +
                             "<h3><center> Nice job on your intense exercise! Do you also like doing low intensity exercise? </center></h3>"+
                             "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/moderate.png'>"+
@@ -1651,33 +1640,33 @@ survey
     if (options.page.name == "page5") {
         if (survey.getQuestionByName("activity-low").value > 1){
             survey.getQuestionByName("activity-low-next").choices = [
-                {"value":2,"imageLink":generic_sport[2]},
-                {"value":3,"imageLink":generic_sport[3]},
-                {"value":4,"imageLink":generic_sport[4]},
-                {"value":5,"imageLink":generic_sport[5]}];
+                {"value":0.75,"imageLink":generic_sport[2]},
+                {"value":2,"imageLink":generic_sport[3]},
+                {"value":8,"imageLink":generic_sport[4]},
+                {"value":10,"imageLink":generic_sport[5]}];
 
         } else {
             survey.getQuestionByName("activity-low-next").choices = [
                 {"value":0,"imageLink":generic_sport[0]},
-                {"value":1,"imageLink":generic_sport[1]},
-                {"value":2,"imageLink":generic_sport[2]},
-                {"value":3,"imageLink":generic_sport[3]}];
+                {"value":0.25,"imageLink":generic_sport[1]},
+                {"value":0.75,"imageLink":generic_sport[2]},
+                {"value":2,"imageLink":generic_sport[3]}];
         }
     }
 
     if (options.page.name == "page8") {
         if (survey.getQuestionByName("grains-high").value > 1){
             survey.getQuestionByName("grains-high-next").choices = [
-                {"value":2,"imageLink":grains_high_a[2]},
-                {"value":3,"imageLink":grains_high_a[3]},
-                {"value":4,"imageLink":grains_high_a[4]},
-                {"value":5,"imageLink":grains_high_a[5]}];
+                {"value":0.3,"imageLink":grains_high_a[2]},
+                {"value":0.5,"imageLink":grains_high_a[3]},
+                {"value":1,"imageLink":grains_high_a[4]},
+                {"value":2,"imageLink":grains_high_a[5]}];
         } else {
             survey.getQuestionByName("grains-high-next").choices = [
                 {"value":0,"imageLink":grains_high_a[0]},
-                {"value":1,"imageLink":grains_high_a[1]},
-                {"value":2,"imageLink":grains_high_a[2]},
-                {"value":3,"imageLink":grains_high_a[3]}];
+                {"value":0.1,"imageLink":grains_high_a[1]},
+                {"value":0.3,"imageLink":grains_high_a[2]},
+                {"value":0.5,"imageLink":grains_high_a[3]}];
         }
     }
 
@@ -1699,49 +1688,49 @@ survey
     if (options.page.name == "page10") {
         if (survey.getQuestionByName("grains-low").value > 1){
             survey.getQuestionByName("grains-low-next").choices = [
-                {"value":2,"imageLink":grains_low_a[2]},
-                {"value":3,"imageLink":grains_low_a[3]},
-                {"value":4,"imageLink":grains_low_a[4]},
-                {"value":5,"imageLink":grains_low_a[5]}];
+                {"value":0.3,"imageLink":grains_low_a[2]},
+                {"value":0.5,"imageLink":grains_low_a[3]},
+                {"value":1,"imageLink":grains_low_a[4]},
+                {"value":2,"imageLink":grains_low_a[5]}];
 
         } else {
             survey.getQuestionByName("grains-low-next").choices = [
                 {"value":0,"imageLink":grains_low_a[0]},
-                {"value":1,"imageLink":grains_low_a[1]},
-                {"value":2,"imageLink":grains_low_a[2]},
-                {"value":3,"imageLink":grains_low_a[3]}];
+                {"value":0.1,"imageLink":grains_low_a[1]},
+                {"value":0.3,"imageLink":grains_low_a[2]},
+                {"value":0.5,"imageLink":grains_low_a[3]}];
         }
     }
 
     if (options.page.name == "page13") {
         if (survey.getQuestionByName("fruit").value > 1){
             survey.getQuestionByName("fruit-next").choices = [
-                {"value":1,"imageLink":fruit_a[1]},
-                {"value":2,"imageLink":fruit_a[2]},
-                {"value":3,"imageLink":fruit_a[3]},
-                {"value":4,"imageLink":fruit_a[4]}];
+                {"value":0.5,"imageLink":fruit_a[1]},
+                {"value":1,"imageLink":fruit_a[2]},
+                {"value":2,"imageLink":fruit_a[3]},
+                {"value":3,"imageLink":fruit_a[4]}];
         } else {
             survey.getQuestionByName("fruit-next").choices = [
                 {"value":0,"imageLink":fruit_a[0]},
-                {"value":1,"imageLink":fruit_a[1]},
-                {"value":2,"imageLink":fruit_a[2]},
-                {"value":3,"imageLink":fruit_a[3]}];
+                {"value":0.5,"imageLink":fruit_a[1]},
+                {"value":1,"imageLink":fruit_a[2]},
+                {"value":2,"imageLink":fruit_a[3]}];
         }
     }
 
     if (options.page.name == "page15") {
         if (survey.getQuestionByName("veggies").value > 1){
             survey.getQuestionByName("veggies-next").choices = [
-                {"value":1,"imageLink":veggies_a[1]},
-                {"value":2,"imageLink":veggies_a[2]},
-                {"value":3,"imageLink":veggies_a[3]},
-                {"value":4,"imageLink":veggies_a[4]}];
+                {"value":0.5,"imageLink":veggies_a[1]},
+                {"value":1,"imageLink":veggies_a[2]},
+                {"value":2,"imageLink":veggies_a[3]},
+                {"value":3,"imageLink":veggies_a[4]}];
         } else {
             survey.getQuestionByName("veggies-next").choices = [
                 {"value":0,"imageLink":veggies_a[0]},
-                {"value":1,"imageLink":veggies_a[1]},
-                {"value":2,"imageLink":veggies_a[2]},
-                {"value":3,"imageLink":veggies_a[3]}];
+                {"value":0.5,"imageLink":veggies_a[1]},
+                {"value":1,"imageLink":veggies_a[2]},
+                {"value":2,"imageLink":veggies_a[3]}];
         }
     }
 
@@ -1764,41 +1753,17 @@ survey
     if (options.page.name == "page21") {
         if (survey.getQuestionByName("procmeats").value > 1){
             survey.getQuestionByName("procmeats-next").choices = [
-                {"value":2,"imageLink":processed_a[2]},
-                {"value":3,"imageLink":processed_a[3]},
-                {"value":4,"imageLink":processed_a[4]},
-                {"value":5,"imageLink":processed_a[5]}];
+                {"value":0.3,"imageLink":processed_a[2]},
+                {"value":0.5,"imageLink":processed_a[3]},
+                {"value":1,"imageLink":processed_a[4]},
+                {"value":2,"imageLink":processed_a[5]}];
         } else {
             survey.getQuestionByName("procmeats-next").choices = [
                 {"value":0,"imageLink":processed_a[0]},
-                {"value":1,"imageLink":processed_a[1]},
-                {"value":2,"imageLink":processed_a[2]},
-                {"value":3,"imageLink":processed_a[3]}];
+                {"value":0.1,"imageLink":processed_a[1]},
+                {"value":0.3,"imageLink":processed_a[2]},
+                {"value":0.5,"imageLink":processed_a[3]}];
         }
-    }
-    const healthyPerson = (1 - Math.pow(0.9660, Math.exp((-0.557385 + BMI * 0.04676 + ageQuestion * 0.1082) - 6.57301))) * 100;
-    const relativeRisk = risk / healthyPerson;
-    var summaryQuestion = survey.getQuestionByName("summary");
-    let relativeRiskWord = "";
-    let dietImagePath = "";
-    let activityImagePath = "";
-    let bmiImagePath = "";
-    let smokeImagePath = "";
-    let summaryColor = "";
-    let summaryImage = "";
-    // Add image for risks
-
-
-    //
-    if (relativeRisk <= 1.0) {
-        relativeRiskWord = "Looking good!";
-        summaryImage = "./img/Results=Good.jpg"; // healthy.gif
-    } else if (relativeRisk > 1.0 /* was 1.5 before but confusing for usersy6 */ && relativeRisk < 4) {
-        relativeRiskWord = "Slightly elevated";
-        summaryImage = "./img/Results=Okay.jpg"; // unhealthy.gif
-    } else {
-        relativeRiskWord = "Very High";
-        summaryImage = "./img/Results=Bad.jpg"; // vunhealthy.gif
     }
 
     if (options.page.name == "page22") {
@@ -1819,18 +1784,161 @@ survey
     if (options.page.name == "page23") {
         if (survey.getQuestionByName("redmeat").value > 1){
             survey.getQuestionByName("redmeat-next").choices = [
-                {"value":2,"imageLink":redmeat_a[2]},
-                {"value":3,"imageLink":redmeat_a[3]},
-                {"value":4,"imageLink":redmeat_a[4]},
-                {"value":5,"imageLink":redmeat_a[5]}];
+                {"value":0.3,"imageLink":redmeat_a[2]},
+                {"value":0.5,"imageLink":redmeat_a[3]},
+                {"value":1,"imageLink":redmeat_a[4]},
+                {"value":2,"imageLink":redmeat_a[5]}];
         } else {
             survey.getQuestionByName("redmeat-next").choices = [
                 {"value":0,"imageLink":redmeat_a[0]},
-                {"value":1,"imageLink":redmeat_a[1]},
-                {"value":2,"imageLink":redmeat_a[2]},
-                {"value":3,"imageLink":redmeat_a[3]}];
+                {"value":0.1,"imageLink":redmeat_a[1]},
+                {"value":0.3,"imageLink":redmeat_a[2]},
+                {"value":0.5,"imageLink":redmeat_a[3]}];
         }
     }
+
+    if (options.page.name == "page26") {
+        if (survey.getQuestionByName("soda").value > 1){
+            survey.getQuestionByName("soda-next").choices = [
+                {"value":0.3,"imageLink":soda_a[2]},
+                {"value":0.5,"imageLink":soda_a[3]},
+                {"value":1,"imageLink":soda_a[4]},
+                {"value":2,"imageLink":soda_a[5]}];
+        } else {
+            survey.getQuestionByName("soda-next").choices = [
+                {"value":0,"imageLink":soda_a[0]},
+                {"value":0.1,"imageLink":soda_a[1]},
+                {"value":0.3,"imageLink":soda_a[2]},
+                {"value":0.5,"imageLink":soda_a[3]}];
+        }
+    }
+
+    if (options.page.name == "page29") {
+        if (survey.getQuestionByName("alcohol").value > 1){
+            survey.getQuestionByName("alcohol-next").choices = [
+                {"value":0.3,"imageLink":alcohol_a[2]},
+                {"value":0.5,"imageLink":alcohol_a[3]},
+                {"value":1,"imageLink":alcohol_a[4]},
+                {"value":2,"imageLink":alcohol_a[5]}];
+        } else {
+            survey.getQuestionByName("alcohol-next").choices = [
+                {"value":0,"imageLink":alcohol_a[0]},
+                {"value":0.1,"imageLink":alcohol_a[1]},
+                {"value":0.3,"imageLink":alcohol_a[2]},
+                {"value":0.5,"imageLink":alcohol_a[3]}];
+        }
+    }
+});
+
+//     // Modify the quiz real-time to change the answer options based on the user's selection
+survey.onValueChanged.add(function (survey, options) {
+
+    const ageQuestion = survey.getQuestionByName("age").value;
+    const genderQuestion = survey.getQuestionByName("gender").value;
+    //
+    const weightQuestion = survey.getQuestionByName("weight").value;
+    const heightFeetQuestion = survey.getQuestionByName("height-feet").value;
+    const heightInchesQuestion = survey.getQuestionByName("height-inches").value;
+    BMI = (weightQuestion / (heightFeetQuestion * 12 + heightInchesQuestion) / (heightFeetQuestion * 12 + heightInchesQuestion)) * 703;
+    //
+    const smokeQuestion = survey.getQuestionByName("smoke").value;
+    //
+    const alcoholQuestion = survey.getQuestionByName("alcohol").value;
+    //
+    const fruitQuestion = survey.getQuestionByName("fruit-next").value;
+    const vegetableQuestion = survey.getQuestionByName("veggies-next").value;
+    const nutQuestion = survey.getQuestionByName("nuts-next").value;
+    const grainQuestion = survey.getQuestionByName("grains-high-next").value;
+    const grainLowQuestion = survey.getQuestionByName("grains-low-next").value;
+    const sugarQuestion = survey.getQuestionByName("soda-next").value;
+    const meatQuestion = survey.getQuestionByName("redmeat-next").value;
+    const procmeatQuestion = survey.getQuestionByName("procmeats-next").value;
+    let fruitVeggieValue = 0;
+    let nutValue = 0;
+    let grainValue = 0;
+    let sugarValue = 0;
+    let meatValue = 0;
+    let smokeValue = 0;
+    let alcoholValue = 0;
+    const dietValues = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+    rawFruits = fruitQuestion + vegetableQuestion;
+    rawNuts = nutQuestion;
+    rawSoda = sugarQuestion;
+    rawMeat = procmeatQuestion + meatQuestion;
+    rawGrains = grainQuestion + grainLowQuestion / 3;
+    rawAlcohol = dietValues[8];
+
+    rawSmoke = smokeQuestion;
+
+    // Could probably use an equation to remove this if statement
+    if (smokeQuestion == 0.5) {
+        smokeValue = 0.15285;
+    } else if (smokeQuestion == 1) {
+        smokeValue = 0.90138;
+    }
+
+    if (alcoholQuestion == "More than twice a day") {
+        alcoholValue = 0.01923 * 30 - 0.0004 * 30 * 30
+    } else if (alcoholQuestion == "Twice a day") {
+        alcoholValue = 0.01923 * 20 - 0.0004 * 20 * 20
+    } else if (alcoholQuestion == "Everyday") {
+        alcoholValue = 0.01923 * 10 - 0.0004 * 10 * 10
+    } else if (alcoholQuestion == "Three to five times a week") {
+        alcoholValue = 0.01923 * 5 - 0.0004 * 5 * 5
+    }
+
+
+    if (rawFruits >= 3) {
+        fruitVeggieValue = 0.18283;
+    }
+
+    if (rawNuts >= 2){
+        nutValue = 0.24444;
+    } else if (rawNuts > 0.3){
+        nutValue = 0.14522;
+    }
+
+    grainValue = 0.03326*(grainQuestion*3+grainLowQuestion);
+    sugarValue = 0.14631*sugarQuestion;
+    meatValue = 0.15624*meatQuestion+0.15624*procmeatQuestion;
+
+    Diet = fruitVeggieValue + nutValue - sugarValue - meatValue + grainValue;
+    
+    // Extract activity amount directly from question
+    const hardSportQuestion = survey.getQuestionByName("activity-high-next").value;
+    const modSportQuestion = survey.getQuestionByName("activity-low-next").value;
+    rawSport = modSportQuestion + hardSportQuestion;
+    
+    //
+    let W = 0;
+    let risk = 0;
+    if (genderQuestion == "Female") {
+        W = 0.10820 * ageQuestion + 0.04676 * BMI + smokeValue - alcoholValue - 0.05113 * (Diet * 10) - 0.02951 * rawSport;
+        risk = (1 - Math.pow(0.9660, Math.exp(W - 6.57301))) * 100
+    } else {
+        W = "We not doing boys yet";
+    }
+    const healthyPerson = (1 - Math.pow(0.9660, Math.exp((-0.557385 + BMI * 0.04676 + ageQuestion * 0.1082) - 6.57301))) * 100;
+    const relativeRisk = risk / healthyPerson;
+    var summaryQuestion = survey.getQuestionByName("summary");
+    let relativeRiskWord = "";
+    let summaryImage = "";
+    // Add image for risks
+
+
+    //
+    if (relativeRisk <= 1.0) {
+        relativeRiskWord = "Looking good!";
+        summaryImage = "./img/Results=Good.jpg"; // healthy.gif
+    } else if (relativeRisk > 1.0 /* was 1.5 before but confusing for usersy6 */ && relativeRisk < 4) {
+        relativeRiskWord = "Slightly elevated";
+        summaryImage = "./img/Results=Okay.jpg"; // unhealthy.gif
+    } else {
+        relativeRiskWord = "Very High";
+        summaryImage = "./img/Results=Bad.jpg"; // vunhealthy.gif
+    }
+
     var summaryQuestion = survey.getQuestionByName("summary");
     summaryQuestion.html = "<div><center>" + "<p><img alt='' class='image' src=" + summaryImage + "></p>" + "</center><br><center><p style='margin:auto;'>Your risk is <h3>" + relativeRiskWord + "</h3><br></p></center></div>"
 
@@ -1840,21 +1948,6 @@ survey
         "<div id='nutritionSummary'></div>";
     /*<p>  (You eat low fiber grains <b>"+grainLowQuestion+"</b>, you need a least one serving every day)</p></div></li>";*/
 
-    if (options.page.name == "page26") {
-        if (survey.getQuestionByName("soda").value > 1){
-            survey.getQuestionByName("soda-next").choices = [
-                {"value":2,"imageLink":soda_a[2]},
-                {"value":3,"imageLink":soda_a[3]},
-                {"value":4,"imageLink":soda_a[4]},
-                {"value":5,"imageLink":soda_a[5]}];
-        } else {
-            survey.getQuestionByName("soda-next").choices = [
-                {"value":0,"imageLink":soda_a[0]},
-                {"value":1,"imageLink":soda_a[1]},
-                {"value":2,"imageLink":soda_a[2]},
-                {"value":3,"imageLink":soda_a[3]}];
-        }
-    }
     const badFoodsQuestion = survey.getQuestionByName("bad-foods");
     badFoodsQuestion.html =
         "<h2>Time to get moving!</h2>" +
@@ -1863,11 +1956,11 @@ survey
 
 
     // Actitives replacement
-    if (((modSportValue + hardSportValue) * 6).toFixed(0) != 0) {
-        sequenceVariable -= 1
-    } else {
-        sequenceVariable += 1
-    }
+    // if (((modSportValue + hardSportValue) * 6).toFixed(0) != 0) {
+    //     sequenceVariable -= 1
+    // } else {
+    //     sequenceVariable += 1
+    // }
     const activitiesQuestion = survey.getQuestionByName("activities");
     activitiesQuestion.html = "<div><center> <h3>Now that you know your habit's impact ...</h3> <br>"
         + "<p><img alt='' class='image'  src=" + summaryImage + "></p>"
@@ -1876,326 +1969,25 @@ survey
 
 
     // Smoking replacement
-    if (smokeQuestion == "Used to smoke") {
-        sequenceVariable += 1
-    } else if (smokeQuestion == "Currently smoke") {
-        sequenceVariable += 2
-    }
-    // const smokingQuestion = survey.getQuestionByName("smokinghabits");
-    // smokingQuestion.html = "<h3>Let's look at your smoking habits :</h3> <ul> <li><div> <p> You " + smokeQuestion + ": <span style='color: red;  font-weight: bold;' class='text-orientation-right-css'> - " + ((smokeValue * 36) / 0.18283).toFixed(0) + "</span></p></div></li>" +
-    //     "<p> Any smoking significantly affects your heart health, it's -30 if you used to smoke and -177 if you currently do!</p>" +
-    //     "<br><center><p>Smoking has a huge impact in your heart score. Hopefully you didn't see it come down!</p><br><p><img alt='' src=" + imageSequence[sequenceVariable] + "></p></center>";
-});
+    // if (smokeQuestion == "Used to smoke") {
+    //     sequenceVariable += 1
+    // } else if (smokeQuestion == "Currently smoke") {
+    //     sequenceVariable += 2
+    // }
 
-//     // Modify the quiz real-time to change the answer options based on the user's selection
-survey.onValueChanged.add(function (survey, options) {
+    // Good foods replacement
+    // Add logic for what image to show
+    // var imageSequence = ["./img/circle_above.png","./img/circle_av.png","./img/circle_below.png","./img/circle_mbelow.png","./img/circle_mmbelow.png"];
+
+    // if ((((fruitVeggieValue + nutValue + grainValue + grainLowValue) * 1000) / 5).toFixed(0) == 0) {
+    //     sequenceVariable = 2
+    // } else {
+    //     sequenceVariable = 1
+    // }
     
+    // // Good foods replacement
+    // if ((((sugarValue + meatValue) * 1000) / 5).toFixed(0) != 0) {
+    //     sequenceVariable += 1
+    // }
+
 });
-
-//     // This alone like this just creates the sketch and adds it to all pages
-//     // var mySketch = defineSketch(10,50);
-//     // window.sketchInstance = new p5(mySketch);
-
-//     // const introQ = survey.getQuestionByName("Intro");
-//     // introQ.html = "<div id='myHeart'></div><h2> Tell us what you eat every week and we'll tell you how healthy your heart is</h2><main></main><br><p>Not smoking, a healthy weight, a nutritious diet, and daily exercise play important roles in the prevention of cardiovascular disease. In fact, an overall healthy lifestyle may prevent more than 75% of deaths due to cardiovascular disease. Take this quiz to evaluate how your current lifestyle habits affect your cardiovascular health, and discover simple steps you can take to incorporate a Heart Healthy lifestyle into everyday living. Knowledge is power. Take the first step towards protecting your heart and your health!</p>" +
-//         "<br><p><b>Press Next to begin this quiz.</b></p>";
-
-//     const ageQuestion = survey.getQuestionByName("age").value;
-//     const genderQuestion = survey.getQuestionByName("gender").value;
-//     //
-//     const weightQuestion = survey.getQuestionByName("weight").value;
-//     const heightFeetQuestion = survey.getQuestionByName("height-feet").value;
-//     const heightInchesQuestion = survey.getQuestionByName("height-inches").value;
-//     BMI = (weightQuestion / (heightFeetQuestion * 12 + heightInchesQuestion) / (heightFeetQuestion * 12 + heightInchesQuestion)) * 703;
-//     //
-//     const smokeQuestion = survey.getQuestionByName("smoke").value;
-//     //
-//     const alcoholQuestion = survey.getQuestionByName("alcohol").value;
-//     //
-//     const fruitQuestion = survey.getQuestionByName("fruits").value;
-//     const vegetableQuestion = survey.getQuestionByName("vegetables").value;
-//     const nutQuestion = survey.getQuestionByName("nuts").value;
-//     const grainQuestion = survey.getQuestionByName("grains-high").value;
-//     const grainLowQuestion = survey.getQuestionByName("grains-low").value;
-//     const sugarQuestion = survey.getQuestionByName("sugar").value;
-//     const meatQuestion = survey.getQuestionByName("meat").value;
-//     const procmeatQuestion = survey.getQuestionByName("meatproc").value;
-//     let fruitVeggieValue = 0;
-//     const fruitValue = 0;
-//     const veggieValue = 0;
-//     let nutValue = 0;
-//     let grainValue = 0;
-//     let grainLowValue = 0;
-//     let sugarValue = 0;
-//     let meatValue = 0;
-//     const procmeat = 0;
-//     let smokeValue = 0;
-//     let alcoholValue = 0;
-//     const dietArray = [fruitQuestion, vegetableQuestion, nutQuestion, sugarQuestion, meatQuestion, procmeatQuestion, grainQuestion, grainLowQuestion, alcoholQuestion];
-//     const dietValues = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-//     // console.log(dietArray);
-//     for (i = 0; i < dietArray.length; i++) {
-//         if (dietArray[i] == "More than twice a day") {
-//             dietValues[i] = 3
-//         } else if (dietArray[i] == "Twice a day") {
-//             dietValues[i] = 2
-//         } else if (dietArray[i] == "Everyday") {
-//             dietValues[i] = 1
-//         } else if (dietArray[i] == "Three to five times a week") {
-//             dietValues[i] = 0.5
-//         } else if (dietArray[i] == "Once or twice a week") {
-//             dietValues[i] = 0.3
-//         } else if (dietArray[i] == "Less than once a week") {
-//             dietValues[i] = 0.1
-//         } else if (dietArray[i] == "Never") {
-//             dietValues[i] = 0
-//         }
-//     }
-//     rawFruits = dietValues[0] + dietValues[1];
-//     rawNuts = dietValues[2];
-//     rawSoda = dietValues[3];
-//     rawMeat = dietValues[4] + dietValues[5];
-//     rawGrains = dietValues[6] + dietValues[7] / 3;
-//     rawAlcohol = dietValues[8];
-
-//     if (smokeQuestion == "Used to smoke") {
-//         smokeValue = 0.15285;
-//         rawSmoke = 0.5;
-//     } else if (smokeQuestion == "Currently smoke") {
-//         smokeValue = 0.90138;
-//         rawSmoke = 1;
-//     } else {
-//         rawSmoke = 0;
-//     }
-
-//     if (alcoholQuestion == "More than twice a day") {
-//         alcoholValue = 0.01923 * 30 - 0.0004 * 30 * 30
-//     } else if (alcoholQuestion == "Twice a day") {
-//         alcoholValue = 0.01923 * 20 - 0.0004 * 20 * 20
-//     } else if (alcoholQuestion == "Everyday") {
-//         alcoholValue = 0.01923 * 10 - 0.0004 * 10 * 10
-//     } else if (alcoholQuestion == "Three to five times a week") {
-//         alcoholValue = 0.01923 * 5 - 0.0004 * 5 * 5
-//     }
-
-
-//     let fruitVeggieText = "+ 0"; // The value to appear in the prototype tool
-//     if (fruitQuestion == "More than twice a day" || vegetableQuestion == "More than twice a day") {
-//         fruitVeggieValue = 0.18283;
-//         fruitVeggieText = "+36";
-//     } else if (fruitQuestion == "Everyday" && vegetableQuestion == "Everyday") {
-//         fruitVeggieValue = 0.18283;
-//         fruitVeggieText = "+36";
-//     }
-
-
-//     let nutText = "+ 0";
-//     if (nutQuestion == "Three to five times a week" || nutQuestion == "Everyday" || nutQuestion == "Once or twice a week") {
-//         nutValue = 0.14522;
-//         nutText = "+29";
-//     } else if (nutQuestion == "More than twice a day" || nutQuestion == "Twice a day") {
-//         nutValue = 0.24444;
-//         nutText = "+49";
-//     }
-
-
-//     if (grainQuestion == "More than twice a day") {
-//         grainValue = 0.03326 * 3 * 3
-//     } else if (grainQuestion == "Twice a day") {
-//         grainValue = 0.03326 * 3 * 2
-//     } else if (grainQuestion == "Everyday") {
-//         grainValue = 0.03326 * 3 * 1
-//     } else if (grainQuestion == "Three to five times a week") {
-//         grainValue = 0.03326 * 3 * 0.5
-//     }
-
-//     if (grainLowQuestion == "More than twice a day") {
-//         grainLowValue = 0.03326 * 3
-//     } else if (grainLowQuestion == "Twice a day") {
-//         grainLowValue = 0.03326 * 2
-//     } else if (grainLowQuestion == "Everyday") {
-//         grainLowValue = 0.03326 * 1
-//     } else if (grainLowQuestion == "Three to five times a week") {
-//         grainLowValue = 0.03326 * 0.5
-//     }
-
-//     if (sugarQuestion == "More than twice a day") {
-//         sugarValue = 0.14631 * 3
-//     } else if (sugarQuestion == "Twice a day") {
-//         sugarValue = 0.14631 * 2
-//     } else if (sugarQuestion == "Everyday") {
-//         sugarValue = 0.14631 * 1
-//     } else if (sugarQuestion == "Three to five times a week") {
-//         sugarValue = 0.14631 * 0.5
-//     }
-
-//     if (meatQuestion == "More than twice a day") {
-//         meatValue = 0.15624 * 3
-//     } else if (meatQuestion == "Twice a day") {
-//         meatValue = 0.15624 * 2
-//     } else if (meatQuestion == "Everyday") {
-//         meatValue = 0.15624 * 1
-//     } else if (meatQuestion == "Three to five times a week") {
-//         meatValue = 0.15624 * 0.5
-//     }
-//     Diet = fruitVeggieValue + nutValue - sugarValue - meatValue + grainValue + grainLowValue;
-//     //
-//     const hardSportQuestion = survey.getQuestionByName("activity-hard").value;
-//     let hardSportValue = 0;
-//     if (hardSportQuestion == "< 15 mins") {
-//         hardSportValue = 0.25
-//     } else if (hardSportQuestion == "15 - 30 mins") {
-//         hardSportValue = 0.5
-//     } else if (hardSportQuestion == "30 - 60 mins") {
-//         hardSportValue = 1
-//     } else if (hardSportQuestion == "1 - 3 hrs") {
-//         hardSportValue = 2
-//     } else if (hardSportQuestion == "3 - 6 hrs") {
-//         hardSportValue = 4.5
-//     } else if (hardSportQuestion == "6 - 10 hrs") {
-//         hardSportValue = 8
-//     } else if (hardSportQuestion == "10+ hrs") {
-//         hardSportValue = 10
-//     }
-//     const modSportQuestion = survey.getQuestionByName("activity-mod").value;
-//     let modSportValue = 0;
-//     if (modSportQuestion == "< 15 mins") {
-//         modSportValue = 0.25
-//     } else if (modSportQuestion == "15 - 30 mins") {
-//         modSportValue = 0.5
-//     } else if (modSportQuestion == "30 - 60 mins") {
-//         modSportValue = 1
-//     } else if (modSportQuestion == "1 - 3 hrs") {
-//         modSportValue = 2
-//     } else if (modSportQuestion == "3 - 6 hrs") {
-//         modSportValue = 4.5
-//     } else if (modSportQuestion == "6 - 10 hrs") {
-//         modSportValue = 8
-//     } else if (modSportQuestion == "10+ hrs") {
-//         modSportValue = 10
-//     }
-//     rawSport = modSportValue + hardSportValue;
-//     //
-//     let W = 0;
-//     let risk = 0;
-//     if (genderQuestion == "Female") {
-//         W = 0.10820 * ageQuestion + 0.04676 * BMI + smokeValue - alcoholValue - 0.05113 * (Diet * 10) - 0.02951 * (hardSportValue + modSportValue);
-//         risk = (1 - Math.pow(0.9660, Math.exp(W - 6.57301))) * 100
-//     } else {
-//         W = "We not doing boys yet";
-//     }
-
-//     const healthyPerson = (1 - Math.pow(0.9660, Math.exp((-0.557385 + BMI * 0.04676 + ageQuestion * 0.1082) - 6.57301))) * 100;
-//     const relativeRisk = risk / healthyPerson;
-//     var summaryQuestion = survey.getQuestionByName("summary");
-//     let relativeRiskWord = "";
-//     let dietImagePath = "";
-//     let activityImagePath = "";
-//     let bmiImagePath = "";
-//     let smokeImagePath = "";
-//     let summaryColor = "";
-//     let summaryImage = "";
-//     // Add image for risks
-
-
-//     //
-//     if (relativeRisk <= 1.0) {
-//         relativeRiskWord = "Looking good!";
-//         summaryColor = "rgb(0, 178, 29),rgb(160, 241, 96))";
-//         summaryImage = "./svg/Results=Good.svg"; // healthy.gif
-//     } else if (relativeRisk > 1.0 /* was 1.5 before but confusing for usersy6 */ && relativeRisk < 4) {
-//         relativeRiskWord = "Slightly elevated";
-//         summaryColor = "rgb(231, 206, 61),rgb(211, 159, 16))";
-//         summaryImage = "./svg/Results=Okay.png"; // unhealthy.gif
-//     } else {
-//         relativeRiskWord = "Very High";
-//         summaryColor = "rgb(178, 32, 0),rgb(241, 96, 96))";
-//         summaryImage = "./svg/Results=Bad.png"; // vunhealthy.gif
-//     }
-
-//     // Activity computation
-//     if (hardSportValue + modSportValue < 1.5) {
-//         activityImagePath = "./img/bar_red.png";
-//     } else if (hardSportValue + modSportValue >= 1.5 && hardSportValue + modSportValue < 3.5) {
-//         activityImagePath = "./img/bar_yellow.png";
-//     } else {
-//         activityImagePath = "./img/bar_green.png";
-//     }
-//     // Diet computation
-//     if (Diet * 10 < 2.0) {
-//         dietImagePath = "./img/bar_red.png";
-//     } else if (Diet * 10 > 2.0 && Diet * 10 < 4.5) {
-//         dietImagePath = "./img/bar_yellow.png";
-//     } else {
-//         dietImagePath = "./img/bar_green.png";
-//     }
-//     // BMI computation
-//     if (BMI >= 25 && BMI < 30) {
-//         bmiImagePath = "./img/bar_yellow.png";
-//     } else if (BMI >= 18.5 && BMI < 25) {
-//         bmiImagePath = "./img/bar_green.png";
-//     } else {
-//         bmiImagePath = "./img/bar_red.png";
-//     }
-//     // Smoke computation
-//     if (((smokeValue * 36) / 0.18283).toFixed(0) > 30) {
-//         smokeImagePath = "./img/bar_red.png";
-//     } else if (((smokeValue * 36) / 0.18283).toFixed(0) > 0 && ((smokeValue * 36) / 0.18283).toFixed(0) <= 30) {
-//         smokeImagePath = "./img/bar_yellow.png";
-//     } else {
-//         smokeImagePath = "./img/bar_green.png";
-//     }
-
-//     var summaryQuestion = survey.getQuestionByName("summary");
-//     summaryQuestion.html = "<div><center>" + "<p><img alt='' src=" + summaryImage + "></p>" + "</center><br><center><p style='margin:auto;'>Your risk is <h3>" + relativeRiskWord + "</h3><br></p></center></div>"
-
-
-//     // Good foods replacement
-//     // Add logic for what image to show
-//     // var imageSequence = ["./img/circle_above.png","./img/circle_av.png","./img/circle_below.png","./img/circle_mbelow.png","./img/circle_mmbelow.png"];
-//     const imageSequence = ["./img/vhealthy-graph.png", "./img/healthy-graph.png", "./img/unhealthy-graph.png", "./img/vunhealthy-graph.png", "./img/vvunhealthy-graph.png"];
-
-//     let sequenceVariable = 0;
-//     if ((((fruitVeggieValue + nutValue + grainValue + grainLowValue) * 1000) / 5).toFixed(0) == 0) {
-//         sequenceVariable = 2
-//     } else {
-//         sequenceVariable = 1
-//     }
-//     const goodFoodsQuestion = survey.getQuestionByName("good-foods");
-//     goodFoodsQuestion.html =
-//         "<h2>You’re doing pretty good... </h2> <br> " +
-//         "<div id='chart_good_diet_vertical' style='overflow: hidden !important;'></div>"
-//     /*<p>  (You eat low fiber grains <b>"+grainLowQuestion+"</b>, you need a least one serving every day)</p></div></li>";*/
-
-//     // Good foods replacement
-//     if ((((sugarValue + meatValue) * 1000) / 5).toFixed(0) != 0) {
-//         sequenceVariable += 1
-//     }
-//     const badFoodsQuestion = survey.getQuestionByName("bad-foods");
-//     badFoodsQuestion.html =
-//         "<h2>... but you can do better</h2> <br> " +
-//         "<div id='chart_bad_diet_vertical' style='overflow: hidden !important;'></div>"
-
-
-//     // Actitives replacement
-//     if (((modSportValue + hardSportValue) * 6).toFixed(0) != 0) {
-//         sequenceVariable -= 1
-//     } else {
-//         sequenceVariable += 1
-//     }
-//     const activitiesQuestion = survey.getQuestionByName("activities");
-//     activitiesQuestion.html = "<h3>Let's look at your exercise :</h3>" +
-//         "<div id='chart_exercise_vertical' style='overflow: hidden !important;'></div>"
-
-
-//     // Smoking replacement
-//     if (smokeQuestion == "Used to smoke") {
-//         sequenceVariable += 1
-//     } else if (smokeQuestion == "Currently smoke") {
-//         sequenceVariable += 2
-//     }
-//     // const smokingQuestion = survey.getQuestionByName("smokinghabits");
-//     // smokingQuestion.html = "<h3>Let's look at your smoking habits :</h3> <ul> <li><div> <p> You " + smokeQuestion + ": <span style='color: red;  font-weight: bold;' class='text-orientation-right-css'> - " + ((smokeValue * 36) / 0.18283).toFixed(0) + "</span></p></div></li>" +
-//     //     "<p> Any smoking significantly affects your heart health, it's -30 if you used to smoke and -177 if you currently do!</p>" +
-//     //     "<br><center><p>Smoking has a huge impact in your heart score. Hopefully you didn't see it come down!</p><br><p><img alt='' src=" + imageSequence[sequenceVariable] + "></p></center>";
-// });
