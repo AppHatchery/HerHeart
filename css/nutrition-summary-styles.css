@@ -1,0 +1,32 @@
+
+.ball {
+    left: 90%;
+    z-index: 9;
+    width: 30px !important;
+    height: 30px !important;
+    background: linear-gradient(0deg, #000, #c7c7c7);
+    border-radius: 100px;
+    position: absolute;
+}
+
+.height {
+    height: 30px;
+}
+
+.red {
+    background: #CE3043;
+    border-bottom-left-radius: 100px;
+    border-top-left-radius: 100px;
+}
+
+
+.yellow {
+    background: #FFD600;
+}
+
+
+.green {
+    background: #4EBE3C;
+    border-bottom-right-radius: 100px;
+    border-top-right-radius: 100px;
+}
