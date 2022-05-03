@@ -18,7 +18,7 @@ let animationValuesHealthy = new Array(9);
 const goodFeedbackResponse = ["empty", "Yea! That's the exercise you need every week!", "Yaaa fruits and veggies make your heart healthy!", "Yea nuts are awesome!! One of the best things you can do to reduce risk of cardiac disease", "", "", "Keep 'em grains coming!", "This is great! See how much NOT smoking has helped your score, smoking is a HUGE factor in your heart health"];
 const mediumFeedbackResponse = ["empty", "", "", "Nuts are a great foods! They impact your risk of heart health so much, even more than fruit and veggies!", "", "", "", "As you can probably guess, smoking is not too good for your heart, but because you stopped it means your heart is healing!"];
 const badFeedbackResponse = ["empty", "", "", "Nuts are some of the best foods you can eat to reduce your risk of cardiac health, and there's so much variety!", "Eehhh that much soda is not good for your heart!", "Uuuhh a lot of red meat! Too much meat is actually bad for your heart...", "", "", "Smoking any nicotine is one of the biggest factors in reducing your risk of cardiac disease! You know that 60% of teenagers your age don't smoke, if your group of friends smokes you could try to use non-nicotine products for example!"];
-const animationValuesTitles = ["empty", "Physical activity", "Fruits & Veggies", "Nuts", "Soda", "Meat", "Grains"];
+const animationValuesTitles = ["empty", "Physical activity","Grains", "Fruits & Veggies", "Nuts", "Meat","Soda"];
 
 let animationValuesMinusLastValue = []
 let animationValuesSort = [];
@@ -38,9 +38,11 @@ let index = 0;
 // animationValuesHealthy = [0, 20, 20, 40, 20, 20, 20, 60, 20]; // Overall quantity amounts to 200 without the alcohol portion that needs to be considered separate
 // animationValues = [0, 10, 15, 36, 45, 59, 77, 60, 20];
 // animationValuesHealthy = [0, 20, 20, 40, 20, 20, 20, 60, 20]; // Overall quantity amounts to 200 without the alcohol portion that needs to be considered separate
-rawHealthyValues = [0, 3.5, 4, 2, 2, 0.25, 0.25, 0];
+rawHealthyValues = [0, 3.5, 2.6, 3, 2, 0.2, 0.2, 0];
 // rawScoreValues = [0,1.5,1,1.5,0.5,0.8,2,0,0];
 rawScoreValues = [];
+graphScoreValues = [];
+
 // Static variables
 let rawSport = 0;
 let rawFruits = 0;
@@ -90,7 +92,8 @@ let nuts_a = ['img/nuts_never.png','img/nuts_lessthan1.png','img/nuts_onceaweek.
 let processed_a = ['img/processed_never.png','img/generic_bad_lessthan1.png','img/generic_bad_1to2.png','img/generic_bad_3to5.png','img/generic_bad_everyday.png','img/generic_bad_twiceaday.png'];
 let redmeat_a = ['img/redmeat_never.png','img/generic_bad_lessthan1.png','img/generic_bad_1to2.png','img/generic_bad_3to5.png','img/generic_bad_everyday.png','img/generic_bad_twiceaday.png'];
 let soda_a = ['img/soda_never.png','img/generic_bad_lessthan1.png','img/soda_1to2.png','img/soda_3to5.png','img/generic_bad_everyday.png','img/generic_bad_twiceaday.png'];
-let alcohol_a = ['img/.png','img/.png','img/.png','img/.png','img/.png','img/.png'];
+let alcohol_a = ['img/soda_never.png','img/generic_bad_lessthan1.png','img/soda_1to2.png','img/soda_3to5.png','img/generic_bad_everyday.png','img/generic_bad_twiceaday.png'];
+// let alcohol_a = ['img/.png','img/.png','img/.png','img/.png','img/.png','img/.png'];
 
 const json = {
     "title": "HerHeart",
@@ -1132,7 +1135,9 @@ function emptyArray() {
 }
 
 function calculateGoodBadDiet() {
-    rawScoreValues = [0, rawSport, rawGrains, rawFruits, rawNuts, rawMeat, rawSoda, rawSmoke, rawAlcohol];
+    rawScoreValues = [0, rawSport, animationValues[2]-animationValues[1], animationValues[3]-animationValues[2], (animationValues[4]-animationValues[3])/2, 20-(animationValues[5]-animationValues[4]), 20-(animationValues[6]-animationValues[5]), rawSmoke, rawAlcohol];
+    console.log(rawScoreValues);
+    // graphScoreValues = [rawGrains*const,]
     // Calculates the percentage score
     for (const key in animationValues) {
         if (key > 1 && key < animationValues.length - 2) {
@@ -1148,7 +1153,7 @@ function calculateGoodBadDiet() {
             index++
         }
     }
-    // console.log(valuesDict);
+    console.log(valuesDict);
 
     // Create items array
     var items = Object.keys(valuesDict).map(function (key) {
@@ -1166,13 +1171,14 @@ function calculateGoodBadDiet() {
         cleanSortedValuesHealthy.push(valuesDict[items[val][0]]["rawHealthy"]);
         cleanSortedValues.push(valuesDict[items[val][0]]["rawScore"]);
     }
+    console.log(cleanSortedValues);
 
     index = 0;
     for (const cleanSortedValuesKey in cleanSortedValues) {
         categories.push(sortedDict[cleanSortedValuesKey]);
         // This one is wrongly place, it's just static
         healthyData.push(cleanSortedValuesHealthy[cleanSortedValuesKey] * 5)
-        scoreData.push(cleanSortedValues[cleanSortedValuesKey]/* * cleanSortedValuesHealthy[cleanSortedValuesKey]*/ * 5)
+        scoreData.push(cleanSortedValues[cleanSortedValuesKey]/* * cleanSortedValuesHealthy[cleanSortedValuesKey]*/*19/4) // This constant helps put the score at the end of the graph
         index++
     }
 }
@@ -1204,7 +1210,7 @@ survey
                         </div>
                         <div class="uk-width-expand uk-position-relative">
                             <div uk-grid class="uk-child-width-1-3 height">
-                                <div class="ball left" style="left:${scoreData[categoriesKey] * 5}%"></div>
+                                <div class="ball left" style="left:${scoreData[categoriesKey]}%"></div>
                                 <div class="red"></div>
                                 <div class="yellow"></div>
                                 <div class="green"></div>
@@ -1224,7 +1230,7 @@ survey
         if (options.page.name == "page40") {
 
             let optionsRadialBar = {
-                series: [44, 55],
+                series: [survey.getQuestionByName("activity-high-next").value*12.5, survey.getQuestionByName("activity-low-next").value*12.5],
                 chart: {
                     height: 350,
                     type: 'radialBar',
@@ -1501,13 +1507,13 @@ survey
             }
 
             // Grains
-            animationValues[2] = animationValues[1] + parseInt((rawGrains * 20) / 4);
+            animationValues[2] = animationValues[1] + parseInt((rawGrains * 20) / 3);
 
             // Fruits & Veggies
-            if (rawFruits >= 2) {
+            if (rawFruits >= 3) {
                 animationValues[3] = animationValues[2] + 20;
             } else {
-                animationValues[3] = animationValues[2] + parseInt(rawFruits * 10);
+                animationValues[3] = animationValues[2] + parseInt((rawFruits/3) * 20);
             }
 
             // Nuts
@@ -1871,6 +1877,8 @@ survey.onValueChanged.add(function (survey, options) {
 
     rawSmoke = smokeQuestion;
 
+    
+
     // Could probably use an equation to remove this if statement
     if (smokeQuestion == 0.5) {
         smokeValue = 0.15285;
@@ -1966,28 +1974,4 @@ survey.onValueChanged.add(function (survey, options) {
         + "<p><img alt='' class='image'  src=" + summaryImage + "></p>"
         + " <p>How likely do you think you'll make chnages in your lifestyle ?</p> </center> <br>" +
         "<div id='slider' class='uk-container'></div> <br><br> </div>";
-
-
-    // Smoking replacement
-    // if (smokeQuestion == "Used to smoke") {
-    //     sequenceVariable += 1
-    // } else if (smokeQuestion == "Currently smoke") {
-    //     sequenceVariable += 2
-    // }
-
-    // Good foods replacement
-    // Add logic for what image to show
-    // var imageSequence = ["./img/circle_above.png","./img/circle_av.png","./img/circle_below.png","./img/circle_mbelow.png","./img/circle_mmbelow.png"];
-
-    // if ((((fruitVeggieValue + nutValue + grainValue + grainLowValue) * 1000) / 5).toFixed(0) == 0) {
-    //     sequenceVariable = 2
-    // } else {
-    //     sequenceVariable = 1
-    // }
-    
-    // // Good foods replacement
-    // if ((((sugarValue + meatValue) * 1000) / 5).toFixed(0) != 0) {
-    //     sequenceVariable += 1
-    // }
-
 });
