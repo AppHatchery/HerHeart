@@ -92,7 +92,7 @@ let nuts_a = ['img/nuts_never.png','img/nuts_lessthan1.png','img/nuts_onceaweek.
 let processed_a = ['img/processed_never.png','img/generic_bad_lessthan1.png','img/generic_bad_1to2.png','img/generic_bad_3to5.png','img/generic_bad_everyday.png','img/generic_bad_twiceaday.png'];
 let redmeat_a = ['img/redmeat_never.png','img/generic_bad_lessthan1.png','img/generic_bad_1to2.png','img/generic_bad_3to5.png','img/generic_bad_everyday.png','img/generic_bad_twiceaday.png'];
 let soda_a = ['img/soda_never.png','img/generic_bad_lessthan1.png','img/soda_1to2.png','img/soda_3to5.png','img/generic_bad_everyday.png','img/generic_bad_twiceaday.png'];
-let alcohol_a = ['img/soda_never.png','img/generic_bad_lessthan1.png','img/soda_1to2.png','img/soda_3to5.png','img/generic_bad_everyday.png','img/generic_bad_twiceaday.png'];
+let alcohol_a = ['img/alcohol_never.png','img/alcohol_lessthan1.png','img/alcohol_1to2.png','img/alcohol_3to5.png','img/generic_bad_everyday.png','img/generic_bad_twiceaday.png'];
 // let alcohol_a = ['img/.png','img/.png','img/.png','img/.png','img/.png','img/.png'];
 
 const json = {
@@ -183,7 +183,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "name": "test",
+                    "name": "activity-high-title",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3> <center>Interesting selection 🤔... do spend at least 1 hour a week doing intense physical exercise? </center></h3>" +
                         "<p><center>Examples: cheerleading, running, softball, soccer, volleyball, tennis, basketball</center></p>"
@@ -241,7 +241,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "name": "test",
+                    "name": "activity-low-next-title",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3> <center>Interesting selection 🤔... do spend at least 1 hour a week doing intense physical exercise? </center></h3>"+
                         "<p><center>Examples: walking, dancing, riding a bike, playing with dog, swimming, marching band</center></p>"
@@ -310,7 +310,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "name": "test",
+                    "name": "grains-high-title",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3> <center>Interesting selection 🤔... do you eat whole grains at least 3-5 times a week?</center></h3>"+
                         "<p><center>Examples: whole grain bread, whole grain pasta, brown rice, popcorn, oats</center></p>"
@@ -365,7 +365,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "name": "test",
+                    "name": "grains-low-next-title",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3> <center>Okay, that's fine butttt... do you eat them at least twice a week? </center></h3>"+
                         "<p><center>Examples: sugary cereals, white bread, pancakes, bagels, crackers</center></p>"
@@ -433,7 +433,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "name": "test",
+                    "name": "fruit-title",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3> <center>Oof.... 😬 Do you at least eat three servings a day??</center></h3>"
                 },
@@ -487,7 +487,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "name": "test",
+                    "name": "veggies-title",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3> <center>Okayyy 😬... Well we all know veggies are good for you. Do you at least eat three servings a day??</center></h3>"
                 },
@@ -553,7 +553,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "name": "test",
+                    "name": "nuts-title",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3> <center>Oof.... 😬 Do you at least eat two servings a week??</center></h3>"
                 },
@@ -620,7 +620,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "name": "test",
+                    "name": "procmeats-title",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3> <center>Processed meats aren't great for your heart.... Do you eat one serving or less a week??</center></h3>"+
                         "<p><center style='font-size:14px;'>Examples: hot dogs, bacon, deli meats (pepperoni, sandwich meat, bologna, salami, etc.)</center></p>"
@@ -674,7 +674,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "name": "test",
+                    "name": "redmeat-title",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3> <center>Red meats aren't the best for your heart either.... 😬 Do you eat one serving or less a week??</center></h3>"+
                         "<p><center>Examples: ground beef, steak, lamb, pork, veal</center></p>"
@@ -742,7 +742,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "name": "test",
+                    "name": "soda-title",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3> <center>Sodas aren't the best for your heart either.... 😬 Do you drink two or or less a week??</center></h3>"
                 },
@@ -825,7 +825,9 @@ const json = {
                     "isRequired": true
                 }
             ]
-        }, {
+        }, 
+        // Alcohol
+        {
             "popupdescription": "P5",
             "pos": 8,
             "visibleIf":"{age}>=21",
@@ -834,7 +836,7 @@ const json = {
                     "type": "html",
                     "name": "test",
                     "html": "<div id='sketch-holder'>" +
-                        "<h3><center> Oh! You are 21+, let me ask you then, how often do you drink one glass of alcohol?</center></h3>"+
+                        "<h3><center> Oh! You are 21+, let me ask you then, do you drink alcohol??</center></h3>"+
                         "</div><img alt='' style='margin-left:auto; margin-right:auto; display:block; width:50%;' src='img/alcohol.png'>"+
                         "<p><center>One glass = 4 ounces of wine, 12 ounces of beer</center></p>"
                 },
@@ -852,14 +854,15 @@ const json = {
                         {"value":3,"imageLink":alcohol_[3]}]
                 }
             ]
-        },  {
+        }, 
+        {
             "popupdescription": "P5",
             "pos": 8,
             "visibleIf":"{age}>=21",
             "elements": [
                 {
                     "type": "html",
-                    "name": "test",
+                    "name": "alcohol-title",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3> <center>Alcohol isn't super good for you.... 😬 How many glasses do you drink in a week?</center></h3>"
                 },
@@ -878,16 +881,17 @@ const json = {
                 }
             ]
         },
+        // Alcohol feedback
         {
             "popupdescription": "P5",
             "animated": "yes",
             "pos": 8,
+            "visibleIf": "{age}>=21",
             "elements": [
                 {
                     "type": "html",
                     "name": "test",
                     "html": "<div id='sketch-holder'></div><h3 style='text-align:center'>Gotcha! You may know this but one glass of wine a day is actually beneficial to your heart health, just one though 👀</h3>",
-                    "visibleIf": "{age}>=21"
                 }
             ]
         }, {
@@ -1613,6 +1617,7 @@ survey
         console.log("page number is",options.page.name);
     if (options.page.name == "page3") {
         if (survey.getQuestionByName("activity-high").value > 1){
+            survey.getQuestionByName("activity-high-title").html = 'Nice! Butttttt do spend at least 1-2 hours a week doing intense physical exercise?';
             survey.getQuestionByName("activity-high-next").choices = [
                 {"value":0.75,"imageLink":generic_sport[2]},
                 {"value":2,"imageLink":generic_sport[3]},
@@ -1620,6 +1625,7 @@ survey
                 {"value":10,"imageLink":generic_sport[5]}];
 
         } else {
+            survey.getQuestionByName("activity-high-title").html = 'Interesting selection 🤔... do spend at least 1-2 hours a week doing intense physical exercise?';
             survey.getQuestionByName("activity-high-next").choices = [
                 {"value":0,"imageLink":generic_sport[0]},
                 {"value":0.25,"imageLink":generic_sport[1]},
@@ -1645,6 +1651,7 @@ survey
 
     if (options.page.name == "page5") {
         if (survey.getQuestionByName("activity-low").value > 1){
+            survey.getQuestionByName("activity-low-next-title").html = 'Nice! Butttttt do you spend at least 1-2 hours a week doing low intensity physical exercise?';
             survey.getQuestionByName("activity-low-next").choices = [
                 {"value":0.75,"imageLink":generic_sport[2]},
                 {"value":2,"imageLink":generic_sport[3]},
@@ -1652,6 +1659,7 @@ survey
                 {"value":10,"imageLink":generic_sport[5]}];
 
         } else {
+            survey.getQuestionByName("activity-low-next-title").html = 'Interesting selection 🤔... do you spend 1-2 hours a week doing low intensity physical exercise?';
             survey.getQuestionByName("activity-low-next").choices = [
                 {"value":0,"imageLink":generic_sport[0]},
                 {"value":0.25,"imageLink":generic_sport[1]},
@@ -1662,12 +1670,14 @@ survey
 
     if (options.page.name == "page8") {
         if (survey.getQuestionByName("grains-high").value > 1){
+            survey.getQuestionByName("grains-high-title").html = 'Nice! Butttttt do you eat them at least 3-5 times a week?';
             survey.getQuestionByName("grains-high-next").choices = [
                 {"value":0.3,"imageLink":grains_high_a[2]},
                 {"value":0.5,"imageLink":grains_high_a[3]},
                 {"value":1,"imageLink":grains_high_a[4]},
                 {"value":2,"imageLink":grains_high_a[5]}];
         } else {
+            survey.getQuestionByName("grains-high-title").html = 'Interesting selection 🤔... do you eat whole grains at least 3-5 times a week?';
             survey.getQuestionByName("grains-high-next").choices = [
                 {"value":0,"imageLink":grains_high_a[0]},
                 {"value":0.1,"imageLink":grains_high_a[1]},
@@ -1693,6 +1703,7 @@ survey
 
     if (options.page.name == "page10") {
         if (survey.getQuestionByName("grains-low").value > 1){
+            survey.getQuestionByName("grains-low-next-title").html = 'The more grains the better! Do you eat them at least twice a week?';
             survey.getQuestionByName("grains-low-next").choices = [
                 {"value":0.3,"imageLink":grains_low_a[2]},
                 {"value":0.5,"imageLink":grains_low_a[3]},
@@ -1700,6 +1711,7 @@ survey
                 {"value":2,"imageLink":grains_low_a[5]}];
 
         } else {
+            survey.getQuestionByName("grains-low-next-title").html = 'Okay, that’s fine butttt... do you eat them at least twice a week?';
             survey.getQuestionByName("grains-low-next").choices = [
                 {"value":0,"imageLink":grains_low_a[0]},
                 {"value":0.1,"imageLink":grains_low_a[1]},
@@ -1710,12 +1722,14 @@ survey
 
     if (options.page.name == "page13") {
         if (survey.getQuestionByName("fruit").value > 1){
+            survey.getQuestionByName("fruit-title").html = 'Nice, now prove it 👀. Do you eat at least three servings a day??';
             survey.getQuestionByName("fruit-next").choices = [
                 {"value":0.5,"imageLink":fruit_a[1]},
                 {"value":1,"imageLink":fruit_a[2]},
                 {"value":2,"imageLink":fruit_a[3]},
                 {"value":3,"imageLink":fruit_a[4]}];
         } else {
+            survey.getQuestionByName("fruit-title").html = 'Oof.... 😬 Do you at least eat three servings a day??';
             survey.getQuestionByName("fruit-next").choices = [
                 {"value":0,"imageLink":fruit_a[0]},
                 {"value":0.5,"imageLink":fruit_a[1]},
@@ -1726,12 +1740,14 @@ survey
 
     if (options.page.name == "page15") {
         if (survey.getQuestionByName("veggies").value > 1){
+            survey.getQuestionByName("veggies-title").html = 'Nice, veggies are super important for good heart health! Do you eat at least three servings a day??';
             survey.getQuestionByName("veggies-next").choices = [
                 {"value":0.5,"imageLink":veggies_a[1]},
                 {"value":1,"imageLink":veggies_a[2]},
                 {"value":2,"imageLink":veggies_a[3]},
                 {"value":3,"imageLink":veggies_a[4]}];
         } else {
+            survey.getQuestionByName("veggies-title").html = 'Okayyy 😬... Well we all know veggies are good for you. Do you at least eat three servings a day??';
             survey.getQuestionByName("veggies-next").choices = [
                 {"value":0,"imageLink":veggies_a[0]},
                 {"value":0.5,"imageLink":veggies_a[1]},
@@ -1742,12 +1758,14 @@ survey
 
     if (options.page.name == "page18") {
         if (survey.getQuestionByName("nuts").value > 1){
+            survey.getQuestionByName("nuts-title").html = 'Nice, now prove it 👀. Do you eat at least two servings a week??';
             survey.getQuestionByName("nuts-next").choices = [
                 {"value":1,"imageLink":nuts_a[1]},
                 {"value":2,"imageLink":nuts_a[2]},
                 {"value":3,"imageLink":nuts_a[3]},
                 {"value":4,"imageLink":nuts_a[4]}];
         } else {
+            survey.getQuestionByName("nuts-title").html = 'Oof.... 😬 Do you at least eat two servings a week??';
             survey.getQuestionByName("nuts-next").choices = [
                 {"value":0,"imageLink":nuts_a[0]},
                 {"value":1,"imageLink":nuts_a[1]},
@@ -1758,12 +1776,14 @@ survey
 
     if (options.page.name == "page21") {
         if (survey.getQuestionByName("procmeats").value > 1){
+            survey.getQuestionByName("procmeats-title").html = 'Okay! Too much processed meat isn’t good for your heart. Do you eat one serving or less a week??';
             survey.getQuestionByName("procmeats-next").choices = [
                 {"value":0.3,"imageLink":processed_a[2]},
                 {"value":0.5,"imageLink":processed_a[3]},
                 {"value":1,"imageLink":processed_a[4]},
                 {"value":2,"imageLink":processed_a[5]}];
         } else {
+            survey.getQuestionByName("procmeats-title").html = 'Processed meats aren’t great for your heart.... Do you eat one serving or less a week??';
             survey.getQuestionByName("procmeats-next").choices = [
                 {"value":0,"imageLink":processed_a[0]},
                 {"value":0.1,"imageLink":processed_a[1]},
@@ -1789,12 +1809,14 @@ survey
 
     if (options.page.name == "page23") {
         if (survey.getQuestionByName("redmeat").value > 1){
+            survey.getQuestionByName("redmeat-next-title").html = 'Okay! Too much red meat can reduce your heart health. Do you eat one serving or less a week??';
             survey.getQuestionByName("redmeat-next").choices = [
                 {"value":0.3,"imageLink":redmeat_a[2]},
                 {"value":0.5,"imageLink":redmeat_a[3]},
                 {"value":1,"imageLink":redmeat_a[4]},
                 {"value":2,"imageLink":redmeat_a[5]}];
         } else {
+            survey.getQuestionByName("redmeat-next-title").html = 'Red meats aren’t the best for your heart either.... 😬 Do you eat one serving or less a week??';
             survey.getQuestionByName("redmeat-next").choices = [
                 {"value":0,"imageLink":redmeat_a[0]},
                 {"value":0.1,"imageLink":redmeat_a[1]},
@@ -1805,12 +1827,14 @@ survey
 
     if (options.page.name == "page26") {
         if (survey.getQuestionByName("soda").value > 1){
+            survey.getQuestionByName("soda-title").html = 'Okay! Too much soda can reduce your heart health. Do you two or less a week??';
             survey.getQuestionByName("soda-next").choices = [
                 {"value":0.3,"imageLink":soda_a[2]},
                 {"value":0.5,"imageLink":soda_a[3]},
                 {"value":1,"imageLink":soda_a[4]},
                 {"value":2,"imageLink":soda_a[5]}];
         } else {
+            survey.getQuestionByName("soda-title").html = 'Sodas aren’t the best for your heart either.... 😬 Do you drink two or or less a week??';
             survey.getQuestionByName("soda-next").choices = [
                 {"value":0,"imageLink":soda_a[0]},
                 {"value":0.1,"imageLink":soda_a[1]},
@@ -1819,14 +1843,16 @@ survey
         }
     }
 
-    if (options.page.name == "page29") {
+    if (options.page.name == "page32") {
         if (survey.getQuestionByName("alcohol").value > 1){
+            survey.getQuestionByName("alcohol-title").html = 'Okay! Actually drinking alcohol can improve your heart health. Do you drink around 2 to 5 glasses a week?';
             survey.getQuestionByName("alcohol-next").choices = [
                 {"value":0.3,"imageLink":alcohol_a[2]},
                 {"value":0.5,"imageLink":alcohol_a[3]},
                 {"value":1,"imageLink":alcohol_a[4]},
                 {"value":2,"imageLink":alcohol_a[5]}];
         } else {
+            survey.getQuestionByName("alcohol-title").html = 'Alcohol is a bit tricky, a lot isn’t super good for you, but none isn’t either.... 😬 Do you drink about one glass or less a day?';
             survey.getQuestionByName("alcohol-next").choices = [
                 {"value":0,"imageLink":alcohol_a[0]},
                 {"value":0.1,"imageLink":alcohol_a[1]},
