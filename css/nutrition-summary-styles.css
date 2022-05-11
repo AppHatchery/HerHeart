@@ -30,3 +30,31 @@
     border-bottom-right-radius: 100px;
     border-top-right-radius: 100px;
 }
+
+.green-start {
+    background: #4EBE3C;
+    border-bottom-left-radius: 100px;
+    border-top-left-radius: 100px;
+}
+
+.red-end {
+    background: #CE3043;
+    border-bottom-right-radius: 100px;
+    border-top-right-radius: 100px;
+}
+
+.intense-exercise {
+    margin-right: 5px;
+    background: #FF8534;
+    width: 16px;
+    height: 16px;
+    border-radius: 100px;
+}
+
+.low-intense {
+    margin-right: 5px;
+    background: #2FD9FD;
+    width: 16px;
+    height: 16px;
+    border-radius: 100px;
+}
