@@ -26,18 +26,22 @@
 }
 
 .sv-root-modern .sv-footer__next-btn {
-    padding: 15px;
+    padding: 16px;
     background-color: transparent !important;
     color: transparent !important;
     background-image: url("../svg/button-arrow.svg");
     background-repeat: no-repeat;
+    margin-right: 1px;
 }
 
 .sv-root-modern .sv-footer__prev-btn {
-    padding: 15px;
+    padding: 16px;
+    width: auto;
     transform: rotate(180deg);
     background-color: transparent !important;
     color: transparent !important;
+    margin-left: 15px;
+    background-position: right 0 top;
     background-image: url("../svg/button-arrow.svg");
     background-repeat: no-repeat;
 }
@@ -108,7 +112,35 @@ h3 {
 }
 
 
-.image{
+.image {
     margin-top: 40px;
     width: 70%;
+}
+
+.summary-image {
+    margin-top: 40px;
+    width: 50%;
+}
+
+.border-left-bottom-right{
+    /*border-left: #cecece 1px solid;*/
+    /*border-right: #cecece 1px solid;*/
+    /*border-bottom: #cecece 1px solid;*/
+}
+
+.border-bottom{
+    /*border-bottom: #cecece 1px solid;*/
+}
+
+.sv-container-modern__title h3 {
+  color: #1CB393 ;
+}
+
+.uk-accordion-title::before {
+    background-image: url("../svg/arrow-right-circle.svg");
+}
+
+.uk-open > .uk-accordion-title::before {
+    transform: rotate(90deg);
+    background-image: url("../svg/arrow-right-circle.svg");
 }
