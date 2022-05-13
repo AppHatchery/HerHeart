@@ -1918,6 +1918,11 @@ survey
                 "<p><center>We've got some suggestions just for you too. Do you wanna see them?</center></p>";
             }
         }
+
+        // Send data to firebase on the user's responses
+        if (options.page.name == "page43" || options.page.name == "page44" ){
+            writeUserData(survey.data);
+        }
     });
 
 //     // Modify the quiz real-time to change the answer options based on the user's selection
