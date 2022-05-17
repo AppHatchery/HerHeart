@@ -1,30 +1,36 @@
 // Firebase 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-
 // Your web app's Firebase configuration
+
+// const { default: firebase } = require("@firebase/app-compat");
+
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-// const firebaseConfig = {
-//     apiKey: "AIzaSyC0oHcnRMNo_92xxYWwLwmKIi9tp89Yz6g",
-//     authDomain: "herheart-5ca67.firebaseapp.com",
-//     projectId: "herheart-5ca67",
-//     storageBucket: "herheart-5ca67.appspot.com",
-//     messagingSenderId: "435629529947",
-//     appId: "1:435629529947:web:77da4219b313ff7b5b987e",
-//     measurementId: "G-6Z1Z3BMDQ4"
-// };
+const firebaseConfig = {
+    apiKey: "AIzaSyC0oHcnRMNo_92xxYWwLwmKIi9tp89Yz6g",
+    authDomain: "herheart-5ca67.firebaseapp.com",
+    projectId: "herheart-5ca67",
+    storageBucket: "herheart-5ca67.appspot.com",
+    messagingSenderId: "435629529947",
+    appId: "1:435629529947:web:77da4219b313ff7b5b987e",
+    measurementId: "G-6Z1Z3BMDQ4"
+};
   
 // // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-// const database = getDatabase(app);
+const app = firebase.initializeApp(firebaseConfig);
+// const database = firebase.database();
+
   
 function writeUserData(answers) {
-    const db = getDatabase();
+    const db = app.database();
     // Get a key for a new Post.
-    const entryKey = push(ref(db)).key;
+    // const entryKey = push(ref(db)).key;
     const updates = {};
-    updates['users/' + entryKey] = answers;
-    update(ref(db), updates);
+    const entryKey = app.database().ref('Buzzfeed').push().key;
+    updates[entryKey] = answers;
+    // app.update(ref(db), updates);
+    // Change Buzzfeed title for research depending on to what database this is going to
+    app.database().ref('Buzzfeed/').update(updates);
 }
 
 Survey
@@ -1681,6 +1687,7 @@ survey
         // Okay so this works it seems like
         console.log("page number is",options.page.name);
         if (options.page.name == "page3") {
+            writeUserData(survey.data);
             if (survey.getQuestionByName("activity-high").value > 1){
                 survey.getQuestionByName("activity-high-title").html = '<h3><center>Nice! Butttttt do spend at least 1-2 hours a week doing intense physical exercise?</center></h3>';
                 survey.getQuestionByName("activity-high-next").choices = [
@@ -1891,6 +1898,7 @@ survey
         }
 
         if (options.page.name == "page26") {
+           
             if (survey.getQuestionByName("soda").value > 1){
                 survey.getQuestionByName("soda-title").html = '<h3><center>Okay! Too much soda can reduce your heart health. Do you two or less a week??</center></h3>';
                 survey.getQuestionByName("soda-next").choices = [

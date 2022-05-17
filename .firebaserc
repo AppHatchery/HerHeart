@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "herheart-5ca67"
+  },
+  "targets": {
+    "herheart-5ca67": {
+      "hosting": {
+        "buzzfeed": [
+          "herheart-5ca67"
+        ]
+      }
+    }
   }
 }
