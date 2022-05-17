@@ -28,9 +28,12 @@ function writeUserData(answers) {
     const updates = {};
     const entryKey = app.database().ref('Buzzfeed').push().key;
     updates[entryKey] = answers;
+    const dates = {"date":new Date()};
+    // updates[entryKey+'/date'] = new Date();
     // app.update(ref(db), updates);
     // Change Buzzfeed title for research depending on to what database this is going to
     app.database().ref('Buzzfeed/').update(updates);
+    app.database().ref('Buzzfeed/'+entryKey).update(dates);
 }
 
 Survey
@@ -1363,6 +1366,11 @@ survey
             }, 300)
         }
 
+        // After the questions where user inputs, these statements are the only that fire. Take a look in refactoring.
+        if(options.page.name == "page3'7"){
+            writeUserData(survey.data);
+        }
+
         // YAGO: Revise as we change the length of the survey
         if (options.page.name == "page43" || options.page.name == "page44")
             $(".sv-footer__next-btn").css("display", 'none')
@@ -1687,7 +1695,6 @@ survey
         // Okay so this works it seems like
         console.log("page number is",options.page.name);
         if (options.page.name == "page3") {
-            writeUserData(survey.data);
             if (survey.getQuestionByName("activity-high").value > 1){
                 survey.getQuestionByName("activity-high-title").html = '<h3><center>Nice! Butttttt do spend at least 1-2 hours a week doing intense physical exercise?</center></h3>';
                 survey.getQuestionByName("activity-high-next").choices = [
@@ -1932,10 +1939,6 @@ survey
                     {"value":0.3,"imageLink":alcohol_a[2]},
                     {"value":0.5,"imageLink":alcohol_a[3]}];
             }
-        }
-
-        if(options.page.name == "page41"){
-            console.log("im in 41");
         }
 
         if (options.page.name == "page42"){
