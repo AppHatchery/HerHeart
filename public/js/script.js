@@ -4,6 +4,8 @@
 // Your web app's Firebase configuration
 
 // const { default: firebase } = require("@firebase/app-compat");
+// Info on firebase settings: https://firebase.google.com/docs/web/learn-more#web-version-8
+// Info on channel deployment: https://fireship.io/lessons/deploy-multiple-sites-to-firebase-hosting/
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
