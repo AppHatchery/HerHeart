@@ -1367,7 +1367,7 @@ survey
         }
 
         // After the questions where user inputs, these statements are the only that fire. Take a look in refactoring.
-        if(options.page.name == "page3'7"){
+        if(options.page.name == "page37"){
             writeUserData(survey.data);
         }
 
