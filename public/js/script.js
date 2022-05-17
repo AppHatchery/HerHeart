@@ -201,7 +201,7 @@ const json = {
                 {
                     "type": "radiogroup",
                     "name": "fruits",
-                    "title": "During a typical week how often do you have one peice of fruit?",
+                    "title": "During a typical week how often do you have one piece of fruit?",
                     "isRequired": true,
                     "colCount": 0,
                     "hasNone": false,
