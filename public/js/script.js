@@ -4,20 +4,19 @@
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-    apiKey: "AIzaSyC0oHcnRMNo_92xxYWwLwmKIi9tp89Yz6g",
-    authDomain: "herheart-5ca67.firebaseapp.com",
-    projectId: "herheart-5ca67",
-    storageBucket: "herheart-5ca67.appspot.com",
-    messagingSenderId: "435629529947",
-    appId: "1:435629529947:web:77da4219b313ff7b5b987e",
-    measurementId: "G-6Z1Z3BMDQ4"
-};
+// const firebaseConfig = {
+//     apiKey: "AIzaSyC0oHcnRMNo_92xxYWwLwmKIi9tp89Yz6g",
+//     authDomain: "herheart-5ca67.firebaseapp.com",
+//     projectId: "herheart-5ca67",
+//     storageBucket: "herheart-5ca67.appspot.com",
+//     messagingSenderId: "435629529947",
+//     appId: "1:435629529947:web:77da4219b313ff7b5b987e",
+//     measurementId: "G-6Z1Z3BMDQ4"
+// };
   
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
-  
+// // Initialize Firebase
+// const app = initializeApp(firebaseConfig);
+// const database = getDatabase(app);
   
 function writeUserData(answers) {
     const db = getDatabase();

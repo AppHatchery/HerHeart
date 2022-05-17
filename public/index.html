@@ -15,6 +15,26 @@
 <div id="surveyResult"></div>
 <div id="questionDescriptionText"></div>
 </body>
+<script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js'
+    import { database } from 'https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js'
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyC0oHcnRMNo_92xxYWwLwmKIi9tp89Yz6g",
+        authDomain: "herheart-5ca67.firebaseapp.com",
+        projectId: "herheart-5ca67",
+        storageBucket: "herheart-5ca67.appspot.com",
+        messagingSenderId: "435629529947",
+        appId: "1:435629529947:web:77da4219b313ff7b5b987e",
+        measurementId: "G-6Z1Z3BMDQ4"
+    };
+    
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    // const database = getDatabase(app);
+
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.13.10/dist/js/uikit.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/js/uikit-icons.min.js"></script>
 <script src="https://unpkg.com/jquery"></script>

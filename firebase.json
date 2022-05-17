@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "target": "buzzfeed",
     "public": "public",
     "ignore": [
       "firebase.json",
