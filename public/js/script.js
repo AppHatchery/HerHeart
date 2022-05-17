@@ -1,3 +1,31 @@
+const firebaseConfig = {
+    apiKey: "AIzaSyC0oHcnRMNo_92xxYWwLwmKIi9tp89Yz6g",
+    authDomain: "herheart-5ca67.firebaseapp.com",
+    projectId: "herheart-5ca67",
+    storageBucket: "herheart-5ca67.appspot.com",
+    messagingSenderId: "435629529947",
+    appId: "1:435629529947:web:77da4219b313ff7b5b987e",
+    measurementId: "G-6Z1Z3BMDQ4"
+};
+
+const app = firebase.initializeApp(firebaseConfig);
+
+function writeUserData(answers) {
+    const db = app.database();
+    // Get a key for a new Post.
+    // const entryKey = push(ref(db)).key;
+    const updates = {};
+    const entryKey = app.database().ref('Research').push().key;
+    updates[entryKey] = answers;
+    const dates = {"date":new Date()};
+    // updates[entryKey+'/date'] = new Date();
+    // app.update(ref(db), updates);
+    // Change Buzzfeed title for research depending on to what database this is going to
+    app.database().ref('Research/').update(updates);
+    app.database().ref('Research/'+entryKey).update(dates);
+}
+
+
 Survey
     .Serializer
     .addProperty("page", "animated:text");
@@ -984,6 +1012,11 @@ survey
                 const chartVertical = new ApexCharts(document.querySelector("#chart_exercise_vertical"), exerciseScore);
                 chartVertical.render()
             }, 100)
+        }
+
+        console.log(options.page.name);
+        if(options.page.name == "page27"){
+            writeUserData(survey.data);
         }
 
 
