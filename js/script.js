@@ -10,94 +10,11 @@ Survey
     .Serializer
     .addProperty("page", "pos:number");
 
-let newAnimation;
-let oldAnimation;
-// Disable for testing
-const animationValues = new Array(9);
-let animationValuesHealthy = new Array(9);
-const goodFeedbackResponse = ["empty", "Yea! That's the exercise you need every week!", "Yaaa fruits and veggies make your heart healthy!", "Yea nuts are awesome!! One of the best things you can do to reduce risk of cardiac disease", "", "", "Keep 'em grains coming!", "This is great! See how much NOT smoking has helped your score, smoking is a HUGE factor in your heart health"];
-const mediumFeedbackResponse = ["empty", "", "", "Nuts are a great foods! They impact your risk of heart health so much, even more than fruit and veggies!", "", "", "", "As you can probably guess, smoking is not too good for your heart, but because you stopped it means your heart is healing!"];
-const badFeedbackResponse = ["empty", "", "", "Nuts are some of the best foods you can eat to reduce your risk of cardiac health, and there's so much variety!", "Eehhh that much soda is not good for your heart!", "Uuuhh a lot of red meat! Too much meat is actually bad for your heart...", "", "", "Smoking any nicotine is one of the biggest factors in reducing your risk of cardiac disease! You know that 60% of teenagers your age don't smoke, if your group of friends smokes you could try to use non-nicotine products for example!"];
-const animationValuesTitles = ["empty", "Physical activity", "Grains", "Fruits & Veggies", "Nuts", "Meat", "Soda"];
+Survey
+    .StylesManager
+    .applyTheme("modern");
 
-let animationValuesMinusLastValue = []
-let animationValuesSort = [];
-let animationHealthSort = [];
-let cleanSortedValues = [];
-let cleanSortedValuesHealthy = []
-let valuesDict = {};
-let sortedDict = [];
-let categories = [];
-let scoreData = [];
-let healthyData = [];
 
-let index = 0;
-
-// Testing Graphs
-// animationValues = [0, 10, 15, 36, 45, 59, 77, 60, 20];
-// animationValuesHealthy = [0, 20, 20, 40, 20, 20, 20, 60, 20]; // Overall quantity amounts to 200 without the alcohol portion that needs to be considered separate
-// animationValues = [0, 10, 15, 36, 45, 59, 77, 60, 20];
-// animationValuesHealthy = [0, 20, 20, 40, 20, 20, 20, 60, 20]; // Overall quantity amounts to 200 without the alcohol portion that needs to be considered separate
-rawHealthyValues = [0, 3.5, 2.6, 3, 2, 0.2, 0.2, 0];
-// rawScoreValues = [0,1.5,1,1.5,0.5,0.8,2,0,0];
-rawScoreValues = [];
-graphScoreValues = [];
-
-// Static variables
-let rawSport = 0;
-let rawFruits = 0;
-let rawNuts = 0;
-let rawSoda = 0;
-let rawGrains = 0;
-let rawMeat = 0;
-let rawSmoke = 0;
-let rawAlcohol = 0;
-
-let BMI = 0
-let Diet = 0
-
-// Generic variables
-let generic_sport = ['img/generic_never.png', 'img/generic_15to30.png', 'img/generic_30to60.png', 'img/generic_1to3hr.png', 'img/generic_6to10hr.png', 'img/generic_10ormore.png'];
-
-let generic_lessthan1 = 'img/generic_lessthan1.png';
-let generic_1to2 = 'img/generic_1to2.png';
-let generic_3to5a = 'img/generic_3to5a.png';
-let generic_everyday = 'img/generic_everyday.png';
-let generic_3to5b = 'img/generic_3to5b.png';
-let generic_bad_1to2 = 'img/generic_bad_1to2.png';
-let generic_bad_3to5 = 'img/generic_bad_3to5.png';
-let generic_bad_everyday = 'img/generic_bad_everyday.png';
-let generic_bad_twiceaday = 'img/generic_bad_twiceaday.png';
-let generic_bad_lessthan1 = 'img/generic_bad_lessthan1.png';
-
-// First Pages
-let activity_ = ['img/activity_0.png', 'img/activity_1.png', 'img/activity_2.png', 'img/activity_3.png'];
-let high_grains_ = ['img/high_grains_0.png', 'img/high_grains_1.png', 'img/high_grains_2.png', 'img/high_grains_3.png'];
-let low_grains_ = ['img/low_grains_0.png', 'img/low_grains_1.png', 'img/low_grains_2.png', 'img/low_grains_3.png'];
-let fruit_ = ['img/fruit_0.png', 'img/fruit_1.png', 'img/fruit_2.png', 'img/fruit_3.png'];
-let veggies_ = ['img/veggies_0.png', 'img/veggies_1.png', 'img/veggies_2.png', 'img/veggies_3.png'];
-let nuts_ = ['img/nuts_0.png', 'img/nuts_1.png', 'img/nuts_2.png', 'img/nuts_3.png'];
-let processed_ = ['img/processed_0.png', 'img/processed_1.png', 'img/processed_2.png', 'img/processed_3.png'];
-let redmeat_ = ['img/redmeat_0.png', 'img/redmeat_1.png', 'img/redmeat_2.png', 'img/redmeat_3.png'];
-let soda_ = ['img/soda_0.png', 'img/soda_1.png', 'img/soda_2.png', 'img/soda_3.png'];
-let smoke_ = ['img/smoke_never.png', 'img/smoke_usedto.png', 'img/smoke_yes.png'];
-let alcohol_ = ['img/alcohol_0.png', 'img/alcohol_1.png', 'img/alcohol_2.png', 'img/alcohol_3.png'];
-
-// Follow-up pages
-let grains_high_a = ['img/generic_never.png', 'img/generic_lessthan1.png', 'img/generic_1to2.png', 'img/generic_3to5a.png', 'img/generic_everyday.png', 'img/grains_high_twice.png'];
-let grains_low_a = ['img/grains_low_never.png', 'img/generic_lessthan1.png', 'img/generic_1to2.png', 'img/generic_3to5b.png', 'img/generic_everyday.png', 'img/grains_low_twice.png'];
-let fruit_a = ['img/fruit_never.png', 'img/fruit_lessthan1.png', 'img/fruit_onceaday.png', 'img/fruit_twiceaday.png', 'img/fruit_3timesaday.png'];
-let veggies_a = ['img/veggies_never.png', 'img/veggies_lessthan1.png', 'img/veggies_onceaday.png', 'img/veggies_twiceaday.png', 'img/veggies_threeaday.png'];
-let nuts_a = ['img/nuts_never.png', 'img/nuts_lessthan1.png', 'img/nuts_onceaweek.png', 'img/nuts_twiceaweek.png', 'img/nuts_morethantwice.png'];
-let processed_a = ['img/processed_never.png', 'img/generic_bad_lessthan1.png', 'img/generic_bad_1to2.png', 'img/generic_bad_3to5.png', 'img/generic_bad_everyday.png', 'img/generic_bad_twiceaday.png'];
-let redmeat_a = ['img/redmeat_never.png', 'img/generic_bad_lessthan1.png', 'img/generic_bad_1to2.png', 'img/generic_bad_3to5.png', 'img/generic_bad_everyday.png', 'img/generic_bad_twiceaday.png'];
-let soda_a = ['img/soda_never.png', 'img/generic_bad_lessthan1.png', 'img/soda_1to2.png', 'img/soda_3to5.png', 'img/generic_bad_everyday.png', 'img/generic_bad_twiceaday.png'];
-let alcohol_a = ['img/soda_never.png', 'img/generic_bad_lessthan1.png', 'img/soda_1to2.png', 'img/soda_3to5.png', 'img/generic_bad_everyday.png', 'img/generic_bad_twiceaday.png'];
-// let alcohol_a = ['img/.png','img/.png','img/.png','img/.png','img/.png','img/.png'];
-let summarySubtitle = ["Don’t worry! This means that down the road, when you’re in your 40s, your heart will be a little more at risk for heart disease. " +
-"The good news is you’re still young and have plenty of time to lower your risk and we’ve got some tips to help you do that!"]
-let feedbackText = "Awesome, we love to hear that!"
-let noUiSliderUpdate = 0
 const json = {
     "title": "HerHeart",
     "showProgressBar": "top",
@@ -120,7 +37,7 @@ const json = {
                     "html": "<h2 style='text-align:center'> Tell us what you eat every week and we'll tell you how healthy your heart is</h2>" +
                         "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:70%;' src='svg/Heart.svg'><br>" +
                         // "<p>Not smoking, a healthy weight, a nutritious diet, and daily exercise play important roles in the prevention of cardiovascular disease. In fact, an overall healthy lifestyle may prevent more than 75% of deaths due to cardiovascular disease. Take this quiz to evaluate how your current lifestyle habits affect your cardiovascular health, and discover simple steps you can take to incorporate a Heart Healthy lifestyle into everyday living. Knowledge is power. Take the first step towards protecting your heart and your health!</p>"+
-                        "<br><p><b>Press Next to begin this quiz.</b></p>"
+                        "<br><p><b>Tap the arrow to begin this quiz.</b></p>"
                 },
                 {
                     "name": "ID",
@@ -138,7 +55,8 @@ const json = {
                 {
                     "type": "html",
                     "name": "test",
-                    "html": "<div id='sketch-holder'></div>" +
+                    "html":
+                        "<div id='sketch-holder'></div>" +
                         "<h3><center> Let's start by discussing your physical activity! Do you like doing intense exercise? </center></h3>" +
                         "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/vigorous.png'>" +
                         "<p><center style='font-size:14px;'>Examples: cheerleading, running, softball, soccer, volleyball, tennis, basketball</center></p>"
@@ -159,6 +77,7 @@ const json = {
                 }
             ]
         },
+
         {
             "popupdescription": "P5",
             "pos": 1,
@@ -166,7 +85,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "name": "test",
+                    "name": "activity-high-title",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3> <center>Interesting selection 🤔... do spend at least 1 hour a week doing intense physical exercise? </center></h3>" +
                         "<p><center>Examples: cheerleading, running, softball, soccer, volleyball, tennis, basketball</center></p>"
@@ -187,6 +106,7 @@ const json = {
                 }
             ]
         },
+
 
         {
             "popupdescription": "P5",
@@ -224,7 +144,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "name": "test",
+                    "name": "activity-low-next-title",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3> <center>Interesting selection 🤔... do spend at least 1 hour a week doing intense physical exercise? </center></h3>" +
                         "<p><center>Examples: walking, dancing, riding a bike, playing with dog, swimming, marching band</center></p>"
@@ -244,7 +164,7 @@ const json = {
                 }
             ]
         },
-        // Activity response 
+        // Activity response
         {
             "popupdescription": "P5",
             "animated": "yes",
@@ -293,7 +213,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "name": "test",
+                    "name": "grains-high-title",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3> <center>Interesting selection 🤔... do you eat whole grains at least 3-5 times a week?</center></h3>" +
                         "<p><center>Examples: whole grain bread, whole grain pasta, brown rice, popcorn, oats</center></p>"
@@ -348,7 +268,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "name": "test",
+                    "name": "grains-low-next-title",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3> <center>Okay, that's fine butttt... do you eat them at least twice a week? </center></h3>" +
                         "<p><center>Examples: sugary cereals, white bread, pancakes, bagels, crackers</center></p>"
@@ -416,7 +336,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "name": "test",
+                    "name": "fruit-title",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3> <center>Oof.... 😬 Do you at least eat three servings a day??</center></h3>"
                 },
@@ -470,7 +390,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "name": "test",
+                    "name": "veggies-title",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3> <center>Okayyy 😬... Well we all know veggies are good for you. Do you at least eat three servings a day??</center></h3>"
                 },
@@ -536,7 +456,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "name": "test",
+                    "name": "nuts-title",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3> <center>Oof.... 😬 Do you at least eat two servings a week??</center></h3>"
                 },
@@ -603,7 +523,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "name": "test",
+                    "name": "procmeats-title",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3> <center>Processed meats aren't great for your heart.... Do you eat one serving or less a week??</center></h3>" +
                         "<p><center style='font-size:14px;'>Examples: hot dogs, bacon, deli meats (pepperoni, sandwich meat, bologna, salami, etc.)</center></p>"
@@ -657,7 +577,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "name": "test",
+                    "name": "redmeat-next-title",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3> <center>Red meats aren't the best for your heart either.... 😬 Do you eat one serving or less a week??</center></h3>" +
                         "<p><center>Examples: ground beef, steak, lamb, pork, veal</center></p>"
@@ -725,7 +645,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "name": "test",
+                    "name": "soda-title",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3> <center>Sodas aren't the best for your heart either.... 😬 Do you drink two or or less a week??</center></h3>"
                 },
@@ -808,7 +728,9 @@ const json = {
                     "isRequired": true
                 }
             ]
-        }, {
+        },
+        // Alcohol
+        {
             "popupdescription": "P5",
             "pos": 8,
             "visibleIf": "{age}>=21",
@@ -817,7 +739,7 @@ const json = {
                     "type": "html",
                     "name": "test",
                     "html": "<div id='sketch-holder'>" +
-                        "<h3><center> Oh! You are 21+, let me ask you then, how often do you drink one glass of alcohol?</center></h3>" +
+                        "<h3><center> Oh! You are 21+, let me ask you then, do you drink alcohol??</center></h3>" +
                         "</div><img alt='' style='margin-left:auto; margin-right:auto; display:block; width:50%;' src='img/alcohol.png'>" +
                         "<p><center>One glass = 4 ounces of wine, 12 ounces of beer</center></p>"
                 },
@@ -842,7 +764,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "name": "test",
+                    "name": "alcohol-title",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3> <center>Alcohol isn't super good for you.... 😬 How many glasses do you drink in a week?</center></h3>"
                 },
@@ -861,16 +783,17 @@ const json = {
                 }
             ]
         },
+        // Alcohol feedback
         {
             "popupdescription": "P5",
             "animated": "yes",
             "pos": 8,
+            "visibleIf": "{age}>=21",
             "elements": [
                 {
                     "type": "html",
                     "name": "test",
                     "html": "<div id='sketch-holder'></div><h3 style='text-align:center'>Gotcha! You may know this but one glass of wine a day is actually beneficial to your heart health, just one though 👀</h3>",
-                    "visibleIf": "{age}>=21"
                 }
             ]
         }, {
@@ -975,6 +898,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
+                    "name": "feedbackResponse",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3><center> Awesome, we love to hear that! </center></h3>" +
                         "<p><center>We've got some suggestions just for you too. Do you wanna see them?</center></p>"
@@ -992,77 +916,86 @@ const json = {
                             "imageLink": './svg/yes-lets-see.svg'
                         },
                         {
-                            "value": 2,
+                            "value": 1,
                             "imageLink": './svg/no-am-good.svg'
                         },
                     ]
                 }
             ]
         },
+        // {
+        //     "elements": [
+        //         {
+        //             "type": "html",
+        //             "name": "test",
+        //             "visibleIf": "{awesomeWeLoveToHearThat} < 1",
+        //             "html": "<div id='sketch-holder'></div>" +
+        //                 "<h3><center> That's okay, you've got time! </center></h3>" +
+        //                 "<p><center>We've got some suggestions just for you too. Do you wanna see them?</center></p>"
+        //         },
+        //         {
+        //             "visibleIf": "{awesomeWeLoveToHearThat} < 1",
+        //             "type": "imagepicker",
+        //             "name": "thatIsOkayYouGotTime",
+        //             "title": " ",
+        //             "isRequired": true,
+        //             "colCount": 1,
+        //             "hasNone": false,
+        //             "choices": [
+        //                 {
+        //                     "value": 0,
+        //                     "imageLink": './svg/yes-lets-see.svg'
+        //                 },
+        //                 {
+        //                     "value": 1,
+        //                     "imageLink": './svg/no-am-good.svg'
+        //                 },
+        //             ]
+        //         }
+        //     ]
+        // },
         {
             "elements": [
                 {
                     "type": "html",
-                    "name": "test",
                     "visibleIf": "{awesomeWeLoveToHearThat} < 1",
-                    "html": "<div id='sketch-holder'></div>" +
-                        "<h3><center> " + feedbackText + " </center></h3>" +
-                        "<p><center>We've got some suggestions just for you too. Do you wanna see them?</center></p>"
-                },
-                {
-                    "visibleIf": "{awesomeWeLoveToHearThat} < 1",
-                    "type": "imagepicker",
-                    "name": "thatIsOkayYouGotTime",
-                    "title": " ",
-                    "isRequired": true,
-                    "colCount": 1,
-                    "hasNone": false,
-                    "choices": [
-                        {
-                            "value": 0,
-                            "imageLink": './svg/yes-lets-see.svg'
-                        },
-                        {
-                            "value": 2,
-                            "imageLink": './svg/no-am-good.svg'
-                        },
-                    ]
-                }
-            ]
-        },
-        {
-            "elements": [
-                {
-                    "type": "html",
-                    "visibleIf": "{awesomeWeLoveToHearThat} < 1  && {thatIsOkayYouGotTime} < 1 ",
                     "html": `
                     <div class="uk-container">
                         <ul uk-accordion>
                             <li>
                                 <a class="uk-accordion-title" href="#">
                                     <div uk-grid class="uk-margin-auto-vertical">
-                                        <div class="uk-flex-inline uk-width-expand uk-padding-remove-left">
+                                        <div class="uk-flex-inline uk-width-expand">
                                             Nutrition
-                                            <hr class="uk-width-expand" style="margin: auto 20px">
+                                            <hr class="uk-width-expand" style="margin: auto 0px">
                                         </div>
                                     </div>
                                 </a>
                                 <div class="uk-accordion-content">
                                     <p>We see you eat a lot of fruits & veggies, and it’s making your heart very happy! Fruits and veggies are great for your heart because ....</p>
-                                        <img src="./svg/Heart.svg" alt="">
-                                        <p>We also noticed you love sugary drinks - who doesn’t?! But we recommend cutting back because your heart ...</p>
+                                    <p>We also noticed you love sugary drinks - who doesn’t?! But we recommend cutting back because your heart ...</p>
+                                    <div style=\"left: 0; width: 80%; height: 0; position: relative; padding-bottom: 140%; padding-top: 120px;\">\n" +
+                    "                   <iframe src=\"https://www.tiktok.com/embed/6937433017707171077\"\n" +
+                    "                   style=\"top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;\" allowfullscreen\n" +
+                    "                   scrolling=\"no\" allow=\"encrypted-media;\"></iframe>" +
+                        "           </div>
                                 </div>
                             </li>
                             <li>
                                 <a class="uk-accordion-title" href="#">
                                     <div uk-grid>
-                                        <div class="uk-flex-inline uk-width-expand uk-padding-remove-left">
+                                        <div class="uk-flex-inline uk-width-expand">
                                             Exercise
-                                            <hr class="uk-width-expand" style="margin: auto 20px">
+                                            <hr class="uk-width-expand" style="margin: auto 0px">
                                         </div>
                                     </div>
                                 </a>
                                 <div class="uk-accordion-content">
+                                    <div style=\"left: 0; width: 80%; height: 0; position: relative; padding-bottom: 140%; padding-top: 120px;\">\n" +
+                        "            <iframe src=\"https://www.tiktok.com/embed/6885517120382323973\"\n" 0
+                        "                style=\"top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;\" allowfullscreen\n" +
+                        "                scrolling=\"no\" allow=\"encrypted-media;\"></iframe>" +
+                        "           </div>
                                     <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                                         consequat. Duis aute irure dolor reprehenderit.</p>
                                 </div>
@@ -1077,42 +1010,9 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "name": "text_recom",
-                    "visibleIf": "{awesomeWeLoveToHearThat} < 1  && {thatIsOkayYouGotTime} < 1 ",
-                    "html": "<center><h3 style='color:rgb(26, 179, 148);'>Recommendations</h3></centers>"
-                },
-                {
-                    "type": "html",
-                    "name": "recomendations_phy",
-                    "visibleIf": "{awesomeWeLoveToHearThat} < 1  && {thatIsOkayYouGotTime} < 1 ",
-                    "html": "<div style=\";\">\n" +
-                        "    <div style=\"left: 0; width: 100%; height: 0; position: relative; padding-bottom: 177.7778%; padding-top: 120px;\">\n" +
-                        "        <iframe src=\"https://www.tiktok.com/embed/6885517120382323973\"\n" +
-                        "                style=\"top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;\" allowfullscreen\n" +
-                        "                scrolling=\"no\" allow=\"encrypted-media;\"></iframe>\n" +
-                        "    </div>\n" +
-                        "</div>"
-                }, {
-                    "type": "html",
-                    "name": "recomendations_phy",
-                    "visibleIf": "{awesomeWeLoveToHearThat} < 1  && {thatIsOkayYouGotTime} < 1 ",
-                    "html": "<div style=\";\">\n" +
-                        "    <div style=\"left: 0; width: 100%; height: 0; position: relative; padding-bottom: 177.7778%; padding-top: 120px;\">\n" +
-                        "        <iframe src=\"https://www.tiktok.com/embed/6937433017707171077\"\n" +
-                        "                style=\"top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;\" allowfullscreen\n" +
-                        "                scrolling=\"no\" allow=\"encrypted-media;\"></iframe>\n" +
-                        "    </div>\n" +
-                        "</div>"
-                },
-            ]
-        },
-
-        {
-            "elements": [
-                {
-                    "type": "html",
                     "name": "Intro",
-                    "html": "<h3 style='text-align:center'> Awesome! Thank you so much for taking the HerHeart Quiz, hope it helped you see the things you are doing great and a couple to improve upon!</h3>" +
+                    "html": "<h3 style='text-align:center'> Remember, we’re here for you!</h3>" +
+                        "<p>If you want to look at your suggestions later or spread the love and info, feel free to save your results and share this quiz.</p>" +
                         "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:70%;' src='svg/Heart.svg'><br>",
                 },
             ]
@@ -1121,10 +1021,6 @@ const json = {
 
     ]
 };
-
-Survey
-    .StylesManager
-    .applyTheme("modern");
 
 window.survey = new Survey.Model(json);
 survey.showQuestionNumbers = "off";
@@ -1143,64 +1039,6 @@ survey
 
 $("#surveyElement").Survey({model: survey});
 
-function emptyArray() {
-    valuesDict = {}
-    sortedDict = []
-    cleanSortedValuesHealthy = []
-    cleanSortedValues = []
-    categories = []
-    healthyData = []
-    scoreData = []
-}
-
-function calculateGoodBadDiet() {
-    rawScoreValues = [0, rawSport, animationValues[2] - animationValues[1], animationValues[3] - animationValues[2], (animationValues[4] - animationValues[3]) / 2, 20 - (animationValues[5] - animationValues[4]), 20 - (animationValues[6] - animationValues[5]), rawSmoke, rawAlcohol];
-    console.log(rawScoreValues);
-    // graphScoreValues = [rawGrains*const,]
-    // Calculates the percentage score
-    for (const key in animationValues) {
-        if (key > 1 && key < animationValues.length - 2) {
-            // const result = ((animationValues[key] - animationValues[key - 1]) / animationValuesHealthy[key]);
-            const result = ((animationValues[key] - animationValues[key - 1]) / animationValuesHealthy[key]);
-            // cleanSortedValuesHealthy.push(animationValuesHealthy[key])
-            valuesDict[animationValuesTitles[index + 2]] = {
-                "score": result,
-                "healthy": animationValuesHealthy[key],
-                "rawScore": rawScoreValues[key],
-                "rawHealthy": rawHealthyValues[key]
-            }
-            index++
-        }
-    }
-    console.log(valuesDict);
-
-    // Create items array
-    let items = Object.keys(valuesDict).map(function (key) {
-        return [key, valuesDict[key]["score"]];
-    });
-
-    // Sort the array based on the second element
-    // items.sort(function (first, second) {
-    //     return second[1] - first[1];
-    // });
-
-    // Create a new array with only the first 5 items
-    for (val in items) {
-        sortedDict.push(items[val][0]);
-        cleanSortedValuesHealthy.push(valuesDict[items[val][0]]["rawHealthy"]);
-        cleanSortedValues.push(valuesDict[items[val][0]]["rawScore"]);
-    }
-    console.log(cleanSortedValues);
-
-    index = 0;
-    for (const cleanSortedValuesKey in cleanSortedValues) {
-        categories.push(sortedDict[cleanSortedValuesKey]);
-        // This one is wrongly place, it's just static
-        healthyData.push(cleanSortedValuesHealthy[cleanSortedValuesKey] * 5)
-        scoreData.push(cleanSortedValues[cleanSortedValuesKey]/* * cleanSortedValuesHealthy[cleanSortedValuesKey]*/ * 19 / 4) // This constant helps put the score at the end of the graph
-        index++
-    }
-}
 
 survey
     .onAfterRenderPage
@@ -1208,13 +1046,293 @@ survey
 
         console.log(options.page.name)
 
+
+        // Send data to firebase on the user's responses
+        if (options.page.name == "page43" || options.page.name == "page44") {
+            writeUserData(survey.data);
+        }
+
+
+        // P5 End ------------ //
+        // Modify pages for Buzzfeed style
+        // Okay so this works it seems like
+        if (options.page.name == "page3") {
+            if (survey.getQuestionByName("activity-high").value > 1) {
+                survey.getQuestionByName("activity-high-title").html = "<div id='sketch-holder'></div> <br>" + '<h3><center>Nice! Butttttt do spend at least 1-2 hours a week doing intense physical exercise?</center></h3>';
+                survey.getQuestionByName("activity-high-next").choices = [
+                    {"value": 0.75, "imageLink": generic_sport[2]},
+                    {"value": 2, "imageLink": generic_sport[3]},
+                    {"value": 8, "imageLink": generic_sport[4]},
+                    {"value": 10, "imageLink": generic_sport[5]}];
+
+            } else {
+                survey.getQuestionByName("activity-high-title").html = "<div id='sketch-holder'></div> <br>" + '<h3><center>Interesting selection 🤔... do spend at least 1-2 hours a week doing intense physical exercise?</center></h3>';
+                survey.getQuestionByName("activity-high-next").choices = [
+                    {"value": 0, "imageLink": generic_sport[0]},
+                    {"value": 0.25, "imageLink": generic_sport[1]},
+                    {"value": 0.75, "imageLink": generic_sport[2]},
+                    {"value": 2, "imageLink": generic_sport[3]}];
+            }
+        }
+
+        if (options.page.name == "page4") {
+            if (survey.getQuestionByName("activity-high-next").value >= 2) {
+                survey.getQuestionByName("activity-low-title").html = "<div id='sketch-holder'></div>" +
+                    "<h3><center> Nice job on your intense exercise! Do you also like doing low intensity exercise? </center></h3>" +
+                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/moderate.png'>" +
+                    "<p><center style='font-size:14px;'>Examples: walking, dancing, riding a bike, playing with dog, swimming, marching band</center></p>";
+
+            } else {
+                survey.getQuestionByName("activity-low-title").html = "<div id='sketch-holder'></div>" +
+                    "<h3><center> Okay, so you don't do much intense exercise… Do you like doing low intensity exercise? </center></h3>" +
+                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/moderate.png'>" +
+                    "<p><center style='font-size:14px;'>Examples: walking, dancing, riding a bike, playing with dog, swimming, marching band</center></p>";
+            }
+        }
+
+        if (options.page.name == "page5") {
+            if (survey.getQuestionByName("activity-low").value > 1) {
+                survey.getQuestionByName("activity-low-next-title").html = "<div id='sketch-holder'></div> <br>" +
+                    '<h3><center>Nice! Butttttt do you spend at least 1-2 hours a week doing low intensity physical exercise?</center></h3>';
+                survey.getQuestionByName("activity-low-next").choices = [
+                    {"value": 0.75, "imageLink": generic_sport[2]},
+                    {"value": 2, "imageLink": generic_sport[3]},
+                    {"value": 8, "imageLink": generic_sport[4]},
+                    {"value": 10, "imageLink": generic_sport[5]}];
+
+            } else {
+                survey.getQuestionByName("activity-low-next-title").html = "<div id='sketch-holder'></div> <br>" +
+                    '<h3><center>Interesting selection 🤔... do you spend 1-2 hours a week doing low intensity physical exercise?</center></h3>';
+                survey.getQuestionByName("activity-low-next").choices = [
+                    {"value": 0, "imageLink": generic_sport[0]},
+                    {"value": 0.25, "imageLink": generic_sport[1]},
+                    {"value": 0.75, "imageLink": generic_sport[2]},
+                    {"value": 2, "imageLink": generic_sport[3]}];
+            }
+        }
+
+        if (options.page.name == "page8") {
+            if (survey.getQuestionByName("grains-high").value > 1) {
+                survey.getQuestionByName("grains-high-title").html = "<div id='sketch-holder'></div> <br>" +
+                    '<h3><center>Nice! Butttttt do you eat them at least 3-5 times a week?</center></h3>';
+                survey.getQuestionByName("grains-high-next").choices = [
+                    {"value": 0.3, "imageLink": grains_high_a[2]},
+                    {"value": 0.5, "imageLink": grains_high_a[3]},
+                    {"value": 1, "imageLink": grains_high_a[4]},
+                    {"value": 2, "imageLink": grains_high_a[5]}];
+            } else {
+                survey.getQuestionByName("grains-high-title").html = "<div id='sketch-holder'></div> <br>" +
+                    '<h3><center>Interesting selection 🤔... do you eat whole grains at least 3-5 times a week?</center></h3>';
+                survey.getQuestionByName("grains-high-next").choices = [
+                    {"value": 0, "imageLink": grains_high_a[0]},
+                    {"value": 0.1, "imageLink": grains_high_a[1]},
+                    {"value": 0.3, "imageLink": grains_high_a[2]},
+                    {"value": 0.5, "imageLink": grains_high_a[3]}];
+            }
+        }
+
+        if (options.page.name == "page9") {
+            if (survey.getQuestionByName("grains-high-next").value >= 3) {
+                survey.getQuestionByName("grains-low-title").html = "<div id='sketch-holder'></div>" +
+                    "<h3><center> Great! Now...... how do you feel about regular grains? 👀 </center></h3>" +
+                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/grains-low.png'>" +
+                    "<p><center style='font-size:14px;'>Examples: sugary cereals, white bread, pancakes, bagels, crackers</center></p>";
+
+            } else {
+                survey.getQuestionByName("grains-low-title").html = "<div id='sketch-holder'></div>" +
+                    "<h3><center> Not great, but we still have another grain category! How do you feel about regular grains? 👀</center></h3>" +
+                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/grains-low.png'>" +
+                    "<p><center style='font-size:14px;'>Examples: sugary cereals, white bread, pancakes, bagels, crackers</center></p>";
+            }
+        }
+
+        if (options.page.name == "page10") {
+            if (survey.getQuestionByName("grains-low").value > 1) {
+                survey.getQuestionByName("grains-low-next-title").html = "<div id='sketch-holder'></div> <br>" +
+                    '<h3><center>The more grains the better! Do you eat them at least twice a week?</center></h3>';
+                survey.getQuestionByName("grains-low-next").choices = [
+                    {"value": 0.3, "imageLink": grains_low_a[2]},
+                    {"value": 0.5, "imageLink": grains_low_a[3]},
+                    {"value": 1, "imageLink": grains_low_a[4]},
+                    {"value": 2, "imageLink": grains_low_a[5]}];
+
+            } else {
+                survey.getQuestionByName("grains-low-next-title").html = "<div id='sketch-holder'></div> <br>" +
+                    '<h3><center>Okay, that’s fine butttt... do you eat them at least twice a week?</center></h3>';
+                survey.getQuestionByName("grains-low-next").choices = [
+                    {"value": 0, "imageLink": grains_low_a[0]},
+                    {"value": 0.1, "imageLink": grains_low_a[1]},
+                    {"value": 0.3, "imageLink": grains_low_a[2]},
+                    {"value": 0.5, "imageLink": grains_low_a[3]}];
+            }
+        }
+
+        if (options.page.name == "page13") {
+            if (survey.getQuestionByName("fruit").value > 1) {
+                survey.getQuestionByName("fruit-title").html = "<div id='sketch-holder'></div> <br>" +
+                    '<h3><center>Nice, now prove it 👀. Do you eat at least three servings a day??</center></h3>';
+                survey.getQuestionByName("fruit-next").choices = [
+                    {"value": 0.5, "imageLink": fruit_a[1]},
+                    {"value": 1, "imageLink": fruit_a[2]},
+                    {"value": 2, "imageLink": fruit_a[3]},
+                    {"value": 3, "imageLink": fruit_a[4]}];
+            } else {
+                survey.getQuestionByName("fruit-title").html = "<div id='sketch-holder'></div> <br>" +
+                    '<h3><center>Oof.... 😬 Do you at least eat three servings a day??</center></h3>';
+                survey.getQuestionByName("fruit-next").choices = [
+                    {"value": 0, "imageLink": fruit_a[0]},
+                    {"value": 0.5, "imageLink": fruit_a[1]},
+                    {"value": 1, "imageLink": fruit_a[2]},
+                    {"value": 2, "imageLink": fruit_a[3]}];
+            }
+        }
+
+        if (options.page.name == "page15") {
+            if (survey.getQuestionByName("veggies").value > 1) {
+                survey.getQuestionByName("veggies-title").html = "<div id='sketch-holder'></div> <br>" +
+                    '<h3><center>Nice, veggies are super important for good heart health! Do you eat at least three servings a day??</center></h3>';
+                survey.getQuestionByName("veggies-next").choices = [
+                    {"value": 0.5, "imageLink": veggies_a[1]},
+                    {"value": 1, "imageLink": veggies_a[2]},
+                    {"value": 2, "imageLink": veggies_a[3]},
+                    {"value": 3, "imageLink": veggies_a[4]}];
+            } else {
+                survey.getQuestionByName("veggies-title").html = "<div id='sketch-holder'></div> <br>" +
+                    '<h3><center>Okayyy 😬... Well we all know veggies are good for you. Do you at least eat three servings a day??</center></h3>';
+                survey.getQuestionByName("veggies-next").choices = [
+                    {"value": 0, "imageLink": veggies_a[0]},
+                    {"value": 0.5, "imageLink": veggies_a[1]},
+                    {"value": 1, "imageLink": veggies_a[2]},
+                    {"value": 2, "imageLink": veggies_a[3]}];
+            }
+        }
+
+        if (options.page.name == "page18") {
+            if (survey.getQuestionByName("nuts").value > 1) {
+                survey.getQuestionByName("nuts-title").html = "<div id='sketch-holder'></div> <br>" +
+                    '<h3><center>Nice, now prove it 👀. Do you eat at least two servings a week??</center></h3>';
+                survey.getQuestionByName("nuts-next").choices = [
+                    {"value": 1, "imageLink": nuts_a[1]},
+                    {"value": 2, "imageLink": nuts_a[2]},
+                    {"value": 3, "imageLink": nuts_a[3]},
+                    {"value": 4, "imageLink": nuts_a[4]}];
+            } else {
+                survey.getQuestionByName("nuts-title").html = "<div id='sketch-holder'></div> <br>" +
+                    '<h3><center>Oof.... 😬 Do you at least eat two servings a week??</center></h3>';
+                survey.getQuestionByName("nuts-next").choices = [
+                    {"value": 0, "imageLink": nuts_a[0]},
+                    {"value": 1, "imageLink": nuts_a[1]},
+                    {"value": 2, "imageLink": nuts_a[2]},
+                    {"value": 3, "imageLink": nuts_a[3]}];
+            }
+        }
+
+        if (options.page.name == "page21") {
+            if (survey.getQuestionByName("procmeats").value > 1) {
+                survey.getQuestionByName("procmeats-title").html = "<div id='sketch-holder'></div> <br>" +
+                    '<h3><center>Okay! Too much processed meat isn’t good for your heart. Do you eat one serving or less a week??</center></h3>';
+                survey.getQuestionByName("procmeats-next").choices = [
+                    {"value": 0.3, "imageLink": processed_a[2]},
+                    {"value": 0.5, "imageLink": processed_a[3]},
+                    {"value": 1, "imageLink": processed_a[4]},
+                    {"value": 2, "imageLink": processed_a[5]}];
+            } else {
+                survey.getQuestionByName("procmeats-title").html = "<div id='sketch-holder'></div> <br>" +
+                    '<h3><center>Processed meats aren’t great for your heart.... Do you eat one serving or less a week??</center></h3>';
+                survey.getQuestionByName("procmeats-next").choices = [
+                    {"value": 0, "imageLink": processed_a[0]},
+                    {"value": 0.1, "imageLink": processed_a[1]},
+                    {"value": 0.3, "imageLink": processed_a[2]},
+                    {"value": 0.5, "imageLink": processed_a[3]}];
+            }
+        }
+
+        if (options.page.name == "page22") {
+            if (survey.getQuestionByName("procmeats-next").value >= 3) {
+                survey.getQuestionByName("redmeat-title").html = "<div id='sketch-holder'></div>" +
+                    "<h3><center> Hmm, could be better... do you eat red meat regularly? </center></h3>" +
+                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/meats.png'>" +
+                    "<p><center style='font-size:14px;'>Examples: ground beef, steak, lamb, pork, veal</center></p>";
+
+            } else {
+                survey.getQuestionByName("redmeat-title").html = "<div id='sketch-holder'></div>" +
+                    "<h3><center>That's great! Now what about your red meat intake?</center></h3>" +
+                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/meats.png'>" +
+                    "<p><center style='font-size:14px;'>Examples: ground beef, steak, lamb, pork, veal</center></p>";
+            }
+        }
+
+        if (options.page.name == "page23") {
+            if (survey.getQuestionByName("redmeat").value > 1) {
+                survey.getQuestionByName("redmeat-next-title").html = "<div id='sketch-holder'></div> <br>" +
+                    '<h3><center>Okay! Too much red meat can reduce your heart health. Do you eat one serving or less a week??</center></h3>';
+                survey.getQuestionByName("redmeat-next").choices = [
+                    {"value": 0.3, "imageLink": redmeat_a[2]},
+                    {"value": 0.5, "imageLink": redmeat_a[3]},
+                    {"value": 1, "imageLink": redmeat_a[4]},
+                    {"value": 2, "imageLink": redmeat_a[5]}];
+            } else {
+                survey.getQuestionByName("redmeat-next-title").html = "<div id='sketch-holder'></div> <br>" +
+                    '<h3><center>Red meats aren’t the best for your heart either.... 😬 Do you eat one serving or less a week??</center></h3>';
+                survey.getQuestionByName("redmeat-next").choices = [
+                    {"value": 0, "imageLink": redmeat_a[0]},
+                    {"value": 0.1, "imageLink": redmeat_a[1]},
+                    {"value": 0.3, "imageLink": redmeat_a[2]},
+                    {"value": 0.5, "imageLink": redmeat_a[3]}];
+            }
+        }
+
+        if (options.page.name == "page26") {
+
+            if (survey.getQuestionByName("soda").value > 1) {
+                survey.getQuestionByName("soda-title").html = "<div id='sketch-holder'></div> <br>" +
+                    '<h3><center>Okay! Too much soda can reduce your heart health. Do you two or less a week??</center></h3>';
+                survey.getQuestionByName("soda-next").choices = [
+                    {"value": 0.3, "imageLink": soda_a[2]},
+                    {"value": 0.5, "imageLink": soda_a[3]},
+                    {"value": 1, "imageLink": soda_a[4]},
+                    {"value": 2, "imageLink": soda_a[5]}];
+            } else {
+                survey.getQuestionByName("soda-title").html = "<div id='sketch-holder'></div> <br>" +
+                    '<h3><center>Sodas aren’t the best for your heart either.... 😬 Do you drink two or or less a week??</center></h3>';
+                survey.getQuestionByName("soda-next").choices = [
+                    {"value": 0, "imageLink": soda_a[0]},
+                    {"value": 0.1, "imageLink": soda_a[1]},
+                    {"value": 0.3, "imageLink": soda_a[2]},
+                    {"value": 0.5, "imageLink": soda_a[3]}];
+            }
+        }
+
+        if (options.page.name == "page32") {
+            if (survey.getQuestionByName("alcohol").value > 1) {
+                survey.getQuestionByName("alcohol-title").html = "<div id='sketch-holder'></div> <br>" +
+                    '<h3><center>Okay! Actually drinking alcohol can improve your heart health. Do you drink around 2 to 5 glasses a week?</center></h3>';
+                survey.getQuestionByName("alcohol-next").choices = [
+                    {"value": 0.3, "imageLink": alcohol_a[2]},
+                    {"value": 0.5, "imageLink": alcohol_a[3]},
+                    {"value": 1, "imageLink": alcohol_a[4]},
+                    {"value": 2, "imageLink": alcohol_a[5]}];
+            } else {
+                survey.getQuestionByName("alcohol-title").html = "<div id='sketch-holder'></div> <br>" +
+                    '<h3><center>Alcohol is a bit tricky, a lot isn’t super good for you, but none isn’t either.... 😬 Do you drink about one glass or less a day?</center></h3>';
+                survey.getQuestionByName("alcohol-next").choices = [
+                    {"value": 0, "imageLink": alcohol_a[0]},
+                    {"value": 0.1, "imageLink": alcohol_a[1]},
+                    {"value": 0.3, "imageLink": alcohol_a[2]},
+                    {"value": 0.5, "imageLink": alcohol_a[3]}];
+            }
+        }
+
+
         if (options.page.name == "page37") {
-            emptyArray()
+            console.log("----------------------")
             calculateGoodBadDiet()
         }
 
+
         if (options.page.name == "page39") {
 
+            console.log(38294792479247924924204)
             console.log(scoreData)
 
             let nutritionSummary = '';
@@ -1279,7 +1397,7 @@ survey
 
             setTimeout(() => {
                 $("#nutritionSummary").html(nutritionSummary)
-            }, 100)
+            }, 200)
         }
 
         if (options.page.name == "page40") {
@@ -1327,9 +1445,9 @@ survey
         }
 
         if (options.page.name == "page41") {
-            setTimeout(() => {
 
-                $(".sv-footer__next-btn").css("display", 'none')
+            let flag = 0
+            setTimeout(() => {
 
                 let slider = document.getElementById('slider');
 
@@ -1347,9 +1465,11 @@ survey
                     }
                 });
                 feedbackText = slider.noUiSlider.get() > 5 ? "Awesome, we love to hear that!" : "That’s okay, you’ve got time!"
-
+                $(".sv-footer__next-btn").css("display", 'none')
                 slider.noUiSlider.on('update', function (values, handle) {
-                    $(".sv-footer__next-btn").css("display", 'unset')
+                    flag++
+                    if (flag > 1)
+                        $(".sv-footer__next-btn").css("display", 'unset')
                     noUiSliderUpdate = values
                 });
 
@@ -1357,279 +1477,31 @@ survey
             }, 300)
         }
 
-        // if (options.page.name == "page42" || options.page.name == "page43")
-        //     $(".sv-footer__next-btn").css("display", 'none')
+
+        if (options.page.name == "page42") {
+            console.log("im in 42");
+        }
+
+        if (options.page.name == "page42") {
+            console.log("im in page 42");
+            console.log(survey.getQuestionByName('activities').value);
+
+            if (noUiSliderUpdate > 5) {
+                survey.getQuestionByName('feedbackResponse').html = "<div id='sketch-holder'></div> <br>" +
+                    "<h3><center> Awesome, we love to hear that! </center></h3>" +
+                    "<p><center>We've got some suggestions just for you too. Do you wanna see them?</center></p>";
+            } else {
+                survey.getQuestionByName('feedbackResponse').html = "<div id='sketch-holder'></div> <br>" +
+                    "<h3><center> That's okay, you've got time! </center></h3>" +
+                    "<p><center>We've got some suggestions just for you too. Do you wanna see them?</center></p>";
+            }
+        }
 
 
 //Do nothing if a page contains no description to show in a modal popup
         if (!options.page.popupdescription)
             return;
 
-// Add a P5 Element
-        function defineSketch(x, y, value, total, colorDisplay, healthyPoints, animate) {
-            return function mySketch(p) {
-                // P5
-                let draft, ready, i, maxvalue, minvalue, j, jfac, w;
-                var start, current;
-                var flag;
-                let font, fontsize = 20;
-                let colorScore, colorParticles;
-                // let song;
-                let system;
-                p.preload = function preload() {
-                    ready = p.loadImage("img/scorebar-full.png");
-                    draft = p.loadImage("img/scorebar-empty.png");
-                    font = p.loadFont('font/PartyConfettiRegular-eZOn3.ttf');
-                }
-                p.setup = function setup() {
-                    let canvas;
-                    if (animate == 1) {
-                        canvas = p.createCanvas(350, 300);
-                    } else {
-                        canvas = p.createCanvas(350, 100);
-                    }
-                    // let canvas = p.createCanvas(350, 100);
-                    canvas.parent('sketch-holder');
-                    p.image(ready, 60, 20);
-                    p.image(draft, 60, 20);
-                    // song = p.loadSound('assets/goodSound.mp3');
-                    minvalue = x;
-                    maxvalue = y;
-                    i = minvalue - 0.5;
-                    j = parseInt(maxvalue / 1.35 * 5 - minvalue / 1.35 * 5);
-                    jfac = Math.round(j / (maxvalue - minvalue));
-                    w = 0;
-                    // console.log("What is max",maxvalue);
-                    // console.log("what is min",minvalue);
-                    // console.log("whatis jfac",jfac);
-                    // console.log("what is j",j);
-                    flag = 0;
-                    p.textFont(font);
-                    p.textAlign(p.CENTER, p.CENTER);
-                    if (colorDisplay == 'red') {
-                        colorScore = p.color(190, 107, 60);
-                        colorParticles = [190, 107, 60];
-                    } else if (colorDisplay == 'yellow') {
-                        colorScore = p.color(188, 164, 34);
-                        colorParticles = [168, 164, 34];
-                    } else if (colorDisplay == 'green') {
-                        colorScore = p.color(60, 190, 175);
-                        colorParticles = [60, 190, 175];
-                    } else {
-                        colorScore = p.color(0, 0, 0);
-                    }
-                    system = new ParticleSystem(p.createVector(p.width / 2, 100));
-                }
-
-                p.draw = function draw() {
-                    if (animate == 1) {
-                        p.fillBar();
-                    } else {
-                        p.staticBar();
-                    }
-                    p.textAlign(p.RIGHT);
-                    p.drawWords(p.width * 0.1);
-                }
-
-                p.fillBar = function fillBar() {
-                    if (i < maxvalue) {
-                        p.background(255);
-                        p.image(draft, 60, 20);
-                        p.copy(ready, 0, 0, i, 40, 60, 20, i, 40);
-                        i = i + 1;
-                        j = j - jfac;
-                        // p.text(i, 40, 30);
-                        // This can be put here as a delay for the whole animation, but it slows down the rendering of the covered object too much
-                        // if(flag == 0){
-                        // p.wait(500);
-                        // flag = 1;
-                        // }
-                        // p.background(51);
-                        system.addParticle();
-                        system.run();
-                    } else {
-                        p.drawScore();
-                        j = 0;
-                        // if (song.isPlaying()) {song.stop();}
-                        // else {song.play();}
-                    }
-                }
-
-                p.staticBar = function staticBar() {
-                    // i = minvalue+0.5; // Define the minimum value as 0.5 less so that it becomes exactly that value
-                    if (flag == 0) {
-                        if (i <= minvalue) {
-                            p.copy(ready, 0, 0, i, 40, 60, 20, i, 40);
-                        } else {
-                            flag = 1;
-                            // p.drawScore();
-                        }
-                        i = i + 0.5;
-                    }
-                }
-
-                p.drawWords = function drawWords(x) {
-                    // The text() function needs three parameters:
-                    // the text to draw, the horizontal position,
-                    // and the vertical position
-                    // p.fill(0);
-                    p.fill(0);
-                    p.textSize(20);
-                    if (animate == 1) {
-                        p.text(total - j, 40, 30);
-                    } else {
-                        p.text(total, 40, 30);
-                    }
-                    p.text('Your Score', 99, 10);
-                }
-
-                p.drawScore = function drawScore() {
-                    // Only running one time, next time not displaying
-                    p.background(255);
-                    p.image(draft, 60, 20);
-                    system.addParticle();
-                    system.run();
-                    p.copy(ready, 0, 0, i, 40, 60, 20, i, 40);
-
-                    p.fill(colorScore);
-                    p.textSize(40);
-                    p.text("+" + value, 160, 100);
-                    p.text('/', 150 + 30, 105);
-                    p.text(healthyPoints, 160 + 80, 110);
-                }
-
-                // Waiting function
-                p.wait = function wait(time) {
-                    start = p.millis()
-                    do {
-                        current = p.millis();
-                    }
-                    while (current < start + time)
-                }
-
-                // A simple Particle class
-
-                let Particle = function (position) {
-                    this.acceleration = p.createVector(0, 0.05);
-                    this.velocity = p.createVector(p.random(-5, 5), p.random(-5, 5));
-                    this.position = position.copy();
-                    this.lifespan = 155;
-                };
-
-                Particle.prototype.run = function () {
-                    this.update();
-                    this.display();
-                };
-
-                // Method to update position
-                Particle.prototype.update = function () {
-                    this.velocity.add(this.acceleration);
-                    this.position.add(this.velocity);
-                    this.lifespan -= 2;
-                };
-
-                // Method to display
-                Particle.prototype.display = function () {
-                    p.stroke(200, this.lifespan);
-                    p.strokeWeight(2);
-                    p.fill(colorParticles[0], colorParticles[1], colorParticles[2], this.lifespan * 2);
-                    p.ellipse(this.position.x, this.position.y, 12, 12);
-                };
-
-                // Is the particle still useful?
-                Particle.prototype.isDead = function () {
-                    // console.log("Does this fire?");
-                    return this.lifespan < 0;
-                };
-
-                let ParticleSystem = function (position) {
-                    this.origin = position.copy();
-                    this.particles = [];
-                };
-
-                ParticleSystem.prototype.addParticle = function () {
-                    if (i < maxvalue) {
-                        this.particles.push(new Particle(this.origin));
-                        // w++;
-                    }
-                };
-
-                ParticleSystem.prototype.run = function () {
-                    for (let i = this.particles.length - 1; i >= 0; i--) {
-                        let par = this.particles[i];
-                        par.run();
-                        if (par.isDead()) {
-                            this.particles.splice(i, 1);
-                        }
-                    }
-                };
-            }
-        }
-
-        function calculateBarProgress() {
-            // Sports
-            if (rawSport >= 3.5) {
-                animationValues[1] = 20;
-            } else {
-                animationValues[1] = parseInt((rawSport * 20) / 3.5);
-            }
-
-            // Grains
-            animationValues[2] = animationValues[1] + parseInt((rawGrains * 20) / 3);
-
-            // Fruits & Veggies
-            if (rawFruits >= 3) {
-                animationValues[3] = animationValues[2] + 20;
-            } else {
-                animationValues[3] = animationValues[2] + parseInt((rawFruits / 3) * 20);
-            }
-
-            // Nuts
-            if (rawNuts >= 2) {
-                animationValues[4] = animationValues[3] + 40;
-            } else if (rawNuts >= 0.3) {
-                animationValues[4] = animationValues[3] + 20 + parseInt((rawNuts - 0.3) * 20);
-            } else {
-                animationValues[4] = animationValues[3] + parseInt((rawNuts * 20) / 0.5);
-            }
-
-            // Meat
-            if (rawMeat > 2) {
-                animationValues[5] = animationValues[4]
-            } else {
-                animationValues[5] = animationValues[4] + (20 - parseInt((rawMeat * 20) / 2));
-            }
-
-            // Soda
-            if (rawSoda > 1) {
-                animationValues[6] = animationValues[5]
-            } else {
-                animationValues[6] = animationValues[5] + (20 - parseInt(rawSoda * 20));
-            }
-
-            // Smoke
-            animationValues[7] = animationValues[6] + 60 - rawSmoke * 60;
-
-            // Alcohol
-            if (rawAlcohol == 1) {
-                animationValues[8] = animationValues[7] + 20
-            } else if (rawAlcohol > 1) {
-                animationValues[8] = animationValues[7] + 20 - parseInt((rawAlcohol * 20) / 3)
-            } else {
-                animationValues[8] = animationValues[7] + parseInt(rawAlcohol * 20)
-            }
-        }
-
-// Set up messages for each option : three states, good, medium, bad
-        function displayFeedbackMessage(feedbackChosen) {
-            survey.getQuestionByName("activity-score").html = "<div id='sketch-holder'></div><h3 style='text-align:center'>" + feedbackChosen + "</h3>";
-            survey.getQuestionByName("fruit-score").html = "<div id='sketch-holder'></div><h3 style='text-align:center'>" + feedbackChosen + "</h3>";
-            survey.getQuestionByName("nut-score").html = "<div id='sketch-holder'></div><h3 style='text-align:center'>" + feedbackChosen + "</h3>";
-            survey.getQuestionByName("soda-score").html = "<div id='sketch-holder'></div><h3 style='text-align:center'>" + feedbackChosen + "</h3>";
-            survey.getQuestionByName("meat-score").html = "<div id='sketch-holder'></div><h3 style='text-align:center'>" + feedbackChosen + "</h3>";
-            survey.getQuestionByName("grain-score").html = "<div id='sketch-holder'></div><h3 style='text-align:center'>" + feedbackChosen + "</h3>";
-            survey.getQuestionByName("smoke-score").html = "<div id='sketch-holder'></div><h3 style='text-align:center'>" + feedbackChosen + "</h3>";
-        }
 
         calculateBarProgress();
 
@@ -1643,7 +1515,7 @@ survey
                 oldAnimation.remove();
             }
 
-            var colorDisplay;
+            let colorDisplay;
             if (animationValues[options.page.pos] - animationValues[options.page.pos - 1] > animationValuesHealthy[options.page.pos] * 0.8) {
                 colorDisplay = 'green';
                 displayFeedbackMessage(goodFeedbackResponse[options.page.pos]);
@@ -1654,7 +1526,7 @@ survey
                 colorDisplay = 'red';
                 displayFeedbackMessage(badFeedbackResponse[options.page.pos]);
             }
-            var mySketch = defineSketch(animationValues[options.page.pos - 1] * 1.35, animationValues[options.page.pos] * 1.35, (animationValues[options.page.pos] - animationValues[options.page.pos - 1]) * 5, animationValues[options.page.pos] * 5, colorDisplay, animationValuesHealthy[options.page.pos] * 5, 1);
+            const mySketch = defineSketch(animationValues[options.page.pos - 1] * 1.35, animationValues[options.page.pos] * 1.35, (animationValues[options.page.pos] - animationValues[options.page.pos - 1]) * 5, animationValues[options.page.pos] * 5, colorDisplay, animationValuesHealthy[options.page.pos] * 5, 1);
             newAnimation = new p5(mySketch);
             window.sketchInstance = newAnimation;
             // window.sketchInstance = new p5(newAnimation);
@@ -1665,7 +1537,7 @@ survey
             }
 
 
-            var mySketch2 = defineSketch(animationValues[options.page.pos - 1] * 1.35, 0, (animationValues[options.page.pos] - animationValues[options.page.pos - 1]) * 5, animationValues[options.page.pos - 1] * 5, 'none', 0, 0);
+            const mySketch2 = defineSketch(animationValues[options.page.pos - 1] * 1.35, 0, (animationValues[options.page.pos] - animationValues[options.page.pos - 1]) * 5, animationValues[options.page.pos - 1] * 5, 'none', 0, 0);
 
             // var mySketch2 = defineSketch(currentPoints,0,0);
             oldAnimation = new p5(mySketch2);
@@ -1675,233 +1547,6 @@ survey
             // window.sketchInstance = new p5(oldAnimation);
         }
 
-        // P5 End ------------ //
-        // Modify pages for Buzzfeed style
-        // Okay so this works it seems like
-        console.log("page number is", options.page.name);
-        if (options.page.name == "page3") {
-            if (survey.getQuestionByName("activity-high").value > 1) {
-                survey.getQuestionByName("activity-high-next").choices = [
-                    {"value": 0.75, "imageLink": generic_sport[2]},
-                    {"value": 2, "imageLink": generic_sport[3]},
-                    {"value": 8, "imageLink": generic_sport[4]},
-                    {"value": 10, "imageLink": generic_sport[5]}];
-
-            } else {
-                survey.getQuestionByName("activity-high-next").choices = [
-                    {"value": 0, "imageLink": generic_sport[0]},
-                    {"value": 0.25, "imageLink": generic_sport[1]},
-                    {"value": 0.75, "imageLink": generic_sport[2]},
-                    {"value": 2, "imageLink": generic_sport[3]}];
-            }
-        }
-
-        if (options.page.name == "page4") {
-            if (survey.getQuestionByName("activity-high-next").value >= 2) {
-                survey.getQuestionByName("activity-low-title").html = "<div id='sketch-holder'></div>" +
-                    "<h3><center> Nice job on your intense exercise! Do you also like doing low intensity exercise? </center></h3>" +
-                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/moderate.png'>" +
-                    "<p><center style='font-size:14px;'>Examples: walking, dancing, riding a bike, playing with dog, swimming, marching band</center></p>";
-
-            } else {
-                survey.getQuestionByName("activity-low-title").html = "<div id='sketch-holder'></div>" +
-                    "<h3><center> Okay, so you don't do much intense exercise… Do you like doing low intensity exercise? </center></h3>" +
-                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/moderate.png'>" +
-                    "<p><center style='font-size:14px;'>Examples: walking, dancing, riding a bike, playing with dog, swimming, marching band</center></p>";
-            }
-        }
-
-        if (options.page.name == "page5") {
-            if (survey.getQuestionByName("activity-low").value > 1) {
-                survey.getQuestionByName("activity-low-next").choices = [
-                    {"value": 0.75, "imageLink": generic_sport[2]},
-                    {"value": 2, "imageLink": generic_sport[3]},
-                    {"value": 8, "imageLink": generic_sport[4]},
-                    {"value": 10, "imageLink": generic_sport[5]}];
-
-            } else {
-                survey.getQuestionByName("activity-low-next").choices = [
-                    {"value": 0, "imageLink": generic_sport[0]},
-                    {"value": 0.25, "imageLink": generic_sport[1]},
-                    {"value": 0.75, "imageLink": generic_sport[2]},
-                    {"value": 2, "imageLink": generic_sport[3]}];
-            }
-        }
-
-        if (options.page.name == "page8") {
-            if (survey.getQuestionByName("grains-high").value > 1) {
-                survey.getQuestionByName("grains-high-next").choices = [
-                    {"value": 0.3, "imageLink": grains_high_a[2]},
-                    {"value": 0.5, "imageLink": grains_high_a[3]},
-                    {"value": 1, "imageLink": grains_high_a[4]},
-                    {"value": 2, "imageLink": grains_high_a[5]}];
-            } else {
-                survey.getQuestionByName("grains-high-next").choices = [
-                    {"value": 0, "imageLink": grains_high_a[0]},
-                    {"value": 0.1, "imageLink": grains_high_a[1]},
-                    {"value": 0.3, "imageLink": grains_high_a[2]},
-                    {"value": 0.5, "imageLink": grains_high_a[3]}];
-            }
-        }
-
-        if (options.page.name == "page9") {
-            if (survey.getQuestionByName("grains-high-next").value >= 3) {
-                survey.getQuestionByName("grains-low-title").html = "<div id='sketch-holder'></div>" +
-                    "<h3><center> Great! Now...... how do you feel about regular grains? 👀 </center></h3>" +
-                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/grains-low.png'>" +
-                    "<p><center style='font-size:14px;'>Examples: sugary cereals, white bread, pancakes, bagels, crackers</center></p>";
-
-            } else {
-                survey.getQuestionByName("grains-low-title").html = "<div id='sketch-holder'></div>" +
-                    "<h3><center> Not great, but we still have another grain category! How do you feel about regular grains? 👀</center></h3>" +
-                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/grains-low.png'>" +
-                    "<p><center style='font-size:14px;'>Examples: sugary cereals, white bread, pancakes, bagels, crackers</center></p>";
-            }
-        }
-
-        if (options.page.name == "page10") {
-            if (survey.getQuestionByName("grains-low").value > 1) {
-                survey.getQuestionByName("grains-low-next").choices = [
-                    {"value": 0.3, "imageLink": grains_low_a[2]},
-                    {"value": 0.5, "imageLink": grains_low_a[3]},
-                    {"value": 1, "imageLink": grains_low_a[4]},
-                    {"value": 2, "imageLink": grains_low_a[5]}];
-
-            } else {
-                survey.getQuestionByName("grains-low-next").choices = [
-                    {"value": 0, "imageLink": grains_low_a[0]},
-                    {"value": 0.1, "imageLink": grains_low_a[1]},
-                    {"value": 0.3, "imageLink": grains_low_a[2]},
-                    {"value": 0.5, "imageLink": grains_low_a[3]}];
-            }
-        }
-
-        if (options.page.name == "page13") {
-            if (survey.getQuestionByName("fruit").value > 1) {
-                survey.getQuestionByName("fruit-next").choices = [
-                    {"value": 0.5, "imageLink": fruit_a[1]},
-                    {"value": 1, "imageLink": fruit_a[2]},
-                    {"value": 2, "imageLink": fruit_a[3]},
-                    {"value": 3, "imageLink": fruit_a[4]}];
-            } else {
-                survey.getQuestionByName("fruit-next").choices = [
-                    {"value": 0, "imageLink": fruit_a[0]},
-                    {"value": 0.5, "imageLink": fruit_a[1]},
-                    {"value": 1, "imageLink": fruit_a[2]},
-                    {"value": 2, "imageLink": fruit_a[3]}];
-            }
-        }
-
-        if (options.page.name == "page15") {
-            if (survey.getQuestionByName("veggies").value > 1) {
-                survey.getQuestionByName("veggies-next").choices = [
-                    {"value": 0.5, "imageLink": veggies_a[1]},
-                    {"value": 1, "imageLink": veggies_a[2]},
-                    {"value": 2, "imageLink": veggies_a[3]},
-                    {"value": 3, "imageLink": veggies_a[4]}];
-            } else {
-                survey.getQuestionByName("veggies-next").choices = [
-                    {"value": 0, "imageLink": veggies_a[0]},
-                    {"value": 0.5, "imageLink": veggies_a[1]},
-                    {"value": 1, "imageLink": veggies_a[2]},
-                    {"value": 2, "imageLink": veggies_a[3]}];
-            }
-        }
-
-        if (options.page.name == "page18") {
-            if (survey.getQuestionByName("nuts").value > 1) {
-                survey.getQuestionByName("nuts-next").choices = [
-                    {"value": 1, "imageLink": nuts_a[1]},
-                    {"value": 2, "imageLink": nuts_a[2]},
-                    {"value": 3, "imageLink": nuts_a[3]},
-                    {"value": 4, "imageLink": nuts_a[4]}];
-            } else {
-                survey.getQuestionByName("nuts-next").choices = [
-                    {"value": 0, "imageLink": nuts_a[0]},
-                    {"value": 1, "imageLink": nuts_a[1]},
-                    {"value": 2, "imageLink": nuts_a[2]},
-                    {"value": 3, "imageLink": nuts_a[3]}];
-            }
-        }
-
-        if (options.page.name == "page21") {
-            if (survey.getQuestionByName("procmeats").value > 1) {
-                survey.getQuestionByName("procmeats-next").choices = [
-                    {"value": 0.3, "imageLink": processed_a[2]},
-                    {"value": 0.5, "imageLink": processed_a[3]},
-                    {"value": 1, "imageLink": processed_a[4]},
-                    {"value": 2, "imageLink": processed_a[5]}];
-            } else {
-                survey.getQuestionByName("procmeats-next").choices = [
-                    {"value": 0, "imageLink": processed_a[0]},
-                    {"value": 0.1, "imageLink": processed_a[1]},
-                    {"value": 0.3, "imageLink": processed_a[2]},
-                    {"value": 0.5, "imageLink": processed_a[3]}];
-            }
-        }
-
-        if (options.page.name == "page22") {
-            if (survey.getQuestionByName("procmeats-next").value >= 3) {
-                survey.getQuestionByName("redmeat-title").html = "<div id='sketch-holder'></div>" +
-                    "<h3><center> Hmm, could be better... do you eat red meat regularly? </center></h3>" +
-                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/meats.png'>" +
-                    "<p><center style='font-size:14px;'>Examples: ground beef, steak, lamb, pork, veal</center></p>";
-
-            } else {
-                survey.getQuestionByName("redmeat-title").html = "<div id='sketch-holder'></div>" +
-                    "<h3><center>That's great! Now what about your red meat intake?</center></h3>" +
-                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/meats.png'>" +
-                    "<p><center style='font-size:14px;'>Examples: ground beef, steak, lamb, pork, veal</center></p>";
-            }
-        }
-
-        if (options.page.name == "page23") {
-            if (survey.getQuestionByName("redmeat").value > 1) {
-                survey.getQuestionByName("redmeat-next").choices = [
-                    {"value": 0.3, "imageLink": redmeat_a[2]},
-                    {"value": 0.5, "imageLink": redmeat_a[3]},
-                    {"value": 1, "imageLink": redmeat_a[4]},
-                    {"value": 2, "imageLink": redmeat_a[5]}];
-            } else {
-                survey.getQuestionByName("redmeat-next").choices = [
-                    {"value": 0, "imageLink": redmeat_a[0]},
-                    {"value": 0.1, "imageLink": redmeat_a[1]},
-                    {"value": 0.3, "imageLink": redmeat_a[2]},
-                    {"value": 0.5, "imageLink": redmeat_a[3]}];
-            }
-        }
-
-        if (options.page.name == "page26") {
-            if (survey.getQuestionByName("soda").value > 1) {
-                survey.getQuestionByName("soda-next").choices = [
-                    {"value": 0.3, "imageLink": soda_a[2]},
-                    {"value": 0.5, "imageLink": soda_a[3]},
-                    {"value": 1, "imageLink": soda_a[4]},
-                    {"value": 2, "imageLink": soda_a[5]}];
-            } else {
-                survey.getQuestionByName("soda-next").choices = [
-                    {"value": 0, "imageLink": soda_a[0]},
-                    {"value": 0.1, "imageLink": soda_a[1]},
-                    {"value": 0.3, "imageLink": soda_a[2]},
-                    {"value": 0.5, "imageLink": soda_a[3]}];
-            }
-        }
-
-        if (options.page.name == "page29") {
-            if (survey.getQuestionByName("alcohol").value > 1) {
-                survey.getQuestionByName("alcohol-next").choices = [
-                    {"value": 0.3, "imageLink": alcohol_a[2]},
-                    {"value": 0.5, "imageLink": alcohol_a[3]},
-                    {"value": 1, "imageLink": alcohol_a[4]},
-                    {"value": 2, "imageLink": alcohol_a[5]}];
-            } else {
-                survey.getQuestionByName("alcohol-next").choices = [
-                    {"value": 0, "imageLink": alcohol_a[0]},
-                    {"value": 0.1, "imageLink": alcohol_a[1]},
-                    {"value": 0.3, "imageLink": alcohol_a[2]},
-                    {"value": 0.5, "imageLink": alcohol_a[3]}];
-            }
-        }
     });
 
 //     // Modify the quiz real-time to change the answer options based on the user's selection
@@ -1996,7 +1641,6 @@ survey.onValueChanged.add(function (survey, options) {
     }
     const healthyPerson = (1 - Math.pow(0.9660, Math.exp((-0.557385 + BMI * 0.04676 + ageQuestion * 0.1082) - 6.57301))) * 100;
     const relativeRisk = risk / healthyPerson;
-    var summaryQuestion = survey.getQuestionByName("summary");
     let relativeRiskWord = "";
     let summaryImage = "";
     let feedbackImage = "";
@@ -2018,8 +1662,9 @@ survey.onValueChanged.add(function (survey, options) {
         feedbackImage = "./img/feedback-Results=Bad.jpg"; // vunhealthy.gif
     }
 
-    var summaryQuestion = survey.getQuestionByName("summary");
-    summaryQuestion.html = "<div><center>" + "<p><img alt=''  class='summary-image' src=" + summaryImage + "?v=2></p><h3>" + relativeRiskWord + "</h3> " +
+    const summaryQuestion = survey.getQuestionByName("summary");
+    summaryQuestion.html = "<div><center> <h4>Your future risk is...</h4>"
+        + "<p><img alt=''  class='summary-image' src=" + summaryImage + "?v=2></p><h3>" + relativeRiskWord + "</h3> " +
         "<p>" + summarySubtitle [0] + "</p></center></div>"
 
     const goodFoodsQuestion = survey.getQuestionByName("good-foods");
@@ -2067,6 +1712,6 @@ survey.onValueChanged.add(function (survey, options) {
     const activitiesQuestion = survey.getQuestionByName("activities");
     activitiesQuestion.html = "<div><center> <h3>Now that you know your habit's impact ...</h3> <br>"
         + "<p><img alt='' class='image'  src=" + feedbackImage + "></p>"
-        + " <p>How likely do you think you'll make chnages in your lifestyle ?</p> </center> <br>" +
-        "<div class='uk-container'><div  id='slider'></div> </div> <br><br> </div>";
-})
+        + " <p>How likely do you think you'll make changes in your lifestyle ?</p> </center> <br>" +
+        "<div id='slider' class='uk-container'></div> <br><br> </div>";
+});
