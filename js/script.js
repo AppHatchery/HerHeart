@@ -94,7 +94,10 @@ let redmeat_a = ['img/redmeat_never.png', 'img/generic_bad_lessthan1.png', 'img/
 let soda_a = ['img/soda_never.png', 'img/generic_bad_lessthan1.png', 'img/soda_1to2.png', 'img/soda_3to5.png', 'img/generic_bad_everyday.png', 'img/generic_bad_twiceaday.png'];
 let alcohol_a = ['img/soda_never.png', 'img/generic_bad_lessthan1.png', 'img/soda_1to2.png', 'img/soda_3to5.png', 'img/generic_bad_everyday.png', 'img/generic_bad_twiceaday.png'];
 // let alcohol_a = ['img/.png','img/.png','img/.png','img/.png','img/.png','img/.png'];
-
+let summarySubtitle = ["Don’t worry! This means that down the road, when you’re in your 40s, your heart will be a little more at risk for heart disease. " +
+"The good news is you’re still young and have plenty of time to lower your risk and we’ve got some tips to help you do that!"]
+let feedbackText = "Awesome, we love to hear that!"
+let noUiSliderUpdate = 0
 const json = {
     "title": "HerHeart",
     "showProgressBar": "top",
@@ -989,10 +992,6 @@ const json = {
                             "imageLink": './svg/yes-lets-see.svg'
                         },
                         {
-                            "value": 1,
-                            "imageLink": './svg/maybe-later.svg'
-                        },
-                        {
                             "value": 2,
                             "imageLink": './svg/no-am-good.svg'
                         },
@@ -1007,7 +1006,7 @@ const json = {
                     "name": "test",
                     "visibleIf": "{awesomeWeLoveToHearThat} < 1",
                     "html": "<div id='sketch-holder'></div>" +
-                        "<h3><center> That's okay, you've got time! </center></h3>" +
+                        "<h3><center> " + feedbackText + " </center></h3>" +
                         "<p><center>We've got some suggestions just for you too. Do you wanna see them?</center></p>"
                 },
                 {
@@ -1022,10 +1021,6 @@ const json = {
                         {
                             "value": 0,
                             "imageLink": './svg/yes-lets-see.svg'
-                        },
-                        {
-                            "value": 1,
-                            "imageLink": './svg/maybe-later.svg'
                         },
                         {
                             "value": 2,
@@ -1269,12 +1264,12 @@ survey
                         <div class="uk-width-expand uk-position-relative">
                             <div uk-grid class="uk-child-width-1-3 height">
                                 <div class="border-left-bottom-right uk-padding-remove-left">
-                                    <p class="uk-text-meta uk-text-light uk-text-nowrap"> <3x a week</p>
+                                    <p class="uk-text-meta uk-text-light uk-text-nowrap"> < 3x a week</p>
                                 </div>
                                 <div class="border-bottom uk-padding-remove-left">
                                     <p class="uk-text-meta uk-text-light uk-text-nowrap"> 3-5x a week</p></div>
                                 <div class="border-left-bottom-right uk-padding-remove-left">
-                                    <p class="uk-text-meta uk-text-light uk-text-nowrap"> 5x a week</p>
+                                    <p class="uk-text-meta uk-text-light uk-text-nowrap"> > 5x a week</p>
                                 </div>
                             </div>
                         </div>
@@ -1334,28 +1329,36 @@ survey
         if (options.page.name == "page41") {
             setTimeout(() => {
 
+                $(".sv-footer__next-btn").css("display", 'none')
+
                 let slider = document.getElementById('slider');
 
                 noUiSlider.create(slider, {
-                    start: [1],
+                    start: 5,
                     pips: {
-                        mode: 'range',
-                        density: 3
+                        mode: 'positions',
+                        values: [50],
+                        density: 50,
+                        stepped: true
                     },
                     range: {
                         'min': 0,
-                        'max': 2
+                        'max': 10
                     }
                 });
+                feedbackText = slider.noUiSlider.get() > 5 ? "Awesome, we love to hear that!" : "That’s okay, you’ve got time!"
 
+                slider.noUiSlider.on('update', function (values, handle) {
+                    $(".sv-footer__next-btn").css("display", 'unset')
+                    noUiSliderUpdate = values
+                });
 
-                console.log(slider.noUiSlider.get() + " ----- slider.noUiSlider.get();")
 
             }, 300)
         }
 
-        if (options.page.name == "page42" || options.page.name == "page43")
-            $(".sv-footer__next-btn").css("display", 'none')
+        // if (options.page.name == "page42" || options.page.name == "page43")
+        //     $(".sv-footer__next-btn").css("display", 'none')
 
 
 //Do nothing if a page contains no description to show in a modal popup
@@ -2016,11 +2019,12 @@ survey.onValueChanged.add(function (survey, options) {
     }
 
     var summaryQuestion = survey.getQuestionByName("summary");
-    summaryQuestion.html = "<div><center>" + "<p><img alt=''  class='summary-image' src=" + summaryImage + "?v=2></p><h3>" + relativeRiskWord + "</h3></center></div>"
+    summaryQuestion.html = "<div><center>" + "<p><img alt=''  class='summary-image' src=" + summaryImage + "?v=2></p><h3>" + relativeRiskWord + "</h3> " +
+        "<p>" + summarySubtitle [0] + "</p></center></div>"
 
     const goodFoodsQuestion = survey.getQuestionByName("good-foods");
     goodFoodsQuestion.html =
-        "<h2>You're doing pretty good... </h2> <br> " +
+        "<h3>Let’s start with nutrition! </h3> <br> " +
         "<div id='nutritionSummary' style='overflow: hidden'></div>";
     /*<p>  (You eat low fiber grains <b>"+grainLowQuestion+"</b>, you need a least one serving every day)</p></div></li>";*/
 
@@ -2064,5 +2068,5 @@ survey.onValueChanged.add(function (survey, options) {
     activitiesQuestion.html = "<div><center> <h3>Now that you know your habit's impact ...</h3> <br>"
         + "<p><img alt='' class='image'  src=" + feedbackImage + "></p>"
         + " <p>How likely do you think you'll make chnages in your lifestyle ?</p> </center> <br>" +
-        "<div id='slider' class='uk-container'></div> <br><br> </div>";
+        "<div class='uk-container'><div  id='slider'></div> </div> <br><br> </div>";
 })

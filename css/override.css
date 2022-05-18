@@ -108,7 +108,7 @@ h3 {
 }
 
 #slider {
-    margin: 10px;
+    margin: 9px;
 }
 
 
@@ -144,3 +144,16 @@ h3 {
     transform: rotate(90deg);
     background-image: url("../svg/arrow-right-circle.svg");
 }
+
+.ui-slider-pips .ui-slider-label {
+    width: 6em;
+}
+.slider{
+    width: 70%;
+}
+
+.sv-title {
+    font-family: unset;
+    font-weight: unset;;
+}
+
