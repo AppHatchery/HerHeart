@@ -33,6 +33,13 @@ survey
 $("#surveyElement").Survey({model: survey});
 
 
+survey.onAfterRenderQuestion.add(function (sender, options) {
+    // console.log(options.question.name)
+    if (options.question.name == "complete") {
+        $(".sv-body__footer").css("display", 'none')
+    }
+});
+
 survey
     .onAfterRenderPage
     .add(function (survey, options) {

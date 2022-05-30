@@ -993,10 +993,28 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "name": "Intro",
-                    "html": "<h3 style='text-align:center'> Remember, we’re here for you!</h3>" +
-                        "<p>If you want to look at your suggestions later or spread the love and info, feel free to save your results and share this quiz.</p>" +
-                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:70%;' src='svg/Heart.svg'><br>",
+                    "name": "complete",
+                    "html": "<div class=\"uk-container uk-text-center\">" +
+                        "    <h3> That’s cool, we’ll be here for you!</h3>" +
+                        "    <p>If you want to look at your suggestions later or spread the love and info," +
+                        "        feel free to save your results and share" +
+                        "        this quiz.</p>" +
+                        "    <br>" +
+                        "    <div onclick='window.location.reload(true)'>" +
+                        "        <img src=\"./../public/svg/retake-quiz.svg\" alt=\"retake-quiz\">" +
+                        "        <p class=\"uk-margin-remove\">retake quiz</p>" +
+                        "    </div>" +
+                        "    <br>" +
+                        "    <div>" +
+                        "        <img src=\"./../public/svg/share-quiz.svg\" alt=\"retake-quiz\">" +
+                        "        <p class=\"uk-margin-remove\">share quiz</p>" +
+                        "    </div>" +
+                        "    <br>" +
+                        "    <div>" +
+                        "        <img src=\"./../public/svg/save-results.svg\" alt=\"retake-quiz\">" +
+                        "        <p class=\"uk-margin-remove\">save results</p>" +
+                        "    </div>" +
+                        "</div>"
                 },
             ]
         },
