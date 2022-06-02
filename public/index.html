@@ -8,13 +8,42 @@
     <link href="https://unpkg.com/nouislider@9.2.0/distribute/nouislider.min.css" rel="stylesheet"/>
     <link href="./css/nutrition-summary-styles.css?v=1" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/uikit@3.13.10/dist/css/uikit.min.css" rel="stylesheet"/>
-    <link href="./css/override.css?v=1" rel="stylesheet">
+    <link href="./css/override.css?v=2" rel="stylesheet">
 </head>
 
 <body>
 <div id="surveyElement" style="display:inline-block;width:100%;"></div>
 <div id="surveyResult"></div>
 <div id="questionDescriptionText"></div>
+<div class="share-dialog">
+    <header>
+        <h3 class="dialog-title">Share Quiz</h3>
+        <button class="close-button">
+            <span uk-icon="icon: close; ratio: 2"></span>
+        </button>
+    </header>
+    <div class="targets">
+        <a class="button uk-button uk-button-default">
+            <span uk-icon="icon: facebook; ratio: 2"></span> Facebook
+        </a>
+
+        <a class="button uk-button uk-button-default">
+            <span uk-icon="icon: twitter; ratio: 2"></span> Twitter
+        </a>
+
+        <a class="button uk-button uk-button-default">
+            <span uk-icon="icon: linkedin; ratio: 2"></span> LinkedIn
+        </a>
+
+        <a class="button uk-button uk-button-default">
+            <span uk-icon="icon: mail; ratio: 2"></span> Email
+        </a>
+    </div>
+    <div class="link">
+        <div class="pen-url">https://herheart.app/</div>
+        <button class="copy-link uk-button uk-button-default">Copy Link</button>
+    </div>
+</div>
 </body>
 
 <script src="https://unpkg.com/jquery"></script>
@@ -33,7 +62,7 @@
 <script src="js/firebase.js"></script>
 <script src="js/globals.js"></script>
 <script src="js/functions.js"></script>
-<script src="js/json.js"></script>
-<script src="js/script.js?v=23"></script>
+<script src="js/json.js?v=2"></script>
+<script src="js/script.js?v=24"></script>
 
 </html>

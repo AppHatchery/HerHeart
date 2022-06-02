@@ -36,7 +36,7 @@ $("#surveyElement").Survey({model: survey});
 survey.onAfterRenderQuestion.add(function (sender, options) {
     // console.log(options.question.name)
     if (options.question.name == "complete") {
-        $(".sv-body__footer").css("display", 'none')
+        $(".sv-footer__complete-btn").css("display", 'none')
     }
 });
 
@@ -704,4 +704,29 @@ survey.onValueChanged.add(function (survey, options) {
         + "<p><img alt='' class='image'  src=" + feedbackImage + "></p>"
         + " <p>How likely do you think you'll make changes in your lifestyle ?</p> </center> <br>" +
         "<div id='slider' class='uk-container'></div> <br><br> </div>";
+});
+
+
+const shareDialog = document.querySelector('.share-dialog');
+const closeButton = document.querySelector('.close-button');
+
+
+function shareQuiz() {
+    console.log("clicked")
+
+    if (navigator.share) {
+        navigator.share({
+            title: 'Share Quiz',
+            url: 'https://herheart.app/'
+        }).then(() => {
+        })
+            .catch(console.error);
+    } else {
+        shareDialog.classList.add('is-open');
+    }
+}
+
+
+closeButton.addEventListener('click', event => {
+    shareDialog.classList.remove('is-open');
 });

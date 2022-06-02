@@ -1,6 +1,6 @@
 function writeUserData(answers) {
     const date = {"date": new Date()};
-    database.ref('data').push(answers);
+    // database.ref('data').push(answers);
 
     // updates[entryKey+'/date'] = new Date();
     // app.update(ref(db), updates);
