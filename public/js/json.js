@@ -5,7 +5,7 @@ const json = {
     "requiredText": "",
     "completedHtml": "<h3 style='text-align:center'> Awesome! Thank you so much for taking the HerHeart Quiz, hope it helped you see the things you are doing great and a couple to improve upon!</h3>" +
         "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:70%;' src='svg/Heart.svg'><br>",
-    // "triggers": [
+    // "trigger fs": [
     //     {
     //         "type": "complete"
     //         "expression": "{gender} != 'Female'"
@@ -31,7 +31,8 @@ const json = {
                     "autoComplete": "name"
                 }
             ]
-        }, {
+        }, 
+        {
             "popupdescription": "P5",
             "pos": 1,
             "elements": [
@@ -198,7 +199,7 @@ const json = {
                     "type": "html",
                     "name": "grains-high-title",
                     "html": "<div id='sketch-holder'></div>" +
-                        "<h3> <center>Interesting selection 🤔... do you eat whole grains at least 3-5 times a week?</center></h3>" +
+                        "<h3> <center>Okay ! How many servings do you eat a week?</center></h3>" +
                         "<p><center>Examples: whole grain bread, whole grain pasta, brown rice, popcorn, oats</center></p>"
                 },
                 {
@@ -226,7 +227,7 @@ const json = {
                     "type": "html",
                     "name": "grains-low-title",
                     "html": "<div id='sketch-holder'></div>" +
-                        "<h3><center> Not great, but we still have another grain category! How do you feel about regular grains? 👀</center></h3>" +
+                        "<h3><center> And we still have another grain category! How do you feel about regular grains? 👀</center></h3>" +
                         "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/moderate.png'>" +
                         "<p><center style='font-size:14px;'>Examples: sugary cereals, white bread, pancakes, bagels, crackers</center></p>"
                 },
@@ -253,7 +254,7 @@ const json = {
                     "type": "html",
                     "name": "grains-low-next-title",
                     "html": "<div id='sketch-holder'></div>" +
-                        "<h3> <center>Okay, that's fine butttt... do you eat them at least twice a week? </center></h3>" +
+                        "<h3> <center>Okay, that's fine anddd... do you eat them at least twice a week? </center></h3>" +
                         "<p><center>Examples: sugary cereals, white bread, pancakes, bagels, crackers</center></p>"
                 },
                 {
@@ -382,7 +383,7 @@ const json = {
                     "name": "veggies-next",
                     "title": " ",
                     "isRequired": true,
-                    "colCount": 2,
+                    "colCount": 1,
                     "hasNone": false,
                     "choices": [
                         {"value": 0, "imageLink": activity_[0]},
@@ -448,7 +449,7 @@ const json = {
                     "name": "nuts-next",
                     "title": " ",
                     "isRequired": true,
-                    "colCount": 2,
+                    "colCount": 1,
                     "hasNone": false,
                     "choices": [
                         {"value": 0, "imageLink": activity_[0]},
@@ -604,7 +605,7 @@ const json = {
                     "type": "html",
                     "name": "test",
                     "html": "<div id='sketch-holder'></div>" +
-                        "<h3><center> Do you drink a lot of soda?</center></h3>" +
+                        "<h3><center> Do you drink a lot of sweetened beverages?</center></h3>" +
                         "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/soda.png'>"
                 },
                 {
@@ -694,7 +695,7 @@ const json = {
                 {
                     "type": "html",
                     "name": "smoke-score",
-                    "html": "<div id='sketch-holder'></div><h3 style='text-align:center'>As you can probably guess, smoking is not too good for your heart, but because you stopped it means your heart is healing!</h3>"
+                    "html": "<div id='sketch-holder'></div><h3 style='text-align:center'>As you can probably guess, smoking is not too good for your heart, and because you stopped it means your heart is healing!</h3>"
                 }
             ]
         },
@@ -776,7 +777,7 @@ const json = {
                 {
                     "type": "html",
                     "name": "test",
-                    "html": "<div id='sketch-holder'></div><h3 style='text-align:center'>Gotcha! You may know this but one glass of wine a day is actually beneficial to your heart health, just one though 👀</h3>",
+                    "html": "<div id='sketch-holder'></div><h3 style='text-align:center'>Gotcha! You may know this, one glass of wine a day is actually beneficial to your heart health, just one though 👀</h3>",
                 }
             ]
         }, {
@@ -906,37 +907,73 @@ const json = {
                 }
             ]
         },
-        // {
-        //     "elements": [
-        //         {
-        //             "type": "html",
-        //             "name": "test",
-        //             "visibleIf": "{awesomeWeLoveToHearThat} < 1",
-        //             "html": "<div id='sketch-holder'></div>" +
-        //                 "<h3><center> That's okay, you've got time! </center></h3>" +
-        //                 "<p><center>We've got some suggestions just for you too. Do you wanna see them?</center></p>"
-        //         },
-        //         {
-        //             "visibleIf": "{awesomeWeLoveToHearThat} < 1",
-        //             "type": "imagepicker",
-        //             "name": "thatIsOkayYouGotTime",
-        //             "title": " ",
-        //             "isRequired": true,
-        //             "colCount": 1,
-        //             "hasNone": false,
-        //             "choices": [
-        //                 {
-        //                     "value": 0,
-        //                     "imageLink": './svg/yes-lets-see.svg'
-        //                 },
-        //                 {
-        //                     "value": 1,
-        //                     "imageLink": './svg/no-am-good.svg'
-        //                 },
-        //             ]
-        //         }
-        //     ]
-        // },
+        // New additions - user choices
+        {
+            "elements": [
+                {
+                    "type": "html",
+                    "name": "pickAreaToImprove",
+                    "html": "<div id='sketch-holder'></div>" +
+                        "<h3><center> Excellent! </center></h3>" +
+                        "<p><center>These are the areas where we think you can rack up more points fairly easily. Pick two that you are committed to change</center></p>"
+                },
+                {
+                    "type": "checkbox",
+                    "name": "areasToImprove",
+                    "title": " ",
+                    "isRequired": true,
+                    "colCount": 1,
+                    "hasNone": false,
+                    "maxSelectedChoices":2,
+                    "choices": [
+                        {
+                            "value":15,
+                            "text":"Fruits & Veggies ( you can increase 80 pts)"
+                        },
+                        {
+                            "value":10,
+                            "text":"Red & Processed meats ( you can increase 50 pts)"
+                        },
+                        {
+                            "value":12,
+                            "text":"Cereal fiber ( you can increase 120 pts)"
+                        },
+                        {
+                            "value":25,
+                            "text":"Nuts and Seeds ( you can increase 150 pts)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "popupdescription": "P5",
+            "pos": 9,
+            "animated": "yes",
+            "elements": [
+                {
+                    "type": "html",
+                    "name": "improveScoreText",
+                    "html": "<h3><center> Greaaaat! Very exciting! </center></h3>" +
+                        "<p><center>By improving in those two areas you will bring your score up by this much!</center></p>"+
+                        "<div id='sketch-holder'></div>"
+                },
+                {
+                    "type": "imagepicker",
+                    "name": "improveScore",
+                    "title": " ",
+                    "isRequired": true,
+                    "colCount": 1,
+                    "hasNone": false,
+                    "choices": [
+                        {
+                            "value": 0,
+                            "imageLink": './svg/improveButton.svg'
+                        },
+                    ]
+                }
+            ]
+        },
         {
             "elements": [
                 {
@@ -949,38 +986,31 @@ const json = {
                                 <a class="uk-accordion-title" href="#">
                                     <div uk-grid class="uk-margin-auto-vertical">
                                         <div class="uk-flex-inline uk-width-expand">
-                                            Nutrition
+                                            Fruits & Veggies
                                             <hr class="uk-width-expand" style="margin: auto 0px">
                                         </div>
                                     </div>
                                 </a>
                                 <div class="uk-accordion-content">
-                                    <p>We see you eat a lot of fruits & veggies, and it’s making your heart very happy! Fruits and veggies are great for your heart because ....</p>
-                                    <p>We also noticed you love sugary drinks - who doesn’t?! But we recommend cutting back because your heart ...</p>
-                                    <div style=\"left: 0; width: 80%; height: 0; position: relative; padding-bottom: 140%; padding-top: 120px;\">\n" +
-                    "                   <iframe src=\"https://www.tiktok.com/embed/6937433017707171077\"\n" +
-                    "                   style=\"top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;\" allowfullscreen\n" +
-                    "                   scrolling=\"no\" allow=\"encrypted-media;\"></iframe>" +
-                        "           </div>
+                                    <p><b>What steps can I take to maintain or improve my score for fruits and vegetables?</b></p>
+                                    <p>All fruits and veggies are great to include in your daily meals—that includes canned, fresh and frozen varieties! <br><br>
+                                    Try filling at least half your plate with fruits and veggies for every meal to make it to the recommended 4.5 cups of each per day.<br><br>
+                                   Also try placing your fruits on the counter or the front of the fridge to remind yourself to eat them.</p>
                                 </div>
                             </li>
                             <li>
                                 <a class="uk-accordion-title" href="#">
                                     <div uk-grid>
                                         <div class="uk-flex-inline uk-width-expand">
-                                            Exercise
+                                            Red & Processed Meats
                                             <hr class="uk-width-expand" style="margin: auto 0px">
                                         </div>
                                     </div>
                                 </a>
                                 <div class="uk-accordion-content">
-                                    <div style=\"left: 0; width: 80%; height: 0; position: relative; padding-bottom: 140%; padding-top: 120px;\">\n" +
-                        "            <iframe src=\"https://www.tiktok.com/embed/6885517120382323973\"\n" 0
-                        "                style=\"top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;\" allowfullscreen\n" +
-                        "                scrolling=\"no\" allow=\"encrypted-media;\"></iframe>" +
-                        "           </div>
-                                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat. Duis aute irure dolor reprehenderit.</p>
+                                    <p><b>What steps can I take to maintain or improve my score for red meat?</b></p>
+                                    <p>Red and processed meats are higher in cholesterol and saturated fat than chicken, fish or beans.  Higher cholesterol and saturated fat can raise your blood cholesterol and increase your risk for heart disease. When choosing protein, opt for low-fat options like lean meats such as chicken, turkey, fish.<br><br>
+                                    You can also try choosing main dishes that combine meat and vegetables like a stir-fry that emphasizes veggies!</p>
                                 </div>
                             </li>
                         </ul>
@@ -995,10 +1025,9 @@ const json = {
                     "type": "html",
                     "name": "complete",
                     "html": "<div class=\"uk-container uk-text-center\">" +
-                        "    <h3> That’s cool, we’ll be here for you!</h3>" +
-                        "    <p>If you want to look at your suggestions later or spread the love and info," +
-                        "        feel free to save your results and share" +
-                        "        this quiz.</p>" +
+                        "    <h3> Remember, we’re here for you!</h3>" +
+                        "    <p>If you want to spread the love and info," +
+                        "        feel free to share this quiz.</p>" +
                         "    <br>" +
                         "    <div onclick='window.location.reload(true)'>" +
                         "        <img src=\"./../public/svg/retake-quiz.svg\" alt=\"retake-quiz\">" +

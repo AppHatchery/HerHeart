@@ -1,11 +1,11 @@
 let newAnimation;
 let oldAnimation;
 // Disable for testing
-const animationValues = new Array(9);
-let animationValuesHealthy = new Array(9);
-const goodFeedbackResponse = ["empty", "Yea! That's the exercise you need every week!", "Yaaa fruits and veggies make your heart healthy!", "Yea nuts are awesome!! One of the best things you can do to reduce risk of cardiac disease", "", "", "Keep 'em grains coming!", "This is great! See how much NOT smoking has helped your score, smoking is a HUGE factor in your heart health"];
-const mediumFeedbackResponse = ["empty", "", "", "Nuts are a great foods! They impact your risk of heart health so much, even more than fruit and veggies!", "", "", "", "As you can probably guess, smoking is not too good for your heart, but because you stopped it means your heart is healing!"];
-const badFeedbackResponse = ["empty", "", "", "Nuts are some of the best foods you can eat to reduce your risk of cardiac health, and there's so much variety!", "Eehhh that much soda is not good for your heart!", "Uuuhh a lot of red meat! Too much meat is actually bad for your heart...", "", "", "Smoking any nicotine is one of the biggest factors in reducing your risk of cardiac disease! You know that 60% of teenagers your age don't smoke, if your group of friends smokes you could try to use non-nicotine products for example!"];
+const animationValues = new Array(10); // add +1 for extra points
+let animationValuesHealthy = new Array(10); // add +1 for extra points
+const goodFeedbackResponse = ["empty", "Yea! That's the exercise you need every week!", "Keep 'em grains coming!","Yaaa fruits and veggies make your heart healthy!", "Yea nuts are awesome!! One of the best things you can do to reduce risk of cardiac disease", "", "", "This is great! See how much NOT smoking has helped your score, smoking is a HUGE factor in your heart health"];
+const mediumFeedbackResponse = ["empty", "", "", "","Nuts are a great foods! They impact your risk of heart health so much!", "", "", "As you can probably guess, smoking is not too good for your heart, and because you stopped it means your heart is healing!"];
+const badFeedbackResponse = ["empty", "", "", "","Nuts are some of the best foods you can eat to reduce your risk of cardiac health, and there's so much variety!", "Meat is tasty, and a lot of it is actually bad for your heart...", "Sweetened beverages are fine in moderation, but too many of them are not good for your heart!","", "Smoking any nicotine is one of the biggest factors in reducing your risk of cardiac disease! You know that 60% of teenagers your age don't smoke, if your group of friends smokes you could try to use non-nicotine products for example!"];
 const animationValuesTitles = ["empty", "Physical activity", "Grains", "Fruits & Veggies", "Nuts", "Meat", "Soda"];
 
 let animationValuesMinusLastValue = []
@@ -26,7 +26,7 @@ let index = 0;
 // animationValuesHealthy = [0, 20, 20, 40, 20, 20, 20, 60, 20]; // Overall quantity amounts to 200 without the alcohol portion that needs to be considered separate
 // animationValues = [0, 10, 15, 36, 45, 59, 77, 60, 20];
 // animationValuesHealthy = [0, 20, 20, 40, 20, 20, 20, 60, 20]; // Overall quantity amounts to 200 without the alcohol portion that needs to be considered separate
-rawHealthyValues = [0, 3.5, 2.6, 3, 2, 0.2, 0.2, 0];
+rawHealthyValues = [0, 3.5, 2.6, 3, 2, 0.2, 0.2, 0,3];
 // rawScoreValues = [0,1.5,1,1.5,0.5,0.8,2,0,0];
 rawScoreValues = [];
 graphScoreValues = [];
@@ -45,7 +45,7 @@ let BMI = 0
 let Diet = 0
 
 // Generic variables
-let generic_sport = ['img/generic_never.png', 'img/generic_15to30.png', 'img/generic_30to60.png', 'img/generic_1to3hr.png', 'img/generic_6to10hr.png', 'img/generic_10ormore.png'];
+let generic_sport = ['img/generic_none.png', 'img/generic_15to30.png', 'img/generic_30to60.png', 'img/generic_1to3hr.png', 'img/generic_6to10hr.png', 'img/generic_10ormore.png'];
 
 let generic_lessthan1 = 'img/generic_lessthan1.png';
 let generic_1to2 = 'img/generic_1to2.png';
@@ -73,10 +73,10 @@ let alcohol_ = ['img/alcohol_0.png', 'img/alcohol_1.png', 'img/alcohol_2.png', '
 
 // Follow-up pages
 let grains_high_a = ['img/generic_never.png', 'img/generic_lessthan1.png', 'img/generic_1to2.png', 'img/generic_3to5a.png', 'img/generic_everyday.png', 'img/grains_high_twice.png'];
-let grains_low_a = ['img/grains_low_never.png', 'img/generic_lessthan1.png', 'img/generic_1to2.png', 'img/generic_3to5b.png', 'img/generic_everyday.png', 'img/grains_low_twice.png'];
+let grains_low_a = ['img/generic_never.png', 'img/generic_lessthan1.png', 'img/generic_1to2.png', 'img/generic_3to5a.png', 'img/generic_everyday.png', 'img/grains_high_twice.png'];
 let fruit_a = ['img/fruit_never.png', 'img/fruit_lessthan1.png', 'img/fruit_onceaday.png', 'img/fruit_twiceaday.png', 'img/fruit_3timesaday.png'];
-let veggies_a = ['img/veggies_never.png', 'img/veggies_lessthan1.png', 'img/veggies_onceaday.png', 'img/veggies_twiceaday.png', 'img/veggies_threeaday.png'];
-let nuts_a = ['img/nuts_never.png', 'img/nuts_lessthan1.png', 'img/nuts_onceaweek.png', 'img/nuts_twiceaweek.png', 'img/nuts_morethantwice.png'];
+let veggies_a = ['img/generic_never.png', 'img/veggies_lessthan1.png', 'img/veggies_onceaday.png', 'img/veggies_twiceaday.png', 'img/veggies_threeaday.png'];
+let nuts_a = ['img/generic_never.png', 'img/nuts_lessthan1.png', 'img/nuts_1to2.png', 'img/nuts_3to5.png', 'img/nuts_everyday.png', 'img/nuts_twiceaday.png'];
 let processed_a = ['img/processed_never.png', 'img/generic_bad_lessthan1.png', 'img/generic_bad_1to2.png', 'img/generic_bad_3to5.png', 'img/generic_bad_everyday.png', 'img/generic_bad_twiceaday.png'];
 let redmeat_a = ['img/redmeat_never.png', 'img/generic_bad_lessthan1.png', 'img/generic_bad_1to2.png', 'img/generic_bad_3to5.png', 'img/generic_bad_everyday.png', 'img/generic_bad_twiceaday.png'];
 let soda_a = ['img/soda_never.png', 'img/generic_bad_lessthan1.png', 'img/soda_1to2.png', 'img/soda_3to5.png', 'img/generic_bad_everyday.png', 'img/generic_bad_twiceaday.png'];

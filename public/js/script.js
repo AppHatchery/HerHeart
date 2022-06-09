@@ -49,13 +49,13 @@ survey
             writeUserData(survey.data);
         }
 
-
+        console.log(options.page.name);
         // P5 End ------------ //
         // Modify pages for Buzzfeed style
         // Okay so this works it seems like
         if (options.page.name == "page3") {
             if (survey.getQuestionByName("activity-high").value > 1) {
-                survey.getQuestionByName("activity-high-title").html = "<div id='sketch-holder'></div> <br>" + '<h3><center>Nice! Butttttt do spend at least 1-2 hours a week doing intense physical exercise?</center></h3>';
+                survey.getQuestionByName("activity-high-title").html = "<div id='sketch-holder'></div> <br>" + '<h3><center>Nice! Anddd how much intense physical exercise do you do a week?</center></h3>';
                 survey.getQuestionByName("activity-high-next").choices = [
                     {"value": 0.75, "imageLink": generic_sport[2]},
                     {"value": 2, "imageLink": generic_sport[3]},
@@ -63,7 +63,7 @@ survey
                     {"value": 10, "imageLink": generic_sport[5]}];
 
             } else {
-                survey.getQuestionByName("activity-high-title").html = "<div id='sketch-holder'></div> <br>" + '<h3><center>Interesting selection 🤔... do spend at least 1-2 hours a week doing intense physical exercise?</center></h3>';
+                survey.getQuestionByName("activity-high-title").html = "<div id='sketch-holder'></div> <br>" + '<h3><center>Interesting selection 🤔... how much intense physical exercise do you do a week?</center></h3>';
                 survey.getQuestionByName("activity-high-next").choices = [
                     {"value": 0, "imageLink": generic_sport[0]},
                     {"value": 0.25, "imageLink": generic_sport[1]},
@@ -81,7 +81,7 @@ survey
 
             } else {
                 survey.getQuestionByName("activity-low-title").html = "<div id='sketch-holder'></div>" +
-                    "<h3><center> Okay, so you don't do much intense exercise… Do you like doing low intensity exercise? </center></h3>" +
+                    "<h3><center> Okay, do you like doing low intensity exercise? </center></h3>" +
                     "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/moderate.png'>" +
                     "<p><center style='font-size:14px;'>Examples: walking, dancing, riding a bike, playing with dog, swimming, marching band</center></p>";
             }
@@ -90,7 +90,7 @@ survey
         if (options.page.name == "page5") {
             if (survey.getQuestionByName("activity-low").value > 1) {
                 survey.getQuestionByName("activity-low-next-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Nice! Butttttt do you spend at least 1-2 hours a week doing low intensity physical exercise?</center></h3>';
+                    '<h3><center>Nice! And tell me how much intense physical exercise do you do a week?</center></h3>';
                 survey.getQuestionByName("activity-low-next").choices = [
                     {"value": 0.75, "imageLink": generic_sport[2]},
                     {"value": 2, "imageLink": generic_sport[3]},
@@ -99,7 +99,7 @@ survey
 
             } else {
                 survey.getQuestionByName("activity-low-next-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Interesting selection 🤔... do you spend 1-2 hours a week doing low intensity physical exercise?</center></h3>';
+                    '<h3><center>Okay so how much intense physical exercise do you do a week?</center></h3>';
                 survey.getQuestionByName("activity-low-next").choices = [
                     {"value": 0, "imageLink": generic_sport[0]},
                     {"value": 0.25, "imageLink": generic_sport[1]},
@@ -111,7 +111,8 @@ survey
         if (options.page.name == "page8") {
             if (survey.getQuestionByName("grains-high").value > 1) {
                 survey.getQuestionByName("grains-high-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Nice! Butttttt do you eat them at least 3-5 times a week?</center></h3>';
+                    '<h3><center>Nice! Anddddd how many servings do you eat a week?</center></h3>'+
+                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/grains-next-image.png'></img>";
                 survey.getQuestionByName("grains-high-next").choices = [
                     {"value": 0.3, "imageLink": grains_high_a[2]},
                     {"value": 0.5, "imageLink": grains_high_a[3]},
@@ -119,7 +120,8 @@ survey
                     {"value": 2, "imageLink": grains_high_a[5]}];
             } else {
                 survey.getQuestionByName("grains-high-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Interesting selection 🤔... do you eat whole grains at least 3-5 times a week?</center></h3>';
+                    '<h3><center>Okay! How many servings do you eat a week?</center></h3>'+
+                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/grains-next-image.png'></img>";
                 survey.getQuestionByName("grains-high-next").choices = [
                     {"value": 0, "imageLink": grains_high_a[0]},
                     {"value": 0.1, "imageLink": grains_high_a[1]},
@@ -137,7 +139,7 @@ survey
 
             } else {
                 survey.getQuestionByName("grains-low-title").html = "<div id='sketch-holder'></div>" +
-                    "<h3><center> Not great, but we still have another grain category! How do you feel about regular grains? 👀</center></h3>" +
+                    "<h3><center> We still have another grain category! How do you feel about regular grains? 👀</center></h3>" +
                     "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/grains-low.png'>" +
                     "<p><center style='font-size:14px;'>Examples: sugary cereals, white bread, pancakes, bagels, crackers</center></p>";
             }
@@ -155,7 +157,7 @@ survey
 
             } else {
                 survey.getQuestionByName("grains-low-next-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Okay, that’s fine butttt... do you eat them at least twice a week?</center></h3>';
+                    '<h3><center>Okay, that’s fine anddd... do you eat them at least twice a week?</center></h3>';
                 survey.getQuestionByName("grains-low-next").choices = [
                     {"value": 0, "imageLink": grains_low_a[0]},
                     {"value": 0.1, "imageLink": grains_low_a[1]},
@@ -167,7 +169,7 @@ survey
         if (options.page.name == "page13") {
             if (survey.getQuestionByName("fruit").value > 1) {
                 survey.getQuestionByName("fruit-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Nice, now prove it 👀. Do you eat at least three servings a day??</center></h3>';
+                    '<h3><center>Nice, now prove it 👀. How many servings do you eat a day??</center></h3>';
                 survey.getQuestionByName("fruit-next").choices = [
                     {"value": 0.5, "imageLink": fruit_a[1]},
                     {"value": 1, "imageLink": fruit_a[2]},
@@ -175,7 +177,7 @@ survey
                     {"value": 3, "imageLink": fruit_a[4]}];
             } else {
                 survey.getQuestionByName("fruit-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Oof.... 😬 Do you at least eat three servings a day??</center></h3>';
+                    '<h3><center>Alright, how many servings do you eat per day??</center></h3>';
                 survey.getQuestionByName("fruit-next").choices = [
                     {"value": 0, "imageLink": fruit_a[0]},
                     {"value": 0.5, "imageLink": fruit_a[1]},
@@ -187,7 +189,8 @@ survey
         if (options.page.name == "page15") {
             if (survey.getQuestionByName("veggies").value > 1) {
                 survey.getQuestionByName("veggies-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Nice, veggies are super important for good heart health! Do you eat at least three servings a day??</center></h3>';
+                    '<h3><center>Nice, veggies are super important for good heart health! How many servings you eat a day??</center></h3>'+
+                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/veggies_next_image.png'></img>";
                 survey.getQuestionByName("veggies-next").choices = [
                     {"value": 0.5, "imageLink": veggies_a[1]},
                     {"value": 1, "imageLink": veggies_a[2]},
@@ -195,7 +198,8 @@ survey
                     {"value": 3, "imageLink": veggies_a[4]}];
             } else {
                 survey.getQuestionByName("veggies-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Okayyy 😬... Well we all know veggies are good for you. Do you at least eat three servings a day??</center></h3>';
+                    '<h3><center>Okayyy 😬... Well we all know veggies are good for you. How many servings you eat a day??</center></h3>'+
+                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/veggies_next_image.png'></img>";
                 survey.getQuestionByName("veggies-next").choices = [
                     {"value": 0, "imageLink": veggies_a[0]},
                     {"value": 0.5, "imageLink": veggies_a[1]},
@@ -207,15 +211,17 @@ survey
         if (options.page.name == "page18") {
             if (survey.getQuestionByName("nuts").value > 1) {
                 survey.getQuestionByName("nuts-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Nice, now prove it 👀. Do you eat at least two servings a week??</center></h3>';
+                    '<h3><center>Nice, now prove it 👀. How many servings do you eat a week????</center></h3>'+
+                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/nuts_next_image.png'></img>";
                 survey.getQuestionByName("nuts-next").choices = [
-                    {"value": 1, "imageLink": nuts_a[1]},
-                    {"value": 2, "imageLink": nuts_a[2]},
-                    {"value": 3, "imageLink": nuts_a[3]},
-                    {"value": 4, "imageLink": nuts_a[4]}];
+                    {"value": 1, "imageLink": nuts_a[2]},
+                    {"value": 2, "imageLink": nuts_a[3]},
+                    {"value": 3, "imageLink": nuts_a[4]},
+                    {"value": 4, "imageLink": nuts_a[5]}];
             } else {
                 survey.getQuestionByName("nuts-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Oof.... 😬 Do you at least eat two servings a week??</center></h3>';
+                    '<h3><center>Okayy 😬... How many servings do you eat a week????</center></h3>'+
+                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/nuts_next_image.png'></img>";
                 survey.getQuestionByName("nuts-next").choices = [
                     {"value": 0, "imageLink": nuts_a[0]},
                     {"value": 1, "imageLink": nuts_a[1]},
@@ -227,7 +233,7 @@ survey
         if (options.page.name == "page21") {
             if (survey.getQuestionByName("procmeats").value > 1) {
                 survey.getQuestionByName("procmeats-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Okay! Too much processed meat isn’t good for your heart. Do you eat one serving or less a week??</center></h3>';
+                    '<h3><center>Okay! How much of it do you eat per week??</center></h3>';
                 survey.getQuestionByName("procmeats-next").choices = [
                     {"value": 0.3, "imageLink": processed_a[2]},
                     {"value": 0.5, "imageLink": processed_a[3]},
@@ -235,7 +241,7 @@ survey
                     {"value": 2, "imageLink": processed_a[5]}];
             } else {
                 survey.getQuestionByName("procmeats-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Processed meats aren’t great for your heart.... Do you eat one serving or less a week??</center></h3>';
+                    '<h3><center>Very nice! And how much of it do you eat per week??</center></h3>';
                 survey.getQuestionByName("procmeats-next").choices = [
                     {"value": 0, "imageLink": processed_a[0]},
                     {"value": 0.1, "imageLink": processed_a[1]},
@@ -247,13 +253,13 @@ survey
         if (options.page.name == "page22") {
             if (survey.getQuestionByName("procmeats-next").value >= 3) {
                 survey.getQuestionByName("redmeat-title").html = "<div id='sketch-holder'></div>" +
-                    "<h3><center> Hmm, could be better... do you eat red meat regularly? </center></h3>" +
+                    "<h3><center> Okay nice! And how do you feel about red meat? </center></h3>" +
                     "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/meats.png'>" +
                     "<p><center style='font-size:14px;'>Examples: ground beef, steak, lamb, pork, veal</center></p>";
 
             } else {
                 survey.getQuestionByName("redmeat-title").html = "<div id='sketch-holder'></div>" +
-                    "<h3><center>That's great! Now what about your red meat intake?</center></h3>" +
+                    "<h3><center>That's great! Now how do you feel about red meat intake?</center></h3>" +
                     "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/meats.png'>" +
                     "<p><center style='font-size:14px;'>Examples: ground beef, steak, lamb, pork, veal</center></p>";
             }
@@ -262,7 +268,7 @@ survey
         if (options.page.name == "page23") {
             if (survey.getQuestionByName("redmeat").value > 1) {
                 survey.getQuestionByName("redmeat-next-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Okay! Too much red meat can reduce your heart health. Do you eat one serving or less a week??</center></h3>';
+                    '<h3><center>Aaaannd how much of it do you eat per week??</center></h3>';
                 survey.getQuestionByName("redmeat-next").choices = [
                     {"value": 0.3, "imageLink": redmeat_a[2]},
                     {"value": 0.5, "imageLink": redmeat_a[3]},
@@ -270,7 +276,7 @@ survey
                     {"value": 2, "imageLink": redmeat_a[5]}];
             } else {
                 survey.getQuestionByName("redmeat-next-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Red meats aren’t the best for your heart either.... 😬 Do you eat one serving or less a week??</center></h3>';
+                    "<h3><center>All good! Anddd how much of it do you eat per week??</center></h3>";
                 survey.getQuestionByName("redmeat-next").choices = [
                     {"value": 0, "imageLink": redmeat_a[0]},
                     {"value": 0.1, "imageLink": redmeat_a[1]},
@@ -283,7 +289,7 @@ survey
 
             if (survey.getQuestionByName("soda").value > 1) {
                 survey.getQuestionByName("soda-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Okay! Too much soda can reduce your heart health. Do you two or less a week??</center></h3>';
+                    '<h3><center>Okay, there are a lot of beverages! How much do you drink a week?</center></h3>';
                 survey.getQuestionByName("soda-next").choices = [
                     {"value": 0.3, "imageLink": soda_a[2]},
                     {"value": 0.5, "imageLink": soda_a[3]},
@@ -291,7 +297,7 @@ survey
                     {"value": 2, "imageLink": soda_a[5]}];
             } else {
                 survey.getQuestionByName("soda-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Sodas aren’t the best for your heart either.... 😬 Do you drink two or or less a week??</center></h3>';
+                    "<h3><center>That's fine aaannd how many do you drink a week??</center></h3>";
                 survey.getQuestionByName("soda-next").choices = [
                     {"value": 0, "imageLink": soda_a[0]},
                     {"value": 0.1, "imageLink": soda_a[1]},
@@ -450,7 +456,7 @@ survey
                 let slider = document.getElementById('slider');
 
                 noUiSlider.create(slider, {
-                    start: 5,
+                    start: 5.5,
                     pips: {
                         mode: 'positions',
                         values: [0, 100],
@@ -458,11 +464,11 @@ survey
                         stepped: true
                     },
                     range: {
-                        'min': 0,
+                        'min': 1,
                         'max': 10
                     }
                 });
-                feedbackText = slider.noUiSlider.get() > 5 ? "Awesome, we love to hear that!" : "That’s okay, you’ve got time!"
+                feedbackText = slider.noUiSlider.get() > 5.5 ? "Awesome, we love to hear that!" : "That’s okay, you’ve got time!"
                 $(".sv-footer__next-btn").css("display", 'none')
                 slider.noUiSlider.on('update', function (values, handle) {
                     flag++
@@ -496,7 +502,7 @@ survey
         calculateBarProgress();
 
         animationValues[0] = 0;
-        animationValuesHealthy = [0, 20, 20, 20, 40, 20, 20, 60, 20]; // Overall quantity amounts to 200 without the alcohol portion that needs to be considered separate
+        animationValuesHealthy = [0, 20, 20, 20, 40, 20, 20, 60, 20, 30]; // Overall quantity amounts to 200 without the alcohol portion that needs to be considered separate
 
 // I gotta pass in here these variables
         if (options.page.animated) {
@@ -579,6 +585,7 @@ survey.onValueChanged.add(function (survey, options) {
     rawAlcohol = dietValues[8];
 
     rawSmoke = smokeQuestion;
+    extraPoints = survey.getQuestionByName("areasToImprove").value[0];
 
 
     // Could probably use an equation to remove this if statement
@@ -700,7 +707,7 @@ survey.onValueChanged.add(function (survey, options) {
 
 
     const activitiesQuestion = survey.getQuestionByName("activities");
-    activitiesQuestion.html = "<div><center> <h3>Now that you know your habit's impact ...</h3> <br>"
+    activitiesQuestion.html = "<div><center> <h3>Now, this is your score today, and you can change it by trying out different habits. Next month your score could be totally different!</h3> <br>"
         + "<p><img alt='' class='image'  src=" + feedbackImage + "></p>"
         + " <p>How likely do you think you'll make changes in your lifestyle ?</p> </center> <br>" +
         "<div id='slider' class='uk-container'></div> <br><br> </div>";

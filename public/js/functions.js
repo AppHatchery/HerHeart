@@ -262,6 +262,12 @@ function calculateBarProgress() {
     } else {
         animationValues[8] = animationValues[7] + parseInt(rawAlcohol * 20)
     }
+
+    // Extra points
+    if (extraPoints > 0){
+        animationValues[9] = animationValues[8]+30
+        console.log("these are the anim values",animationValues);
+    }
 }
 
 // Set up messages for each option : three states, good, medium, bad
@@ -277,12 +283,12 @@ function displayFeedbackMessage(feedbackChosen) {
 
 
 function calculateGoodBadDiet() {
-    let rawScoreValues = [0, rawSport, animationValues[2] - animationValues[1], animationValues[3] - animationValues[2], (animationValues[4] - animationValues[3]) / 2, 20 - (animationValues[5] - animationValues[4]), 20 - (animationValues[6] - animationValues[5]), rawSmoke, rawAlcohol];
+    let rawScoreValues = [0, rawSport, animationValues[2] - animationValues[1], animationValues[3] - animationValues[2], (animationValues[4] - animationValues[3]) / 2, 20 - (animationValues[5] - animationValues[4]), 20 - (animationValues[6] - animationValues[5]), rawSmoke, rawAlcohol,animationValues[9]-animationValues[8]];
     console.log(rawScoreValues);
     // graphScoreValues = [rawGrains*const,]
     // Calculates the percentage score
     for (const key in animationValues) {
-        if (key > 1 && key < animationValues.length - 2) {
+        if (key > 1 && key < animationValues.length - 3){ // 3 because added the extra value
             // const result = ((animationValues[key] - animationValues[key - 1]) / animationValuesHealthy[key]);
             const result = ((animationValues[key] - animationValues[key - 1]) / animationValuesHealthy[key]);
             // cleanSortedValuesHealthy.push(animationValuesHealthy[key])
