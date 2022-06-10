@@ -82,7 +82,7 @@ let redmeat_a = ['img/redmeat_never.png', 'img/generic_bad_lessthan1.png', 'img/
 let soda_a = ['img/soda_never.png', 'img/generic_bad_lessthan1.png', 'img/soda_1to2.png', 'img/soda_3to5.png', 'img/generic_bad_everyday.png', 'img/generic_bad_twiceaday.png'];
 let alcohol_a = ['img/alcohol_never.png', 'img/alcohol_lessthan1.png', 'img/alcohol_1to2.png', 'img/alcohol_3to5.png', 'img/generic_bad_everyday.png', 'img/generic_bad_twiceaday.png'];
 // let alcohol_a = ['img/.png','img/.png','img/.png','img/.png','img/.png','img/.png'];
-let summarySubtitle = ["Don’t worry! This means that down the road, when you’re in your 40s, your heart will be a little more at risk for heart disease. " +
+let summarySubtitle = ["Don’t worry! This means that down the road, when you're in your 40s, your heart will be a little more at risk for heart disease.<br><br>" +
 "The good news is you’re still young and have plenty of time to lower your risk and we’ve got some tips to help you do that!"]
 let feedbackText = "Awesome, we love to hear that!"
 let noUiSliderUpdate = 0

@@ -928,19 +928,19 @@ const json = {
                     "choices": [
                         {
                             "value":15,
-                            "text":"Fruits & Veggies ( you can increase 80 pts)"
+                            "text":"Fruits & Veggies"
                         },
                         {
                             "value":10,
-                            "text":"Red & Processed meats ( you can increase 50 pts)"
+                            "text":"Red & Processed meats"
                         },
                         {
                             "value":12,
-                            "text":"Cereal fiber ( you can increase 120 pts)"
+                            "text":"Cereal fiber"
                         },
                         {
                             "value":25,
-                            "text":"Nuts and Seeds ( you can increase 150 pts)"
+                            "text":"Nuts and Seeds"
                         }
                     ]
                 }
@@ -954,8 +954,7 @@ const json = {
                 {
                     "type": "html",
                     "name": "improveScoreText",
-                    "html": "<h3><center> Greaaaat! Very exciting! </center></h3>" +
-                        "<p><center>By improving in those two areas you will bring your score up by this much!</center></p>"+
+                    "html": "<h3><center> OMG! Look how much your score will improve if you change some habits </center></h3>" +
                         "<div id='sketch-holder'></div>"
                 },
                 {
@@ -967,7 +966,7 @@ const json = {
                     "hasNone": false,
                     "choices": [
                         {
-                            "value": 0,
+                            "value": 1,
                             "imageLink": './svg/improveButton.svg'
                         },
                     ]
@@ -978,7 +977,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "visibleIf": "{awesomeWeLoveToHearThat} < 1",
+                    "visibleIf": "{improveScore} == 1",
                     "html": `
                     <div class="uk-container">
                         <ul uk-accordion>
@@ -1030,12 +1029,12 @@ const json = {
                         "        feel free to share this quiz.</p>" +
                         "    <br>" +
                         "    <div onclick='window.location.reload(true)'>" +
-                        "        <img src=\"./svg/retake-quiz.svg\" alt=\"retake-quiz\">" +
+                        "        <img src=\"./../public/svg/retake-quiz.svg\" alt=\"retake-quiz\">" +
                         "        <p class=\"uk-margin-remove\">retake quiz</p>" +
                         "    </div>" +
                         "    <br>" +
                         "    <div onclick='shareQuiz()'>" +
-                        "        <img src=\"./svg/share-quiz.svg\" alt=\"retake-quiz\">" +
+                        "        <img src=\"./../public/svg/share-quiz.svg\" alt=\"retake-quiz\">" +
                         "        <p class=\"uk-margin-remove\">share quiz</p>" +
                         "    </div>" +
                         "    <br>" +

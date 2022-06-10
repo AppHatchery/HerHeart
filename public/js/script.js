@@ -335,8 +335,9 @@ survey
         if (options.page.name == "page39") {
             let nutritionSummary = '<div class="uk-container">';
             let gradient = "";
-            let headingOne = "<p>These are foods that reduce your heart risk, the more you eat them the healthier your heart will be. Anything more than a couple of servings per day will be great!</p>"
-            let headingTwo = "<p>These are foods that increases your heart risk, you want to limit your consumption to about once a week." +
+            let headingOne = "<h3><b>Let's start with foods that reduce your risk!</b></h3><p>These are foods that reduce your heart risk, the more you eat them the healthier your heart will be. Anything more than a couple of servings per day will be great!</p>"
+            let headingTwo = "<br><br><h3><b>And these are foods that increase it.. </b></h3>"+
+            "<p>The foods below increase your heart risk, you want to limit your consumption to about once a week." +
                 " If meat is an essential part of your diet you’ll want to look to substitute it with more white meats like chicken.</p>"
 
             for (const categoriesKey in categories) {
@@ -636,7 +637,6 @@ survey.onValueChanged.add(function (survey, options) {
 
     const goodFoodsQuestion = survey.getQuestionByName("good-foods");
     goodFoodsQuestion.html =
-        "<h3>Let’s start with nutrition! </h3> <br> " +
         "<div id='nutritionSummary' style='overflow: hidden'></div>";
     /*<p>  (You eat low fiber grains <b>"+grainLowQuestion+"</b>, you need a least one serving every day)</p></div></li>";*/
 
@@ -646,19 +646,19 @@ survey.onValueChanged.add(function (survey, options) {
             <h2>Time to get moving!</h2>
             <br>
             <div class="uk-container uk-text-center">
-                <p class="uk-margin-remove uk-text-meta">12 hrs | 0 min</p>
+                <p class="uk-margin-remove uk-text-meta">+ 4 hrs  |  0 min</p>
                 <div uk-grid class="uk-child-width-1-6">
                     <div class="uk-margin-auto-vertical">
-                        <p class="uk-text-nowrap uk-text-meta">9 hrs</p>
+                        <p class="uk-text-nowrap uk-text-meta">3 hrs</p>
                     </div>
                     <div class="uk-width-expand">
                         <div id="timeChart"></div>
                     </div>
                     <div class="uk-margin-auto-vertical">
-                        <p class="uk-text-meta uk-text-nowrap">3 hrs</p>
+                        <p class="uk-text-meta uk-text-nowrap">1 hrs</p>
                     </div>
                 </div>
-                <p class="uk-text-nowrap uk-text-meta uk-margin-remove">6 hrs</p>
+                <p class="uk-text-nowrap uk-text-meta uk-margin-remove">2 hrs</p>
             </div>
             <br>
              <div class="uk-child-width-1-1 uk-text-center" uk-grid>
@@ -679,7 +679,7 @@ survey.onValueChanged.add(function (survey, options) {
     const activitiesQuestion = survey.getQuestionByName("activities");
     activitiesQuestion.html = "<div><center> <h3>Now, this is your score today, and you can change it by trying out different habits. Next month your score could be totally different!</h3> <br>"
         + "<p><img alt='' class='image'  src=" + feedbackImage + "></p>"
-        + " <p>How likely do you think you'll make changes in your lifestyle ?</p> </center> <br>" +
+        + " <p>How likely do you think you'll make changes in your lifestyle ? Move the slider!</p> </center> <br>" +
         "<div id='slider' class='uk-container'></div> <br><br> </div>";
 });
 
