@@ -519,8 +519,6 @@ survey
             const mySketch = defineSketch(animationValues[options.page.pos - 1] * 1.35, animationValues[options.page.pos] * 1.35, (animationValues[options.page.pos] - animationValues[options.page.pos - 1]) * 5, animationValues[options.page.pos] * 5, colorDisplay, animationValuesHealthy[options.page.pos] * 5, 1);
             newAnimation = new p5(mySketch);
             window.sketchInstance = newAnimation;
-            // window.sketchInstance = new p5(newAnimation);
-            // console.log("this animates");
         } else {
             if (newAnimation != null) {
                 newAnimation.remove();
@@ -712,12 +710,10 @@ const closeButton = document.querySelector('.close-button');
 
 
 function shareQuiz() {
-    console.log("clicked")
-
     if (navigator.share) {
         navigator.share({
             title: 'Share Quiz',
-            url: 'https://herheart.app/'
+            url: window.location.href
         }).then(() => {
         })
             .catch(console.error);

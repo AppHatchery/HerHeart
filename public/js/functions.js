@@ -43,10 +43,6 @@ function defineSketch(x, y, value, total, colorDisplay, healthyPoints, animate) 
             j = parseInt(maxvalue / 1.35 * 5 - minvalue / 1.35 * 5);
             jfac = Math.round(j / (maxvalue - minvalue));
             w = 0;
-            // console.log("What is max",maxvalue);
-            // console.log("what is min",minvalue);
-            // console.log("whatis jfac",jfac);
-            // console.log("what is j",j);
             flag = 0;
             p.textFont(font);
             p.textAlign(p.CENTER, p.CENTER);
@@ -182,7 +178,6 @@ function defineSketch(x, y, value, total, colorDisplay, healthyPoints, animate) 
 
         // Is the particle still useful?
         Particle.prototype.isDead = function () {
-            // console.log("Does this fire?");
             return this.lifespan < 0;
         };
 
@@ -278,7 +273,6 @@ function displayFeedbackMessage(feedbackChosen) {
 
 function calculateGoodBadDiet() {
     let rawScoreValues = [0, rawSport, animationValues[2] - animationValues[1], animationValues[3] - animationValues[2], (animationValues[4] - animationValues[3]) / 2, 20 - (animationValues[5] - animationValues[4]), 20 - (animationValues[6] - animationValues[5]), rawSmoke, rawAlcohol];
-    console.log(rawScoreValues);
     // graphScoreValues = [rawGrains*const,]
     // Calculates the percentage score
     for (const key in animationValues) {
@@ -295,8 +289,6 @@ function calculateGoodBadDiet() {
             index++
         }
     }
-    console.log(valuesDict);
-
     // Create items array
     let items = Object.keys(valuesDict).map(function (key) {
         return [key, valuesDict[key]["score"]];
@@ -313,7 +305,6 @@ function calculateGoodBadDiet() {
         cleanSortedValuesHealthy.push(valuesDict[items[val][0]]["rawHealthy"]);
         cleanSortedValues.push(valuesDict[items[val][0]]["rawScore"]);
     }
-    console.log(cleanSortedValues);
 
     index = 0;
     for (const cleanSortedValuesKey in cleanSortedValues) {
