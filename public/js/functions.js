@@ -43,10 +43,6 @@ function defineSketch(x, y, value, total, colorDisplay, healthyPoints, animate) 
             j = parseInt(maxvalue / 1.35 * 5 - minvalue / 1.35 * 5);
             jfac = Math.round(j / (maxvalue - minvalue));
             w = 0;
-            // console.log("What is max",maxvalue);
-            // console.log("what is min",minvalue);
-            // console.log("whatis jfac",jfac);
-            // console.log("what is j",j);
             flag = 0;
             p.textFont(font);
             p.textAlign(p.CENTER, p.CENTER);
@@ -182,7 +178,6 @@ function defineSketch(x, y, value, total, colorDisplay, healthyPoints, animate) 
 
         // Is the particle still useful?
         Particle.prototype.isDead = function () {
-            // console.log("Does this fire?");
             return this.lifespan < 0;
         };
 
@@ -262,12 +257,6 @@ function calculateBarProgress() {
     } else {
         animationValues[8] = animationValues[7] + parseInt(rawAlcohol * 20)
     }
-
-    // Extra points
-    if (extraPoints > 0){
-        animationValues[9] = animationValues[8]+30
-        console.log("these are the anim values",animationValues);
-    }
 }
 
 // Set up messages for each option : three states, good, medium, bad
@@ -283,12 +272,11 @@ function displayFeedbackMessage(feedbackChosen) {
 
 
 function calculateGoodBadDiet() {
-    let rawScoreValues = [0, rawSport, animationValues[2] - animationValues[1], animationValues[3] - animationValues[2], (animationValues[4] - animationValues[3]) / 2, 20 - (animationValues[5] - animationValues[4]), 20 - (animationValues[6] - animationValues[5]), rawSmoke, rawAlcohol,animationValues[9]-animationValues[8]];
-    console.log(rawScoreValues);
+    let rawScoreValues = [0, rawSport, animationValues[2] - animationValues[1], animationValues[3] - animationValues[2], (animationValues[4] - animationValues[3]) / 2, 20 - (animationValues[5] - animationValues[4]), 20 - (animationValues[6] - animationValues[5]), rawSmoke, rawAlcohol];
     // graphScoreValues = [rawGrains*const,]
     // Calculates the percentage score
     for (const key in animationValues) {
-        if (key > 1 && key < animationValues.length - 3){ // 3 because added the extra value
+        if (key > 1 && key < animationValues.length - 2) {
             // const result = ((animationValues[key] - animationValues[key - 1]) / animationValuesHealthy[key]);
             const result = ((animationValues[key] - animationValues[key - 1]) / animationValuesHealthy[key]);
             // cleanSortedValuesHealthy.push(animationValuesHealthy[key])
@@ -301,8 +289,6 @@ function calculateGoodBadDiet() {
             index++
         }
     }
-    console.log(valuesDict);
-
     // Create items array
     let items = Object.keys(valuesDict).map(function (key) {
         return [key, valuesDict[key]["score"]];
@@ -319,7 +305,6 @@ function calculateGoodBadDiet() {
         cleanSortedValuesHealthy.push(valuesDict[items[val][0]]["rawHealthy"]);
         cleanSortedValues.push(valuesDict[items[val][0]]["rawScore"]);
     }
-    console.log(cleanSortedValues);
 
     index = 0;
     for (const cleanSortedValuesKey in cleanSortedValues) {

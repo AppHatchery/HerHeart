@@ -1030,12 +1030,12 @@ const json = {
                         "        feel free to share this quiz.</p>" +
                         "    <br>" +
                         "    <div onclick='window.location.reload(true)'>" +
-                        "        <img src=\"./../public/svg/retake-quiz.svg\" alt=\"retake-quiz\">" +
+                        "        <img src=\"./svg/retake-quiz.svg\" alt=\"retake-quiz\">" +
                         "        <p class=\"uk-margin-remove\">retake quiz</p>" +
                         "    </div>" +
                         "    <br>" +
                         "    <div onclick='shareQuiz()'>" +
-                        "        <img src=\"./../public/svg/share-quiz.svg\" alt=\"retake-quiz\">" +
+                        "        <img src=\"./svg/share-quiz.svg\" alt=\"retake-quiz\">" +
                         "        <p class=\"uk-margin-remove\">share quiz</p>" +
                         "    </div>" +
                         "    <br>" +
