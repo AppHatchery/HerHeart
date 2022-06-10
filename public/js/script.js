@@ -111,7 +111,7 @@ survey
         if (options.page.name == "page8") {
             if (survey.getQuestionByName("grains-high").value > 1) {
                 survey.getQuestionByName("grains-high-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Nice! Anddddd how many servings do you eat a week?</center></h3>'+
+                    '<h3><center>Nice! Anddddd how many servings do you eat a week?</center></h3>' +
                     "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/grains-next-image.png'></img>";
                 survey.getQuestionByName("grains-high-next").choices = [
                     {"value": 0.3, "imageLink": grains_high_a[2]},
@@ -120,7 +120,7 @@ survey
                     {"value": 2, "imageLink": grains_high_a[5]}];
             } else {
                 survey.getQuestionByName("grains-high-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Okay! How many servings do you eat a week?</center></h3>'+
+                    '<h3><center>Okay! How many servings do you eat a week?</center></h3>' +
                     "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/grains-next-image.png'></img>";
                 survey.getQuestionByName("grains-high-next").choices = [
                     {"value": 0, "imageLink": grains_high_a[0]},
@@ -189,7 +189,7 @@ survey
         if (options.page.name == "page15") {
             if (survey.getQuestionByName("veggies").value > 1) {
                 survey.getQuestionByName("veggies-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Nice, veggies are super important for good heart health! How many servings you eat a day??</center></h3>'+
+                    '<h3><center>Nice, veggies are super important for good heart health! How many servings you eat a day??</center></h3>' +
                     "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/veggies_next_image.png'></img>";
                 survey.getQuestionByName("veggies-next").choices = [
                     {"value": 0.5, "imageLink": veggies_a[1]},
@@ -198,7 +198,7 @@ survey
                     {"value": 3, "imageLink": veggies_a[4]}];
             } else {
                 survey.getQuestionByName("veggies-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Okayyy 😬... Well we all know veggies are good for you. How many servings you eat a day??</center></h3>'+
+                    '<h3><center>Okayyy 😬... Well we all know veggies are good for you. How many servings you eat a day??</center></h3>' +
                     "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/veggies_next_image.png'></img>";
                 survey.getQuestionByName("veggies-next").choices = [
                     {"value": 0, "imageLink": veggies_a[0]},
@@ -211,7 +211,7 @@ survey
         if (options.page.name == "page18") {
             if (survey.getQuestionByName("nuts").value > 1) {
                 survey.getQuestionByName("nuts-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Nice, now prove it 👀. How many servings do you eat a week????</center></h3>'+
+                    '<h3><center>Nice, now prove it 👀. How many servings do you eat a week????</center></h3>' +
                     "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/nuts_next_image.png'></img>";
                 survey.getQuestionByName("nuts-next").choices = [
                     {"value": 1, "imageLink": nuts_a[2]},
@@ -220,7 +220,7 @@ survey
                     {"value": 4, "imageLink": nuts_a[5]}];
             } else {
                 survey.getQuestionByName("nuts-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Okayy 😬... How many servings do you eat a week????</center></h3>'+
+                    '<h3><center>Okayy 😬... How many servings do you eat a week????</center></h3>' +
                     "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/nuts_next_image.png'></img>";
                 survey.getQuestionByName("nuts-next").choices = [
                     {"value": 0, "imageLink": nuts_a[0]},
@@ -333,63 +333,35 @@ survey
 
 
         if (options.page.name == "page39") {
-            let nutritionSummary = '';
+            let nutritionSummary = '<div class="uk-container">';
+            let gradient = "";
+            let headingOne = "<p>These are foods that reduce your heart risk, the more you eat them the healthier your heart will be. Anything more than a couple of servings per day will be great!</p>"
+            let headingTwo = "<p>These are foods that increases your heart risk, you want to limit your consumption to about once a week." +
+                " If meat is an essential part of your diet you’ll want to look to substitute it with more white meats like chicken.</p>"
+
             for (const categoriesKey in categories) {
-                nutritionSummary += `
-                <div class="uk-container">
-                    <div uk-grid>
-                        <div class="uk-width-1-3 uk-margin-auto-vertical">
-                            <p class="uk-text-meta">${categories[categoriesKey]}</p>
-                        </div>
-                        <div class="uk-width-expand uk-position-relative">
-                            <div uk-grid class="uk-child-width-1-3 height">
-                                <div class="ball left" style="left:${scoreData[categoriesKey]}%"></div>
-                                   `
-                if (categoriesKey < 3) {
+                gradient = (categoriesKey > 2) ? "red-yellow-green" : "green-yellow-red"
+                if (categoriesKey < 5) {
+
+                    if (categoriesKey == 0) nutritionSummary += headingOne
+                    else if (categoriesKey == 3) nutritionSummary += headingTwo
+
                     nutritionSummary += `
-                                                <div class="red"></div>
-                                                <div class="yellow"></div>
-                                                <div class="green"></div>
-                                                </div>
-                                               `
-                }
-
-                if (categoriesKey > 2) {
-                    nutritionSummary += `
-                                                <div class="green-start"></div>
-                                                <div class="yellow"></div>
-                                                <div class="red-end"></div>
-                                                </div>
-                                               `
-                }
-
-                nutritionSummary +=
-                    `</div>
-                    </div>
-                    <br>
-                </div>
-                `
-            }
-
-            nutritionSummary += `
-                <div class="uk-container">
-                    <div uk-grid>
-                        <div class="uk-width-1-3"></div>
-                        <div class="uk-width-expand uk-position-relative">
-                            <div uk-grid class="uk-child-width-1-3 height">
-                                <div class="border-left-bottom-right uk-padding-remove-left">
-                                    <p class="uk-text-meta uk-text-light uk-text-nowrap"> < 3x a week</p>
-                                </div>
-                                <div class="border-bottom uk-padding-remove-left">
-                                    <p class="uk-text-meta uk-text-light uk-text-nowrap"> 3-5x a week</p></div>
-                                <div class="border-left-bottom-right uk-padding-remove-left">
-                                    <p class="uk-text-meta uk-text-light uk-text-nowrap"> > 5x a week</p>
+                        <div uk-grid>
+                            <div class="uk-width-1-3 uk-margin-auto-vertical">
+                                <p class="uk-text-meta">${categories[categoriesKey]}</p>
+                            </div>
+                            <div class="uk-width-expand uk-position-relative uk-padding-remove-left">
+                                <div class="${gradient} height">
+                                    <input class="uk-range" type="range" value="${scoreData[categoriesKey]}">
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
                         `
+                }
+            }
+
+            nutritionSummary += `</div> `
 
             setTimeout(() => {
                 $("#nutritionSummary").html(nutritionSummary)
