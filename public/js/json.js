@@ -670,7 +670,8 @@ const json = {
                     "type": "html",
                     "name": "test",
                     "html": "<div id='sketch-holder'></div>" +
-                        "<h3><center> We have one final question for you! Do you smoke?</center></h3>"
+                        "<h3><center> We have one final question for you! Do you smoke?</center></h3>"+
+                        "<p><center>This includes vapes and e-cigarretes that contain nicotine like Juuls, vape pens, etc</center></p>"
                 },
                 {
                     "type": "imagepicker",
@@ -680,9 +681,9 @@ const json = {
                     "colCount": 1,
                     "hasNone": false,
                     "choices": [
-                        {"value": 0, "imageLink": smoke_[0]},
+                        {"value": 1, "imageLink": smoke_[2]},
                         {"value": 0.5, "imageLink": smoke_[1]},
-                        {"value": 1, "imageLink": smoke_[2]}]
+                        {"value": 0, "imageLink": smoke_[0]}]
                 }
             ]
         },
@@ -925,24 +926,25 @@ const json = {
                     "colCount": 1,
                     "hasNone": false,
                     "maxSelectedChoices":2,
-                    "choices": [
-                        {
-                            "value":15,
-                            "text":"Fruits & Veggies"
-                        },
-                        {
-                            "value":10,
-                            "text":"Red & Processed meats"
-                        },
-                        {
-                            "value":12,
-                            "text":"Cereal fiber"
-                        },
-                        {
-                            "value":25,
-                            "text":"Nuts and Seeds"
-                        }
-                    ]
+                    "choices": ["Fruits & Veggies","Red & Processed meats","Cereal fiber & whole grains","Nuts & Seeds"]
+                    // [
+                    //     {
+                    //         "value":15,
+                    //         "text":"Fruits & Veggies"
+                    //     },
+                    //     {
+                    //         "value":10,
+                    //         "text":"Red & Processed meats"
+                    //     },
+                    //     {
+                    //         "value":12,
+                    //         "text":"Cereal fiber"
+                    //     },
+                    //     {
+                    //         "value":25,
+                    //         "text":"Nuts and Seeds"
+                    //     }
+                    // ]
                 }
             ]
         },
@@ -977,6 +979,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
+                    "name":"specificFeedback",
                     "visibleIf": "{improveScore} == 1",
                     "html": `
                     <div class="uk-container">
