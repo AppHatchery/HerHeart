@@ -332,7 +332,7 @@ survey
         if (options.page.name == "page32") {
             if (survey.getQuestionByName("alcohol").value > 1) {
                 survey.getQuestionByName("alcohol-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Okay! Actually drinking alcohol can improve your heart health. Do you drink around 2 to 5 glasses a week?</center></h3>';
+                    '<h3><center>Okay! Actually drinking alcohol can improve your heart health. How many glasses do you drink a week?</center></h3>';
                 survey.getQuestionByName("alcohol-next").choices = [
                     {"value": 0.3, "imageLink": alcohol_a[2]},
                     {"value": 0.5, "imageLink": alcohol_a[3]},
@@ -340,7 +340,7 @@ survey
                     {"value": 2, "imageLink": alcohol_a[5]}];
             } else {
                 survey.getQuestionByName("alcohol-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Alcohol is a bit tricky, a lot isn’t super good for you, but none isn’t either.... 😬 Do you drink about one glass or less a day?</center></h3>';
+                    '<h3><center>Alcohol is a bit tricky, a lot isn’t super good for you, but none isn’t either.... 😬 How many glasses do you drink a week?</center></h3>';
                 survey.getQuestionByName("alcohol-next").choices = [
                     {"value": 0, "imageLink": alcohol_a[0]},
                     {"value": 0.1, "imageLink": alcohol_a[1]},
@@ -704,6 +704,50 @@ survey.onValueChanged.add(function (survey, options) {
         + "<p><img alt='' class='image'  src=" + feedbackImage + "></p>"
         + " <p>How likely do you think you'll make changes in your lifestyle ? Move the slider!</p> </center> <br>" +
         "<div id='slider' class='uk-container'></div> <br><br> </div>";
+
+    const userChoicesFeedback = survey.getQuestionByName("areasToImprove").value;
+    console.log(userChoicesFeedback.length);
+    
+
+    // Restrict it to two selections for now although it should allow the user to select 1 as well
+    // Currently gives an error because the dictionary is looking for an undefined key if user only selects 1
+    if(userChoicesFeedback.length == 2){
+        const specificFeebackQuestion = survey.getQuestionByName("specificFeedback");
+        specificFeebackQuestion.html = `
+        <div class="uk-container">
+            <ul uk-accordion>
+                <li>
+                    <a class="uk-accordion-title" href="#">
+                        <div uk-grid class="uk-margin-auto-vertical">
+                            <div class="uk-flex-inline uk-width-expand">
+                                Fruits & Veggies
+                                <hr class="uk-width-expand" style="margin: auto 0px">
+                            </div>
+                        </div>
+                    </a>
+                    <div class="uk-accordion-content">
+                        <p><b>`+feedbackContent[userChoicesFeedback[0]]["title"]+`</b></p>
+                        <p>`+feedbackContent[userChoicesFeedback[0]]["content"]+`</p>
+                    </div>
+                </li>
+                <li>
+                    <a class="uk-accordion-title" href="#">
+                        <div uk-grid>
+                            <div class="uk-flex-inline uk-width-expand">
+                                Red & Processed Meats
+                                <hr class="uk-width-expand" style="margin: auto 0px">
+                            </div>
+                        </div>
+                    </a>
+                    <div class="uk-accordion-content">
+                        <p><b>`+feedbackContent[userChoicesFeedback[1]]["title"]+`</b></p>
+                        <p>`+feedbackContent[userChoicesFeedback[1]]["content"]+`</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        `
+    }
 });
 
 

@@ -292,11 +292,12 @@ function calculateGoodBadDiet() {
     // graphScoreValues = [rawGrains*const,]
     // Calculates the percentage score
     for (const key in animationValues) {
-        if (key > 1 && key < animationValues.length - 3) {
+        // Might need to fit in here all the other values
+        if (key > 0 && key < animationValues.length - 1) {
             // const result = ((animationValues[key] - animationValues[key - 1]) / animationValuesHealthy[key]);
             const result = ((animationValues[key] - animationValues[key - 1]) / animationValuesHealthy[key]);
             // cleanSortedValuesHealthy.push(animationValuesHealthy[key])
-            valuesDict[animationValuesTitles[index + 2]] = {
+            valuesDict[animationValuesTitles[index + 1]] = {
                 "score": result,
                 "healthy": animationValuesHealthy[key],
                 "rawScore": rawScoreValues[key],
@@ -305,6 +306,8 @@ function calculateGoodBadDiet() {
             index++
         }
     }
+    console.log(valuesDict);
+
     // Create items array
     let items = Object.keys(valuesDict).map(function (key) {
         return [key, valuesDict[key]["score"]];
@@ -330,6 +333,14 @@ function calculateGoodBadDiet() {
         scoreData.push(cleanSortedValues[cleanSortedValuesKey]/* * cleanSortedValuesHealthy[cleanSortedValuesKey]*/ * 19 / 4) // This constant helps put the score at the end of the graph
         index++
     }
+
+    console.log("Previous to organizing",items)
+    // Sort the array based on the second element
+    // Get sorted list of elements
+    items.sort(function (first, second) {
+        return second[1] - first[1];
+    });
+    console.log("After organizing",items)
 }
 
 
