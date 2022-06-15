@@ -258,11 +258,21 @@ function calculateBarProgress() {
         animationValues[8] = animationValues[7] + parseInt(rawAlcohol * 20)
     }
 
+
+    // if (extraPoints.val > 0) {
+    //     let points = 0
+    //     for (let i = 0; i < extraPoints.value.length; i++) {
+    //         points += extraPoints.value[i]
+    //     }
+    //     animationValues[9] = animationValues[8] + points
+    // }
+
     // Extra points
-    if (extraPoints > 0){
-        animationValues[9] = animationValues[8]+30
-        console.log("these are the anim values",animationValues);
+    if (extraPoints.value[0] > 0) {
+        animationValues[9] = animationValues[8] + 30
+        console.log("these are the anim values", animationValues);
     }
+
 }
 
 // Set up messages for each option : three states, good, medium, bad
@@ -278,7 +288,7 @@ function displayFeedbackMessage(feedbackChosen) {
 
 
 function calculateGoodBadDiet() {
-    let rawScoreValues = [0, rawSport, animationValues[2] - animationValues[1], animationValues[3] - animationValues[2], (animationValues[4] - animationValues[3]) / 2, 20 - (animationValues[5] - animationValues[4]), 20 - (animationValues[6] - animationValues[5]), rawSmoke, rawAlcohol,animationValues[9]-animationValues[8]];
+    let rawScoreValues = [0, rawSport, animationValues[2] - animationValues[1], animationValues[3] - animationValues[2], (animationValues[4] - animationValues[3]) / 2, 20 - (animationValues[5] - animationValues[4]), 20 - (animationValues[6] - animationValues[5]), rawSmoke, rawAlcohol, animationValues[9] - animationValues[8]];
     // graphScoreValues = [rawGrains*const,]
     // Calculates the percentage score
     for (const key in animationValues) {
@@ -306,7 +316,7 @@ function calculateGoodBadDiet() {
     // });
 
     // Create a new array with only the first 5 items
-    for (val in items) {
+    for (let val in items) {
         sortedDict.push(items[val][0]);
         cleanSortedValuesHealthy.push(valuesDict[items[val][0]]["rawHealthy"]);
         cleanSortedValues.push(valuesDict[items[val][0]]["rawScore"]);

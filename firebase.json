@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "target": "buzzfeed",
+    "site": "herheart-prototype",
     "public": "public",
     "ignore": [
       "firebase.json",

@@ -38,6 +38,29 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
     if (options.question.name == "complete") {
         $(".sv-footer__complete-btn").css("display", 'none')
     }
+
+    if (options.question.name == "improveScores") {
+        setTimeout(function (e) {
+            for (let index = 0; index < extraPoints.value.length; index++) {
+                if (extraPoints.value[index] == 15) {
+                    $(".fruits").css("display", "unset");
+                } else if (extraPoints.value[index] == 10) {
+                    $(".meats").css("display", "unset");
+                } else if (extraPoints.value[index] == 12) {
+                    $(".grains").css("display", "unset");
+                } else if (extraPoints.value[index] == 25) {
+                    $(".nuts").css("display", "unset");
+                } else if (extraPoints.value[index] == 28) {
+                    $(".alcohol").css("display", "unset");
+                } else if (extraPoints.value[index] == 30) {
+                    $(".smoking").css("display", "unset");
+                } else if (extraPoints.value[index] == 32) {
+                    $(".physical").css("display", "unset");
+                }
+            }
+        }, 100)
+    }
+
 });
 
 survey
@@ -49,7 +72,7 @@ survey
             writeUserData(survey.data);
         }
 
-        console.log(options.page.name);
+        // console.log(options.page.name);
         // P5 End ------------ //
         // Modify pages for Buzzfeed style
         // Okay so this works it seems like
@@ -336,8 +359,8 @@ survey
             let nutritionSummary = '<div class="uk-container">';
             let gradient = "";
             let headingOne = "<h3><b>Let's start with foods that reduce your risk!</b></h3><p>These are foods that reduce your heart risk, the more you eat them the healthier your heart will be. Anything more than a couple of servings per day will be great!</p>"
-            let headingTwo = "<br><br><h3><b>And these are foods that increase it.. </b></h3>"+
-            "<p>The foods below increase your heart risk, you want to limit your consumption to about once a week." +
+            let headingTwo = "<br><br><h3><b>And these are foods that increase it.. </b></h3>" +
+                "<p>The foods below increase your heart risk, you want to limit your consumption to about once a week." +
                 " If meat is an essential part of your diet you’ll want to look to substitute it with more white meats like chicken.</p>"
 
             for (const categoriesKey in categories) {
@@ -556,7 +579,7 @@ survey.onValueChanged.add(function (survey, options) {
     rawAlcohol = dietValues[8];
 
     rawSmoke = smokeQuestion;
-    extraPoints = survey.getQuestionByName("areasToImprove").value[0];
+    extraPoints = survey.getQuestionByName("areasToImprove")
 
 
     // Could probably use an equation to remove this if statement

@@ -142,12 +142,12 @@ h3 {
 }
 
 .uk-accordion-title::before {
-    background-image: url("../svg/arrow-right-circle.svg");
+    background-image: url("../svg/arrow-right-circle.svg?v=3");
 }
 
 .uk-open > .uk-accordion-title::before {
     transform: rotate(90deg);
-    background-image: url("../svg/arrow-right-circle.svg");
+    background-image: url("../svg/arrow-right-circle.svg?v=3");
 }
 
 .ui-slider-pips .ui-slider-label {
@@ -231,4 +231,13 @@ header {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.sv-question {
+    overflow: unset;
+}
+
+
+.uk-accordion-title {
+    padding: 10px 0;
 }
