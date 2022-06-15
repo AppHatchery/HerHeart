@@ -34,12 +34,11 @@ $("#surveyElement").Survey({model: survey});
 
 
 survey.onAfterRenderQuestion.add(function (sender, options) {
-    // console.log(options.question.name)
-    if (options.question.name == "complete") {
-        $(".sv-footer__complete-btn").css("display", 'none')
-    }
+    console.log(options.question.name)
 
-    if (options.question.name == "improveScores") {
+    if (options.question.name === "complete") {
+        $(".sv-footer__complete-btn").css("display", 'none')
+    } else if (options.question.name === "improveScores") {
         setTimeout(function (e) {
             for (let index = 0; index < extraPoints.value.length; index++) {
                 if (extraPoints.value[index] == 15) {
@@ -59,6 +58,121 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
                 }
             }
         }, 100)
+    } else if (options.question.name === "pre-summary") {
+        calculateGoodBadDiet()
+    } else if (options.question.name === "good-foods") {
+        let nutritionSummary = '<div class="uk-container">';
+        let gradient = "";
+        let headingOne = "<h3><b>Let's start with foods that reduce your risk!</b></h3><p>These are foods that reduce your heart risk, the more you eat them the healthier your heart will be. Anything more than a couple of servings per day will be great!</p>"
+        let headingTwo = "<br><br><h3><b>And these are foods that increase it.. </b></h3>" +
+            "<p>The foods below increase your heart risk, you want to limit your consumption to about once a week." +
+            " If meat is an essential part of your diet you’ll want to look to substitute it with more white meats like chicken.</p>"
+
+        for (const categoriesKey in categories) {
+            gradient = (categoriesKey > 2) ? "red-yellow-green" : "green-yellow-red"
+            if (categoriesKey < 5) {
+
+                if (categoriesKey == 0) nutritionSummary += headingOne
+                else if (categoriesKey == 3) nutritionSummary += headingTwo
+
+                nutritionSummary += `
+                        <div uk-grid>
+                            <div class="uk-width-1-3 uk-margin-auto-vertical">
+                                <p class="uk-text-meta">${categories[categoriesKey]}</p>
+                            </div>
+                            <div class="uk-width-expand uk-position-relative uk-padding-remove-left">
+                                <div class="${gradient} height">
+                                    <input class="uk-range" type="range" value="${scoreData[categoriesKey]}">
+                                </div>
+                            </div>
+                        </div>
+                        `
+            }
+        }
+
+        nutritionSummary += `</div> `
+
+        setTimeout(() => {
+            $("#nutritionSummary").html(nutritionSummary)
+        }, 200)
+    } else if (options.question.name === "bad-foods") {
+        let optionsRadialBar = {
+            series: [
+                min2Percentage(survey.getQuestionByName("activity-high-next").value * 12.5),
+                min2Percentage(survey.getQuestionByName("activity-low-next").value * 12.5)
+            ],
+            colors: ["#FF8534", "#2FD9FD"],
+            chart: {
+                height: 260,
+                type: 'radialBar',
+            },
+            stroke: {
+                lineCap: 'round'
+            }, legend: {
+                show: false,
+                position: 'bottom',
+            },
+            plotOptions: {
+                radialBar: {
+                    dataLabels: {
+                        name: {
+                            fontSize: '22px',
+                        },
+                        value: {
+                            show: true,
+                            formatter: function (val) {
+                                return toHours(percentage2Min(val))
+                            }
+                        },
+                        total: {
+                            show: true,
+                            label: 'Total',
+                            fontSize: '14px',
+                            formatter: function (w) {
+                                return toHours(percentage2Min(w.globals.seriesTotals[0] + w.globals.seriesTotals[1]))
+                            }
+                        }
+                    }
+                }
+            },
+            labels: ['intense', 'low intensity'],
+        };
+
+        setTimeout(() => {
+            const chart = new ApexCharts(document.querySelector("#timeChart"), optionsRadialBar);
+            chart.render();
+        }, 100)
+    } else if (options.question.name == "activities") {
+
+        let flag = 0
+        setTimeout(() => {
+
+            let slider = document.getElementById('slider');
+
+            noUiSlider.create(slider, {
+                start: 5.5,
+                pips: {
+                    mode: 'positions',
+                    values: [0, 100],
+                    density: 50,
+                    stepped: true
+                },
+                range: {
+                    'min': 1,
+                    'max': 10
+                }
+            });
+            feedbackText = slider.noUiSlider.get() > 5.5 ? "Awesome, we love to hear that!" : "That’s okay, you’ve got time!"
+            $(".sv-footer__next-btn").css("display", 'none')
+            slider.noUiSlider.on('update', function (values, handle) {
+                flag++
+                if (flag > 1)
+                    $(".sv-footer__next-btn").css("display", 'unset')
+                noUiSliderUpdate = values
+            });
+
+
+        }, 300)
     }
 
 });
@@ -150,42 +264,6 @@ survey
                     {"value": 0.1, "imageLink": grains_high_a[1]},
                     {"value": 0.3, "imageLink": grains_high_a[2]},
                     {"value": 0.5, "imageLink": grains_high_a[3]}];
-            }
-        }
-
-        if (options.page.name == "page9") {
-            if (survey.getQuestionByName("grains-high-next").value >= 3) {
-                survey.getQuestionByName("grains-low-title").html = "<div id='sketch-holder'></div>" +
-                    "<h3><center> Great! Now...... how do you feel about regular grains? 👀 </center></h3>" +
-                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/grains-low.png'>" +
-                    "<p><center style='font-size:14px;'>Examples: sugary cereals, white bread, pancakes, bagels, crackers</center></p>";
-
-            } else {
-                survey.getQuestionByName("grains-low-title").html = "<div id='sketch-holder'></div>" +
-                    "<h3><center> We still have another grain category! How do you feel about regular grains? 👀</center></h3>" +
-                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/grains-low.png'>" +
-                    "<p><center style='font-size:14px;'>Examples: sugary cereals, white bread, pancakes, bagels, crackers</center></p>";
-            }
-        }
-
-        if (options.page.name == "page10") {
-            if (survey.getQuestionByName("grains-low").value > 1) {
-                survey.getQuestionByName("grains-low-next-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>The more grains the better! Do you eat them at least twice a week?</center></h3>';
-                survey.getQuestionByName("grains-low-next").choices = [
-                    {"value": 0.3, "imageLink": grains_low_a[2]},
-                    {"value": 0.5, "imageLink": grains_low_a[3]},
-                    {"value": 1, "imageLink": grains_low_a[4]},
-                    {"value": 2, "imageLink": grains_low_a[5]}];
-
-            } else {
-                survey.getQuestionByName("grains-low-next-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Okay, that’s fine anddd... do you eat them at least twice a week?</center></h3>';
-                survey.getQuestionByName("grains-low-next").choices = [
-                    {"value": 0, "imageLink": grains_low_a[0]},
-                    {"value": 0.1, "imageLink": grains_low_a[1]},
-                    {"value": 0.3, "imageLink": grains_low_a[2]},
-                    {"value": 0.5, "imageLink": grains_low_a[3]}];
             }
         }
 
@@ -350,134 +428,7 @@ survey
         }
 
 
-        if (options.page.name == "page37") {
-            calculateGoodBadDiet()
-        }
-
-
-        if (options.page.name == "page39") {
-            let nutritionSummary = '<div class="uk-container">';
-            let gradient = "";
-            let headingOne = "<h3><b>Let's start with foods that reduce your risk!</b></h3><p>These are foods that reduce your heart risk, the more you eat them the healthier your heart will be. Anything more than a couple of servings per day will be great!</p>"
-            let headingTwo = "<br><br><h3><b>And these are foods that increase it.. </b></h3>" +
-                "<p>The foods below increase your heart risk, you want to limit your consumption to about once a week." +
-                " If meat is an essential part of your diet you’ll want to look to substitute it with more white meats like chicken.</p>"
-
-            for (const categoriesKey in categories) {
-                gradient = (categoriesKey > 2) ? "red-yellow-green" : "green-yellow-red"
-                if (categoriesKey < 5) {
-
-                    if (categoriesKey == 0) nutritionSummary += headingOne
-                    else if (categoriesKey == 3) nutritionSummary += headingTwo
-
-                    nutritionSummary += `
-                        <div uk-grid>
-                            <div class="uk-width-1-3 uk-margin-auto-vertical">
-                                <p class="uk-text-meta">${categories[categoriesKey]}</p>
-                            </div>
-                            <div class="uk-width-expand uk-position-relative uk-padding-remove-left">
-                                <div class="${gradient} height">
-                                    <input class="uk-range" type="range" value="${scoreData[categoriesKey]}">
-                                </div>
-                            </div>
-                        </div>
-                        `
-                }
-            }
-
-            nutritionSummary += `</div> `
-
-            setTimeout(() => {
-                $("#nutritionSummary").html(nutritionSummary)
-            }, 200)
-        }
-
         if (options.page.name == "page40") {
-
-
-            let optionsRadialBar = {
-                series: [
-                    min2Percentage(survey.getQuestionByName("activity-high-next").value * 12.5),
-                    min2Percentage(survey.getQuestionByName("activity-low-next").value * 12.5)
-                ],
-                colors: ["#FF8534", "#2FD9FD"],
-                chart: {
-                    height: 260,
-                    type: 'radialBar',
-                },
-                stroke: {
-                    lineCap: 'round'
-                }, legend: {
-                    show: false,
-                    position: 'bottom',
-                },
-                plotOptions: {
-                    radialBar: {
-                        dataLabels: {
-                            name: {
-                                fontSize: '22px',
-                            },
-                            value: {
-                                show: true,
-                                formatter: function (val) {
-                                    return toHours(percentage2Min(val))
-                                }
-                            },
-                            total: {
-                                show: true,
-                                label: 'Total',
-                                fontSize: '14px',
-                                formatter: function (w) {
-                                    return toHours(percentage2Min(w.globals.seriesTotals[0] + w.globals.seriesTotals[1]))
-                                }
-                            }
-                        }
-                    }
-                },
-                labels: ['intense', 'low intensity'],
-            };
-
-            setTimeout(() => {
-                var chart = new ApexCharts(document.querySelector("#timeChart"), optionsRadialBar);
-                chart.render();
-            }, 100)
-
-        }
-
-        if (options.page.name == "page41") {
-
-            let flag = 0
-            setTimeout(() => {
-
-                let slider = document.getElementById('slider');
-
-                noUiSlider.create(slider, {
-                    start: 5.5,
-                    pips: {
-                        mode: 'positions',
-                        values: [0, 100],
-                        density: 50,
-                        stepped: true
-                    },
-                    range: {
-                        'min': 1,
-                        'max': 10
-                    }
-                });
-                feedbackText = slider.noUiSlider.get() > 5.5 ? "Awesome, we love to hear that!" : "That’s okay, you’ve got time!"
-                $(".sv-footer__next-btn").css("display", 'none')
-                slider.noUiSlider.on('update', function (values, handle) {
-                    flag++
-                    if (flag > 1)
-                        $(".sv-footer__next-btn").css("display", 'unset')
-                    noUiSliderUpdate = values
-                });
-
-
-            }, 300)
-        }
-
-        if (options.page.name == "page42") {
             if (noUiSliderUpdate > 5) {
                 survey.getQuestionByName('feedbackResponse').html = "<div id='sketch-holder'></div> <br>" +
                     "<h3><center> Awesome, we love to hear that! </center></h3>" +
@@ -558,7 +509,6 @@ survey.onValueChanged.add(function (survey, options) {
     const vegetableQuestion = survey.getQuestionByName("veggies-next").value;
     const nutQuestion = survey.getQuestionByName("nuts-next").value;
     const grainQuestion = survey.getQuestionByName("grains-high-next").value;
-    const grainLowQuestion = survey.getQuestionByName("grains-low-next").value;
     const sugarQuestion = survey.getQuestionByName("soda-next").value;
     const meatQuestion = survey.getQuestionByName("redmeat-next").value;
     const procmeatQuestion = survey.getQuestionByName("procmeats-next").value;
@@ -575,7 +525,6 @@ survey.onValueChanged.add(function (survey, options) {
     rawNuts = nutQuestion;
     rawSoda = sugarQuestion;
     rawMeat = procmeatQuestion + meatQuestion;
-    rawGrains = grainQuestion + grainLowQuestion / 3;
     rawAlcohol = dietValues[8];
 
     rawSmoke = smokeQuestion;
@@ -610,7 +559,6 @@ survey.onValueChanged.add(function (survey, options) {
         nutValue = 0.14522;
     }
 
-    grainValue = 0.03326 * (grainQuestion * 3 + grainLowQuestion);
     sugarValue = 0.14631 * sugarQuestion;
     meatValue = 0.15624 * meatQuestion + 0.15624 * procmeatQuestion;
 
@@ -706,48 +654,6 @@ survey.onValueChanged.add(function (survey, options) {
         "<div id='slider' class='uk-container'></div> <br><br> </div>";
 
     const userChoicesFeedback = survey.getQuestionByName("areasToImprove").value;
-    console.log(userChoicesFeedback.length);
-    
-
-    // Restrict it to two selections for now although it should allow the user to select 1 as well
-    // Currently gives an error because the dictionary is looking for an undefined key if user only selects 1
-    if(userChoicesFeedback.length == 2){
-        const specificFeebackQuestion = survey.getQuestionByName("specificFeedback");
-        specificFeebackQuestion.html = `
-        <div class="uk-container">
-            <ul uk-accordion>
-                <li>
-                    <a class="uk-accordion-title" href="#">
-                        <div uk-grid class="uk-margin-auto-vertical">
-                            <div class="uk-flex-inline uk-width-expand">
-                                Fruits & Veggies
-                                <hr class="uk-width-expand" style="margin: auto 0px">
-                            </div>
-                        </div>
-                    </a>
-                    <div class="uk-accordion-content">
-                        <p><b>`+feedbackContent[userChoicesFeedback[0]]["title"]+`</b></p>
-                        <p>`+feedbackContent[userChoicesFeedback[0]]["content"]+`</p>
-                    </div>
-                </li>
-                <li>
-                    <a class="uk-accordion-title" href="#">
-                        <div uk-grid>
-                            <div class="uk-flex-inline uk-width-expand">
-                                Red & Processed Meats
-                                <hr class="uk-width-expand" style="margin: auto 0px">
-                            </div>
-                        </div>
-                    </a>
-                    <div class="uk-accordion-content">
-                        <p><b>`+feedbackContent[userChoicesFeedback[1]]["title"]+`</b></p>
-                        <p>`+feedbackContent[userChoicesFeedback[1]]["content"]+`</p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        `
-    }
 });
 
 

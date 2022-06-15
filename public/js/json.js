@@ -31,7 +31,7 @@ const json = {
                     "autoComplete": "name"
                 }
             ]
-        }, 
+        },
         {
             "popupdescription": "P5",
             "pos": 1,
@@ -218,60 +218,6 @@ const json = {
             ]
         },
 
-
-        {
-            "popupdescription": "P5",
-            "pos": 2,
-            "elements": [
-                {
-                    "type": "html",
-                    "name": "grains-low-title",
-                    "html": "<div id='sketch-holder'></div>" +
-                        "<h3><center> And we still have another grain category! How do you feel about regular grains? 👀</center></h3>" +
-                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/moderate.png'>" +
-                        "<p><center style='font-size:14px;'>Examples: sugary cereals, white bread, pancakes, bagels, crackers</center></p>"
-                },
-                {
-                    "type": "imagepicker",
-                    "name": "grains-low",
-                    "title": " ",
-                    "isRequired": true,
-                    "colCount": 1,
-                    "hasNone": false,
-                    "choices": [
-                        {"value": 0, "imageLink": low_grains_[0]},
-                        {"value": 1, "imageLink": low_grains_[1]},
-                        {"value": 2, "imageLink": low_grains_[2]},
-                        {"value": 3, "imageLink": low_grains_[3]}],
-                }
-            ]
-        },
-        {
-            "popupdescription": "P5",
-            "pos": 2,
-            "elements": [
-                {
-                    "type": "html",
-                    "name": "grains-low-next-title",
-                    "html": "<div id='sketch-holder'></div>" +
-                        "<h3> <center>Okay, that's fine anddd... do you eat them at least twice a week? </center></h3>" +
-                        "<p><center>Examples: sugary cereals, white bread, pancakes, bagels, crackers</center></p>"
-                },
-                {
-                    "type": "imagepicker",
-                    "name": "grains-low-next",
-                    "title": " ",
-                    "isRequired": true,
-                    "colCount": 1,
-                    "hasNone": false,
-                    "choices": [
-                        {"value": 0, "imageLink": activity_[0]},
-                        {"value": 1, "imageLink": activity_[1]},
-                        {"value": 2, "imageLink": activity_[2]},
-                        {"value": 3, "imageLink": activity_[3]}],
-                }
-            ]
-        },
         // Grains response
         {
             "popupdescription": "P5",
@@ -670,7 +616,7 @@ const json = {
                     "type": "html",
                     "name": "test",
                     "html": "<div id='sketch-holder'></div>" +
-                        "<h3><center> We have one final question for you! Do you smoke?</center></h3>"+
+                        "<h3><center> We have one final question for you! Do you smoke?</center></h3>" +
                         "<p><center>This includes vapes and e-cigarretes that contain nicotine like Juuls, vape pens, etc</center></p>"
                 },
                 {
@@ -925,23 +871,35 @@ const json = {
                     "isRequired": true,
                     "colCount": 1,
                     "hasNone": false,
-                    "maxSelectedChoices":2,
+                    "maxSelectedChoices": 2,
                     "choices": [
                         {
-                            "value":15,
-                            "text":"Fruits & Veggies"
+                            "value": 15,
+                            "text": "Fruits & Veggies"
                         },
                         {
-                            "value":10,
-                            "text":"Red & Processed meats"
+                            "value": 10,
+                            "text": "Red & Processed meats"
                         },
                         {
-                            "value":12,
-                            "text":"Cereal fiber"
+                            "value": 12,
+                            "text": "Cereal fiber"
                         },
                         {
-                            "value":25,
-                            "text":"Nuts and Seeds"
+                            "value": 25,
+                            "text": "Nuts and Seeds"
+                        },
+                        {
+                            "value": 28,
+                            "text": "Alcohol"
+                        },
+                        {
+                            "value": 30,
+                            "text": "Smoking"
+                        },
+                        {
+                            "value": 32,
+                            "text": "Physical Activity"
                         }
                     ]
                 }
@@ -979,38 +937,127 @@ const json = {
                 {
                     "type": "html",
                     "visibleIf": "{improveScore} == 1",
+                    "name": "improveScores",
                     "html": `
                     <div class="uk-container">
                         <ul uk-accordion>
-                            <li>
-                                <a class="uk-accordion-title" href="#">
-                                    <div uk-grid class="uk-margin-auto-vertical">
-                                        <div class="uk-flex-inline uk-width-expand">
+                            <li class="fruits" style="display: none">
+                                 <a class="uk-accordion-title" href="#">
+                                    <div class="uk-margin-auto-vertical" uk-grid>
+                                        <div class="uk-flex-inline uk-width-expand uk-padding-remove-left uk-h4">
                                             Fruits & Veggies
-                                            <hr class="uk-width-expand" style="margin: auto 0px">
+                                            <hr class="uk-width-expand" style="margin: auto 20px">
                                         </div>
                                     </div>
                                 </a>
                                 <div class="uk-accordion-content">
                                     <p><b>What steps can I take to maintain or improve my score for fruits and vegetables?</b></p>
-                                    <p>All fruits and veggies are great to include in your daily meals—that includes canned, fresh and frozen varieties! <br><br>
-                                    Try filling at least half your plate with fruits and veggies for every meal to make it to the recommended 4.5 cups of each per day.<br><br>
-                                   Also try placing your fruits on the counter or the front of the fridge to remind yourself to eat them.</p>
+                                    <p>All fruits and veggies are great to include in your daily meals—that includes canned, fresh and frozen
+                                        varieties! <br><br>
+                                        Try filling at least half your plate with fruits and veggies for every meal to make it to the
+                                        recommended 4.5 cups of each per day.<br><br>
+                                        Also try placing your fruits on the counter or the front of the fridge to remind yourself to eat them.
+                                    </p>
                                 </div>
                             </li>
-                            <li>
+                            <li class="meats" style="display: none">
                                 <a class="uk-accordion-title" href="#">
                                     <div uk-grid>
-                                        <div class="uk-flex-inline uk-width-expand">
+                                        <div class="uk-flex-inline uk-width-expand uk-padding-remove-left uk-h4">
                                             Red & Processed Meats
-                                            <hr class="uk-width-expand" style="margin: auto 0px">
+                                            <hr class="uk-width-expand" style="margin: auto 20px">
                                         </div>
                                     </div>
                                 </a>
                                 <div class="uk-accordion-content">
                                     <p><b>What steps can I take to maintain or improve my score for red meat?</b></p>
-                                    <p>Red and processed meats are higher in cholesterol and saturated fat than chicken, fish or beans.  Higher cholesterol and saturated fat can raise your blood cholesterol and increase your risk for heart disease. When choosing protein, opt for low-fat options like lean meats such as chicken, turkey, fish.<br><br>
-                                    You can also try choosing main dishes that combine meat and vegetables like a stir-fry that emphasizes veggies!</p>
+                                    <p>Red and processed meats are higher in cholesterol and saturated fat than chicken, fish or beans. Higher
+                                        cholesterol and saturated fat can raise your blood cholesterol and increase your risk for heart disease.
+                                        When choosing protein, opt for low-fat options like lean meats such as chicken, turkey, fish.<br><br>
+                                        You can also try choosing main dishes that combine meat and vegetables like a stir-fry that emphasizes
+                                        veggies!</p>
+                                </div>
+                            </li>
+                            <li class="grains" style="display: none">
+                                <a class="uk-accordion-title" href="#">
+                                    <div uk-grid>
+                                        <div class="uk-flex-inline uk-width-expand uk-padding-remove-left uk-h4">
+                                            Cereal fiber/whole grains
+                                            <hr class="uk-width-expand" style="margin: auto 20px">
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="uk-accordion-content">
+                                    <p><b>What steps can I take to maintain or improve my score for cereal fiber/whole grains?</b></p>
+                                    <p>Whole grains are a great source for fiber and fiber can help improve blood cholesterol levels! It can
+                                        also help you feel full! Some common
+                                        whole grain foods are whole-wheat bread, unsalted popped popcorn, whole-wheat tortilla, and quinoa. Try
+                                        substituting rice for quinoa or white bread for wheat-bread!
+                                        Also, try choosing foods that list whole grains as the first ingredient. Look for labels like “100%
+                                        whole wheat” or “whole oats.”</p>
+                                </div>
+                            </li>
+                            <li class="nuts" style="display: none">
+                                <a class="uk-accordion-title" href="#">
+                                    <div uk-grid>
+                                        <div class="uk-flex-inline uk-width-expand uk-padding-remove-left uk-h4">
+                                            Nuts and Seeds
+                                            <hr class="uk-width-expand" style="margin: auto 20px">
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="uk-accordion-content">
+                                    <p><b>What steps can I take to maintain or improve my score for nuts and seeds?</b></p>
+                                    <p>You can use a handful of nuts or a tablespoon or two of a nut spread as a substitute for saturated fats,
+                                        such as those found in meats, eggs and dairy products.
+                                        Choose unsalted, dry roasted, or lightly salted nuts.
+                                        If you have a nut allergy, seeds are a great alternative and actually have similar health benefits!</p>
+                                </div>
+                            </li>
+                            <li class="alcohol" style="display: none">
+                                <a class="uk-accordion-title" href="#">
+                                    <div uk-grid>
+                                        <div class="uk-flex-inline uk-width-expand uk-padding-remove-left uk-h4">
+                                            Alcohol
+                                            <hr class="uk-width-expand" style="margin: auto 20px">
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="uk-accordion-content">
+                                    <p><b>What steps can I take to maintain or improve my score for alcohol?</b></p>
+                                    <p>Drinking too much alcohol can increase the risk of heart attack and stroke. 
+                                    If you are over 21 and you choose to drink, make sure to drink alcoholic beverages only in moderation. Alcohol is not necessary to decrease your risk for heart disease.</p>
+                                </div>
+                            </li>
+                            <li class="smoking" style="display: none">
+                                <a class="uk-accordion-title" href="#">
+                                    <div uk-grid>
+                                        <div class="uk-flex-inline uk-width-expand uk-padding-remove-left uk-h4">
+                                            Smoking
+                                            <hr class="uk-width-expand" style="margin: auto 20px">
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="uk-accordion-content">
+                                    <p><b>What steps can I take to maintain or improve my score for smoking?</b></p>
+                                    <p>Quitting smoking, vaping, or using any form of tobacco/nicotine is one of the best ways to improve 
+                                    your health! If you would like support to quit smoking or vaping call 1-800-QUIT-NOW. Here you’ll be connected to trained professionals who can help you quit.</p>
+                                </div>
+                            </li>
+                            <li class="physical" style="display: none">
+                                <a class="uk-accordion-title" href="#">
+                                    <div uk-grid>
+                                        <div class="uk-flex-inline uk-width-expand uk-padding-remove-left uk-h4">
+                                            Physical Activity
+                                            <hr class="uk-width-expand" style="margin: auto 20px">
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="uk-accordion-content">
+                                    <p><b>What steps can I take to maintain or improve my score for physical activity?</b></p>
+                                    <p>Try to get at least 150 minutes of moderate to intense activity each week. You can achieve this by spending less time sitting and doing
+                                     things you enjoy like going for walks, dancing, jumping rope, biking, or even gardening. Focus on movement!
+                                     You can also try buddying up! Exercise with a partner can be more fun and motivating.</p>
                                 </div>
                             </li>
                         </ul>
@@ -1030,12 +1077,12 @@ const json = {
                         "        feel free to share this quiz.</p>" +
                         "    <br>" +
                         "    <div onclick='window.location.reload(true)'>" +
-                        "        <img src=\"./../public/svg/retake-quiz.svg\" alt=\"retake-quiz\">" +
+                        "        <img src=\"./svg/retake-quiz.svg\" alt=\"retake-quiz\">" +
                         "        <p class=\"uk-margin-remove\">retake quiz</p>" +
                         "    </div>" +
                         "    <br>" +
                         "    <div onclick='shareQuiz()'>" +
-                        "        <img src=\"./../public/svg/share-quiz.svg\" alt=\"retake-quiz\">" +
+                        "        <img src=\"./svg/share-quiz.svg\" alt=\"retake-quiz\">" +
                         "        <p class=\"uk-margin-remove\">share quiz</p>" +
                         "    </div>" +
                         "    <br>" +
