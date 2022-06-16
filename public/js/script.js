@@ -34,7 +34,13 @@ $("#surveyElement").Survey({model: survey});
 
 
 survey.onAfterRenderQuestion.add(function (sender, options) {
-    console.log(options.question.name)
+    // console.log(options.question.name)
+
+
+    // if (options.question.name === "improveScore") {
+    //     extraPointsValue = 0
+    //     getHealthy(extraPoints)
+    // }
 
     if (options.question.name === "complete") {
         $(".sv-footer__complete-btn").css("display", 'none')
@@ -451,6 +457,9 @@ survey
         animationValues[0] = 0;
         animationValuesHealthy = [0, 20, 20, 20, 40, 20, 20, 60, 20, 30]; // Overall quantity amounts to 200 without the alcohol portion that needs to be considered separate
 
+        console.log(options.page.pos)
+
+
 // I gotta pass in here these variables
         if (options.page.animated) {
             // Remove the previous animation
@@ -472,7 +481,8 @@ survey
             const mySketch = defineSketch(animationValues[options.page.pos - 1] * 1.35, animationValues[options.page.pos] * 1.35, (animationValues[options.page.pos] - animationValues[options.page.pos - 1]) * 5, animationValues[options.page.pos] * 5, colorDisplay, animationValuesHealthy[options.page.pos] * 5, 1);
             newAnimation = new p5(mySketch);
             window.sketchInstance = newAnimation;
-        } else {
+        }
+        else {
             if (newAnimation != null) {
                 newAnimation.remove();
             }

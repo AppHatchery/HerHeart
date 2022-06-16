@@ -44,6 +44,7 @@ let rawAlcohol = 0;
 let BMI = 0
 let Diet = 0
 let extraPoints = 0
+let extraPointsValue = 0;
 
 // Generic variables
 let generic_sport = ['img/generic_none.png', 'img/generic_15to30.png', 'img/generic_30to60.png', 'img/generic_1to3hr.png', 'img/generic_6to10hr.png', 'img/generic_10ormore.png'];

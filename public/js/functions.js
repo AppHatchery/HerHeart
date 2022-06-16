@@ -269,8 +269,14 @@ function calculateBarProgress() {
 
     // Extra points
     if (extraPoints.value[0] > 0) {
+        extraPointsValue = 0
+        getHealthy(extraPoints)
         animationValues[9] = animationValues[8] + 30
-        console.log("these are the anim values", animationValues);
+
+        // animationValues[9] = extraPointsValue
+        console.log("animationValues[9] -> ", animationValues[9]);
+
+        console.log("extraPointsValue -> ", extraPointsValue);
     }
 
 }
@@ -306,7 +312,7 @@ function calculateGoodBadDiet() {
             index++
         }
     }
-    console.log(valuesDict);
+    // console.log(valuesDict);
 
     // Create items array
     let items = Object.keys(valuesDict).map(function (key) {
@@ -334,13 +340,13 @@ function calculateGoodBadDiet() {
         index++
     }
 
-    console.log("Previous to organizing",items)
+    // console.log("Previous to organizing", items)
     // Sort the array based on the second element
     // Get sorted list of elements
     items.sort(function (first, second) {
         return second[1] - first[1];
     });
-    console.log("After organizing",items)
+    // console.log("After organizing", items)
 }
 
 
@@ -356,5 +362,18 @@ function percentage2Min(val) {
 function toHours(val) {
     if (val < 60) return (val + ' mins'); else {
         return Math.floor(val / 60) + "hrs " + val % 60 + "mins"
+    }
+}
+
+function getHealthy() {
+    for (let index = 0; index < extraPoints.value.length; index++) {
+        for (const [key, value] of Object.entries(valuesDict)) {
+            if (key == "Fruits & Veggies" && extraPoints.value[index] == 15) extraPointsValue += value.healthy
+            if (key == "Grains" && extraPoints.value[index] == 12) extraPointsValue += value.healthy
+            if (key == "Physical activity" && extraPoints.value[index] == 32) extraPointsValue += value.healthy
+            if (key == "Smoking" && extraPoints.value[index] == 30) extraPointsValue += value.healthy
+            if (key == "Alcohol" && extraPoints.value[index] == 28) extraPointsValue += value.healthy
+            if (key == "Nuts" && extraPoints.value[index] == 25) extraPointsValue += value.healthy
+        }
     }
 }
