@@ -867,41 +867,7 @@ const json = {
                 {
                     "type": "checkbox",
                     "name": "areasToImprove",
-                    "title": " ",
                     "isRequired": true,
-                    "colCount": 1,
-                    "hasNone": false,
-                    "maxSelectedChoices": 2,
-                    "choices": [
-                        {
-                            "value": 15,
-                            "text": "Fruits & Veggies"
-                        },
-                        {
-                            "value": 10,
-                            "text": "Red & Processed meats"
-                        },
-                        {
-                            "value": 12,
-                            "text": "Cereal fiber"
-                        },
-                        {
-                            "value": 25,
-                            "text": "Nuts and Seeds"
-                        },
-                        {
-                            "value": 28,
-                            "text": "Alcohol"
-                        },
-                        {
-                            "value": 30,
-                            "text": "Smoking"
-                        },
-                        {
-                            "value": 32,
-                            "text": "Physical Activity"
-                        }
-                    ]
                 }
             ]
         },

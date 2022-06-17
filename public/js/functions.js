@@ -259,24 +259,13 @@ function calculateBarProgress() {
     }
 
 
-    // if (extraPoints.val > 0) {
-    //     let points = 0
-    //     for (let i = 0; i < extraPoints.value.length; i++) {
-    //         points += extraPoints.value[i]
-    //     }
-    //     animationValues[9] = animationValues[8] + points
-    // }
 
     // Extra points
     if (extraPoints.value[0] > 0) {
         extraPointsValue = 0
         getHealthy(extraPoints)
-        animationValues[9] = animationValues[8] + 30
-
-        // animationValues[9] = extraPointsValue
-        console.log("animationValues[9] -> ", animationValues[9]);
-
-        console.log("extraPointsValue -> ", extraPointsValue);
+        animationValues[9] = animationValues[8] + extraPointsValue
+        animationValuesHealthy[9] = extraPointsValue
     }
 
 }
@@ -302,12 +291,14 @@ function calculateGoodBadDiet() {
         if (key > 0 && key < animationValues.length - 1) {
             // const result = ((animationValues[key] - animationValues[key - 1]) / animationValuesHealthy[key]);
             const result = ((animationValues[key] - animationValues[key - 1]) / animationValuesHealthy[key]);
+            const toGain = (animationValuesHealthy[key] - (animationValues[key] - animationValues[key - 1]))
             // cleanSortedValuesHealthy.push(animationValuesHealthy[key])
             valuesDict[animationValuesTitles[index + 1]] = {
                 "score": result,
                 "healthy": animationValuesHealthy[key],
                 "rawScore": rawScoreValues[key],
-                "rawHealthy": rawHealthyValues[key]
+                "rawHealthy": rawHealthyValues[key],
+                "pointsToGain": toGain,
             }
             index++
         }
@@ -343,9 +334,9 @@ function calculateGoodBadDiet() {
     // console.log("Previous to organizing", items)
     // Sort the array based on the second element
     // Get sorted list of elements
-    items.sort(function (first, second) {
-        return second[1] - first[1];
-    });
+    // items.sort(function (first, second) {
+    //     return second[1] - first[1];
+    // });
     // console.log("After organizing", items)
 }
 
@@ -368,12 +359,12 @@ function toHours(val) {
 function getHealthy() {
     for (let index = 0; index < extraPoints.value.length; index++) {
         for (const [key, value] of Object.entries(valuesDict)) {
-            if (key == "Fruits & Veggies" && extraPoints.value[index] == 15) extraPointsValue += value.healthy
-            if (key == "Grains" && extraPoints.value[index] == 12) extraPointsValue += value.healthy
-            if (key == "Physical activity" && extraPoints.value[index] == 32) extraPointsValue += value.healthy
-            if (key == "Smoking" && extraPoints.value[index] == 30) extraPointsValue += value.healthy
-            if (key == "Alcohol" && extraPoints.value[index] == 28) extraPointsValue += value.healthy
-            if (key == "Nuts" && extraPoints.value[index] == 25) extraPointsValue += value.healthy
+            if (key == "Fruits & Veggies" && extraPoints.value[index] == 15) extraPointsValue += value.pointsToGain
+            if (key == "Grains" && extraPoints.value[index] == 12) extraPointsValue += value.pointsToGain
+            if (key == "Physical activity" && extraPoints.value[index] == 32) extraPointsValue += value.pointsToGain
+            if (key == "Smoking" && extraPoints.value[index] == 30) extraPointsValue += value.pointsToGain
+            if (key == "Alcohol" && extraPoints.value[index] == 28) extraPointsValue += value.pointsToGain
+            if (key == "Nuts" && extraPoints.value[index] == 25) extraPointsValue += value.pointsToGain
         }
     }
 }

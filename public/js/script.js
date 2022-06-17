@@ -37,12 +37,49 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
     // console.log(options.question.name)
 
 
-    // if (options.question.name === "improveScore") {
-    //     extraPointsValue = 0
-    //     getHealthy(extraPoints)
-    // }
-
-    if (options.question.name === "complete") {
+    if (options.question.name === "areasToImprove") {
+        survey.getQuestionByName("areasToImprove").isRequired = true
+        survey.getQuestionByName("areasToImprove").colCount = 1
+        survey.getQuestionByName("areasToImprove").maxSelectedChoices = 2
+        survey.getQuestionByName("areasToImprove").hasNone = false
+        survey.getQuestionByName("areasToImprove").choices = [
+            {
+                "visibleIf": fruitsValue + " != 1",
+                "value": 15,
+                "text": "Fruits & Veggies"
+            },
+            {
+                "visibleIf": meatsValue + " != 1",
+                "value": 10,
+                "text": "Red & Processed meats"
+            },
+            {
+                "visibleIf": grainsValue + " != 1",
+                "value": 12,
+                "text": "Cereal fiber"
+            },
+            {
+                "value": 25,
+                "text": "Nuts and Seeds",
+                "visibleIf": nutsValue + " != 1",
+            },
+            {
+                "value": 28,
+                "text": "Alcohol",
+                "visibleIf": alcoholValue + " != 1",
+            },
+            {
+                "value": 30,
+                "text": "Smoking",
+                "visibleIf": smokingValue + " != 1",
+            },
+            {
+                "value": 32,
+                "text": "Physical Activity",
+                "visibleIf": activityValue + " != 1",
+            }
+        ]
+    } else if (options.question.name === "complete") {
         $(".sv-footer__complete-btn").css("display", 'none')
     } else if (options.question.name === "improveScores") {
         setTimeout(function (e) {
@@ -148,6 +185,16 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
             const chart = new ApexCharts(document.querySelector("#timeChart"), optionsRadialBar);
             chart.render();
         }, 100)
+
+        activityValue = Object.entries(valuesDict)[0][1]['score']
+        grainsValue = Object.entries(valuesDict)[1][1]['score']
+        fruitsValue = Object.entries(valuesDict)[2][1]['score']
+        nutsValue = Object.entries(valuesDict)[3][1]['score']
+        meatsValue = Object.entries(valuesDict)[4][1]['score']
+        sodaValue = Object.entries(valuesDict)[5][1]['score']
+        smokingValue = Object.entries(valuesDict)[6][1]['score']
+        alcoholValue = Object.entries(valuesDict)[7][1]['score']
+
     } else if (options.question.name == "activities") {
 
         let flag = 0
@@ -455,10 +502,6 @@ survey
         calculateBarProgress();
 
         animationValues[0] = 0;
-        animationValuesHealthy = [0, 20, 20, 20, 40, 20, 20, 60, 20, 30]; // Overall quantity amounts to 200 without the alcohol portion that needs to be considered separate
-
-        console.log(options.page.pos)
-
 
 // I gotta pass in here these variables
         if (options.page.animated) {
@@ -481,8 +524,7 @@ survey
             const mySketch = defineSketch(animationValues[options.page.pos - 1] * 1.35, animationValues[options.page.pos] * 1.35, (animationValues[options.page.pos] - animationValues[options.page.pos - 1]) * 5, animationValues[options.page.pos] * 5, colorDisplay, animationValuesHealthy[options.page.pos] * 5, 1);
             newAnimation = new p5(mySketch);
             window.sketchInstance = newAnimation;
-        }
-        else {
+        } else {
             if (newAnimation != null) {
                 newAnimation.remove();
             }
