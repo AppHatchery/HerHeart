@@ -219,7 +219,7 @@ function calculateBarProgress() {
     }
 
     // Grains
-    animationValues[2] = animationValues[1] + parseInt((rawGrains * 20) / 3);
+    animationValues[2] = animationValues[1] + parseInt((rawGrains * 20) / 2);
 
     // Fruits & Veggies
     if (rawFruits >= 3) {
@@ -346,17 +346,17 @@ function calculateGoodBadDiet() {
 
 
 function min2Percentage(val) {
-    return Math.ceil(val / 240 * 100)
+    return Math.ceil(val / 4 * 100)
 }
 
 function percentage2Min(val) {
-    return Math.ceil(val / 100 * 240)
+    return val / 25//Math.ceil(val )
 }
 
 
 function toHours(val) {
-    if (val < 60) return (val + ' mins'); else {
-        return Math.floor(val / 60) + "hrs " + val % 60 + "mins"
+    if (val < 1) return (val*60 + ' mins'); else {
+        return Math.floor(val) + "hrs " + Math.floor((val % 1 )*60) + "mins"
     }
 }
 

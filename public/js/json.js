@@ -114,10 +114,10 @@ const json = {
                     "colCount": 1,
                     "hasNone": false,
                     "choices": [
-                        {"value": 0, "imageLink": activity_[0]},
-                        {"value": 1, "imageLink": activity_[1]},
-                        {"value": 2, "imageLink": activity_[2]},
-                        {"value": 3, "imageLink": activity_[3]}],
+                        {"value": 0, "imageLink": activity_low_[0]},
+                        {"value": 1, "imageLink": activity_low_[1]},
+                        {"value": 2, "imageLink": activity_low_[2]},
+                        {"value": 3, "imageLink": activity_low_[3]}],
                 }
             ]
         },
@@ -786,7 +786,7 @@ const json = {
                 {
                     "type": "html",
                     "name": "pre-summary",
-                    "html": "<div><center><h3 style='margin:auto;'>You are done! Tap Next to see your score</h3></center></div>"
+                    "html": "<div><center><h3 style='margin:auto;'>You are done! Tap the right arrow to see your score</h3></center></div>"
                 }
             ]
         }, {

@@ -139,8 +139,8 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
     } else if (options.question.name === "bad-foods") {
         let optionsRadialBar = {
             series: [
-                min2Percentage(survey.getQuestionByName("activity-high-next").value * 12.5),
-                min2Percentage(survey.getQuestionByName("activity-low-next").value * 12.5)
+                min2Percentage(survey.getQuestionByName("activity-high-next").value),
+                min2Percentage(survey.getQuestionByName("activity-low-next").value)
             ],
             colors: ["#FF8534", "#2FD9FD"],
             chart: {
@@ -251,7 +251,7 @@ survey
                     {"value": 10, "imageLink": generic_sport[5]}];
 
             } else {
-                survey.getQuestionByName("activity-high-title").html = "<div id='sketch-holder'></div> <br>" + '<h3><center>Interesting selection 🤔... how much intense physical exercise do you do a week?</center></h3>';
+                survey.getQuestionByName("activity-high-title").html = "<div id='sketch-holder'></div> <br>" + '<h3><center>Understood! How much intense exercise do you do a week?</center></h3>';
                 survey.getQuestionByName("activity-high-next").choices = [
                     {"value": 0, "imageLink": generic_sport[0]},
                     {"value": 0.25, "imageLink": generic_sport[1]},
@@ -282,8 +282,8 @@ survey
                 survey.getQuestionByName("activity-low-next").choices = [
                     {"value": 0.75, "imageLink": generic_sport[2]},
                     {"value": 2, "imageLink": generic_sport[3]},
-                    {"value": 8, "imageLink": generic_sport[4]},
-                    {"value": 10, "imageLink": generic_sport[5]}];
+                    {"value": 4.5, "imageLink": generic_sport[4]},
+                    {"value": 8, "imageLink": generic_sport[5]}];
 
             } else {
                 survey.getQuestionByName("activity-low-next-title").html = "<div id='sketch-holder'></div> <br>" +
@@ -318,7 +318,7 @@ survey
             }
         }
 
-        if (options.page.name == "page13") {
+        if (options.page.name == "page11") {
             if (survey.getQuestionByName("fruit").value > 1) {
                 survey.getQuestionByName("fruit-title").html = "<div id='sketch-holder'></div> <br>" +
                     '<h3><center>Nice, now prove it 👀. How many servings do you eat a day??</center></h3>';
@@ -338,7 +338,7 @@ survey
             }
         }
 
-        if (options.page.name == "page15") {
+        if (options.page.name == "page13") {
             if (survey.getQuestionByName("veggies").value > 1) {
                 survey.getQuestionByName("veggies-title").html = "<div id='sketch-holder'></div> <br>" +
                     '<h3><center>Nice, veggies are super important for good heart health! How many servings you eat a day??</center></h3>' +
@@ -360,32 +360,33 @@ survey
             }
         }
 
-        if (options.page.name == "page18") {
+        if (options.page.name == "page16") {
             if (survey.getQuestionByName("nuts").value > 1) {
                 survey.getQuestionByName("nuts-title").html = "<div id='sketch-holder'></div> <br>" +
                     '<h3><center>Nice, now prove it 👀. How many servings do you eat a week????</center></h3>' +
                     "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/nuts_next_image.png'></img>";
                 survey.getQuestionByName("nuts-next").choices = [
-                    {"value": 1, "imageLink": nuts_a[2]},
-                    {"value": 2, "imageLink": nuts_a[3]},
-                    {"value": 3, "imageLink": nuts_a[4]},
-                    {"value": 4, "imageLink": nuts_a[5]}];
+                    {"value": 0.3, "imageLink": nuts_a[2]},
+                    {"value": 0.5, "imageLink": nuts_a[3]},
+                    {"value": 1, "imageLink": nuts_a[4]},
+                    {"value": 2, "imageLink": nuts_a[5]}];
             } else {
                 survey.getQuestionByName("nuts-title").html = "<div id='sketch-holder'></div> <br>" +
                     '<h3><center>Okayy 😬... How many servings do you eat a week????</center></h3>' +
                     "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/nuts_next_image.png'></img>";
                 survey.getQuestionByName("nuts-next").choices = [
                     {"value": 0, "imageLink": nuts_a[0]},
-                    {"value": 1, "imageLink": nuts_a[1]},
-                    {"value": 2, "imageLink": nuts_a[2]},
-                    {"value": 3, "imageLink": nuts_a[3]}];
+                    {"value": 0.1, "imageLink": nuts_a[1]},
+                    {"value": 0.3, "imageLink": nuts_a[2]},
+                    {"value": 0.5, "imageLink": nuts_a[3]}];
             }
         }
 
-        if (options.page.name == "page21") {
+        if (options.page.name == "page19") {
             if (survey.getQuestionByName("procmeats").value > 1) {
                 survey.getQuestionByName("procmeats-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Okay! How much of it do you eat per week??</center></h3>';
+                    '<h3><center>Okay! How much of it do you eat per week??</center></h3>'+
+                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/processedmeats_next_image.png'></img>";
                 survey.getQuestionByName("procmeats-next").choices = [
                     {"value": 0.3, "imageLink": processed_a[2]},
                     {"value": 0.5, "imageLink": processed_a[3]},
@@ -393,7 +394,8 @@ survey
                     {"value": 2, "imageLink": processed_a[5]}];
             } else {
                 survey.getQuestionByName("procmeats-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Very nice! And how much of it do you eat per week??</center></h3>';
+                    '<h3><center>Very nice! And how much of it do you eat per week??</center></h3>'+
+                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/processedmeats_next_image.png'></img>";
                 survey.getQuestionByName("procmeats-next").choices = [
                     {"value": 0, "imageLink": processed_a[0]},
                     {"value": 0.1, "imageLink": processed_a[1]},
@@ -402,7 +404,7 @@ survey
             }
         }
 
-        if (options.page.name == "page22") {
+        if (options.page.name == "page20") {
             if (survey.getQuestionByName("procmeats-next").value >= 3) {
                 survey.getQuestionByName("redmeat-title").html = "<div id='sketch-holder'></div>" +
                     "<h3><center> Okay nice! And how do you feel about red meat? </center></h3>" +
@@ -417,10 +419,11 @@ survey
             }
         }
 
-        if (options.page.name == "page23") {
+        if (options.page.name == "page21") {
             if (survey.getQuestionByName("redmeat").value > 1) {
                 survey.getQuestionByName("redmeat-next-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Aaaannd how much of it do you eat per week??</center></h3>';
+                    '<h3><center>Aaaannd how much of it do you eat per week??</center></h3>'+
+                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/redmeats_next_image.png'></img>";
                 survey.getQuestionByName("redmeat-next").choices = [
                     {"value": 0.3, "imageLink": redmeat_a[2]},
                     {"value": 0.5, "imageLink": redmeat_a[3]},
@@ -428,7 +431,8 @@ survey
                     {"value": 2, "imageLink": redmeat_a[5]}];
             } else {
                 survey.getQuestionByName("redmeat-next-title").html = "<div id='sketch-holder'></div> <br>" +
-                    "<h3><center>All good! Anddd how much of it do you eat per week??</center></h3>";
+                    "<h3><center>All good! Anddd how much of it do you eat per week??</center></h3>"+
+                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/redmeats_next_image.png'></img>";
                 survey.getQuestionByName("redmeat-next").choices = [
                     {"value": 0, "imageLink": redmeat_a[0]},
                     {"value": 0.1, "imageLink": redmeat_a[1]},
@@ -437,11 +441,12 @@ survey
             }
         }
 
-        if (options.page.name == "page26") {
+        if (options.page.name == "page24") {
 
             if (survey.getQuestionByName("soda").value > 1) {
                 survey.getQuestionByName("soda-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Okay, there are a lot of beverages! How much do you drink a week?</center></h3>';
+                    '<h3><center>Okay, sweetened drinks are a classic! How much do you drink a week?</center></h3>'+
+                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/soda_next_image.png'></img>";
                 survey.getQuestionByName("soda-next").choices = [
                     {"value": 0.3, "imageLink": soda_a[2]},
                     {"value": 0.5, "imageLink": soda_a[3]},
@@ -449,7 +454,8 @@ survey
                     {"value": 2, "imageLink": soda_a[5]}];
             } else {
                 survey.getQuestionByName("soda-title").html = "<div id='sketch-holder'></div> <br>" +
-                    "<h3><center>That's fine aaannd how many do you drink a week??</center></h3>";
+                    "<h3><center>That's fine aaannd how many do you drink a week??</center></h3>"+
+                    "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/soda_next_image.png'></img>";
                 survey.getQuestionByName("soda-next").choices = [
                     {"value": 0, "imageLink": soda_a[0]},
                     {"value": 0.1, "imageLink": soda_a[1]},
@@ -458,7 +464,7 @@ survey
             }
         }
 
-        if (options.page.name == "page32") {
+        if (options.page.name == "page30") {
             if (survey.getQuestionByName("alcohol").value > 1) {
                 survey.getQuestionByName("alcohol-title").html = "<div id='sketch-holder'></div> <br>" +
                     '<h3><center>Okay! Actually drinking alcohol can improve your heart health. How many glasses do you drink a week?</center></h3>';
@@ -575,6 +581,7 @@ survey.onValueChanged.add(function (survey, options) {
     rawNuts = nutQuestion;
     rawSoda = sugarQuestion;
     rawMeat = procmeatQuestion + meatQuestion;
+    rawGrains = grainQuestion;
     rawAlcohol = dietValues[8];
 
     rawSmoke = smokeQuestion;
@@ -609,6 +616,7 @@ survey.onValueChanged.add(function (survey, options) {
         nutValue = 0.14522;
     }
 
+    grainValue = 0.03326 * (grainQuestion * 3)
     sugarValue = 0.14631 * sugarQuestion;
     meatValue = 0.15624 * meatQuestion + 0.15624 * procmeatQuestion;
 
@@ -664,7 +672,7 @@ survey.onValueChanged.add(function (survey, options) {
     const badFoodsQuestion = survey.getQuestionByName("bad-foods");
     badFoodsQuestion.html =
         `
-            <h2>Time to get moving!</h2>
+            <h2>Let's take a look at your physical activity!</h2>
             <br>
             <div class="uk-container uk-text-center">
                 <p class="uk-margin-remove uk-text-meta">+ 4 hrs  |  0 min</p>
@@ -693,12 +701,14 @@ survey.onValueChanged.add(function (survey, options) {
                         <span class="low-intense"></span>Low intensity exercise
                     </h4>
                 </div>
+                <p> The amount of recommended exercise for somebody your age is about 3.5 hours of activity to reduce your heart risk.
+                This includes intense activity (like sports) as well as moderate activity (like walking, running, etc)
             </div>
         `
 
 
     const activitiesQuestion = survey.getQuestionByName("activities");
-    activitiesQuestion.html = "<div><center> <h3>Now, this is your score today, and you can change it by trying out different habits. Next month your score could be totally different!</h3> <br>"
+    activitiesQuestion.html = "<div><center> <h3>Now, this is your score today, and next month could be totally different if you try different habits!</h3> <br>"
         + "<p><img alt='' class='image'  src=" + feedbackImage + "></p>"
         + " <p>How likely do you think you'll make changes in your lifestyle ? Move the slider!</p> </center> <br>" +
         "<div id='slider' class='uk-container'></div> <br><br> </div>";
