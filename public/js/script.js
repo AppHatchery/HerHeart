@@ -111,21 +111,22 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
             "<p>The foods below increase your heart risk, you want to limit your consumption to about once a week." +
             " If meat is an essential part of your diet you’ll want to look to substitute it with more white meats like chicken.</p>"
 
-        for (const categoriesKey in categories) {
-            gradient = (categoriesKey > 2) ? "red-yellow-green" : "green-yellow-red"
-            if (categoriesKey < 5) {
+        let sortedIndexes = [2, 1, 3, 4, 5]
+        for (const index in sortedIndexes) {
+            gradient = (index > 2) ? "red-yellow-green" : "green-yellow-red"
+            if (index < 5) {
 
-                if (categoriesKey == 0) nutritionSummary += headingOne
-                else if (categoriesKey == 3) nutritionSummary += headingTwo
+                if (index == 0) nutritionSummary += headingOne
+                else if (index == 3) nutritionSummary += headingTwo
 
                 nutritionSummary += `
                         <div uk-grid>
                             <div class="uk-width-1-3 uk-margin-auto-vertical">
-                                <p class="uk-text-meta">${categories[categoriesKey]}</p>
+                                <p class="uk-text-meta uk-text-lowercase">${categories[sortedIndexes[index]]}</p>
                             </div>
                             <div class="uk-width-expand uk-position-relative uk-padding-remove-left">
                                 <div class="${gradient} height">
-                                    <input class="uk-range" type="range" value="${scoreData[categoriesKey]}">
+                                    <input class="uk-range" type="range" value="${scoreData[sortedIndexes[index]]}">
                                 </div>
                             </div>
                         </div>
@@ -686,12 +687,12 @@ survey.onValueChanged.add(function (survey, options) {
             <br>
              <div class="uk-child-width-1-1 uk-text-center" uk-grid>
                  <div>
-                    <h4 class="uk-flex-inline uk-margin-remove" style="align-items: center">
+                    <h4 class="uk-flex-inline uk-margin-remove" style="align-items: center; color: #FF8534">
                         <span class="intense-exercise"></span> Intense exercise
                     </h4>
                 </div>
                 <div class="uk-margin-remove">
-                    <h4 class="uk-flex-inline uk-margin-remove" style="align-items: center">
+                    <h4 class="uk-flex-inline uk-margin-remove" style="align-items: center; color: #2FD9FD">
                         <span class="low-intense"></span>Low intensity exercise
                     </h4>
                 </div>
