@@ -61,8 +61,8 @@ let veggies_a = ['img/generic_never.png', 'img/veggies_lessthan1.png', 'img/vegg
 let nuts_a = ['img/generic_never.png', 'img/generic_lessthan1.png', 'img/generic_1to2.png', 'img/generic_3to5.png', 'img/generic_everyday.png', 'img/generic_twiceaday.png'];
 let processed_a = ['img/generic_never.png', 'img/generic_lessthan1.png', 'img/generic_1to2.png', 'img/generic_3to5.png', 'img/generic_everyday.png', 'img/generic_twiceaday.png'];
 let redmeat_a = ['img/generic_never.png', 'img/generic_lessthan1.png', 'img/generic_1to2.png', 'img/generic_3to5.png', 'img/generic_everyday.png', 'img/generic_twiceaday.png'];
-let soda_a = ['img/generic_never.png', 'img/generic_lessthan1.png', 'img/generic_1to2.png', 'img/generic_3to5.png', 'img/generic_everyday.png', 'img/generic_twiceaday.png'];
-let alcohol_a = ['img/generic_never.png', 'img/generic_lessthan1.png', 'img/generic_1to2.png', 'img/generic_3to5.png', 'img/generic_everyday.png', 'img/generic_twiceaday.png'];
+let soda_a = ['img/drinks_never.png', 'img/generic_lessthan1.png', 'img/generic_1to2.png', 'img/generic_3to5.png', 'img/generic_everyday.png', 'img/generic_twiceaday.png'];
+let alcohol_a = ['img/drinks_never.png', 'img/generic_lessthan1.png', 'img/generic_1to2.png', 'img/generic_3to5.png', 'img/generic_everyday.png', 'img/generic_twiceaday.png'];
 
 let summarySubtitle = ["Don’t worry! This means that down the road, when you're in your 40s, your heart will be a little more at risk for heart disease.<br><br>" +
 "The good news is you’re still young and have plenty of time to lower your risk and we’ve got some tips to help you do that!"]

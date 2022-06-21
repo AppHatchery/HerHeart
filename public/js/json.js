@@ -18,9 +18,9 @@ const json = {
                     "type": "html",
                     "name": "Intro",
                     "html": "<h2 style='text-align:center'> Tell us what you eat every week and we'll tell you how healthy your heart is</h2>" +
-                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:70%;' src='svg/Heart.svg'><br>" +
+                        "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:70%;' src='svg/Heart.svg'><br>"
                         // "<p>Not smoking, a healthy weight, a nutritious diet, and daily exercise play important roles in the prevention of cardiovascular disease. In fact, an overall healthy lifestyle may prevent more than 75% of deaths due to cardiovascular disease. Take this quiz to evaluate how your current lifestyle habits affect your cardiovascular health, and discover simple steps you can take to incorporate a Heart Healthy lifestyle into everyday living. Knowledge is power. Take the first step towards protecting your heart and your health!</p>"+
-                        "<br><p><b>Tap the arrow to begin this quiz.</b></p>"
+                        //"<br><p><b>Tap the arrow to begin this quiz.</b></p>"
                 },
                 {
                     "name": "ID",
@@ -753,7 +753,7 @@ const json = {
                     "type": "text",
                     "inputType": "number",
                     "placeholder": "130",
-                    "title": "How much do you weigh? (in pounds)",
+                    "title": "What is your weight? (in pounds)",
                     "isRequired": true
                 }
             ]
@@ -786,7 +786,7 @@ const json = {
                 {
                     "type": "html",
                     "name": "pre-summary",
-                    "html": "<div><center><h3 style='margin:auto;'>You are done! Tap the right arrow to see your score</h3></center></div>"
+                    "html": "<div><center><h3 style='margin:auto;'>You are done! Tap the right arrow to submit your answers</h3></center></div>"
                 }
             ]
         }, {
@@ -883,7 +883,7 @@ const json = {
                 {
                     "type": "html",
                     "name": "improveScoreText",
-                    "html": "<h3><center> OMG! Look how much your score will improve if you change some habits </center></h3>" +
+                    "html": "<h3><center> OMG! Look how much your score will improve if you change some habits </center></h3><br>" +
                         "<div id='sketch-holder'></div>"
                 },
                 {

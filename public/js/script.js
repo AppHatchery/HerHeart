@@ -119,7 +119,7 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
                 nutritionSummary += `
                         <div uk-grid>
                             <div class="uk-width-1-3 uk-margin-auto-vertical">
-                                <p class="uk-text-meta uk-text-lowercase">${categories[sortedIndexes[index]]}</p>
+                                <p class="uk-text-meta uk-text-lowercase" style="font-size: 14px; font-weight: 400;">${categories[sortedIndexes[index]]}</p>
                             </div>
                             <div class="uk-width-expand uk-position-relative uk-padding-remove-left">
                                 <div class="${gradient} height">
@@ -350,7 +350,7 @@ survey
                     {"value": 3, "imageLink": veggies_a[4]}];
             } else {
                 survey.getQuestionByName("veggies-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Okayyy 😬... Well we all know veggies are good for you. How many servings you eat a day??</center></h3>' +
+                    '<h3><center>Got it! Well, we all know veggies are good for you. So I have to ask, how many servings you eat a day?</center></h3>' +
                     "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/veggies_next_image.png'></img>";
                 survey.getQuestionByName("veggies-next").choices = [
                     {"value": 0, "imageLink": veggies_a[0]},
@@ -372,7 +372,7 @@ survey
                     {"value": 2, "imageLink": nuts_a[5]}];
             } else {
                 survey.getQuestionByName("nuts-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Okayy 😬... How many servings do you eat a week????</center></h3>' +
+                    '<h3><center>Yup! How many servings do you eat a week????</center></h3>' +
                     "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/nuts_next_image.png'></img>";
                 survey.getQuestionByName("nuts-next").choices = [
                     {"value": 0, "imageLink": nuts_a[0]},
@@ -662,7 +662,7 @@ survey.onValueChanged.add(function (survey, options) {
     const summaryQuestion = survey.getQuestionByName("summary");
     summaryQuestion.html = "<div><center> <h4>Your future risk is...</h4>"
         + "<p><img alt=''  class='summary-image' src=" + summaryImage + "?v=2></p><h3>" + relativeRiskWord + "</h3> " +
-        "<p>" + summarySubtitle [0] + "</p></center></div>"
+        "<h4>" + summarySubtitle [0] + "</h4></center></div>"
 
     const goodFoodsQuestion = survey.getQuestionByName("good-foods");
     goodFoodsQuestion.html =
@@ -672,22 +672,22 @@ survey.onValueChanged.add(function (survey, options) {
     const badFoodsQuestion = survey.getQuestionByName("bad-foods");
     badFoodsQuestion.html =
         `
-            <h2>Let's take a look at your physical activity!</h2>
+            <h3><b>Let's take a look at your physical activity!</b></h3>
             <br>
             <div class="uk-container uk-text-center">
-                <p class="uk-margin-remove uk-text-meta">+ 4 hrs  |  0 min</p>
+                <p class="uk-margin-remove uk-text-meta" style="font-size: 14px; font-weight: 400;">+ 4 hrs  |  0 min</p>
                 <div uk-grid class="uk-child-width-1-6">
                     <div class="uk-margin-auto-vertical">
-                        <p class="uk-text-nowrap uk-text-meta">3 hrs</p>
+                        <p class="uk-text-nowrap uk-text-meta" style="font-size: 14px; font-weight: 400;">3 hrs</p>
                     </div>
                     <div class="uk-width-expand">
                         <div id="timeChart"></div>
                     </div>
                     <div class="uk-margin-auto-vertical">
-                        <p class="uk-text-meta uk-text-nowrap">1 hrs</p>
+                        <p class="uk-text-meta uk-text-nowrap" style="font-size: 14px; font-weight: 400;">1 hrs</p>
                     </div>
                 </div>
-                <p class="uk-text-nowrap uk-text-meta uk-margin-remove">2 hrs</p>
+                <p class="uk-text-nowrap uk-text-meta uk-margin-remove" style="font-size: 14px; font-weight: 400;">2 hrs</p>
             </div>
             <br>
              <div class="uk-child-width-1-1 uk-text-center" uk-grid>
@@ -708,8 +708,8 @@ survey.onValueChanged.add(function (survey, options) {
 
 
     const activitiesQuestion = survey.getQuestionByName("activities");
-    activitiesQuestion.html = "<div><center> <h3>Now, this is your score today, and next month could be totally different if you try different habits!</h3> <br>"
-        + "<p><img alt='' class='image'  src=" + feedbackImage + "></p>"
+    activitiesQuestion.html = "<div><h3>Now, this is your score today, and next month could be totally different if you try different habits!</h3> <br>"
+        + "<center><p><img alt='' class='image'  src=" + feedbackImage + "></p>"
         + " <p>How likely do you think you'll make changes in your lifestyle ? Move the slider!</p> </center> <br>" +
         "<div id='slider' class='uk-container'></div> <br><br> </div>";
 
