@@ -37,11 +37,10 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
     // console.log(options.question.name)
 
 
+    areasToImproveFlag = options.question.name === "improveScore"
+
     if (options.question.name === "areasToImprove") {
-        survey.getQuestionByName("areasToImprove").isRequired = true
-        survey.getQuestionByName("areasToImprove").colCount = 1
-        survey.getQuestionByName("areasToImprove").maxSelectedChoices = 2
-        survey.getQuestionByName("areasToImprove").hasNone = false
+        survey.getQuestionByName("areasToImprove").choices = []
         survey.getQuestionByName("areasToImprove").choices = [
             {
                 "visibleIf": fruitsValue + " != 1",
@@ -54,7 +53,7 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
                 "text": "Red & Processed meats"
             },
             {
-                "visibleIf": grainsValue + " != 1",
+                "visibleIf": grainsValue + " != 1 and ",
                 "value": 12,
                 "text": "Cereal fiber"
             },
@@ -63,11 +62,11 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
                 "text": "Nuts and Seeds",
                 "visibleIf": nutsValue + " != 1",
             },
-            {
-                "value": 28,
-                "text": "Alcohol",
-                "visibleIf": alcoholValue + " != 1",
-            },
+            // {
+            //     "value": 28,
+            //     "text": "Alcohol",
+            //     "visibleIf": alcoholValue + " != 1" + survey.data["age"] + " > 21 ",
+            // },
             {
                 "value": 30,
                 "text": "Smoking",
@@ -92,8 +91,6 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
                     $(".grains").css("display", "unset");
                 } else if (extraPoints.value[index] == 25) {
                     $(".nuts").css("display", "unset");
-                } else if (extraPoints.value[index] == 28) {
-                    $(".alcohol").css("display", "unset");
                 } else if (extraPoints.value[index] == 30) {
                     $(".smoking").css("display", "unset");
                 } else if (extraPoints.value[index] == 32) {

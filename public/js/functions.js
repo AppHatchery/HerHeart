@@ -132,10 +132,15 @@ function defineSketch(x, y, value, total, colorDisplay, healthyPoints, animate) 
             p.copy(ready, 0, 0, i, 40, 60, 20, i, 40);
 
             p.fill(colorScore);
-            p.textSize(40);
-            p.text("+" + value, 160, 100);
-            p.text('/', 150 + 30, 105);
-            p.text(healthyPoints, 160 + 80, 110);
+            if (areasToImproveFlag) {
+                p.textSize(70);
+                p.text("+" + value, 240, 150);
+            } else {
+                p.textSize(40);
+                p.text("+" + value, 160, 100);
+                p.text('/', 150 + 30, 105);
+                p.text(healthyPoints, 160 + 80, 110);
+            }
         }
 
         // Waiting function
@@ -257,7 +262,6 @@ function calculateBarProgress() {
     } else {
         animationValues[8] = animationValues[7] + parseInt(rawAlcohol * 20)
     }
-
 
 
     // Extra points

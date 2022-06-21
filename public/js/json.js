@@ -868,6 +868,10 @@ const json = {
                     "type": "checkbox",
                     "name": "areasToImprove",
                     "isRequired": true,
+                    "hasNone": false,
+                    "title": " ",
+                    "maxSelectedChoices": 2,
+                    "colCount": 1,
                 }
             ]
         },
@@ -916,15 +920,21 @@ const json = {
                                         </div>
                                     </div>
                                 </a>
-                                <div class="uk-accordion-content">
-                                    <p><b>What steps can I take to maintain or improve my score for fruits and vegetables?</b></p>
-                                    <p>All fruits and veggies are great to include in your daily meals—that includes canned, fresh and frozen
-                                        varieties! <br><br>
-                                        Try filling at least half your plate with fruits and veggies for every meal to make it to the
-                                        recommended 4.5 cups of each per day.<br><br>
-                                        Also try placing your fruits on the counter or the front of the fridge to remind yourself to eat them.
-                                    </p>
-                                </div>
+                            <div class="uk-accordion-content">
+                                <p><b>What steps can I take to maintain or improve my score for fruits and vegetables?</b></p>
+                                <p class="uk-margin-remove">All fruits and veggies are great to include in your daily meals—that
+                                    includes
+                                    canned, fresh and frozen varieties!
+                                </p>
+                                <iframe src="https://giphy.com/embed/xUOwFVvYqCCsFEQk80"
+                                        height="250" class="uk-width-1-1"></iframe>
+                                <p class="uk-margin-remove">
+                                    Try filling at least half your plate with fruits and veggies for every meal to make it to the
+                                    recommended 4.5 cups of each per day.<br>
+                                    Also try placing your fruits on the counter or the front of the fridge to remind yourself to eat
+                                    them.
+                                </p>
+                            </div>
                             </li>
                             <li class="meats" style="display: none">
                                 <a class="uk-accordion-title" href="#">
@@ -935,14 +945,20 @@ const json = {
                                         </div>
                                     </div>
                                 </a>
-                                <div class="uk-accordion-content">
-                                    <p><b>What steps can I take to maintain or improve my score for red meat?</b></p>
-                                    <p>Red and processed meats are higher in cholesterol and saturated fat than chicken, fish or beans. Higher
-                                        cholesterol and saturated fat can raise your blood cholesterol and increase your risk for heart disease.
-                                        When choosing protein, opt for low-fat options like lean meats such as chicken, turkey, fish.<br><br>
-                                        You can also try choosing main dishes that combine meat and vegetables like a stir-fry that emphasizes
-                                        veggies!</p>
-                                </div>
+                            <div class="uk-accordion-content">
+                                <p><b>What steps can I take to maintain or improve my score for red meat?</b></p>
+                                <p>Red and processed meats are higher in cholesterol and saturated fat than chicken, fish or beans.
+                                    Higher
+                                    cholesterol and saturated fat can raise your blood cholesterol and increase your risk for heart
+                                    disease.
+                                    When choosing protein, opt for low-fat options like lean meats such as chicken, turkey,
+                                    fish.<br><br>
+                                    <img src="https://qph.fs.quoracdn.net/main-qimg-a2e429356109c8f4ec5aea72067791f5" alt="">
+                                    <br><br>
+                                    You can also try choosing main dishes that combine meat and vegetables like a stir-fry that
+                                    emphasizes
+                                    veggies!</p>
+                            </div>
                             </li>
                             <li class="grains" style="display: none">
                                 <a class="uk-accordion-title" href="#">
@@ -953,15 +969,20 @@ const json = {
                                         </div>
                                     </div>
                                 </a>
-                                <div class="uk-accordion-content">
-                                    <p><b>What steps can I take to maintain or improve my score for cereal fiber/whole grains?</b></p>
-                                    <p>Whole grains are a great source for fiber and fiber can help improve blood cholesterol levels! It can
-                                        also help you feel full! Some common
-                                        whole grain foods are whole-wheat bread, unsalted popped popcorn, whole-wheat tortilla, and quinoa. Try
-                                        substituting rice for quinoa or white bread for wheat-bread!
-                                        Also, try choosing foods that list whole grains as the first ingredient. Look for labels like “100%
-                                        whole wheat” or “whole oats.”</p>
-                                </div>
+                            <div class="uk-accordion-content">
+                                <p><b>What steps can I take to maintain or improve my score for cereal fiber/whole grains?</b></p>
+                                <p>Whole grains are a great source for fiber and fiber can help improve blood cholesterol levels! It can
+                                    also help you feel full! Some common
+                                    whole grain foods are whole-wheat bread, unsalted popped popcorn, whole-wheat tortilla, and quinoa.
+                                </p>
+                                <iframe src="https://giphy.com/embed/SsqaoQ0p98OImZq3jK"
+                                        height="250" class="uk-width-1-1"></iframe>
+                                <p>
+                                    Try
+                                    substituting rice for quinoa or white bread for wheat-bread!
+                                    Also, try choosing foods that list whole grains as the first ingredient. Look for labels like “100%
+                                    whole wheat” or “whole oats.”</p>
+                            </div>
                             </li>
                             <li class="nuts" style="display: none">
                                 <a class="uk-accordion-title" href="#">
@@ -972,30 +993,18 @@ const json = {
                                         </div>
                                     </div>
                                 </a>
-                                <div class="uk-accordion-content">
-                                    <p><b>What steps can I take to maintain or improve my score for nuts and seeds?</b></p>
-                                    <p>You can use a handful of nuts or a tablespoon or two of a nut spread as a substitute for saturated fats,
-                                        such as those found in meats, eggs and dairy products.
-                                        Choose unsalted, dry roasted, or lightly salted nuts.
-                                        If you have a nut allergy, seeds are a great alternative and actually have similar health benefits!</p>
-                                </div>
+                            <div class="uk-accordion-content">
+                                <p><b>What steps can I take to maintain or improve my score for nuts and seeds?</b></p>
+                                <p>You can use a handful of nuts or a tablespoon or two of a nut spread as a substitute for saturated
+                                    fats,
+                                    such as those found in meats, eggs and dairy products.</p>
+                                <img alt="" src="https://c.tenor.com/3SfGEevJhzYAAAAC/mallcop-cop.gif">
+                                <p> Choose unsalted, dry roasted, or lightly salted nuts.
+                                    If you have a nut allergy, seeds are a great alternative and actually have similar health
+                                    benefits!</p>
+                            </div>
                             </li>
-                            <li class="alcohol" style="display: none">
-                                <a class="uk-accordion-title" href="#">
-                                    <div uk-grid>
-                                        <div class="uk-flex-inline uk-width-expand uk-padding-remove-left uk-h4">
-                                            Alcohol
-                                            <hr class="uk-width-expand" style="margin: auto 20px">
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="uk-accordion-content">
-                                    <p><b>What steps can I take to maintain or improve my score for alcohol?</b></p>
-                                    <p>Drinking too much alcohol can increase the risk of heart attack and stroke. 
-                                    If you are over 21 and you choose to drink, make sure to drink alcoholic beverages only in moderation. Alcohol is not necessary to decrease your risk for heart disease.</p>
-                                </div>
-                            </li>
-                            <li class="smoking" style="display: none">
+                             <li class="smoking" style="display: none">
                                 <a class="uk-accordion-title" href="#">
                                     <div uk-grid>
                                         <div class="uk-flex-inline uk-width-expand uk-padding-remove-left uk-h4">
@@ -1005,10 +1014,14 @@ const json = {
                                     </div>
                                 </a>
                                 <div class="uk-accordion-content">
-                                    <p><b>What steps can I take to maintain or improve my score for smoking?</b></p>
-                                    <p>Quitting smoking, vaping, or using any form of tobacco/nicotine is one of the best ways to improve 
-                                    your health! If you would like support to quit smoking or vaping call 1-800-QUIT-NOW. Here you’ll be connected to trained professionals who can help you quit.</p>
-                                </div>
+                                <p><b>What steps can I take to maintain or improve my score for smoking?</b></p>
+                                <p>Quitting smoking, vaping, or using any form of tobacco/nicotine is one of the best ways to improve
+                                    your health! If you would like support to quit smoking or vaping call 1-800-QUIT-NOW.</p>
+                                <img alt=""
+                                     src="https://s2.favim.com/orig/36/cigarette-end-inglorious-bastards-smoke-Favim.com-292299.gif">
+                                <p>Here you’ll be
+                                    connected to trained professionals who can help you quit.</p>
+                            </div>
                             </li>
                             <li class="physical" style="display: none">
                                 <a class="uk-accordion-title" href="#">
@@ -1019,12 +1032,18 @@ const json = {
                                         </div>
                                     </div>
                                 </a>
-                                <div class="uk-accordion-content">
-                                    <p><b>What steps can I take to maintain or improve my score for physical activity?</b></p>
-                                    <p>Try to get at least 150 minutes of moderate to intense activity each week. You can achieve this by spending less time sitting and doing
-                                     things you enjoy like going for walks, dancing, jumping rope, biking, or even gardening. Focus on movement!
-                                     You can also try buddying up! Exercise with a partner can be more fun and motivating.</p>
-                                </div>
+                            <div class="uk-accordion-content">
+                                <p><b>What steps can I take to maintain or improve my score for physical activity?</b></p>
+                                <p>Try to get at least 150 minutes of moderate to intense activity each week. You can achieve this by
+                                    spending less time sitting and doing
+                                    things you enjoy like going for walks, dancing, jumping rope, biking, or even gardening.
+                                </p>
+                                <iframe src="https://media1.popsugar-assets.com/files/thumbor/XPgxzY8_Op1z56fYsvQ7NCWXlx0/fit-in/1024x1024/filters:gifv-!!-/2018/11/30/985/n/1922283/c5a881808d26ed42_tumblr_pj0yvq8kHj1xwtx8wo2_540/i/Ariana-Grande-Thank-U-Next-Music-Video-GIFs.gif"
+                                        height="250" class="uk-width-1-1"></iframe>
+                                <p>Focus on
+                                    movement!
+                                    You can also try buddying up! Exercise with a partner can be more fun and motivating.</p>
+                            </div>
                             </li>
                         </ul>
                     </div>

@@ -77,3 +77,4 @@ let meatsValue = 0
 let sodaValue = 0
 let smokingValue = 0
 let alcoholValue = 0
+let areasToImproveFlag = false
