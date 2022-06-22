@@ -41,8 +41,8 @@ let extraPointsValue = 0;
 let generic_sport = ['img/generic_none.png', 'img/generic_15to30.png', 'img/generic_30to60.png', 'img/generic_1to3hr.png', 'img/generic_6to10hr.png', 'img/generic_10ormore.png'];
 
 // First Pages
-let activity_ = ['img/activity_0.png', 'img/activity_1.png', 'img/high_activity_2.png', 'img/high_activity_3.png'];
-let activity_low_ = ['img/low_activity_0.png', 'img/activity_1.png', 'img/activity_2.png', 'img/activity_3.png'];
+let activity_ = ['img/high_activity_0.png', 'img/high_activity_1.png', 'img/activity_2.png', 'img/high_activity_3.png'];
+let activity_low_ = ['img/low_activity_0.png', 'img/activity_1.png', 'img/low_activity_2.png', 'img/activity_3.png'];
 let high_grains_ = ['img/high_grains_0.png', 'img/high_grains_1.png', 'img/high_grains_2.png', 'img/high_grains_3.png'];
 let fruit_ = ['img/fruit_0.png', 'img/fruit_1.png', 'img/fruit_2.png', 'img/fruit_3.png'];
 let veggies_ = ['img/veggies_0.png', 'img/veggies_1.png', 'img/veggies_2.png', 'img/veggies_3.png'];
