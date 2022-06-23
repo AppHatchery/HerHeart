@@ -559,7 +559,7 @@ survey.onValueChanged.add(function (survey, options) {
     //
     const smokeQuestion = survey.getQuestionByName("smoke").value;
     //
-    const alcoholQuestion = survey.getQuestionByName("alcohol").value;
+    const alcoholQuestion = survey.getQuestionByName("alcohol-next").value;
     //
     const fruitQuestion = survey.getQuestionByName("fruit-next").value;
     const vegetableQuestion = survey.getQuestionByName("veggies-next").value;
@@ -582,7 +582,7 @@ survey.onValueChanged.add(function (survey, options) {
     rawSoda = sugarQuestion;
     rawMeat = procmeatQuestion + meatQuestion;
     rawGrains = grainQuestion;
-    rawAlcohol = dietValues[8];
+    rawAlcohol = alcoholQuestion;
 
     rawSmoke = smokeQuestion;
     extraPoints = survey.getQuestionByName("areasToImprove")
@@ -595,15 +595,16 @@ survey.onValueChanged.add(function (survey, options) {
         smokeValue = 0.90138;
     }
 
-    if (alcoholQuestion == "More than twice a day") {
-        alcoholValue = 0.01923 * 30 - 0.0004 * 30 * 30
-    } else if (alcoholQuestion == "Twice a day") {
-        alcoholValue = 0.01923 * 20 - 0.0004 * 20 * 20
-    } else if (alcoholQuestion == "Everyday") {
-        alcoholValue = 0.01923 * 10 - 0.0004 * 10 * 10
-    } else if (alcoholQuestion == "Three to five times a week") {
-        alcoholValue = 0.01923 * 5 - 0.0004 * 5 * 5
-    }
+    // if (alcoholQuestion > 2) {
+    //     alcoholValue = 0.01923 * 30 - 0.0004 * 30 * 30
+    // } else if (alcoholQuestion == 2) {
+    //     alcoholValue = 0.01923 * 20 - 0.0004 * 20 * 20
+    // } else if (alcoholQuestion == 1) {
+    //     alcoholValue = 0.01923 * 10 - 0.0004 * 10 * 10
+    // } else if (alcoholQuestion == 0.3) {
+    //     alcoholValue = 0.01923 * 5 - 0.0004 * 5 * 5
+    // }
+    alcoholValue = (0.01923 * 10 * alcoholQuestion) - (0.0004 * 10 * 10 * alcoholQuestion * alcoholQuestion);
 
 
     if (rawFruits >= 3) {

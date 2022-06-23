@@ -255,13 +255,8 @@ function calculateBarProgress() {
     animationValues[7] = animationValues[6] + 60 - rawSmoke * 60;
 
     // Alcohol
-    if (rawAlcohol == 1) {
-        animationValues[8] = animationValues[7] + 20
-    } else if (rawAlcohol > 1) {
-        animationValues[8] = animationValues[7] + 20 - parseInt((rawAlcohol * 20) / 3)
-    } else {
-        animationValues[8] = animationValues[7] + parseInt(rawAlcohol * 20)
-    }
+    animationValues[8] = animationValues[7] + 20 - parseInt((rawAlcohol * 20) / 2)
+    
 
 
     // Extra points

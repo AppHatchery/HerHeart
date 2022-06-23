@@ -671,7 +671,7 @@ const json = {
                     "name": "test",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3><center> Oh! You are 21+, let me ask you then, do you drink alcohol??</center></h3>" +
-                        "</div><img alt='' style='margin-left:auto; margin-right:auto; display:block; width:50%;' src='img/alcohol.png'>" +
+                        "</div><img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/alcohol.png'>" +
                         "<p><center>One glass = 4 ounces of wine, 12 ounces of beer</center></p>"
                 },
                 {
