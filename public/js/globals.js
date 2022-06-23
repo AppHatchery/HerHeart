@@ -42,7 +42,7 @@ let generic_sport = ['img/generic_none.png', 'img/generic_15to30.png', 'img/gene
 
 // First Pages
 let activity_ = ['img/high_activity_0.png', 'img/high_activity_1.png', 'img/activity_2.png', 'img/high_activity_3.png'];
-let activity_low_ = ['img/low_activity_0.png', 'img/activity_1.png', 'img/low_activity_2.png', 'img/activity_3.png'];
+let activity_low_ = ['img/low_activity_0.png', 'img/low_activity_1.png', 'img/low_activity_2.png', 'img/low_activity_3.png'];
 let high_grains_ = ['img/high_grains_0.png', 'img/high_grains_1.png', 'img/high_grains_2.png', 'img/high_grains_3.png'];
 let fruit_ = ['img/fruit_0.png', 'img/fruit_1.png', 'img/fruit_2.png', 'img/fruit_3.png'];
 let veggies_ = ['img/veggies_0.png', 'img/veggies_1.png', 'img/veggies_2.png', 'img/veggies_3.png'];
@@ -65,7 +65,9 @@ let soda_a = ['img/drinks_never.png', 'img/generic_lessthan1.png', 'img/generic_
 let alcohol_a = ['img/drinks_never.png', 'img/generic_lessthan1.png', 'img/generic_1to2.png', 'img/generic_3to5.png', 'img/generic_everyday.png', 'img/generic_twiceaday.png'];
 
 let summarySubtitle = ["Don’t worry! This means that down the road, when you're in your 40s, your heart will be a little more at risk for heart disease.<br><br>" +
-"The good news is you’re still young and have plenty of time to lower your risk and we’ve got some tips to help you do that!"]
+"The good news is you’re still young and have plenty of time to lower your risk and we’ve got some tips to help you do that!",
+"Keep up the good work!! This means that down the road, when you're in your 40s, your heart will be at very little risk of heart disease.<br><br>" +
+"You have great habits and need to make sure you maintain them and we’ve got some tips to help you do that!"]
 let feedbackText = "Awesome, we love to hear that!"
 let noUiSliderUpdate = 0
 
