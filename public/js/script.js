@@ -178,7 +178,7 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
                     }
                 }
             },
-            labels: ['intense', 'low intensity'],
+            labels: ['intense', 'moderate intensity'],
         };
 
         setTimeout(() => {
@@ -265,13 +265,13 @@ survey
         if (options.page.name == "page4") {
             if (survey.getQuestionByName("activity-high-next").value >= 2) {
                 survey.getQuestionByName("activity-low-title").html = "<div id='sketch-holder'></div>" +
-                    "<h3><center> Nice job on your intense exercise! Do you also like doing low intensity exercise? </center></h3>" +
+                    "<h3><center> Nice job on your intense exercise! Do you also like doing moderate intensity exercise? </center></h3>" +
                     "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/moderate.png'>" +
                     "<p><center style='font-size:14px;'>Examples: walking, dancing, riding a bike, playing with dog, swimming, marching band</center></p>";
 
             } else {
                 survey.getQuestionByName("activity-low-title").html = "<div id='sketch-holder'></div>" +
-                    "<h3><center> Okay, do you like doing low intensity exercise? </center></h3>" +
+                    "<h3><center> Okay, do you like doing moderate intensity exercise? </center></h3>" +
                     "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/moderate.png'>" +
                     "<p><center style='font-size:14px;'>Examples: walking, dancing, riding a bike, playing with dog, swimming, marching band</center></p>";
             }
@@ -280,7 +280,7 @@ survey
         if (options.page.name == "page5") {
             if (survey.getQuestionByName("activity-low").value > 1) {
                 survey.getQuestionByName("activity-low-next-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Nice! And tell me how much intense physical exercise do you do a week?</center></h3>';
+                    '<h3><center>Nice! And tell me how much moderate intensity exercise do you do a week?</center></h3>';
                 survey.getQuestionByName("activity-low-next").choices = [
                     {"value": 0.75, "imageLink": generic_sport[2]},
                     {"value": 2, "imageLink": generic_sport[3]},
@@ -289,7 +289,7 @@ survey
 
             } else {
                 survey.getQuestionByName("activity-low-next-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Okay so how much intense physical exercise do you do a week?</center></h3>';
+                    '<h3><center>Okay so how much moderate intensity exercise do you do a week?</center></h3>';
                 survey.getQuestionByName("activity-low-next").choices = [
                     {"value": 0, "imageLink": generic_sport[0]},
                     {"value": 0.25, "imageLink": generic_sport[1]},
@@ -343,7 +343,7 @@ survey
         if (options.page.name == "page13") {
             if (survey.getQuestionByName("veggies").value > 1) {
                 survey.getQuestionByName("veggies-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Nice, veggies are super important for good heart health! How many servings you eat a day??</center></h3>' +
+                    '<h3><center>Niiice! How many servings you eat a day??</center></h3>' +
                     "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/veggies_next_image.png'></img>";
                 survey.getQuestionByName("veggies-next").choices = [
                     {"value": 0.5, "imageLink": veggies_a[1]},
@@ -352,7 +352,7 @@ survey
                     {"value": 3, "imageLink": veggies_a[4]}];
             } else {
                 survey.getQuestionByName("veggies-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Got it! Well, we all know veggies are good for you. So I have to ask, how many servings you eat a day?</center></h3>' +
+                    '<h3><center>Got it! So I have to ask, how many servings you eat a day?</center></h3>' +
                     "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/veggies_next_image.png'></img>";
                 survey.getQuestionByName("veggies-next").choices = [
                     {"value": 0, "imageLink": veggies_a[0]},
@@ -469,7 +469,7 @@ survey
         if (options.page.name == "page30") {
             if (survey.getQuestionByName("alcohol").value > 1) {
                 survey.getQuestionByName("alcohol-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Okay! Actually drinking alcohol can improve your heart health. How many glasses do you drink a week?</center></h3>';
+                    '<h3><center>Okay! How many glasses do you drink a week?</center></h3>';
                 survey.getQuestionByName("alcohol-next").choices = [
                     {"value": 0.3, "imageLink": alcohol_a[2]},
                     {"value": 0.5, "imageLink": alcohol_a[3]},
@@ -477,7 +477,7 @@ survey
                     {"value": 2, "imageLink": alcohol_a[5]}];
             } else {
                 survey.getQuestionByName("alcohol-title").html = "<div id='sketch-holder'></div> <br>" +
-                    '<h3><center>Alcohol is a bit tricky, a lot isn’t super good for you, but none isn’t either.... 😬 How many glasses do you drink a week?</center></h3>';
+                    '<h3><center> How many glasses do you drink a week?</center></h3>';
                 survey.getQuestionByName("alcohol-next").choices = [
                     {"value": 0, "imageLink": alcohol_a[0]},
                     {"value": 0.1, "imageLink": alcohol_a[1]},
@@ -561,7 +561,7 @@ survey.onValueChanged.add(function (survey, options) {
     //
     const smokeQuestion = survey.getQuestionByName("smoke").value;
     //
-    const alcoholQuestion = survey.getQuestionByName("alcohol").value;
+    const alcoholQuestion = survey.getQuestionByName("alcohol-next").value;
     //
     const fruitQuestion = survey.getQuestionByName("fruit-next").value;
     const vegetableQuestion = survey.getQuestionByName("veggies-next").value;
@@ -584,7 +584,7 @@ survey.onValueChanged.add(function (survey, options) {
     rawSoda = sugarQuestion;
     rawMeat = procmeatQuestion + meatQuestion;
     rawGrains = grainQuestion;
-    rawAlcohol = dietValues[8];
+    rawAlcohol = alcoholQuestion;
 
     rawSmoke = smokeQuestion;
     extraPoints = survey.getQuestionByName("areasToImprove")
@@ -597,15 +597,16 @@ survey.onValueChanged.add(function (survey, options) {
         smokeValue = 0.90138;
     }
 
-    if (alcoholQuestion == "More than twice a day") {
-        alcoholValue = 0.01923 * 30 - 0.0004 * 30 * 30
-    } else if (alcoholQuestion == "Twice a day") {
-        alcoholValue = 0.01923 * 20 - 0.0004 * 20 * 20
-    } else if (alcoholQuestion == "Everyday") {
-        alcoholValue = 0.01923 * 10 - 0.0004 * 10 * 10
-    } else if (alcoholQuestion == "Three to five times a week") {
-        alcoholValue = 0.01923 * 5 - 0.0004 * 5 * 5
-    }
+    // if (alcoholQuestion > 2) {
+    //     alcoholValue = 0.01923 * 30 - 0.0004 * 30 * 30
+    // } else if (alcoholQuestion == 2) {
+    //     alcoholValue = 0.01923 * 20 - 0.0004 * 20 * 20
+    // } else if (alcoholQuestion == 1) {
+    //     alcoholValue = 0.01923 * 10 - 0.0004 * 10 * 10
+    // } else if (alcoholQuestion == 0.3) {
+    //     alcoholValue = 0.01923 * 5 - 0.0004 * 5 * 5
+    // }
+    alcoholValue = (0.01923 * 10 * alcoholQuestion) - (0.0004 * 10 * 10 * alcoholQuestion * alcoholQuestion);
 
 
     if (rawFruits >= 3) {
@@ -647,10 +648,12 @@ survey.onValueChanged.add(function (survey, options) {
 
 
     //
+    var summarySubtitleIndex = 0;
     if (relativeRisk <= 1.0) {
         relativeRiskWord = "Looking good!";
         summaryImage = "./img/Results=Good.jpg"; // healthy.gif
         feedbackImage = "./img/feedback-Results=Good.jpg"; // healthy.gif
+        summarySubtitleIndex = 1;
     } else if (relativeRisk > 1.0 /* was 1.5 before but confusing for usersy6 */ && relativeRisk < 4) {
         relativeRiskWord = "Slightly elevated";
         summaryImage = "./img/Results=Okay.jpg"; // unhealthy.gif
@@ -664,7 +667,7 @@ survey.onValueChanged.add(function (survey, options) {
     const summaryQuestion = survey.getQuestionByName("summary");
     summaryQuestion.html = "<div><center> <h4>Your future risk is...</h4>"
         + "<p><img alt=''  class='summary-image' src=" + summaryImage + "?v=2></p><h3>" + relativeRiskWord + "</h3> " +
-        "<h4>" + summarySubtitle [0] + "</h4></center></div>"
+        "<h4>" + summarySubtitle [summarySubtitleIndex] + "</h4></center></div>"
 
     const goodFoodsQuestion = survey.getQuestionByName("good-foods");
     goodFoodsQuestion.html =
@@ -700,7 +703,7 @@ survey.onValueChanged.add(function (survey, options) {
                 </div>
                 <div class="uk-margin-remove">
                     <h4 class="uk-flex-inline uk-margin-remove" style="align-items: center; color: #2FD9FD">
-                        <span class="low-intense"></span>Low intensity exercise
+                        <span class="low-intense"></span>Moderate intensity exercise
                     </h4>
                 </div>
                 <p> The amount of recommended exercise for somebody your age is about 3.5 hours of activity to reduce your heart risk.

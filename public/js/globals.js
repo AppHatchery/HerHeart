@@ -2,7 +2,8 @@ let newAnimation;
 let oldAnimation;
 // Disable for testing
 const animationValues = new Array(10); // add +1 for extra points
-let animationValuesHealthy = [0, 20, 20, 20, 40, 20, 20, 60, 20, 30]; // add +1 for extra points
+// animationValuesHealthyKeys = []
+let animationValuesHealthy = [0, 20, 20, 30, 20, 20, 30, 60, 20, 30]; // add +1 for extra points
 const goodFeedbackResponse = ["empty", "Yea! That's the exercise you need every week!", "Keep 'em grains coming!", "Yaaa fruits and veggies make your heart healthy!", "Yea nuts are awesome!! One of the best foods you can eat to reduce risk of cardiac disease", "", "", "This is great! See how much NOT smoking has helped your score, smoking is a HUGE factor in your heart health"];
 const mediumFeedbackResponse = ["empty", "", "", "", "Nuts are a great foods! They positively impact your heart health!", "", "", "As you can probably guess, smoking is not too good for your heart, and because you stopped it means your heart is healing!"];
 const badFeedbackResponse = ["empty", "", "", "", "Nuts are some of the best foods you can eat to reduce your risk of cardiac health, and there's so much variety!", "Meat is tasty, and a lot of it is actually bad for your heart...", "Sweetened beverages are fine in moderation, but too many of them are not good for your heart!", "", "Smoking any nicotine is one of the biggest factors in reducing your risk of cardiac disease! You know that 60% of teenagers your age don't smoke, if your group of friends smokes you could try to use non-nicotine products for example!"];

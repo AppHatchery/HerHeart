@@ -222,18 +222,18 @@ function calculateBarProgress() {
 
     // Fruits & Veggies
     if (rawFruits >= 3) {
-        animationValues[3] = animationValues[2] + 20;
+        animationValues[3] = animationValues[2] + 30;
     } else {
-        animationValues[3] = animationValues[2] + parseInt((rawFruits / 3) * 20);
+        animationValues[3] = animationValues[2] + parseInt((rawFruits / 3) * 30);
     }
 
     // Nuts
     if (rawNuts >= 2) {
-        animationValues[4] = animationValues[3] + 40;
+        animationValues[4] = animationValues[3] + 20;
     } else if (rawNuts >= 0.3) {
-        animationValues[4] = animationValues[3] + 20 + parseInt((rawNuts - 0.3) * 20);
+        animationValues[4] = animationValues[3] + 10 + parseInt((rawNuts - 0.3) * 10);
     } else {
-        animationValues[4] = animationValues[3] + parseInt((rawNuts * 20) / 0.5);
+        animationValues[4] = animationValues[3] + parseInt((rawNuts * 10) / 0.5);
     }
 
     // Meat
@@ -244,10 +244,12 @@ function calculateBarProgress() {
     }
 
     // Soda
-    if (rawSoda > 1) {
-        animationValues[6] = animationValues[5]
+    if (rawSoda == 1) {
+        animationValues[6] = animationValues[5] + 3
+    } else if (rawSoda < 1){
+        animationValues[6] = animationValues[5] + (30 - parseInt(rawSoda * 30));
     } else {
-        animationValues[6] = animationValues[5] + (20 - parseInt(rawSoda * 20));
+        animationValues[6] = animationValues[5]
     }
 
     // Smoke
