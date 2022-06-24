@@ -79,3 +79,33 @@ let sodaValue = 0
 let smokingValue = 0
 let alcoholValue = 0
 let areasToImproveFlag = false
+
+let fakeData = {
+    "ID": "389535",
+    "activity-high": 1,
+    "activity-high-next": 2,
+    "activity-low": 2,
+    "activity-low-next": 8,
+    "grains-high": 2,
+    "grains-high-next": 1,
+    "fruit": 2,
+    "fruit-next": 3,
+    "veggies": 0,
+    "veggies-next": 0,
+    "nuts": 2,
+    "nuts-next": 0.3,
+    "procmeats": 2,
+    "procmeats-next": 1,
+    "redmeat": 1,
+    "redmeat-next": 0.3,
+    "soda": 2,
+    "soda-next": 0.5,
+    "smoke": 0.5,
+    "age": 43,
+    "alcohol": 0,
+    "alcohol-next": 0.3,
+    "gender": "Female",
+    "weight": 34,
+    "height-feet": 34,
+    "height-inches": 4
+}

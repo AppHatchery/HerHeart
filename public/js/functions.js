@@ -1,13 +1,12 @@
 function writeUserData(answers) {
-    const date = {"date": new Date()};
-    // database.ref('data').push(answers);
-
-    // updates[entryKey+'/date'] = new Date();
-    // app.update(ref(db), updates);
-    // Change Buzzfeed title for research depending on to what database this is going to
-    // database.ref('Buzzfeed/').update(updates);
-    // database.ref('Buzzfeed/' + entryKey).update(dates);
+    const updates = {};
+    const entryKey = database.ref('data').push().key;
+    updates[entryKey] = answers;
+    const dates = {"date": new Date()};
+    database.ref('data/').update(updates);
+    database.ref('data/' + entryKey).update(dates);
 }
+
 
 // Add a P5 Element
 function defineSketch(x, y, value, total, colorDisplay, healthyPoints, animate) {
@@ -355,8 +354,8 @@ function percentage2Min(val) {
 
 
 function toHours(val) {
-    if (val < 1) return (val*60 + ' mins'); else {
-        return Math.floor(val) + "hrs " + Math.floor((val % 1 )*60) + "mins"
+    if (val < 1) return (val * 60 + ' mins'); else {
+        return Math.floor(val) + "hrs " + Math.floor((val % 1) * 60) + "mins"
     }
 }
 
@@ -367,8 +366,10 @@ function getHealthy() {
             if (key == "Grains" && extraPoints.value[index] == 12) extraPointsValue += value.pointsToGain
             if (key == "Physical activity" && extraPoints.value[index] == 32) extraPointsValue += value.pointsToGain
             if (key == "Smoking" && extraPoints.value[index] == 30) extraPointsValue += value.pointsToGain
+            if (key == "Meat" && extraPoints.value[index] == 10) extraPointsValue += value.pointsToGain
             if (key == "Alcohol" && extraPoints.value[index] == 28) extraPointsValue += value.pointsToGain
             if (key == "Nuts" && extraPoints.value[index] == 25) extraPointsValue += value.pointsToGain
+            if (key == "Soda" && extraPoints.value[index] == 34) extraPointsValue += value.pointsToGain
         }
     }
 }

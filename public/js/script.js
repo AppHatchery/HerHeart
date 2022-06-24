@@ -30,6 +30,8 @@ survey
     });
 
 
+writeUserData(fakeData)
+
 $("#surveyElement").Survey({model: survey});
 
 
@@ -62,11 +64,11 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
                 "text": "Nuts and Seeds",
                 "visibleIf": nutsValue + " != 1",
             },
-            // {
-            //     "value": 28,
-            //     "text": "Alcohol",
-            //     "visibleIf": alcoholValue + " != 1" + survey.data["age"] + " > 21 ",
-            // },
+            {
+                "value": 34,
+                "text": "Soda",
+                "visibleIf": sodaValue + " != 1",
+            },
             {
                 "value": 30,
                 "text": "Smoking",
@@ -123,7 +125,7 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
                             </div>
                             <div class="uk-width-expand uk-position-relative uk-padding-remove-left">
                                 <div class="${gradient} height">
-                                    <input class="uk-range" type="range" value="${scoreData[sortedIndexes[index]]}">
+                                    <input class="uk-range" type="range" disabled value="${scoreData[sortedIndexes[index]]}">
                                 </div>
                             </div>
                         </div>
