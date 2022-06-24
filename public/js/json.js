@@ -17,7 +17,7 @@ const json = {
                 {
                     "type": "html",
                     "name": "Intro",
-                    "html": "<h2 style='text-align:center'> Tell us what you eat every week and we'll tell you how healthy your heart is</h2>" +
+                    "html": "<h2 style='text-align:center'> Tell us what you do every week and we'll tell you how healthy your heart is</h2>" +
                         "<img alt='' style='margin-left:auto; margin-right:auto; display:block; width:70%;' src='svg/Heart.svg'><br>"
                     // "<p>Not smoking, a healthy weight, a nutritious diet, and daily exercise play important roles in the prevention of cardiovascular disease. In fact, an overall healthy lifestyle may prevent more than 75% of deaths due to cardiovascular disease. Take this quiz to evaluate how your current lifestyle habits affect your cardiovascular health, and discover simple steps you can take to incorporate a Heart Healthy lifestyle into everyday living. Knowledge is power. Take the first step towards protecting your heart and your health!</p>"+
                     //"<br><p><b>Tap the arrow to begin this quiz.</b></p>"
@@ -671,7 +671,7 @@ const json = {
                     "name": "test",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3><center> Oh! You are 21+, let me ask you then, do you drink alcohol??</center></h3>" +
-                        "</div><img alt='' style='margin-left:auto; margin-right:auto; display:block; width:50%;' src='img/alcohol.png'>" +
+                        "</div><img alt='' style='margin-left:auto; margin-right:auto; display:block; width:100%;' src='img/alcohol.png'>" +
                         "<p><center>One glass = 4 ounces of wine, 12 ounces of beer</center></p>"
                 },
                 {
@@ -724,7 +724,7 @@ const json = {
                 {
                     "type": "html",
                     "name": "test",
-                    "html": "<div id='sketch-holder'></div><h3 style='text-align:center'>Gotcha! You may know this, one glass of wine a day is actually beneficial to your heart health, just one though 👀</h3>",
+                    "html": "<div id='sketch-holder'></div>",
                 }
             ]
         }, {
