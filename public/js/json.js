@@ -1049,6 +1049,23 @@ const json = {
                                     You can also try buddying up! Exercise with a partner can be more fun and motivating.</p>
                             </div>
                             </li>
+                            <li class="soda" style="display: none">
+                                <a class="uk-accordion-title" href="#">
+                                    <div uk-grid>
+                                        <div class="uk-flex-inline uk-width-expand uk-padding-remove-left uk-h4">
+                                            Soda
+                                            <hr class="uk-width-expand" style="margin: auto 20px">
+                                        </div>
+                                    </div>
+                                </a>
+                            <div class="uk-accordion-content">
+                                <p><b>What steps can I take to maintain or improve my score for soda?</b></p>
+                                <p>Did you know sugar-sweetened beverages like soda and energy drinks are the number one source
+                                 of added sugars? The best thing you can drink is water. Try spicing it up by drinking 
+                                 sparkling or add fruits and herbs to add flavor! You can also drink coffee and tea without added sugar!
+                                </p>
+                            </div>
+                            </li>
                         </ul>
                     </div>
                     `
