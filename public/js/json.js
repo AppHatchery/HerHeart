@@ -918,7 +918,7 @@ const json = {
                             <li class="fruits" style="display: none">
                                  <a class="uk-accordion-title" href="#">
                                     <div class="uk-margin-auto-vertical" uk-grid>
-                                        <div class="uk-flex-inline uk-width-expand uk-padding-remove-left uk-h4">
+                                        <div class="uk-flex-inline uk-width-expand uk-h4">
                                             Fruits & Veggies
                                             <hr class="uk-width-expand" style="margin: auto 20px">
                                         </div>
@@ -943,7 +943,7 @@ const json = {
                             <li class="meats" style="display: none">
                                 <a class="uk-accordion-title" href="#">
                                     <div uk-grid>
-                                        <div class="uk-flex-inline uk-width-expand uk-padding-remove-left uk-h4">
+                                        <div class="uk-flex-inline uk-width-expand uk-h4">
                                             Red & Processed Meats
                                             <hr class="uk-width-expand" style="margin: auto 20px">
                                         </div>
@@ -967,7 +967,7 @@ const json = {
                             <li class="grains" style="display: none">
                                 <a class="uk-accordion-title" href="#">
                                     <div uk-grid>
-                                        <div class="uk-flex-inline uk-width-expand uk-padding-remove-left uk-h4">
+                                        <div class="uk-flex-inline uk-width-expand uk-h4">
                                             Cereal fiber/whole grains
                                             <hr class="uk-width-expand" style="margin: auto 20px">
                                         </div>
@@ -991,7 +991,7 @@ const json = {
                             <li class="nuts" style="display: none">
                                 <a class="uk-accordion-title" href="#">
                                     <div uk-grid>
-                                        <div class="uk-flex-inline uk-width-expand uk-padding-remove-left uk-h4">
+                                        <div class="uk-flex-inline uk-width-expand uk-h4">
                                             Nuts and Seeds
                                             <hr class="uk-width-expand" style="margin: auto 20px">
                                         </div>
@@ -1011,7 +1011,7 @@ const json = {
                              <li class="smoking" style="display: none">
                                 <a class="uk-accordion-title" href="#">
                                     <div uk-grid>
-                                        <div class="uk-flex-inline uk-width-expand uk-padding-remove-left uk-h4">
+                                        <div class="uk-flex-inline uk-width-expand uk-h4">
                                             Smoking
                                             <hr class="uk-width-expand" style="margin: auto 20px">
                                         </div>
@@ -1030,7 +1030,7 @@ const json = {
                             <li class="physical" style="display: none">
                                 <a class="uk-accordion-title" href="#">
                                     <div uk-grid>
-                                        <div class="uk-flex-inline uk-width-expand uk-padding-remove-left uk-h4">
+                                        <div class="uk-flex-inline uk-width-expand uk-h4">
                                             Physical Activity
                                             <hr class="uk-width-expand" style="margin: auto 20px">
                                         </div>
@@ -1052,7 +1052,7 @@ const json = {
                             <li class="soda" style="display: none">
                                 <a class="uk-accordion-title" href="#">
                                     <div uk-grid>
-                                        <div class="uk-flex-inline uk-width-expand uk-padding-remove-left uk-h4">
+                                        <div class="uk-flex-inline uk-width-expand uk-h4">
                                             Soda
                                             <hr class="uk-width-expand" style="margin: auto 20px">
                                         </div>
