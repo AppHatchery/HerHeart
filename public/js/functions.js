@@ -1,10 +1,31 @@
-function writeUserData(answers) {
+function writeUserData(answers, update = false) {
     const updates = {};
-    const entryKey = database.ref('data').push().key;
-    updates[entryKey] = answers;
-    const dates = {"date": new Date()};
+
+    if (!update)
+        firebaseEntryKey = database.ref('data').push().key;
+
+    if (update)
+        delete answers["areasToImprove"]
+
+
+    const areasToImprove = {
+        'areas-to-improve': toImprove
+    }
+
+    const time = {
+        'start-time': startTime,
+        'start-time-timestamp': startTimeUnixTime,
+        'end-time': new Date(),
+        'end-time-timestamp': Date.now(),
+    }
+
+    updates[firebaseEntryKey] = {
+        ...answers,
+        ...time,
+        ...areasToImprove
+    };
+
     database.ref('data/').update(updates);
-    database.ref('data/' + entryKey).update(dates);
 }
 
 
@@ -246,7 +267,7 @@ function calculateBarProgress() {
     // Soda
     if (rawSoda == 1) {
         animationValues[6] = animationValues[5] + 3
-    } else if (rawSoda < 1){
+    } else if (rawSoda < 1) {
         animationValues[6] = animationValues[5] + (30 - parseInt(rawSoda * 30));
     } else {
         animationValues[6] = animationValues[5]
@@ -257,7 +278,6 @@ function calculateBarProgress() {
 
     // Alcohol
     animationValues[8] = animationValues[7] + 20 - parseInt((rawAlcohol * 20) / 2)
-    
 
 
     // Extra points

@@ -836,7 +836,7 @@ const json = {
                 },
                 {
                     "type": "imagepicker",
-                    "name": "awesomeWeLoveToHearThat",
+                    "name": "awesome-we-love-to-hear-that",
                     "title": " ",
                     "isRequired": true,
                     "colCount": 1,
@@ -859,7 +859,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "visibleIf": "{awesomeWeLoveToHearThat}==0",
+                    "visibleIf": "{awesome-we-love-to-hear-that}==0",
                     "name": "pickAreaToImprove",
                     "html": "<div id='sketch-holder'></div>" +
                         "<h3><center> Excellent! </center></h3>" +
@@ -868,7 +868,7 @@ const json = {
                 {
                     "type": "checkbox",
                     "name": "areasToImprove",
-                    "visibleIf": "{awesomeWeLoveToHearThat}==0",
+                    "visibleIf": "{awesome-we-love-to-hear-that}==0",
                     "isRequired": true,
                     "hasNone": false,
                     "title": " ",
@@ -880,7 +880,7 @@ const json = {
         {
             "popupdescription": "P5",
             "pos": 9,
-            "visibleIf": "{awesomeWeLoveToHearThat}==0",
+            "visibleIf": "{awesome-we-love-to-hear-that}==0",
             "animated": "yes",
             "elements": [
                 {
@@ -892,7 +892,7 @@ const json = {
                 {
                     "type": "imagepicker",
                     "name": "improveScore",
-                    "visibleIf": "{awesomeWeLoveToHearThat}==0",
+                    "visibleIf": "{awesome-we-love-to-hear-that}==0",
                     "title": " ",
                     "isRequired": true,
                     "colCount": 1,
@@ -910,7 +910,7 @@ const json = {
             "elements": [
                 {
                     "type": "html",
-                    "visibleIf": "{awesomeWeLoveToHearThat}==0",
+                    "visibleIf": "{awesome-we-love-to-hear-that}==0",
                     "name": "improveScores",
                     "html": `
                     <div class="uk-container">
@@ -1042,8 +1042,9 @@ const json = {
                                     spending less time sitting and doing
                                     things you enjoy like going for walks, dancing, jumping rope, biking, or even gardening.
                                 </p>
-                                <iframe src="https://media1.popsugar-assets.com/files/thumbor/XPgxzY8_Op1z56fYsvQ7NCWXlx0/fit-in/1024x1024/filters:gifv-!!-/2018/11/30/985/n/1922283/c5a881808d26ed42_tumblr_pj0yvq8kHj1xwtx8wo2_540/i/Ariana-Grande-Thank-U-Next-Music-Video-GIFs.gif"
-                                        height="250" class="uk-width-1-1"></iframe>
+                                 <img alt=""
+                                    class="uk-width-1-1"
+                                    src="./gif/physical-exercise.gif">
                                 <p>Focus on
                                     movement!
                                     You can also try buddying up! Exercise with a partner can be more fun and motivating.</p>

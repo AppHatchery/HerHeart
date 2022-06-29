@@ -67,8 +67,8 @@ let alcohol_a = ['img/drinks_never.png', 'img/generic_lessthan1.png', 'img/gener
 
 let summarySubtitle = ["Don’t worry! This means that down the road, when you're in your 40s, your heart will be a little more at risk for heart disease.<br><br>" +
 "The good news is you’re still young and have plenty of time to lower your risk and we’ve got some tips to help you do that!",
-"Keep up the good work!! This means that down the road, when you're in your 40s, your heart will be at very little risk of heart disease.<br><br>" +
-"You have great habits and need to make sure you maintain them and we’ve got some tips to help you do that!"]
+    "Keep up the good work!! This means that down the road, when you're in your 40s, your heart will be at very little risk of heart disease.<br><br>" +
+    "You have great habits and need to make sure you maintain them and we’ve got some tips to help you do that!"]
 let feedbackText = "Awesome, we love to hear that!"
 let noUiSliderUpdate = 0
 
@@ -83,32 +83,7 @@ let smokingValue = 0
 let alcoholValue = 0
 let areasToImproveFlag = false
 
-let fakeData = {
-    "ID": "389535",
-    "activity-high": 1,
-    "activity-high-next": 2,
-    "activity-low": 2,
-    "activity-low-next": 8,
-    "grains-high": 2,
-    "grains-high-next": 1,
-    "fruit": 2,
-    "fruit-next": 3,
-    "veggies": 0,
-    "veggies-next": 0,
-    "nuts": 2,
-    "nuts-next": 0.3,
-    "procmeats": 2,
-    "procmeats-next": 1,
-    "redmeat": 1,
-    "redmeat-next": 0.3,
-    "soda": 2,
-    "soda-next": 0.5,
-    "smoke": 0.5,
-    "age": 43,
-    "alcohol": 0,
-    "alcohol-next": 0.3,
-    "gender": "Female",
-    "weight": 34,
-    "height-feet": 34,
-    "height-inches": 4
-}
+let startTime = new Date()
+let startTimeUnixTime = Date.now()
+let firebaseEntryKey = 0
+let toImprove = []

@@ -80,23 +80,32 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
         ]
     } else if (options.question.name === "complete") {
         $(".sv-footer__complete-btn").css("display", 'none')
+        writeUserData(survey.data, true)
     } else if (options.question.name === "improveScores") {
         setTimeout(function (e) {
+            toImprove = []
             for (let index = 0; index < extraPoints.value.length; index++) {
                 if (extraPoints.value[index] == 15) {
+                    toImprove.push("Fruits & Veggies")
                     $(".fruits").css("display", "unset");
                 } else if (extraPoints.value[index] == 10) {
                     $(".meats").css("display", "unset");
+                    toImprove.push("Red & Processed Meats")
                 } else if (extraPoints.value[index] == 12) {
                     $(".grains").css("display", "unset");
+                    toImprove.push("Cereal fiber/whole grains")
                 } else if (extraPoints.value[index] == 25) {
                     $(".nuts").css("display", "unset");
+                    toImprove.push("Nuts and Seeds")
                 } else if (extraPoints.value[index] == 30) {
                     $(".smoking").css("display", "unset");
+                    toImprove.push("Smoking")
                 } else if (extraPoints.value[index] == 34) {
                     $(".soda").css("display", "unset");
+                    toImprove.push("Soda")
                 } else if (extraPoints.value[index] == 32) {
                     $(".physical").css("display", "unset");
+                    toImprove.push("Physical Activity")
                 }
             }
         }, 100)
@@ -109,6 +118,27 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
         let headingTwo = "<br><br><h3><b>And these are foods that increase it.. </b></h3>" +
             "<p>The foods below increase your heart risk, you want to limit your consumption to about once a week." +
             " If meat is an essential part of your diet you’ll want to look to substitute it with more white meats like chicken.</p>"
+
+        let hint =`
+             <div uk-grid class="uk-margin-small">
+               <div class="uk-width-1-3 uk-margin-auto-vertical"></div>
+                <div class="uk-width-expand" uk-grid>
+                    <div class="uk-width-1-3 uk-padding-remove uk-text-center">
+                        <span uk-icon="icon: arrow-left; ratio: 1"></span>
+                        <p class="uk-text-truncate uk-text-small uk-text-right uk-margin-remove">
+                            < 3x a week
+                        </p>
+                    </div>
+                    <div class="uk-width-1-3 uk-padding-remove"></div>
+                    <div class="uk-width-1-3 uk-padding-remove uk-text-center">
+                        <span uk-icon="icon: arrow-right; ratio: 1"></span>
+                        <p class="uk-text-truncate uk-text-small uk-margin-remove">
+                            > 5x a week
+                        </p>
+                      </div>
+                  </div>
+              </div>
+        `
 
         let sortedIndexes = [2, 1, 3, 4, 5]
         for (const index in sortedIndexes) {
@@ -130,6 +160,9 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
                             </div>
                         </div>
                         `
+
+                if (index == 2) nutritionSummary += hint
+                else if (index == 4) nutritionSummary += hint
             }
         }
 
@@ -226,21 +259,12 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
 
 
         }, 300)
-    }
-
+    } else if (options.question.name === "summary") writeUserData(survey.data)
 });
 
 survey
     .onAfterRenderPage
     .add(function (survey, options) {
-
-        // Send data to firebase on the user's responses
-        if (options.page.name == "page43" || options.page.name == "page44") {
-            writeUserData(survey.data);
-        }
-
-        // console.log(options.page.name);
-        // P5 End ------------ //
         // Modify pages for Buzzfeed style
         // Okay so this works it seems like
         if (options.page.name == "page3") {
