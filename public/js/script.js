@@ -155,7 +155,7 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
                             </div>
                             <div class="uk-width-expand uk-position-relative uk-padding-remove-left">
                                 <div class="${gradient} height">
-                                    <input class="uk-range" type="range" disabled value="${scoreData[sortedIndexes[index]]}">
+                                    <input class="uk-range uk-disabled" type="range" value="${scoreData[sortedIndexes[index]]}">
                                 </div>
                             </div>
                         </div>
