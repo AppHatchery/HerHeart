@@ -151,7 +151,7 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
                 nutritionSummary += `
                         <div uk-grid>
                             <div class="uk-width-1-3 uk-margin-auto-vertical">
-                                <p class="uk-text-meta uk-text-lowercase" style="font-size: 14px; font-weight: 400;">${categories[sortedIndexes[index]]}</p>
+                                <p class="uk-text-meta uk-text-lowercase" style="font-size: 18px; font-weight: 600;">${categories[sortedIndexes[index]]}</p>
                             </div>
                             <div class="uk-width-expand uk-position-relative uk-padding-remove-left">
                                 <div class="${gradient} height">
