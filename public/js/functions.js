@@ -303,7 +303,7 @@ function displayFeedbackMessage(feedbackChosen) {
 
 
 function calculateGoodBadDiet() {
-    let rawScoreValues = [0, rawSport, animationValues[2] - animationValues[1], animationValues[3] - animationValues[2], (animationValues[4] - animationValues[3]) / 2, 20 - (animationValues[5] - animationValues[4]), 20 - (animationValues[6] - animationValues[5]), rawSmoke, rawAlcohol, animationValues[9] - animationValues[8]];
+    let rawScoreValues = [0, rawSport, animationValues[2] - animationValues[1], (animationValues[3] - animationValues[2])/1.5, (animationValues[4] - animationValues[3]), 20 - (animationValues[5] - animationValues[4]), 20 - (animationValues[6] - animationValues[5])/1.5, rawSmoke, rawAlcohol, animationValues[9] - animationValues[8]];
     // graphScoreValues = [rawGrains*const,]
     // Calculates the percentage score
     for (const key in animationValues) {
@@ -335,6 +335,7 @@ function calculateGoodBadDiet() {
     //     return second[1] - first[1];
     // });
 
+    // I think this whole section of the code is legacy, we don't use the scoreData or healthyData anywhere else
     // Create a new array with only the first 5 items
     for (let val in items) {
         sortedDict.push(items[val][0]);
@@ -350,6 +351,7 @@ function calculateGoodBadDiet() {
         scoreData.push(cleanSortedValues[cleanSortedValuesKey]/* * cleanSortedValuesHealthy[cleanSortedValuesKey]*/ * 19 / 4) // This constant helps put the score at the end of the graph
         index++
     }
+    console.log(scoreData);
 
     // console.log("Previous to organizing", items)
     // Sort the array based on the second element
