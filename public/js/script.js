@@ -78,6 +78,8 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
                 "visibleIf": activityValue + " != 1",
             }
         ]
+        // Save user data if arrive to feedback page as well - 07/10/22 change
+        writeUserData(survey.data, true)
     } else if (options.question.name === "complete") {
         $(".sv-footer__complete-btn").css("display", 'none')
         writeUserData(survey.data, true)
