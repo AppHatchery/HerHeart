@@ -351,7 +351,7 @@ function calculateGoodBadDiet() {
         scoreData.push(cleanSortedValues[cleanSortedValuesKey]/* * cleanSortedValuesHealthy[cleanSortedValuesKey]*/ * 19 / 4) // This constant helps put the score at the end of the graph
         index++
     }
-    console.log(scoreData);
+    // console.log(scoreData);
 
     // console.log("Previous to organizing", items)
     // Sort the array based on the second element

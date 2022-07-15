@@ -37,6 +37,13 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
     // console.log(options.question.name)
 
 
+    if (options.question.name == "bad-foods") {
+        $(".sv-footer__next-btn").unbind()
+        $(".sv-footer__next-btn").click(function () {
+            survey.nextPage();
+        })
+    }
+
     areasToImproveFlag = options.question.name === "improveScore"
 
     if (options.question.name === "areasToImprove") {
@@ -121,7 +128,7 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
             "<p>The foods below increase your heart risk, you want to limit your consumption to about once a week." +
             " If meat is an essential part of your diet you’ll want to look to substitute it with more white meats like chicken.</p>"
 
-        let hint =`
+        let hint = `
              <div uk-grid class="uk-margin-small">
                <div class="uk-width-1-3 uk-margin-auto-vertical"></div>
                 <div class="uk-width-expand" uk-grid>
@@ -232,8 +239,18 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
 
     } else if (options.question.name == "activities") {
 
-        let flag = 0
+
+        let flag = false
+
+
         setTimeout(() => {
+
+            let button = $(".sv-footer__next-btn")
+            button.unbind()
+            button.click(function () {
+                $(".error").css("display", "unset")
+            })
+
 
             let slider = document.getElementById('slider');
 
@@ -251,11 +268,12 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
                 }
             });
             feedbackText = slider.noUiSlider.get() > 5.5 ? "Awesome, we love to hear that!" : "That’s okay, you’ve got time!"
-            $(".sv-footer__next-btn").css("display", 'none')
             slider.noUiSlider.on('update', function (values, handle) {
                 flag++
-                if (flag > 1)
-                    $(".sv-footer__next-btn").css("display", 'unset')
+                if (flag === 2)
+                    button.click(function () {
+                        survey.nextPage();
+                    })
                 noUiSliderUpdate = values
             });
 
@@ -741,7 +759,11 @@ survey.onValueChanged.add(function (survey, options) {
     const activitiesQuestion = survey.getQuestionByName("activities");
     activitiesQuestion.html = "<div><h3>Now, this is your score today, and next month could be totally different if you try different habits!</h3> <br>"
         + "<center><p><img alt='' class='image'  src=" + feedbackImage + "></p>"
-        + " <p>How likely do you think you'll make changes in your lifestyle ? Move the slider!</p> </center> <br>" +
+        + " <p>How likely do you think you'll make changes in your lifestyle ? Move the slider!" +
+        " <span class='error uk-text-bold' style='color: #CE3043; display: none'> <br> <br>Move the slider to proceed!</span> " +
+        "</p><br>" +
+
+
         "<div id='slider' class='uk-container'></div> <br><br> </div>";
 
     const userChoicesFeedback = survey.getQuestionByName("areasToImprove").value;
