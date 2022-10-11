@@ -268,6 +268,7 @@ survey.onAfterRenderQuestion.add(function (sender, options) {
                 }
             });
             feedbackText = slider.noUiSlider.get() > 5.5 ? "Awesome, we love to hear that!" : "That’s okay, you’ve got time!"
+            noUiSliderUpdate = slider.noUiSlider.get();
             slider.noUiSlider.on('update', function (values, handle) {
                 flag++
                 if (flag === 2)

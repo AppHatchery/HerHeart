@@ -20,7 +20,7 @@ function writeUserData(answers, update = false) {
     }
 
     const sliderData = {
-        'users-likelihood-to-change': noUISliderUpdate[0],
+        'users-likelihood-to-change': noUiSliderUpdate,
     }
 
     updates[firebaseEntryKey] = {
