@@ -681,7 +681,7 @@ survey.onValueChanged.add(function (survey, options) {
         W = 0.10820 * ageQuestion + 0.04676 * BMI + smokeValue - alcoholValue - 0.05113 * (Diet * 10) - 0.02951 * rawSport;
         risk = (1 - Math.pow(0.9660, Math.exp(W - 6.57301))) * 100
     } else {
-        W = "We not doing boys yet";
+        W = "We are not doing boys yet";
     }
     const healthyPerson = (1 - Math.pow(0.9660, Math.exp((-0.557385 + BMI * 0.04676 + ageQuestion * 0.1082) - 6.57301))) * 100;
     const relativeRisk = risk / healthyPerson;

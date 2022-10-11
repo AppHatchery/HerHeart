@@ -19,10 +19,15 @@ function writeUserData(answers, update = false) {
         'end-time-timestamp': Date.now(),
     }
 
+    const sliderData = {
+        'users-likelihood-to-change': noUISliderUpdate[0],
+    }
+
     updates[firebaseEntryKey] = {
         ...answers,
         ...time,
-        ...areasToImprove
+        ...areasToImprove,
+        ...sliderData
     };
 
     database.ref('data/').update(updates);
