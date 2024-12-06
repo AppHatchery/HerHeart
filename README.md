@@ -1,88 +1,49 @@
-# Getting Started with HerHeart
+# HerHeart
 
-## Building locally and running the development server
-1. Clone code from github using method of choice.  For example, in VS Code, "Clone Git Repository", search for HerHeart in the top bar, and select AppHatchery/HerHeart
-2. Navigate to the folder that was just cloned called HerHeart
-3. Try to build the code locally `npm run build`
-4. Follow the script output, you will likely need to install react-scripts
-5. (optional) If needed, install react-scripts `npm install react-scripts`
-6. Assuming the project builds successfully, start the development server with `npm start`
-7. Your browswer should open automatically, if it does not, navigate to http://localhost:3000/
+A web-based cardiovascular awareness tool designed specifically for teenage women, leveraging the Harvard-developed Healthy Heart Score (HHS) to promote cardiovascular health awareness and prevention.
 
+## Features
 
-## Push a new code version to hosting
-1. Install firebase tools using the instructions here: https://firebase.google.com/docs/cli `npm install -g firebase-tools`
+- Interactive cardiovascular risk assessment
+- Personalized health recommendations
+- User-friendly interface designed for teenage women
+- Evidence-based scoring system
+- Educational resources about cardiovascular health
 
-## Using a preview site
-Preview sites can be created using `firebase hosting:channel:deploy dev` where dev is any preview channel name you want
+## Technical Architecture
 
-# Getting Started with Create React App
+The application is built using:
+- HTML5 and CSS3 for structure and styling
+- P5.js library for animated elements
+- SurveyJS for survey implementation and data collection
+- Modern responsive design principles
+- Evidence-based algorithms for risk assessment
+- Secure data handling practices
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Scientific Background
 
-## Available Scripts
+The Healthy Heart Score (HHS) is a validated online assessment tool that estimates cardiovascular disease risk based on self-reported modifiable health behaviors. It was developed using data from the Nurses' Health Study and Health Professionals Follow-Up Study, with validation in young adults through the Coronary Artery Risk Development in Young Adults cohort study. The tool is particularly suitable for younger women as it:
 
-In the project directory, you can run:
+- Requires no clinical measurements or laboratory assessments
+- Focuses on modifiable health behaviors
+- Performs optimally in individuals without established CVD risk factors
 
-### `npm start`
+## Related Research
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This tool has been featured in:
+- [JMIR Formative Research Publication](https://formative.jmir.org/2022/12/e42051)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Acknowledgments
 
-### `npm test`
+This project is supported by:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- The National Center for Advancing Translational Sciences of the National Institutes of Health under Award Number UL1TR002378. The content is solely the responsibility of the authors and does not necessarily represent the official views of the National Institutes of Health.
+- NHLBI R03 HL155253
 
-### `npm run build`
+## License
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[Add appropriate license information]
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Contact
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[Add contact information]
