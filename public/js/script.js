@@ -789,6 +789,34 @@ function shareQuiz() {
 }
 
 
-closeButton.addEventListener('click', event => {
+const shareUrl = document.querySelector('.pen-url').textContent.trim();
+const shareText = 'Check out HerHeart and find out how healthy your heart is!';
+const shareLinks = {
+    facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareUrl),
+    twitter: 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(shareUrl) + '&text=' + encodeURIComponent(shareText),
+    linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(shareUrl),
+    email: 'mailto:?subject=' + encodeURIComponent('HerHeart') + '&body=' + encodeURIComponent(shareText + ' ' + shareUrl)
+};
+document.querySelectorAll('.share-target').forEach(target => {
+    target.href = shareLinks[target.dataset.target];
+});
+
+const copyLinkButton = document.querySelector('.copy-link');
+copyLinkButton.addEventListener('click', () => {
+    navigator.clipboard.writeText(shareUrl).then(() => {
+        copyLinkButton.textContent = 'Copied!';
+        setTimeout(() => copyLinkButton.textContent = 'Copy Link', 2000);
+    }).catch(console.error);
+});
+
+function closeShareDialog() {
     shareDialog.classList.remove('is-open');
+}
+
+closeButton.addEventListener('click', closeShareDialog);
+shareDialog.addEventListener('click', event => {
+    if (event.target === shareDialog) closeShareDialog();
+});
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closeShareDialog();
 });
